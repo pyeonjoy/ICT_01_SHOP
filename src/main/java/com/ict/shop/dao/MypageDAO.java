@@ -128,6 +128,10 @@ public class MypageDAO {
 		}
 		return -1;
 	}
+
+	public UserVO getUser_id(String user_id) {
+		return sqlSessionTemplate.selectOne("mypage.user_id",user_id);
+	}
 	
 
 }

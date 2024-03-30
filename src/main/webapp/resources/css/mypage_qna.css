@@ -1,0 +1,55 @@
+@charset "UTF-8";
+.mypage_qna_wrapper table {
+	width: 600px;
+	margin: 0 auto 10px;
+}
+
+.mypage_qna_table th, 
+.mypage_qna_table tr, 
+.mypage_qna_table td{
+	border-collapse: collapse; 
+	border-bottom: 1px solid gray;
+	padding: 8px 0px;
+	text-align: center;
+}
+
+.mypage_qna_search {
+	border-style: none;
+}
+
+
+.mypage_qna {
+	width: 100%;
+	margin: 70px 100px 70px;
+	justify-content: center;
+	text-align: center;
+	height: 500px;
+	float: left;
+	line-height: 35px;
+}
+
+.mypage_qna_container {
+	display: block;
+	width: 630px;
+	margin: 0 350px;
+	margin: 0 auto 10px;
+
+}
+.mypage_qna_submit{
+margin-left: 300px;
+}
+
+.mypage_qna_aside{
+	width: 350px;
+	float: left;
+	margin-top: 0;
+}
+.mypage_qna_stroke {
+background-color: black;
+color: black;
+width: 125px;
+height: 5px;
+font-size: 15px;
+line-height: 35px;
+margin: 0px auto 30px;
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+<!-- cart_list -->
+<!-- order_pay -->
+	<select id="productlist" parameterType="String" resultType="pvo">
+		select *
+		from shop_product, shop_user
+		where product_idx = #{product_idx}
+		order by product_idx
+	</select>
+	<select id ="userlist" resultType="uvo">
+		select * from shop_user order by user_idx
+	</select>
+</mapper>

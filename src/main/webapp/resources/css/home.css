@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/* 배경 */
+.home_background {
+	width: 100%;
+	height: 100vh;
+	background-image: url("https://tamburins-resource.s3.ap-northeast-2.amazonaws.com/mainbanner/d5fc14f8-164e-4cd2-b5de-bd44ccefe526/lip_balm_1280_1193.mp4");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	position: relative;
+	z-index: 1;
+}
+
+/* 헤더 속성 */
+@import url("header.css");
+#header a {
+	color: rgb(0, 0, 0);
+}
+
+#header a:visited {
+	color: rgb(0, 0, 0);
+}
+
+#header {
+	color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.0);
+}
+
+#header .menu_tilte:hover {
+	text-decoration: underline rgb(0, 0, 0);
+}
+
+#header .submenu {
+	background-color: rgba(0, 0, 0, 0.0);
+}
+
+#header .submenu > li {
+	border-bottom: 2px solid white;
+}
+
+#header .search {
+	border: 2px solid white;
+}
+
+@media screen and (max-width:1010px) {
+	#header .search {
+		border: none;
+	}
+	#header .search input {
+		display: none;
+	}
+}
+
+
+/* 메뉴바 내려가게 */
+@media screen and (max-width:745px) {
+	#header .menu {
+		background-color: rgba(0, 0, 0, 0.0);
+	}
+	#header .submenu {
+		background-color: rgba(0, 0, 0, 0.0);
+	}
+}
+
+#footer {
+	position: static;
+	top:0;
+}
+
+.header_space {
+	display: none;
+}

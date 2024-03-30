@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypage">
+<!-- mypage_addr_add -->
+ 	<insert id="addradd" parameterType="avo">
+	insert into shop_addr(addr_name, addr_phone, addr_addr)
+	values(#{addr_name}, #{addr_phone}, #{addr_addr})
+	</insert>
+	
+<!-- mypage_addr_edit --> 
+	<select id="addrdetail" parameterType="avo" resultType="avo">
+		select *
+		from shop_addr
+		where addr_idx= #{addr_idx}
+	</select>
+
+	<update id="addredit" parameterType="avo">
+	update shop_addr 
+		set addr_name = #{addr_name}
+		, addr_phone = #{addr_phone}
+		, addr_addr = #{addr_addr}
+		where user_idx = #{user_idx}
+		and addr_idx = #{addr_idx}
+	</update>
+	
+<!-- mypage_addr --> 	
+	<select id ="addrlist" resultType="avo">
+		select * 
+		  from shop_addr a, shop_user u
+		 where a.user_idx = u.user_idx
+		   and u.user_idx = '2'
+
+	</select>
+
+<!-- mypage_changepwd, mypage_firstchk --> 
+	<select id="firstchek" parameterType="uvo" resultType="uvo">
+		select user_pwd from shop_user where user_id =#{user_id}
+	</select>
+		
+<!-- mypage_changepwd --> 
+	<update id="changepwd" parameterType="uvo">
+		update shop_user set user_pwd = #{user_pwd} where user_id = #{user_id}
+	</update>
+<!-- mypage_faq --> 	
+
+<!-- mypage_heart --> 
+ 	<select id="heartlist" resultType="hvo">
+        select * from shop_heart, shop_product order by heart_idx 
+    </select>	
+<!-- mypage_info --> 	
+
+<!-- mypage_notice --> 	
+
+<!-- mypage_order_after --> 	
+
+<!-- mypage_order --> 	
+	<select id="orderlist" resultType="map">
+    select * 
+    from shop_order o, shop_product p
+    where o.product_idx = p.product_idx
+    and o.order_idx = #{order_idx}
+	</select>
+    <select id="productlist" resultType="pvo" parameterType="String">
+		select * from shop_product  
+		where product_idx = #{product_idx}
+	</select>
+<!-- mypage_pwdchk --> 	
+
+<!-- mypage_qna_update --> 	
+
+<!-- mypage_qna_write --> 	
+
+<!-- mypage_qna --> 	
+
+<!-- mypage_stack --> 	
+
+</mapper>

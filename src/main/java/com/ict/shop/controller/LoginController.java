@@ -56,47 +56,74 @@ public class LoginController {
 		}
 	}
 
-	@GetMapping("login_changepwd.do") // 아이디/비밀번호 찾기 진입 후 비밀번호 찾기 페이지
-	public ModelAndView Login_Changepwd() {
-
-		return new ModelAndView("login/login_changepwd");
+	@RequestMapping("find_pwd.do") // 아이디/비밀번호 찾기 진입 후 비밀번호 찾기
+	public ModelAndView Find_pwd(HttpServletRequest request, UserVO uvo) {
+		ModelAndView mv = new ModelAndView("login/login_changepwd");
+		
+	    uvo.setUser_id(request.getParameter("user_id"));
+	    uvo.setUser_phone(request.getParameter("user_phone"));
+	    
+	    UserVO result = shopservice.find_pwd(uvo);
+	    if (result !=null) {
+	    	mv.addObject("user_id", uvo.getUser_id());
+	    	System.out.println(uvo.getUser_id()+"아이디");
+	    	System.out.println(uvo.getUser_phone()+"전번");
+	    	return mv; 		
+		}
+		return new ModelAndView("main/signup_fail"); 
 	}
-
+	
+	@RequestMapping("login_changepwd.do")
+	public ModelAndView Login_Changepwd(HttpServletRequest request,UserVO uvo) {
+		try {
+			String encodedPassword = passwordEncoder.encode(uvo.getUser_pwd());
+			uvo.setUser_pwd(encodedPassword);
+			uvo.setUser_id(request.getParameter("user_id"));
+			int result = shopservice.reset_pwd(uvo);
+			System.out.println(uvo.getUser_id());
+			if (result > 0) {
+				ModelAndView mv = new ModelAndView("login/login_main");
+				return mv;
+			}else {
+				return new ModelAndView("main/signup_fail"); 				
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ModelAndView("main/signup_fail"); 
+		}
+		
+		
+	}
+	
 	@GetMapping("login_findinfo.do") // 아이디/비밀번호 진입 페이지
 	public ModelAndView Login_Findinfo() {
-
+		
 		return new ModelAndView("login/login_findinfo");
+	}
+
+	@RequestMapping("login_ok.do") // 로그인 완료
+	public ModelAndView Login_OK(HttpServletRequest request, HttpServletResponse response, UserVO uvo) {
+		ModelAndView mv = new ModelAndView();
+	
+		UserVO result = shopservice.getShop_Login(uvo);
+	
+		if (result != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user_id", result.getUser_id());
+			session.setAttribute("user_pwd", result.getUser_pwd());
+			session.setAttribute("uvo", result);
+			mv.setViewName("redirect:main.do");
+		} else {
+			mv.setViewName("login/signup_fail");
+		}
+	
+		return mv;
 	}
 
 	@GetMapping("login_main.do") // 로그인 페이지
 	public ModelAndView Login_Main() {
 
 		ModelAndView mv = new ModelAndView("login/login_main");
-		return mv;
-	}
-
-	@RequestMapping("login_ok.do") // 로그인 완료
-	public ModelAndView Login_OK(HttpServletRequest request, HttpServletResponse response, UserVO vo) {
-		ModelAndView mv = new ModelAndView();
-
-		vo.setUser_id(request.getParameter("user_id"));
-		vo.setUser_pwd(request.getParameter("user_pwd"));
-
-		System.out.println("컨트롤러 -> ID = " + vo.getUser_id());
-		System.out.println("컨트롤러 -> pwd = " + vo.getUser_pwd());
-
-		UserVO result = shopservice.getShop_Login(vo);
-
-		if (result != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("user_id", result.getUser_id());
-			session.setAttribute("user_pwd", result.getUser_pwd());
-			System.out.println(session);
-			mv.setViewName("redirect:main.do");
-		} else {
-			mv.setViewName("login/signup_fail");
-		}
-
 		return mv;
 	}
 

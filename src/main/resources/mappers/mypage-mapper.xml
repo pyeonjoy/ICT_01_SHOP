@@ -77,4 +77,9 @@
 
 <!-- mypage_stack --> 	
 
+<!-- mypage_stack/find_id -->
+	<select id="user_id" parameterType="String" resultType="uvo">
+		select * from shop_user where user_id = #{user_id} 
+	</select>
+
 </mapper>

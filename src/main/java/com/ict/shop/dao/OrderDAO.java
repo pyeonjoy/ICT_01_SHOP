@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
@@ -20,23 +21,25 @@ public class OrderDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	//order===================================================================================================================
-		public List<ProductVO> getProductList() {
+		//order_pay
+		public AddrVO getAddrDetail(AddrVO avo) {
 			try {
-				return sqlSessionTemplate.selectList("order.productlist");
+				return sqlSessionTemplate.selectOne("mypage.addrdetail", avo);
 			} catch (Exception e) {
-				logger.info("list", e);
+				logger.info("update", e);
+			}
+			return null;
+		}
+		
+		public ProductVO getProductDetail(ProductVO pvo) {
+			try {
+				return sqlSessionTemplate.selectOne("order.paydetail", pvo);
+			} catch (Exception e) {
+				logger.info("update", e);
 			}
 			return null;
 		}
 
-		public List<UserVO> getUserList() {
-			try {
-				return sqlSessionTemplate.selectList("order.userlist");
-			} catch (Exception e) {
-				logger.info("list", e);
-			}
-			return null;
-		}
-
+		
 	}
 

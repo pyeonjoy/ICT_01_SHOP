@@ -8,6 +8,7 @@
 float: left;
 margin: 0px 65px 0px 0px;
 padding: 50px 50px 0px 24px;
+    position: relative;
 }
 .mypage_addr_add_tilte{
 background-color: black;
@@ -24,6 +25,7 @@ width: 80px;
 height:150px;
 display: inline-block;
 	text-align:right;
+	position: absolute;
 }
 .mypage_addr_add_label {
 	float: left;
@@ -35,6 +37,8 @@ display: inline-block;
 width: 400px;
 height:150px;
 display: inline-block;
+position: absolute;
+    left: 120px;
 }
 .mypage_addr_add_info {
 display:inline-block;

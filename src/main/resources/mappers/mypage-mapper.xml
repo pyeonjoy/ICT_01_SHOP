@@ -5,9 +5,9 @@
 
 <mapper namespace="mypage">
 <!-- mypage_addr_add -->
- 	<insert id="addradd" parameterType="avo">
-	insert into shop_addr(addr_name, addr_phone, addr_addr)
-	values(#{addr_name}, #{addr_phone}, #{addr_addr})
+ 	<insert id="addrinsert" parameterType="avo">
+	insert into shop_addr(user_idx, addr_name, addr_phone, addr_addr)
+	values(#{user_idx}, #{addr_name}, #{addr_phone}, #{addr_addr})
 	</insert>
 	
 <!-- mypage_addr_edit --> 

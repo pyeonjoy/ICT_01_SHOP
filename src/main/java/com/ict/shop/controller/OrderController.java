@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.ShopService;
@@ -33,16 +34,17 @@ public class OrderController {
 	}
 	
 	@GetMapping("order_pay.do")
-	public ModelAndView Order_Pay() {
+	public ModelAndView Order_Pay(AddrVO avo, ProductVO pvo) {
 		ModelAndView mv = new ModelAndView("order/order_pay");
-		List<ProductVO> list1 = shopservice.getProductList();
-		System.out.println("list" + list1);
-		List<UserVO> list2 = shopservice.getUserList();
-		if (list1 != null && list2 != null) {
-			mv.addObject("list1", list1);
-			mv.addObject("list2", list2);
+		AddrVO avo1 = shopservice.getAddrDetail(avo);
+		ProductVO pvo1 = shopservice.getProductDetail(pvo);
+		System.out.println("avo: "+avo.getAddr_addr());
+		System.out.println("pvo: "+pvo.getProduct_content());
+		if (avo1 != null && pvo1 != null) {
+			mv.addObject("avo", avo1);
+			mv.addObject("avo", pvo1);
 			return mv;
 		}
-		return new ModelAndView("error");
+		return new ModelAndView("main/signup_fail");
 	}
 }

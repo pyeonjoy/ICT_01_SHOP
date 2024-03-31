@@ -8,51 +8,51 @@
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_addr_add.css" rel="stylesheet" />
 <meta charset="UTF-8">
-<title>주소록 추가</title>
+<title>주소록 수정</title>
 <script type="text/javascript">
-	function save_go(f) {
+	function addr_addr_ok(f) {
 		f.action = "mypage_addr_add_ok.do";
+		alert("추가 되었습니다.");
 		f.submit();
+		
 	}
-	
-	function back_go(f) {
+</script>
+<script type="text/javascript">
+	function addr_addr(f) {
 		f.action = "mypage_addr.do";
-		f.submit();
 	}
 </script>
 </head>
 <body>
 	<%@include file="../main/header.jsp"%>
-
+	<%@include file="../main/aside_mypage.jsp"%>
 	<div class="mypage_addr_add_wrap">
-		<h2>주소록 추가</h2>
-		<div class="mypage_addr_add_tilte"></div>
-		<div class="mypage_addr_add_inner">
-			<form method="post">
-				<table>
-					<tr align="center">
-						<td class="mypage_addr_add_label">이름</td>
-						<td><input class="mypage_addr_add_info " type="text"
-							name="addr_name" placeholder="배송지 이름을 입력해주세요" /></td>
-					</tr>	
-					<tr align="center">
-						<td class="mypage_addr_add_label">연락처</td>
-						<td><input class="mypage_addr_add_info" type="text" name="addr_phone" placeholder="연락처를 입력해주세요" /></td>
-					</tr>
-					<tr align="center">
-						<td class="mypage_addr_add_label">주소</td>
-						<td><input class="mypage_addr_add_info" type="text"	placeholder="주소를 입력해주세요" name="addr_addr" /> </td>
-					</tr>
-							<td>
-							<input class="mypage_addr_add_btn1" type="button" value="추가완료" onclick="save_go(this.form)" />
-								</td>
-								<td> 
-								<input	class="mypage_addr_add_btn1" type="button" value="취소" onclick="back_go(this.form)" />
-								</td>
-				</table>
-			</form>
+			<h2>주소록 추가</h2>
+			<div class="mypage_addr_add_tilte"></div>
+					<div class="mypage_addr_add_inner">
+						<div class="mypage_addr_add_left">
+							<div class="mypage_addr_add_label">배송지</div>
+	
+							<div class="mypage_addr_add_label">연락처</div>
+	
+							<div class="mypage_addr_add_label">주소</div>
+						</div>
+						<div class="mypage_addr_add_right">
+							<div class="mypage_addr_inner">
+				            <form method="post">
+				                <input type="hidden" name="user_idx" value="2" />
+				                <input class="mypage_addr_add_info " type="text" placeholder="배송지 이름을 입력해주세요" name="addr_name" />
+				                <input class="mypage_addr_add_info" type="number" placeholder="연락처를 입력해주세요 하이픈 사용 금지" name="addr_phone"/>
+				                <input class="mypage_addr_add_info" type="text" placeholder="주소를 입력해주세요" name="addr_addr"/>
+				                <div class="mypage_addr_add_bottom">
+					                	<button class="mypage_addr_add_btn1" onclick="addr_addr_ok(this.form)">추가 완료</button>
+					                    <button class="mypage_addr_add_btn1"onclick="addr_addr(this.form)">취소</button>
+					                </div>
+					            </form>
+					        </div>
+						</div>
+					</div>
 		</div>
-	</div>
 	<footer>
 		<%@include file="../main/footer.jsp"%>
 	</footer>

@@ -24,8 +24,7 @@ public class OrderDAO {
 		//order_pay
 		public AddrVO getAddrDetail(AddrVO avo) {
 			try {
-				System.out.println(avo);
-				return sqlSessionTemplate.selectOne("order.addrdetail", avo);
+				return sqlSessionTemplate.selectOne("mypage.addrdetail", avo);
 			} catch (Exception e) {
 				logger.info("update", e);
 			}

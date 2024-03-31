@@ -6,16 +6,9 @@
 <mapper namespace="order">
 <!-- cart_list -->
 <!-- order_pay -->
-	<select id="paydetail" parameterType="pvo" resultType="pvo">
+	<select id="paydetail" parameterType="int" resultType="pvo">
 		select *
 		from shop_product
 		where product_idx= 4
 	</select>
-	
-	<select id="addrdetail" parameterType="avo" resultType="avo">
-		select *
-		from shop_addr
-		where addr_idx= 16
-	</select>
-	
 </mapper>

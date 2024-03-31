@@ -42,7 +42,7 @@ public class OrderController {
 		System.out.println("pvo: "+pvo.getProduct_content());
 		if (avo1 != null && pvo1 != null) {
 			mv.addObject("avo", avo1);
-			mv.addObject("pvo", pvo1);
+			mv.addObject("avo", pvo1);
 			return mv;
 		}
 		return new ModelAndView("main/signup_fail");

@@ -3,6 +3,7 @@ package com.ict.shop.service;
 import java.util.List;
 
 import com.ict.shop.dao.vo.AddrVO;
+import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
@@ -29,6 +30,11 @@ public interface ShopService {
 	AddrVO getAddrDetail(AddrVO avo);
 
 	//=======
+	// cart list
+	List<CartListVO> getCartList(String user_idx);
+	
+	int getCartlistDelete(String cartlist_idx);
+	
 	ProductVO getProductDetail(String product_idx);
 
 	OrderVO getOrderDetail(String order_idx);
@@ -50,6 +56,8 @@ public interface ShopService {
 	int getChangePwd(UserVO uvo);
 
 	List<OrderVO> getOrderList(String order_idx, String product_idx);
+
+
 
 
 

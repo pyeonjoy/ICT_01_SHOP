@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,18 +38,20 @@
 					<c:forEach var="order" items="${ovo}" varStatus="status">
 							<div class="mypage_order">
 								<div class="top">
-								<p class="mypage_order_status">${order.order_request}주문</p>
+								<p class="mypage_order_status" style="border-left: 1px solid blavk;">
+								<fmt:formatDate pattern="yyyy-MM-dd" value="${order.order_regdate}"/>&nbsp;&#9654;</p>
 								</div>
 								<div class="left">
 									<p class="mypage_order_status">${order.order_request}</p>
-										<p class="mypage_order_status">${order.order_regdate}도착</p>
+										<p class="mypage_order_status"><fmt:formatDate pattern="yyyy-MM-dd" value="${order.order_regdate}"/>도착</p>
 									<img alt="이미지" src="${pageContext.request.contextPath}/resources/image/hand1.jpeg">
 									<div class="mypage_order_text">
 										<p>주문 번호: ${order.order_idx}</p>
-										<p>${order.order_regdate}도착</p>
 										<p>${order.product_name}</p>
 										<p>${order.product_content}</p>
-										<p class="mypage_order_text_pay" style="font-size: 24px;">${order.product_price}</p>
+										<p>${order.product_content}</p>
+										<p class="mypage_order_text_pay" style="font-size: 24px; margin-top: 20px;">
+										<fmt:formatNumber value="${order.product_price}" pattern="#,###" /></p>
 									</div>
 								</div>
 								<div class="right">

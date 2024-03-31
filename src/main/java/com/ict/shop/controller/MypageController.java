@@ -150,7 +150,6 @@ public class MypageController {
 
 		if (cpwd.equals(dpwd)) {
 			mv.setViewName("mypage/mypage_stack");
-			System.out.println("mv");
 			return mv;
 		} else {
 			mv.setViewName("mypage/mypage_firstchk");
@@ -188,8 +187,8 @@ public class MypageController {
 	    ModelAndView mv = new ModelAndView("mypage/mypage_order_after");
 	    List<OrderVO> orderList = shopservice.getOrderList(order_idx, product_idx);
 	    if (orderList != null) {
-	    	 mv.addObject("order_idx", order_idx);
-	         mv.addObject("product_idx", product_idx);
+	    	 mv.addObject("order", order_idx);
+	         mv.addObject("pro", product_idx);
 	        mv.addObject("ovo", orderList);
 	        System.out.println(orderList);
 	        return mv;
@@ -198,14 +197,17 @@ public class MypageController {
 	}
 	
 	@GetMapping("mypage_order.do") // 마이페이지 주문내역 페이지
-	public ModelAndView Mypage_Order() {
+	public ModelAndView Mypage_Order(String order_idx, String product_idx) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_order");
-		List<OrderVO> order_list = shopservice.getShopOrderList();
-		if (order_list != null) {
-			mv.addObject("order_list", order_list);
-			return mv;
-		}
-		return new ModelAndView("main/signup_fail");
+		 List<OrderVO> orderList = shopservice.getOrderList(order_idx, product_idx);
+		    if (orderList != null) {
+		    	 mv.addObject("order", order_idx);
+		         mv.addObject("pro", product_idx);
+		        mv.addObject("ovo", orderList);
+		        System.out.println("오더 페이지"+orderList);
+		        return mv;
+		    }
+		    return new ModelAndView("main/signup_fail");
 	}
 	
 	@GetMapping("mypage_pwdchk.do") // 1:1 문의 하는 페이지

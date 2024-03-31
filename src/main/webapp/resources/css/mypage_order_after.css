@@ -31,7 +31,7 @@
 .mypage_order .left {
 	float: left;
 	    margin: 20px 0px 20px 0px;
-	width: 500px;
+	width: 450px;
 }
 
 .mypage_order .right {
@@ -55,8 +55,8 @@
 .mypage_order_status:nth-child(1){
 	margin: 0px;
 	display: inline-block;
-	width: 140px;
-	height: 50px;
+	width: 160px;
+	height: 40px;
 	float:left;
 	font-weight: bold;
 }
@@ -93,7 +93,7 @@
 float: left;
 padding-left: 15px;
 height: 20px;
-width: 350px;
+width: 250px;
 font-size: 14px;
 line-height: 20px;
 text-align: left;

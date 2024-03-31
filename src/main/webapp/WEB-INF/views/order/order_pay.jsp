@@ -11,12 +11,6 @@
 <link rel="stylesheet" href="css/order_pay.css">
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/order_pay.css" rel="stylesheet" />
-<script type="text/javascript">
-function addr_edit(f) {
-	f.action ="mypage_addr_edit.do?addr_idx=2";
-	f.submit();
-}
-</script>
 </head>
 <body>
 	<div class="order_pay_header">
@@ -34,13 +28,12 @@ function addr_edit(f) {
 			<c:choose>
         <c:when test="${not empty list2}">
             <c:forEach var="k" items="${list2}" varStatus="vs">
-            <form action="post">
-                <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
-                 	<input type="hidden" name="user_idx" value="2" />
+                <c:if test="${k.user_idx == 1}">
+                <button class="order_pay_btn1"><a href="mypage_addr_edit.do?idx=${user_idx}">변경</a></button>
                     <p>${k.user_name }</p>
                     <p>${k.user_phone }</p>
                     <p>${k.user_addr }</p>
-            </form>
+                </c:if>
             </c:forEach>
         </c:when>
     </c:choose>
@@ -52,10 +45,12 @@ function addr_edit(f) {
     <c:choose>
         <c:when test="${not empty list2}">
             <c:forEach var="k" items="${list2}" varStatus="vs">
-    <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
+                <c:if test="${k.user_idx == 1}">
+    <button class="order_pay_btn1"><a href="mypage_addr_edit.do?idx=${user_idx}">변경</a></button>
                     <p>${k.user_name }</p>
                     <p>${k.user_phone }</p>
                     <p>${k.user_addr }</p>
+                </c:if>
             </c:forEach>
         </c:when>
     </c:choose>
@@ -69,8 +64,10 @@ function addr_edit(f) {
 			<hr><c:choose>
         <c:when test="${not empty list1}">
             <c:forEach var="k" items="${list1}" varStatus="vs">
+                <c:if test="${k.product_idx == 1}">
 			<p>${k.product_name }</p>
 			<h3>${k.product_price }</h3>
+                </c:if>
             </c:forEach>
         </c:when>
     </c:choose>

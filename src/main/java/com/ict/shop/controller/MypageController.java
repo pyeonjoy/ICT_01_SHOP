@@ -33,15 +33,15 @@ public class MypageController {
 	private HttpSession session;
 
 //mypage==============================================================================================================================================
-	@RequestMapping("mypage_addr_add.do") // 마이페이지 주소록 추가 페이지
+	@GetMapping("mypage_addr_add.do") // 마이페이지 주소록 추가 페이지
 	public ModelAndView Mypage_Addr_Add() {
-		//ModelAndView mv = new ModelAndView("mypage/mypage_addr_add");
 		return new ModelAndView("mypage/mypage_addr_add");
 	}
 
 	@PostMapping("mypage_addr_add_ok.do")
 	public ModelAndView Mypage_Addr_Add_OK(AddrVO avo) {
-		ModelAndView mv = new ModelAndView("redirect:mypage_addr.do");
+		ModelAndView mv = new ModelAndView("redirect: mypage_addr.do");
+		System.out.println("avo : "+avo);
 
 		int result = shopservice.getAddrInsert(avo);
 		if (result > 0) {
@@ -66,6 +66,11 @@ public class MypageController {
 	public ModelAndView Mypage_Addr_Edit_OK(AddrVO avo) {
 		ModelAndView mv = new ModelAndView();
 			int result = shopservice.getAddrEdit(avo);
+			System.out.println("user=========================== " +avo.getUser_idx());
+			System.out.println("addridx=========================== " +avo.getAddr_idx());
+			System.out.println("addr=========================== " +avo.getAddr_addr());
+			System.out.println("name=========================== " +avo.getAddr_name());
+			System.out.println("phone=========================== " +avo.getAddr_phone());
 			if (result > 0) {
 				mv.setViewName("redirect: mypage_addr.do");
 				return mv;
@@ -78,13 +83,16 @@ public class MypageController {
 	public ModelAndView Mypage_Addr() {
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr");
 		List<AddrVO> list = shopservice.getAddrList();
+		System.out.println("list" + list);
 		if (list != null) {
 			mv.addObject("list", list);
-			System.out.println("list222 : " + list);
+			System.out.println("mv : " + mv);
 			return mv;
 		}
-		return new ModelAndView("mypage/error");
+		return new ModelAndView("mypage/mypage_addr");
 	}
+	
+	//==============================================================================================================================================================
 
 	@RequestMapping("mypage_changepwd.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
 	public ModelAndView Mypage_Changepwd() {

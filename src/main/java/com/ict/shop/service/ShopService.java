@@ -11,17 +11,25 @@ import com.ict.shop.dao.vo.UserVO;
 public interface ShopService {
 
 	
-//로그인 ============================================================
+	
 	int getShop_Insert(UserVO vo); // 회원가입
 
 	UserVO getShop_Login(UserVO vo); // 로그인
 
 	UserVO find_id(UserVO vo); // 아이디찾기
 	
-//마이페이지 =========================================================
+	//마이페이지 =========================================================
+	//mypage_addr
+	int getAddrInsert(AddrVO vo);
 
+	List<AddrVO> getAddrList();
+	
+	int getAddrEdit(AddrVO avo);
+
+	AddrVO getAddrDetail(AddrVO avo);
 
 	//=======
+	ProductVO getProductDetail(String product_idx);
 
 	OrderVO getOrderDetail(String order_idx);
 
@@ -35,27 +43,13 @@ public interface ShopService {
 
 	UserVO firstchk(String user_id);
 	 
+	List<ProductVO> getProductList();
+
 	List<UserVO> getUserList();
 
 	int getChangePwd(UserVO uvo);
 
 	List<OrderVO> getOrderList(String order_idx, String product_idx);
-
-
-	//mypage_addr
-	int getAddrInsert(AddrVO vo);
-	
-	List<AddrVO> getAddrList();
-	
-	int getAddrEdit(AddrVO avo);
-	//mypage_addr+order_pay
-	AddrVO getAddrDetail(AddrVO avo);
-
-	//오더  ============================================================
-	//order-pay
-	ProductVO getProductDetail(ProductVO pvo);
-
-//프로덕 ============================================================
 
 
 

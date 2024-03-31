@@ -21,7 +21,7 @@
 	</div>
 	<div class="stack_title">
 		<div style="font-size: 24px;">
-			<h2>마이페이지</h2>	
+			<h2>마이페이지</h2>
 <div class="mypage_stack_stroke"></div>
 		</div>
 	</div>
@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="points">
-				<div style="font-size: 24px;">포인트: ${user_point}</div>
+				<div style="font-size: 24px;">포인트: 5,000</div>
 			</div>
 			<div class="coupons">
 				<div style="font-size: 24px;">배송 현황</div>

@@ -245,8 +245,6 @@ public class MypageController {
 	    	UserVO uvo = shopservice.getUser_id(user_id);
 	        mv.addObject("user_name", uvo.getUser_name());
 	        mv.addObject("user_point", uvo.getUser_point());
-	        System.out.println("뭐지왜안찍히징"+uvo.getUser_name());
-	        System.out.println(uvo.getUser_point());
 	        
 	        return mv;
 	}

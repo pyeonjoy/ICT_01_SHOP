@@ -18,6 +18,13 @@ public interface ShopService {
 
 	UserVO find_id(UserVO vo); // 아이디찾기
 	
+	// 유저 아이디 받아오는거
+	UserVO getUser_id(String user_id);
+	// 유저 비밀번호 받아오는거
+	UserVO find_pwd(UserVO uvo);
+	// 유저 비밀번호 재설정 하는거
+	int reset_pwd(UserVO uvo);
+	
 	//마이페이지 =========================================================
 	//mypage_addr
 	int getAddrInsert(AddrVO vo);
@@ -51,8 +58,6 @@ public interface ShopService {
 
 	List<OrderVO> getOrderList(String order_idx, String product_idx);
 
-	// 유저 아이디 받아오는거
-	UserVO getUser_id(String user_id);
 
 
 

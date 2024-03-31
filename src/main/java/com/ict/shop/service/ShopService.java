@@ -51,6 +51,9 @@ public interface ShopService {
 
 	List<OrderVO> getOrderList(String order_idx, String product_idx);
 
+	// 유저 아이디 받아오는거
+	UserVO getUser_id(String user_id);
+
 
 
 

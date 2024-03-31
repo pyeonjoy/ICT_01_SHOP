@@ -113,6 +113,10 @@ public class ShopServiceImpl implements ShopService {
 			return mdao.getShopHeartList();
 		}
 		
+		@Override
+		public UserVO getUser_id(String user_id) {
+			return mdao.getUser_id(user_id);
+		}
 		
 //order============================================================================================
 	@Override
@@ -124,6 +128,7 @@ public class ShopServiceImpl implements ShopService {
 	public List<UserVO> getUserList() {
 		return odao.getUserList();
 	}
+
 
 	
 

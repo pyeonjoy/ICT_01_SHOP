@@ -68,35 +68,29 @@ public class LoginController {
 		return new ModelAndView("login/login_findinfo");
 	}
 
-	@GetMapping("login_main.do") // 로그인 페이지
-	public ModelAndView Login_Main() {
-
-		ModelAndView mv = new ModelAndView("login/login_main");
-		return mv;
-	}
-
 	@RequestMapping("login_ok.do") // 로그인 완료
-	public ModelAndView Login_OK(HttpServletRequest request, HttpServletResponse response, UserVO vo) {
+	public ModelAndView Login_OK(HttpServletRequest request, HttpServletResponse response, UserVO uvo) {
 		ModelAndView mv = new ModelAndView();
-
-		vo.setUser_id(request.getParameter("user_id"));
-		vo.setUser_pwd(request.getParameter("user_pwd"));
-
-		System.out.println("컨트롤러 -> ID = " + vo.getUser_id());
-		System.out.println("컨트롤러 -> pwd = " + vo.getUser_pwd());
-
-		UserVO result = shopservice.getShop_Login(vo);
-
+	
+		UserVO result = shopservice.getShop_Login(uvo);
+	
 		if (result != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user_id", result.getUser_id());
 			session.setAttribute("user_pwd", result.getUser_pwd());
-			System.out.println(session);
+			session.setAttribute("uvo", result);
 			mv.setViewName("redirect:main.do");
 		} else {
 			mv.setViewName("login/signup_fail");
 		}
+	
+		return mv;
+	}
 
+	@GetMapping("login_main.do") // 로그인 페이지
+	public ModelAndView Login_Main() {
+
+		ModelAndView mv = new ModelAndView("login/login_main");
 		return mv;
 	}
 

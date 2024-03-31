@@ -32,31 +32,28 @@ function addr_edit(f) {
 			<h2>배송지</h2>
 			<hr>
 			<c:choose>
-        <c:when test="${not empty list2}">
-            <c:forEach var="k" items="${list2}" varStatus="vs">
-            <form action="post">
-                <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
-                 	<input type="hidden" name="user_idx" value="2" />
-                    <p>${k.user_name }</p>
-                    <p>${k.user_phone }</p>
-                    <p>${k.user_addr }</p>
-            </form>
-            </c:forEach>
-        </c:when>
-    </c:choose>
+		        <c:when test="${not empty avo}">
+		            <form action="post">
+		                <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
+		                 	<input type="hidden" name="user_idx" value="${user_idx}" />
+		                    <p>${avo.addr_name }</p>
+		                    <p>${avo.addr_phone }</p>
+		                    <p>${avo.addr_addr }</p>
+		            </form>
+		        </c:when>
+    		</c:choose>
 		</div>
 
 <div class="order_pay_one">
     <h2>주문자</h2>
     <hr>
-    <c:choose>
-        <c:when test="${not empty list2}">
-            <c:forEach var="k" items="${list2}" varStatus="vs">
+   <c:choose>
+        <c:when test="${not empty avo}">
     <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
-                    <p>${k.user_name }</p>
-                    <p>${k.user_phone }</p>
-                    <p>${k.user_addr }</p>
-            </c:forEach>
+                 	<input type="hidden" name="user_idx" value="${user_idx}" />
+                    <p>${avo.addr_name }</p>
+                    <p>${avo.addr_phone }</p>
+                    <p>${avo.addr_addr }</p>
         </c:when>
     </c:choose>
 </div>
@@ -66,12 +63,11 @@ function addr_edit(f) {
 
 		<div class="order_pay_one">
 			<h2>주문 상품</h2>
-			<hr><c:choose>
-        <c:when test="${not empty list1}">
-            <c:forEach var="k" items="${list1}" varStatus="vs">
-			<p>${k.product_name }</p>
-			<h3>${k.product_price }</h3>
-            </c:forEach>
+			<hr>
+			<c:choose>
+        <c:when test="${not empty pvo}">
+			<p>${pvo.product_name }</p>
+			<h3>${pvo.product_price }</h3>
         </c:when>
     </c:choose>
 		</div>
@@ -85,8 +81,8 @@ function addr_edit(f) {
 				<h3>총 주문 금액</h3>
 			</div>
 			<div class="order_pay_right">
-				<p>52,400원</p>
-				<p>3,000원</p>
+			<p>${pvo.product_price }</p>
+			<h3>${pvo.product_price }</h3>
 				<h3>55,400원</h3>
 			</div>
 		</div>

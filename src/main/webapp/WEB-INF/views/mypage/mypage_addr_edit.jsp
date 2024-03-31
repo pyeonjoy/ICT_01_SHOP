@@ -46,11 +46,11 @@
 				                <input class="mypage_addr_add_info " type="text" placeholder="배송지 이름을 입력해주세요" name="addr_name" value="${avo.addr_name}" />
 				                <input class="mypage_addr_add_info" type="number" placeholder="연락처를 입력해주세요 하이픈 사용 금지" name="addr_phone" value="${avo.addr_phone}"/>
 				                <input class="mypage_addr_add_info" type="text" placeholder="주소를 입력해주세요" name="addr_addr" value="${avo.addr_addr}"/>
+					            </form>
 				                <div class="mypage_addr_add_bottom">
 					                	<button class="mypage_addr_add_btn1" onclick="addr_edit_ok(this.form)">수정 완료</button>
-					                    <button class="mypage_addr_add_btn1"onclick="location.href='mypage_addr.do'">취소</button>
+					                    <button class="mypage_addr_add_btn1"onclick="history.go(-1)">취소</button>
 					                </div>
-					            </form>
 					        </div>
 						</div>
 					</div>

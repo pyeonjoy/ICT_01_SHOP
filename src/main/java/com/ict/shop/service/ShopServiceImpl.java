@@ -103,7 +103,7 @@ public class ShopServiceImpl implements ShopService {
 		
 		@Override
 		public AddrVO getAddrDetail(AddrVO avo) {
-			return mdao.getAddrDetail(avo);
+			return odao.getAddrDetail(avo);
 		}
 		
 		@Override

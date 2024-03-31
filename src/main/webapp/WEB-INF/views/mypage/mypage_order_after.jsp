@@ -17,7 +17,7 @@
 
 	}
 	function reorder_go() {
-		location.href = "order_pay.do"
+		location.href = "order_pay.do?order_idx=${order_idx}?user_idx=${user_idx}"
 
 	}
 </script>
@@ -55,11 +55,14 @@
 									</div>
 								</div>
 								<div class="right">
-									<button class="mypage_order_btn1" onclick="delivery_go()">교환,
+									<form method="post"></form>
+										<input hidden name="order_idx" value="${order_idx }">
+										<input hidden name="user_idx" value="${user_idx }">
+										<button class="mypage_order_btn1" onclick="delivery_go()">교환,
 										반품 신청</button>
-									<button class="mypage_order_btn1" onclick="delivery_go()">리뷰
+										<button class="mypage_order_btn1" onclick="delivery_go()">리뷰
 										작성하기</button>
-									<button class="mypage_order_btn1" onclick="delivery_go()">재구매</button>
+										<button class="mypage_order_btn1" onclick="reorder_go(this.form)">재구매</button>
 								</div>
 							</div>
 					</c:forEach>

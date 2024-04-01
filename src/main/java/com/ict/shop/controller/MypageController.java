@@ -79,7 +79,7 @@ public class MypageController {
 			}
 	}
 
-	@RequestMapping("mypage_addr.do") // 마이페이지 주소록 페이지
+	@GetMapping("mypage_addr.do") // 마이페이지 주소록 페이지
 	public ModelAndView Mypage_Addr() {
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr");
 		List<AddrVO> list = shopservice.getAddrList();

@@ -10,6 +10,7 @@ import com.ict.shop.dao.MypageDAO;
 import com.ict.shop.dao.OrderDAO;
 import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
+import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
@@ -115,6 +116,16 @@ public class ShopServiceImpl implements ShopService {
 		
 		
 //order============================================================================================
+	@Override
+	public List<CartListVO> getCartList(String user_idx) {
+		return odao.getCartList(user_idx);
+	}
+
+	@Override
+	public int getCartlistDelete(String cartlist_idx) {
+		return odao.getCartlistDelete(cartlist_idx);
+	}
+	
 	@Override
 	public List<ProductVO> getProductList() {
 		return odao.getProductList();

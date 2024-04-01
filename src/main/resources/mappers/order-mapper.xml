@@ -5,6 +5,16 @@
 
 <mapper namespace="order">
 <!-- cart_list -->
+	<select id="cartlist" parameterType="Map" resultType="cvo">
+ 		select * from shop_cartlist 
+ 		join shop_product on shop_product.product_idx = shop_cartlist.product_idx
+ 		where shop_cartlist.user_idx = #{user_idx} 
+ 	</select>
+	<delete id="cartlist_delete" parameterType="String">
+ 		delete from shop_cartlist where cartlist_idx = #{cartlist_idx} 
+ 	</delete>
+
+ 	
 <!-- order_pay -->
 	<select id="productlist" parameterType="String" resultType="pvo">
 		select *

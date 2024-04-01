@@ -54,7 +54,6 @@ $(document).ready(function(){
 						type="button" value="로그인" onclick="login_go(this.form)"></td>
 				</tr>
 				<tr>
-				<!-- CSS수정 해야함  -->
 					<td>비밀번호</td>
 					<td><input class="inputbox" type="password" name="user_pwd"
 						placeholder="비밀번호를 입력 해 주세요"> 

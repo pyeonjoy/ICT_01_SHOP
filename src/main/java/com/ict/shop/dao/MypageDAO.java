@@ -69,6 +69,9 @@ public class MypageDAO {
 		}
 		return null;
 	}
+	public UserVO getUser_id(String user_id) {
+		return sqlSessionTemplate.selectOne("mypage.user_id",user_id);
+	}
 
 	// 관심상품 리스트
 	public List<HeartVO> getShopHeartList() {
@@ -119,6 +122,14 @@ public class MypageDAO {
 		}
 		return null;
 	}
+	public int Mypage_Info_Change(String user_id) {
+		try {
+			return sqlSessionTemplate.update("mypage.Mypage_Info_Change",user_id);			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
 
 	public int getAddrEdit(AddrVO avo) {
 		try {
@@ -128,6 +139,17 @@ public class MypageDAO {
 		}
 		return -1;
 	}
+
+	public UserVO getMypage_Info(String user_id) {
+		try {
+			return sqlSessionTemplate.selectOne("mypage.user_id",user_id);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+
+
 	
 
 }

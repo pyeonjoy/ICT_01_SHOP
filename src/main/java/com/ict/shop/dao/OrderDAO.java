@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ict.shop.dao.vo.AddrVO;
+import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
@@ -21,25 +21,33 @@ public class OrderDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	//order===================================================================================================================
-		//order_pay
-		public AddrVO getAddrDetail(AddrVO avo) {
+		public List<ProductVO> getProductList() {
 			try {
-				return sqlSessionTemplate.selectOne("mypage.addrdetail", avo);
+				return sqlSessionTemplate.selectList("order.productlist");
 			} catch (Exception e) {
-				logger.info("update", e);
-			}
-			return null;
-		}
-		
-		public ProductVO getProductDetail(ProductVO pvo) {
-			try {
-				return sqlSessionTemplate.selectOne("order.paydetail", pvo);
-			} catch (Exception e) {
-				logger.info("update", e);
+				logger.info("list", e);
 			}
 			return null;
 		}
 
-		
+		public List<UserVO> getUserList() {
+			try {
+				return sqlSessionTemplate.selectList("order.userlist");
+			} catch (Exception e) {
+				logger.info("list", e);
+			}
+			return null;
+		}
+
+		public List<CartListVO> getCartList(String user_idx) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public int getCartlistDelete(String cartlist_idx) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
 	}
 

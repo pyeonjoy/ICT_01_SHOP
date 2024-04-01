@@ -37,7 +37,7 @@ public class MypageDAO {
 	
 	public int getAddrInsert(AddrVO avo) {
 		try {
-			return sqlSessionTemplate.insert("mypage.addrinsert", avo);
+			return sqlSessionTemplate.insert("mypage.addradd", avo);
 		} catch (Exception e) {
 			logger.info("insert", e);
 		}
@@ -128,7 +128,7 @@ public class MypageDAO {
 		}
 		return -1;
 	}
-
+	
 
 }
 

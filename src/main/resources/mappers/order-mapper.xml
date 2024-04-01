@@ -5,10 +5,24 @@
 
 <mapper namespace="order">
 <!-- cart_list -->
+	<select id="cartlist" parameterType="Map" resultType="cvo">
+ 		select * from shop_cartlist 
+ 		join shop_product on shop_product.product_idx = shop_cartlist.product_idx
+ 		where shop_cartlist.user_idx = #{user_idx} 
+ 	</select>
+	<delete id="cartlist_delete" parameterType="String">
+ 		delete from shop_cartlist where cartlist_idx = #{cartlist_idx} 
+ 	</delete>
+
+ 	
 <!-- order_pay -->
-	<select id="paydetail" parameterType="int" resultType="pvo">
+	<select id="productlist" parameterType="String" resultType="pvo">
 		select *
-		from shop_product
-		where product_idx= 4
+		from shop_product, shop_user
+		where product_idx = #{product_idx}
+		order by product_idx
+	</select>
+	<select id ="userlist" resultType="uvo">
+		select * from shop_user order by user_idx
 	</select>
 </mapper>

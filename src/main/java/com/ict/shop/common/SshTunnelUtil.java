@@ -18,4 +18,3 @@ public class SshTunnelUtil {
         session.setPortForwardingL(3307, "127.0.0.1", 3306);
     }
 }
- No newline at end of file

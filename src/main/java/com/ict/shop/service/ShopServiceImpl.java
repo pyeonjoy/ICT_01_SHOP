@@ -10,6 +10,7 @@ import com.ict.shop.dao.MypageDAO;
 import com.ict.shop.dao.OrderDAO;
 import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
+import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
@@ -54,9 +55,35 @@ public class ShopServiceImpl implements ShopService {
 
 //mypage============================================================================================
 
+	//mypage_addr
+	@Override
+	public int getAddrInsert(AddrVO avo) {
+		return mdao.getAddrInsert(avo);
+	}
+
+	@Override
+	public AddrVO getAddrDetail(AddrVO avo) {
+		return mdao.getAddrDetail(avo);
+	}
+
+	@Override
+	public List<AddrVO> getAddrList() {
+		return mdao.getAddrlist();
+	}
+	
+	@Override
+	public int getAddrEdit(AddrVO avo) {
+		return mdao.getAddrEdit(avo);
+	}
+	
 	@Override
 	public OrderVO getOrderDetail(String order_idx) {
 		return mdao.getOrderDetail(order_idx);
+	}
+
+	@Override
+	public ProductVO getProductDetail(String product_idx) {
+		return mdao.getProductDetail(product_idx);
 	}
 
 	@Override
@@ -69,7 +96,6 @@ public class ShopServiceImpl implements ShopService {
 	public List<OrderVO> getShopOrderList() {
 		return mdao.getShopOrderList();
 	}
-	
 	 @Override
 	    public List<OrderVO> getOrderList(String order_idx, String product_idx) {
 	        return mdao.getOrderList(order_idx, product_idx);
@@ -87,48 +113,33 @@ public class ShopServiceImpl implements ShopService {
 		public List<HeartVO> getShopHeartList() {
 			return mdao.getShopHeartList();
 		}
-
-
-		@Override
-		public List<UserVO> getUserList() {
-			// TODO Auto-generated method stub
-			return null;
-		}
 		
-	//mypage_addr
-		@Override
-		public int getAddrInsert(AddrVO avo) {
-			return mdao.getAddrInsert(avo);
-		}
 		
-		@Override
-		public AddrVO getAddrDetail(AddrVO avo) {
-			return mdao.getAddrDetail(avo);
-		}
-		
-		@Override
-		public List<AddrVO> getAddrList() {
-			return mdao.getAddrlist();
-		}
-		
-		@Override
-		public int getAddrEdit(AddrVO avo) {
-			return mdao.getAddrEdit(avo);
-		}
-		
-
 //order============================================================================================
-		//order_pay
-		@Override
-		public ProductVO getProductDetail(ProductVO pvo) {
-			return odao.getProductDetail(pvo);
-		}
+	@Override
+	public List<CartListVO> getCartList(String user_idx) {
+		return odao.getCartList(user_idx);
+	}
+
+	@Override
+	public int getCartlistDelete(String cartlist_idx) {
+		return odao.getCartlistDelete(cartlist_idx);
+	}
+	
+	@Override
+	public List<ProductVO> getProductList() {
+		return odao.getProductList();
+	}
+
+	@Override
+	public List<UserVO> getUserList() {
+		return odao.getUserList();
+	}
 
 	
 
 
 //product============================================================================================
-
 
 
 }

@@ -69,6 +69,9 @@ public class MypageDAO {
 		}
 		return null;
 	}
+	public UserVO getUser_id(String user_id) {
+		return sqlSessionTemplate.selectOne("mypage.user_id",user_id);
+	}
 
 	// 관심상품 리스트
 	public List<HeartVO> getShopHeartList() {
@@ -128,6 +131,7 @@ public class MypageDAO {
 		}
 		return -1;
 	}
+
 	
 
 }

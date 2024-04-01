@@ -21,7 +21,7 @@ import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.ShopService;
 
-@SessionAttributes("userVO")
+@SessionAttributes("UserVO")
 @Controller
 public class MypageController {
 
@@ -146,20 +146,20 @@ public class MypageController {
 	}
 
 	@RequestMapping("mypage_firstchk_ok.do")
-	public ModelAndView Mypage_FirstChkOk(UserVO vo) {
+	public ModelAndView Mypage_FirstChkOk(UserVO uvo) {
 		ModelAndView mv = new ModelAndView();
 
-		String cpwd = vo.getUser_pwd();
-		vo.setUser_id("user1"); // user1
+		String cpwd = uvo.getUser_pwd();
+	    String user_id = (String) session.getAttribute("user_id");
 
-		UserVO vo2 = shopservice.firstchk(vo.getUser_id());
+		UserVO vo2 = shopservice.firstchk(uvo.getUser_id());
 		String dpwd = vo2.getUser_pwd();
 
 		// 암호화 비교
 		// if(passwordEncoder.matches(cpwd, dpwd)) {
 
 		if (cpwd.equals(dpwd)) {
-			mv.setViewName("mypage/mypage_stack");
+			mv.setViewName("redirect:mypage_stack.do");
 			return mv;
 		} else {
 			mv.setViewName("mypage/mypage_firstchk");
@@ -243,7 +243,13 @@ public class MypageController {
 
 	@RequestMapping("mypage_stack.do") // 마이페이지 메인페이지
 	public ModelAndView Mypage_Stack() {
-		return new ModelAndView("mypage/mypage_stack");
+	    ModelAndView mv = new ModelAndView("mypage/mypage_stack");
+	    String user_id = (String) session.getAttribute("user_id");
+	    System.out.println(user_id);
+	    	UserVO uvo = shopservice.getUser_id(user_id);
+	        mv.addObject("user_name", uvo.getUser_name());
+	        mv.addObject("user_point", uvo.getUser_point());
+	        
+	        return mv;
 	}
-
 }

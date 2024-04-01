@@ -127,6 +127,14 @@ public class ShopServiceImpl implements ShopService {
 			return mdao.getUser_id(user_id);
 		}
 		
+		@Override
+		public UserVO getMypage_Info(String user_id) {
+			return mdao.getMypage_Info(user_id);
+		}
+		@Override
+		public int Mypage_Info_Change(String user_id) {
+			return mdao.Mypage_Info_Change(user_id);
+		}
 //order============================================================================================
 	@Override
 	public List<CartListVO> getCartList(String user_idx) {
@@ -147,6 +155,8 @@ public class ShopServiceImpl implements ShopService {
 	public List<UserVO> getUserList() {
 		return odao.getUserList();
 	}
+
+
 
 
 	

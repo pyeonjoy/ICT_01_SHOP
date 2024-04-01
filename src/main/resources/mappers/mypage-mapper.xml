@@ -51,7 +51,11 @@
         select * from shop_heart, shop_product order by heart_idx 
     </select>	
 <!-- mypage_info --> 	
-
+	<update id="Mypage_Info_Change" parameterType="uvo">
+		update shop_user
+		set user_phone = #{user_phone}, user_email = #{user_email}, user_addr = #{user_addr}
+		where user_id = #{user_id} 
+	</update>
 <!-- mypage_notice --> 	
 
 <!-- mypage_order_after --> 	

@@ -40,7 +40,7 @@
 <body>
 	<%@include file="../main/header.jsp"%>
 	<div class="mypage_firstchk_wrapper">
-	<h2>비밀번호 확인${user_id}</h2>
+	<h2>비밀번호 확인</h2>
 	<div class="mypage_pwdchk_tilte" ></div>
 	
 	<form method="post">

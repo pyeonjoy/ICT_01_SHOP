@@ -62,6 +62,10 @@ public interface ShopService {
 
 	List<OrderVO> getOrderList(String order_idx, String product_idx);
 
+	UserVO getMypage_Info(String user_id);
+
+	int Mypage_Info_Change(String user_id);
+
 
 
 

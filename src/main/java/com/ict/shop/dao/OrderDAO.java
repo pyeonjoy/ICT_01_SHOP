@@ -39,6 +39,17 @@ public class OrderDAO {
 			return null;
 		}
 
+		public ProductVO getProductDetail(ProductVO pvo) {
+			try {
+				return sqlSessionTemplate.selectOne("order.paydetail", pvo);
+			} catch (Exception e) {
+				logger.info("update", e);
+			}
+			return null;
+		}
+		
+		
+		
 		public List<CartListVO> getCartList(String user_idx) {
 			// TODO Auto-generated method stub
 			return null;

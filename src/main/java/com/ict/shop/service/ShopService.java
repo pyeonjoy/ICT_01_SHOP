@@ -35,7 +35,7 @@ public interface ShopService {
 	
 	int getCartlistDelete(String cartlist_idx);
 	
-	ProductVO getProductDetail(String product_idx);
+	ProductVO getProductDetail(ProductVO pvo);
 
 	OrderVO getOrderDetail(String order_idx);
 

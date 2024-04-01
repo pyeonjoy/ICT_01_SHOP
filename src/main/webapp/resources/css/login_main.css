@@ -12,16 +12,9 @@
 	transform: translate(-50%, -50%);
 	text-align: center;
 }
-.login_main_pwdchk {
-    position: relative;
-}
-.login_main_pwdchk i {
-    position: absolute;
-    top: 4px;
-    right: 5px;
-    color: black;
-    cursor: pointer;
-}
+
+
+
 
 .wrap_table_login tr:nth-of-type(3) {
 	border-bottom: 1px solid black;

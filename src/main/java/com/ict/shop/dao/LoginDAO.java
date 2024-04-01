@@ -26,10 +26,10 @@ public class LoginDAO {
 		return -1;
 	}
 
-	public UserVO getShopLogin(UserVO uvo) {
+	public UserVO getShopLogin(UserVO vo) {
 		try {
-			System.out.println(uvo.getUser_pwd()+"DAO에서");
-			return sqlSessionTemplate.selectOne("login.logingo", uvo);
+			System.err.println(vo);
+			return sqlSessionTemplate.selectOne("login.logingo", vo);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -45,26 +45,6 @@ public class LoginDAO {
 			System.out.println(e);
 		}
 		return null;
-	}
-	
-	public UserVO find_pwd(UserVO uvo) {
-		try {
-			System.out.println("user_id는?"+uvo.getUser_id());
-			System.out.println("user_phone는?"+uvo.getUser_phone());			
-			return sqlSessionTemplate.selectOne("login.find_pwd", uvo);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return null;
-	}
-
-	public int reset_pwd(UserVO uvo) {
-		try {
-			return sqlSessionTemplate.update("login.reset_pwd",uvo);			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return -1;
 	}
 
 }

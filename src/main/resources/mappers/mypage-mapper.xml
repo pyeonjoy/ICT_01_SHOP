@@ -37,7 +37,7 @@
 
 <!-- mypage_changepwd, mypage_firstchk --> 
 	<select id="firstchek" parameterType="uvo" resultType="uvo">
-		select user_pwd from shop_user where user_id = #{user_id}
+		select user_pwd from shop_user where user_id =#{user_id}
 	</select>
 		
 <!-- mypage_changepwd --> 
@@ -51,11 +51,7 @@
         select * from shop_heart, shop_product order by heart_idx 
     </select>	
 <!-- mypage_info --> 	
-	<update id="Mypage_Info_Change" parameterType="uvo">
-		update shop_user
-		set user_phone = #{user_phone}, user_email = #{user_email}, user_addr = #{user_addr}
-		where user_id = #{user_id} 
-	</update>
+
 <!-- mypage_notice --> 	
 
 <!-- mypage_order_after --> 	
@@ -79,8 +75,6 @@
 
 <!-- mypage_qna --> 	
 
-<!-- mypage_stack/find_id -->
-	<select id="user_id" parameterType="String" resultType="uvo">
-		select * from shop_user where user_id = #{user_id} 
-	</select>
+<!-- mypage_stack --> 	
+
 </mapper>

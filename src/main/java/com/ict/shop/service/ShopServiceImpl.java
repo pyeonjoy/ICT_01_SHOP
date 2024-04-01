@@ -82,8 +82,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public ProductVO getProductDetail(String product_idx) {
-		return mdao.getProductDetail(product_idx);
+	public ProductVO getProductDetail(ProductVO pvo) {
+		return odao.getProductDetail(pvo);
 	}
 
 	@Override

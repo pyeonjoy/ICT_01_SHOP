@@ -11,6 +11,12 @@
 <link rel="stylesheet" href="css/order_pay.css">
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/order_pay.css" rel="stylesheet" />
+<script type="text/javascript">
+function addr_edit(f) {
+	f.action ="mypage_addr_edit.do?addr_idx=2";
+	f.submit();
+}
+</script>
 </head>
 <body>
 	<div class="order_pay_header">
@@ -26,32 +32,28 @@
 			<h2>배송지</h2>
 			<hr>
 			<c:choose>
-        <c:when test="${not empty list2}">
-            <c:forEach var="k" items="${list2}" varStatus="vs">
-                <c:if test="${k.user_idx == 1}">
-                <button class="order_pay_btn1"><a href="mypage_addr_edit.do?idx=${user_idx}">변경</a></button>
-                    <p>${k.user_name }</p>
-                    <p>${k.user_phone }</p>
-                    <p>${k.user_addr }</p>
-                </c:if>
-            </c:forEach>
-        </c:when>
-    </c:choose>
+		        <c:when test="${not empty avo}">
+		            <form action="post">
+		                <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
+		                 	<input type="hidden" name="user_idx" value="${user_idx}" />
+		                    <p>${avo.addr_name }</p>
+		                    <p>${avo.addr_phone }</p>
+		                    <p>${avo.addr_addr }</p>
+		            </form>
+		        </c:when>
+    		</c:choose>
 		</div>
 
 <div class="order_pay_one">
     <h2>주문자</h2>
     <hr>
-    <c:choose>
-        <c:when test="${not empty list2}">
-            <c:forEach var="k" items="${list2}" varStatus="vs">
-                <c:if test="${k.user_idx == 1}">
-    <button class="order_pay_btn1"><a href="mypage_addr_edit.do?idx=${user_idx}">변경</a></button>
-                    <p>${k.user_name }</p>
-                    <p>${k.user_phone }</p>
-                    <p>${k.user_addr }</p>
-                </c:if>
-            </c:forEach>
+   <c:choose>
+        <c:when test="${not empty avo}">
+    <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
+                 	<input type="hidden" name="user_idx" value="${user_idx}" />
+                    <p>${avo.addr_name }</p>
+                    <p>${avo.addr_phone }</p>
+                    <p>${avo.addr_addr }</p>
         </c:when>
     </c:choose>
 </div>
@@ -61,14 +63,11 @@
 
 		<div class="order_pay_one">
 			<h2>주문 상품</h2>
-			<hr><c:choose>
-        <c:when test="${not empty list1}">
-            <c:forEach var="k" items="${list1}" varStatus="vs">
-                <c:if test="${k.product_idx == 1}">
-			<p>${k.product_name }</p>
-			<h3>${k.product_price }</h3>
-                </c:if>
-            </c:forEach>
+			<hr>
+			<c:choose>
+        <c:when test="${not empty pvo}">
+			<p>${pvo.product_name }</p>
+			<h3>${pvo.product_price }</h3>
         </c:when>
     </c:choose>
 		</div>
@@ -82,8 +81,8 @@
 				<h3>총 주문 금액</h3>
 			</div>
 			<div class="order_pay_right">
-				<p>52,400원</p>
-				<p>3,000원</p>
+			<p>${pvo.product_price }</p>
+			<h3>${pvo.product_price }</h3>
 				<h3>55,400원</h3>
 			</div>
 		</div>

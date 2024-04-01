@@ -67,18 +67,6 @@ public class OrderDAO {
 			}
 			return null;
 		}
-		
-		
-		
-		public List<CartListVO> getCartList(String user_idx) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		public int getCartlistDelete(String cartlist_idx) {
-			// TODO Auto-generated method stub
-			return 0;
-		}
 
 	}
 

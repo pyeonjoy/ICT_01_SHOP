@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ict</groupId>
 	<artifactId>shop</artifactId>
-	<name>Shop</name>
+	<name>01_Shop</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -179,7 +179,7 @@
             <artifactId>spring-security-config</artifactId>
             <version>5.3.13.RELEASE</version>
         </dependency>
-        <dependency>
+	<dependency>
         <groupId>com.jcraft</groupId>
         <artifactId>jsch</artifactId>
         <version>0.1.55</version> <!-- 현재 사용 가능한 최신 버전을 사용하십시오 -->
@@ -213,6 +213,11 @@
 					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
+			<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-war-plugin</artifactId>
+  <version>3.3.2</version>
+</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>exec-maven-plugin</artifactId>

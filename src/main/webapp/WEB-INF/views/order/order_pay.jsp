@@ -13,7 +13,7 @@
 <link href="${path}/resources/css/order_pay.css" rel="stylesheet" />
 <script type="text/javascript">
 function addr_edit(f) {
-	f.action ="mypage_addr_edit.do?addr_idx=2";
+	f.action ="mypage_addr_edit.do?addr_idx=${addr_idx}";
 	f.submit();
 }
 </script>
@@ -32,28 +32,32 @@ function addr_edit(f) {
 			<h2>배송지</h2>
 			<hr>
 			<c:choose>
-		        <c:when test="${not empty avo}">
-		            <form action="post">
-		                <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
-		                 	<input type="hidden" name="user_idx" value="${user_idx}" />
-		                    <p>${avo.addr_name }</p>
-		                    <p>${avo.addr_phone }</p>
-		                    <p>${avo.addr_addr }</p>
-		            </form>
-		        </c:when>
-    		</c:choose>
+        <c:when test="${not empty ovo}">
+            <form action="post">
+                <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
+                <input type = "hidden" name="addr_idx" value="${ovo.addr_idx}">
+					<input type = "hidden" name="addr_phone" value="${ovo.addr_phone}">
+					<input type = "hidden" name="addr_name" value="${ovo.addr_name}">
+					<input type = "hidden" name="addr_addr" value="${ovo.addr_addr}">
+                     <p>${ovo.addr_name }</p>
+                    <p >${ovo.addr_phone }</p>
+                    <p>${ovo.addr_addr }</p>
+            </form>
+        </c:when>
+    </c:choose>
 		</div>
 
 <div class="order_pay_one">
     <h2>주문자</h2>
     <hr>
-   <c:choose>
-        <c:when test="${not empty avo}">
+    <c:choose>
+        <c:when test="${not empty ovo}">
+        <form action="post">
     <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
-                 	<input type="hidden" name="user_idx" value="${user_idx}" />
-                    <p>${avo.addr_name }</p>
-                    <p>${avo.addr_phone }</p>
-                    <p>${avo.addr_addr }</p>
+                    <p>${ovo.addr_name }</p>
+                    <p>${ovo.addr_phone }</p>
+                    <p>${ovo.addr_addr }</p>
+                     </form>
         </c:when>
     </c:choose>
 </div>
@@ -63,11 +67,10 @@ function addr_edit(f) {
 
 		<div class="order_pay_one">
 			<h2>주문 상품</h2>
-			<hr>
-			<c:choose>
-        <c:when test="${not empty pvo}">
-			<p>${pvo.product_name }</p>
-			<h3>${pvo.product_price }</h3>
+			<hr><c:choose>
+        <c:when test="${not empty ovo}">
+			<p>${ovo.product_name }</p>
+			<h3>${ovo.product_price }</h3>
         </c:when>
     </c:choose>
 		</div>
@@ -81,8 +84,8 @@ function addr_edit(f) {
 				<h3>총 주문 금액</h3>
 			</div>
 			<div class="order_pay_right">
-			<p>${pvo.product_price }</p>
-			<h3>${pvo.product_price }</h3>
+				<p>52,400원</p>
+				<p>3,000원</p>
 				<h3>55,400원</h3>
 			</div>
 		</div>

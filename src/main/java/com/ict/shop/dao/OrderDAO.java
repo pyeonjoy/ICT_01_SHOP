@@ -8,7 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ict.shop.dao.vo.CartListVO;
+import com.ict.shop.dao.vo.AddrVO;
+import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
@@ -19,54 +20,16 @@ public class OrderDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
+
 	
 	//order===================================================================================================================
-		public List<CartListVO> getCartList(String user_idx) {
-			try {
-				return sqlSessionTemplate.selectList("order.cartlist", user_idx);
-			} catch (Exception e) {
-				logger.info("cartlist", e);
-			}
-			return null;
-		}
-		
-		public int getCartlistDelete(String cartlist_idx) {
-			try {
-				return sqlSessionTemplate.delete("order.cartlist_delete", cartlist_idx);
-			} catch (Exception e) {
-				logger.info("cartlistdelete", e);
-			}
-			return 0;
-		}
-		
-		public List<ProductVO> getProductList() {
-			try {
-				return sqlSessionTemplate.selectList("order.productlist");
-			} catch (Exception e) {
-				logger.info("list", e);
-			}
-			return null;
-		}
+		//order_pay
 
-		public List<UserVO> getUserList() {
-			try {
-				return sqlSessionTemplate.selectList("order.userlist");
-			} catch (Exception e) {
-				logger.info("list", e);
-			}
-			return null;
+		public OrderVO getAddrProductOrder(String user_idx) {
+			return sqlSessionTemplate.selectOne("order.addrproductorder",user_idx);
 		}
 		
 
-
-		public ProductVO getProductDetail(ProductVO pvo) {
-			try {
-				return sqlSessionTemplate.selectOne("order.paydetail", pvo);
-			} catch (Exception e) {
-				logger.info("update", e);
-			}
-			return null;
-		}
-
+		
 	}
 

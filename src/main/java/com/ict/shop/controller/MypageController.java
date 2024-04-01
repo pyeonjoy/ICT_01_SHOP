@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.shop.dao.vo.AddrVO;
@@ -22,6 +21,7 @@ import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.ShopService;
 
 @SessionAttributes("UserVO")
+
 @Controller
 public class MypageController {
 
@@ -35,15 +35,15 @@ public class MypageController {
 	private HttpSession session;
 
 //mypage==============================================================================================================================================
-	@GetMapping("mypage_addr_add.do") // 마이페이지 주소록 추가 페이지
+	@RequestMapping("mypage_addr_add.do") // 마이페이지 주소록 추가 페이지
 	public ModelAndView Mypage_Addr_Add() {
+		//ModelAndView mv = new ModelAndView("mypage/mypage_addr_add");
 		return new ModelAndView("mypage/mypage_addr_add");
 	}
 
 	@PostMapping("mypage_addr_add_ok.do")
 	public ModelAndView Mypage_Addr_Add_OK(AddrVO avo) {
-		ModelAndView mv = new ModelAndView("redirect: mypage_addr.do");
-		System.out.println("avo : "+avo);
+		ModelAndView mv = new ModelAndView("redirect:mypage_addr.do");
 
 		int result = shopservice.getAddrInsert(avo);
 		if (result > 0) {
@@ -53,7 +53,7 @@ public class MypageController {
 		}
 	}
 
-	@GetMapping("mypage_addr_edit.do") // 마이페이지 주소록 추가 페이지
+@RequestMapping("mypage_addr_edit.do") // 마이페이지 주소록 추가 페이지
 	public ModelAndView Mypage_Addr_Edit(AddrVO avo) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr_edit");
 		AddrVO avo1 = shopservice.getAddrDetail(avo);
@@ -66,13 +66,8 @@ public class MypageController {
 
 	@PostMapping("mypage_addr_edit_ok.do")
 	public ModelAndView Mypage_Addr_Edit_OK(AddrVO avo) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("redirect:mypage_addr.do");
 			int result = shopservice.getAddrEdit(avo);
-			System.out.println("user=========================== " +avo.getUser_idx());
-			System.out.println("addridx=========================== " +avo.getAddr_idx());
-			System.out.println("addr=========================== " +avo.getAddr_addr());
-			System.out.println("name=========================== " +avo.getAddr_name());
-			System.out.println("phone=========================== " +avo.getAddr_phone());
 			if (result > 0) {
 				mv.setViewName("redirect: mypage_addr.do");
 				return mv;
@@ -85,16 +80,13 @@ public class MypageController {
 	public ModelAndView Mypage_Addr() {
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr");
 		List<AddrVO> list = shopservice.getAddrList();
-		System.out.println("list" + list);
 		if (list != null) {
 			mv.addObject("list", list);
-			System.out.println("mv : " + mv);
+			System.out.println("list222 : " + list);
 			return mv;
 		}
-		return new ModelAndView("mypage/mypage_addr");
+		return new ModelAndView("mypage/error");
 	}
-	
-	//==============================================================================================================================================================
 
 	@RequestMapping("mypage_changepwd.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
 	public ModelAndView Mypage_Changepwd() {

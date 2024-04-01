@@ -3,13 +3,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script
+   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script type="text/javascript">
-   function goToBuyPage() {
-      window.location.href = "mypage_order.jsp";
+   $(document).ready(function() {
+      $('.product_list_cart_button').click(function() {
+         var productId = $(this).attr('data-product-id');
+         toggleCartStatus(this);
+      });
+
+      $('.product_list_heart_button').click(function() {
+         toggleHeartIcon(this);
+      });
+   });
+
+   function cartList_go() {
+      alert("장바구니에 추가되었습니다.");
+   }
+
+   function toggleHeartIcon(element) {
+      $(element).toggleClass('fas far');
+      // 아이콘 클릭 시 색상 변경
+      if ($(element).hasClass('far')) {
+         $(element).css('color', 'black');
+      } else {
+         $(element).css('color', '');
+      }
    }
 </script>
-<meta charset="UTF-8">
-<title>product_detail</title>
 <style type="text/css">
 .product_detail_wrap {
    margin: 0px auto;
@@ -34,23 +57,19 @@
    float: left;
    position: relative;
    background-image: url('resources/image/pro1.png'); /* 이미지 경로 지정 */
-   background-size: contain; /* 이미지를 요소에 맞게 크기 조정 */
+   background-size: cover; /* 이미지를 요소에 맞게 크기 조정 */
    background-position: center; /* 이미지를 가운데 정렬 */
 }
 
 .product_detail_heart {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    top: 353px;
-    left: 430px;
-    background-image: url('resources/image/heart_01.png'); /* 이미지 경로 지정 */
-    background-size: contain; /* 이미지를 요소에 맞게 크기 조정 */
-    background-position: center; /* 이미지를 가운데 정렬 */
-    background-repeat: no-repeat; /* 이미지 반복 없음 */
-    background-color: transparent; /* 배경 투명 설정 */
+   width: 100px;
+   height: 100px;
+   position: absolute;
+   top: 323px;
+   left: 430px;
+   cursor: pointer; /* 커서 모양을 손가락 형태로 변경 */
+   font-size: 50px; /* 아이콘 크기 키우기 */
 }
-
 
 .product_detail_text_right {
    width: 400px;
@@ -148,15 +167,9 @@
    margin: 20px auto 90px;
 }
 </style>
-<script type="text/javascript">
-   function cartList_go() {
-      alert("장바구니에 추가되었습니다.");
-   }
-</script>
 </head>
 <body>
    <%@include file="../main/header.jsp"%>
-
 
    <div class="product_detail_body">
       <div class="product_detail_wrap">
@@ -169,7 +182,8 @@
             <hr>
          </div>
          <div class="product_detail_image">
-            <div class="product_detail_heart"></div>
+            <i
+               class="far fa-heart product_detail_heart product_list_heart_button"></i>
          </div>
          <div class="product_detail_text_right">
             <div>
@@ -179,10 +193,10 @@
             <div>
                <p class="product_detail_subtitle">측백나무잎ㅣ차가운 금속ㅣ화이트 머스크</p>
                <p>
-                  <small> 우연히 발 딛은 신성한 유적지의 성전에서 느껴지는 깨끗하고 차분한 공기를 떠올리게 합니다.
-                     푸른 측백나무 잎가지와 세이지의 조합에 깊이를 더해주는 인센스와 절제된 차가움을 지닌 금속성의 느낌이 어우러져 마치
-                     정지된 시간의 순간을 맞이한 듯 신비한 느낌을 자아내고, 화이트 머스크와 우디노트가 기분 좋은 여운으로 어우러져 오랜
-                     시간 은은하게 머무릅니다.</small>
+                  <small> 우연히 발 딛은 신성 <small> 우연히 발 딛은 신성한 유적지의 성전에서
+                        느껴지는 깨끗하고 차분한 공기를 떠올리게 합니다. 푸른 측백나무 잎가지와 세이지의 조합에 깊이를 더해주는 인센스와
+                        절제된 차가움을 지닌 금속성의 느낌이 어우러져 마치 정지된 시간의 순간을 맞이한 듯 신비한 느낌을 자아내고, 화이트
+                        머스크와 우디노트가 기분 좋은 여운으로 어우러져 오랜 시간 은은하게 머무릅니다.</small>
                </p>
             </div>
             <div>
@@ -211,11 +225,6 @@
                      <small>perfume</small>
                   </p>
                </div>
-            </div>
-            <div class="product_detail_under_wrap1">
-               <p class="product_detail_type">Type</p>
-               <button class="product_detail_btn1">6g</button>
-               <button class="product_detail_btn1">12g</button>
             </div>
             <div class="product_detail_under_wrap2">
                <button class="product_detail_btn2" onclick="cartList_go()">장바구니에
@@ -284,12 +293,6 @@
             반품이 불가합니다.</p>
          <p class="product_detail_detail">단순 변심 또는 주문 실수로 인한 교환이 불가합니다.
             신중한 구매 부탁드립니다.</p>
-      </div>
-      <div class="product_detail_under_wrap2">
-         <button class="product_detail_btn2" onclick="goToBuyPage()">구매하기</button>
-         <button class="product_detail_btn2" onclick="cartList_go()">장바구니에
-            추가하기</button>
-
       </div>
       <%@include file="../main/footer.jsp"%>
 </body>

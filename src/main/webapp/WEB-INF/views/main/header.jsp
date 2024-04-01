@@ -18,6 +18,14 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link href="${path}/resources/css/header.css" rel="stylesheet"/>
 <title>header</title>
+<script type="text/javascript">
+	function mypage_firstchk() {
+		const user_name = "${uvo.user_name}";
+		location.href="mypage_firstchk.do?user_name="+user_name;		
+	}
+
+</script>
+
 </head>
 <body>
 	<header id="header" class="header">
@@ -46,7 +54,7 @@
 						<li>Shower Re body</li>
 						<li>Perfume De Body</li>
 					</ul></li>
-				<li><a class="menu_tilte" href="mypage_firstchk.do">${user_id} Candle</a></li>
+				<li><a class="menu_tilte" onclick="mypage_firstchk();">Candle</a></li>
 			</ul>
 		</div>
 

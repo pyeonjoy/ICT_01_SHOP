@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,10 +10,11 @@
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_info.css" rel="stylesheet" />
 <script type="text/javascript">
-    function mypage_info_change_go(f) {
-        f.action="mypage_info_change_go.do";
-        f.submit();
-    }
+
+	function mypage_info_change_go(f) {
+		f.action="mypage_info_change_go.do";
+		f.submit();
+	}
 
 </script>
 </head>

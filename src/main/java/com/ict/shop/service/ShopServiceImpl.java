@@ -51,6 +51,14 @@ public class ShopServiceImpl implements ShopService {
 		System.out.println("여긴들리니..섭스임플" + vo.getUser_email());
 		return ldao.find_id(vo);
 	}
+	@Override
+	public UserVO find_pwd(UserVO uvo) {
+		return ldao.find_pwd(uvo);
+	}
+	@Override
+	public int reset_pwd(UserVO uvo) {
+		return ldao.reset_pwd(uvo);
+	}
 
 //mypage============================================================================================
 
@@ -109,6 +117,20 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
+
+		public UserVO getUser_id(String user_id) {
+			return mdao.getUser_id(user_id);
+		}
+		
+		@Override
+		public UserVO getMypage_Info(String user_id) {
+			return mdao.getMypage_Info(user_id);
+		}
+		@Override
+		public int Mypage_Info_Change(String user_id) {
+			return mdao.Mypage_Info_Change(user_id);
+		}
+
 		public List<AddrVO> getAddrList() {
 			return mdao.getAddrlist();
 		}
@@ -119,6 +141,7 @@ public class ShopServiceImpl implements ShopService {
 		}
 
 		
+
 
 //order============================================================================================
 		//order_pay
@@ -149,6 +172,9 @@ public class ShopServiceImpl implements ShopService {
 	public List<UserVO> getUserList() {
 		return odao.getUserList();
 	}
+
+
+//product============================================================================================
 
 
 

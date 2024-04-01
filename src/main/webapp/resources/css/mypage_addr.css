@@ -8,7 +8,7 @@
 .mypage_addr_body {
 	display: flex;
 	justify-content: center;
-	margin: 20px auto 200px;
+	margin: 200px auto 200px;
 	width: 80%;
 }
 
@@ -17,9 +17,9 @@
 }
 
 .mypage_addr_wrap p {
-	margin: -14px auto;
 	font-size: 14px;
-	width: 200px;
+	width: 470px;
+	margin: -10px 0px 0px 10px;
 }
 
 .mypage_addr_inner {
@@ -34,7 +34,6 @@
 	margin: 0;
 	text-align: center;
 	line-height: 15px;
-	margin-top: 50px;
 }
 
 .mypage_addr_btn2 {
@@ -42,6 +41,7 @@
 	height: 30px;
 	border-radius: 5px;
 	line-height: 15px;
+	float:right;
 }
 
 .mypage_addr_aside_mypage {
@@ -51,6 +51,8 @@
 
 .mypage_tilte {
 	margin-top: 50px;
+	position: absolute;
+    top: 170px;
 }
 
 #footer{

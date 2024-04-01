@@ -37,7 +37,7 @@ public class MypageDAO {
 	
 	public int getAddrInsert(AddrVO avo) {
 		try {
-			return sqlSessionTemplate.insert("mypage.addradd", avo);
+			return sqlSessionTemplate.insert("mypage.addrinsert", avo);
 		} catch (Exception e) {
 			logger.info("insert", e);
 		}
@@ -45,6 +45,7 @@ public class MypageDAO {
 	}
 	public AddrVO getAddrDetail(AddrVO avo) {
 		try {
+			System.out.println("dao"+avo.getAddr_addr());
 			return sqlSessionTemplate.selectOne("mypage.addrdetail", avo);
 		} catch (Exception e) {
 			logger.info("update", e);
@@ -52,14 +53,6 @@ public class MypageDAO {
 		return null;
 	}
 	
-	public ProductVO getProductDetail(String pruduct_idx) {
-		try {
-			return sqlSessionTemplate.selectOne("mypage.productlist", pruduct_idx);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return null;
-	}
 	
 	public OrderVO getOrderDetail(String order_idx) {
 		try {
@@ -128,7 +121,7 @@ public class MypageDAO {
 		}
 		return -1;
 	}
-	
+
 
 }
 

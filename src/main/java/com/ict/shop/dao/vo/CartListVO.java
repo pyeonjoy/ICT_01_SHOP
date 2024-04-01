@@ -1,27 +1,7 @@
 package com.ict.shop.dao.vo;
 
 public class CartListVO {
-	private String cartlist_idx, user_idx, product_idx, cartlist_number, cartlist_count;
-	
-	private String product_name, product_price, product_img;
-	
-	
-
-	public String getProduct_name() {
-		return product_name;
-	}
-
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
-	}
-
-	public String getProduct_img() {
-		return product_img;
-	}
-
-	public void setProduct_img(String product_img) {
-		this.product_img = product_img;
-	}
+	private String cartlist_idx, user_idx, product_idx, product_price, cartlist_number, cartlist_count;
 
 	public String getCartlist_idx() {
 		return cartlist_idx;

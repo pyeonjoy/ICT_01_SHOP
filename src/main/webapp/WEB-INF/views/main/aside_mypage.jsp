@@ -68,7 +68,8 @@ a:hover {
 			<ul>
 				<li><a href="mypage_info.do">회원정보</a></li>
 				<li><a href="mypage_addr.do">배송지 관리</a></li>
-				<li><a href="mypage_order.do">주문내역</a></li>
+				<li><a href="mypage_order.do?order_idx=2">주문내역</a></li>
+				<li><a href="mypage_order_after.do?order_idx=2">결재내역</a></li>
 				<li><a href="mypage_heart.do">관심상품</a></li>
 				<li><a href="mypage_notice.do">공지사항</a></li>
 				<li><a href="mypage_faq.do">자주 묻는 질문</a></li>

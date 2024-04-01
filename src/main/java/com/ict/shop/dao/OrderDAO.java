@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
@@ -36,6 +37,16 @@ public class OrderDAO {
 				logger.info("list", e);
 			}
 			return null;
+		}
+
+		public List<CartListVO> getCartList(String user_idx) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		public int getCartlistDelete(String cartlist_idx) {
+			// TODO Auto-generated method stub
+			return 0;
 		}
 
 	}

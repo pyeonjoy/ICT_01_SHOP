@@ -1,7 +1,6 @@
 package com.ict.shop.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +33,7 @@ public class LoginController {
 	}
 
 //login===============================================================================================================================================
-	@PostMapping("congratulation.do") // 회원가입 처리
+	@PostMapping("congratulation.do") // 회원가입 처리 완료
 	public ModelAndView congratulation(UserVO vo) {
 		try {
 
@@ -56,19 +55,50 @@ public class LoginController {
 		}
 	}
 
-	@GetMapping("login_changepwd.do") // 아이디/비밀번호 찾기 진입 후 비밀번호 찾기 페이지
-	public ModelAndView Login_Changepwd() {
+	@RequestMapping("find_pwd.do") // 아이디/비밀번호 찾기 진입 후 비밀번호 찾기 완료
+	public ModelAndView Find_pwd(HttpServletRequest request, UserVO uvo) {
+		ModelAndView mv = new ModelAndView("login/login_changepwd");
+		
+	    uvo.setUser_id(request.getParameter("user_id"));
+	    uvo.setUser_phone(request.getParameter("user_phone"));
 
-		return new ModelAndView("login/login_changepwd");
+	    UserVO result = shopservice.find_pwd(uvo);
+	    if (result !=null) {
+	    	mv.addObject("user_id", uvo.getUser_id());
+	    	return mv; 		
+		}
+		return new ModelAndView("main/signup_fail"); 
+	}
+	
+	@RequestMapping("login_changepwd.do") // 완료
+	public ModelAndView Login_Changepwd(HttpServletRequest request,UserVO uvo) {
+		try {
+			String encodedPassword = passwordEncoder.encode(uvo.getUser_pwd());
+			uvo.setUser_pwd(encodedPassword);
+			uvo.setUser_id(request.getParameter("user_id"));
+			int result = shopservice.reset_pwd(uvo);
+			System.out.println(uvo.getUser_id());
+			if (result > 0) {
+				ModelAndView mv = new ModelAndView("login/login_main");
+				return mv;
+			}else {
+				return new ModelAndView("main/signup_fail"); 				
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ModelAndView("main/signup_fail"); 
+		}
+		
+		
 	}
 
-	@GetMapping("login_findinfo.do") // 아이디/비밀번호 진입 페이지
+	@GetMapping("login_findinfo.do") // 아이디/비밀번호 진입 페이지 완료
 	public ModelAndView Login_Findinfo() {
 
 		return new ModelAndView("login/login_findinfo");
 	}
 
-	@GetMapping("login_main.do") // 로그인 페이지
+	@GetMapping("login_main.do") // 로그인 페이지 완료
 	public ModelAndView Login_Main() {
 
 		ModelAndView mv = new ModelAndView("login/login_main");
@@ -76,36 +106,28 @@ public class LoginController {
 	}
 
 	@RequestMapping("login_ok.do") // 로그인 완료
-	public ModelAndView Login_OK(HttpServletRequest request, HttpServletResponse response, UserVO vo) {
+	public ModelAndView Login_OK(UserVO uvo) {
 		ModelAndView mv = new ModelAndView();
-
-		vo.setUser_id(request.getParameter("user_id"));
-		vo.setUser_pwd(request.getParameter("user_pwd"));
-
-		System.out.println("컨트롤러 -> ID = " + vo.getUser_id());
-		System.out.println("컨트롤러 -> pwd = " + vo.getUser_pwd());
-
-		UserVO result = shopservice.getShop_Login(vo);
-
-		if (result != null) {
-			HttpSession session = request.getSession();
+		
+		UserVO result = shopservice.getShop_Login(uvo);
+		System.out.println(result);
+	    if (result != null && passwordEncoder.matches(uvo.getUser_pwd(), result.getUser_pwd())) {
 			session.setAttribute("user_id", result.getUser_id());
 			session.setAttribute("user_pwd", result.getUser_pwd());
-			System.out.println(session);
+			session.setAttribute("uvo", result);
 			mv.setViewName("redirect:main.do");
 		} else {
 			mv.setViewName("login/signup_fail");
 		}
-
 		return mv;
 	}
 
-	@GetMapping("signup.do") // 회원가입 페이지
+	@GetMapping("signup.do") // 회원가입 페이지 완료
 	public ModelAndView SignUp(UserVO vo) {
 		return new ModelAndView("login/signup");
 	}
 	
-	@RequestMapping("find_id.do") // 아이디 찾기
+	@RequestMapping("find_id.do") // 아이디 찾기 완료
 	public ModelAndView Find_id(HttpServletRequest request, UserVO uvo) {
 	    ModelAndView mv = new ModelAndView();
 

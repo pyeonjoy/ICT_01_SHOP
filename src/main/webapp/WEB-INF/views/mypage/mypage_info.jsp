@@ -37,7 +37,8 @@
 					<p>주소</p>
 				</div>
 				<div class="mypage_info_right">
-					<input class="info_input" type="text"> <input
+					<input class="info_input" type="text">
+					 <input
 						class="info_input" type="text"> <input class="info_input"
 						type="text"> <input class="info_input" type="text">
 					<input class="email_input" type="text">@<select>

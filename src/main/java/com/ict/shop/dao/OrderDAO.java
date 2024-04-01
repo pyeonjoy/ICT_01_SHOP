@@ -21,6 +21,24 @@ public class OrderDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	//order===================================================================================================================
+		public List<CartListVO> getCartList(String user_idx) {
+			try {
+				return sqlSessionTemplate.selectList("order.cartlist", user_idx);
+			} catch (Exception e) {
+				logger.info("cartlist", e);
+			}
+			return null;
+		}
+		
+		public int getCartlistDelete(String cartlist_idx) {
+			try {
+				return sqlSessionTemplate.delete("order.cartlist_delete", cartlist_idx);
+			} catch (Exception e) {
+				logger.info("cartlistdelete", e);
+			}
+			return 0;
+		}
+		
 		public List<ProductVO> getProductList() {
 			try {
 				return sqlSessionTemplate.selectList("order.productlist");
@@ -38,6 +56,8 @@ public class OrderDAO {
 			}
 			return null;
 		}
+		
+
 
 		public ProductVO getProductDetail(ProductVO pvo) {
 			try {

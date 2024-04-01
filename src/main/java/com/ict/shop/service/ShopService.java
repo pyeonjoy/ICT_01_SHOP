@@ -17,6 +17,15 @@ public interface ShopService {
 	UserVO getShop_Login(UserVO vo); // 로그인
 
 	UserVO find_id(UserVO vo); // 아이디찾기
+
+
+	
+	//마이페이지 =========================================================
+	//mypage_addr
+	int getAddrInsert(AddrVO vo);
+
+	List<AddrVO> getAddrList();
+
 	
 //마이페이지 =========================================================
 
@@ -40,17 +49,10 @@ public interface ShopService {
 	int getChangePwd(UserVO uvo);
 
 	List<OrderVO> getOrderList(String order_idx, String product_idx);
-
-
-	//mypage_addr
-	int getAddrInsert(AddrVO vo);
-	
-	List<AddrVO> getAddrList();
 	
 	int getAddrEdit(AddrVO avo);
 	//mypage_addr+order_pay
 	AddrVO getAddrDetail(AddrVO avo);
-
 
 	//오더  ============================================================
 	//order-pay

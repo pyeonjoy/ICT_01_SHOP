@@ -20,6 +20,8 @@ import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.ShopService;
 
+@SessionAttributes("userVO")
+
 @Controller
 public class MypageController {
 

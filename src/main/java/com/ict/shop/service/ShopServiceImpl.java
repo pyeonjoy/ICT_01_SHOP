@@ -95,6 +95,7 @@ public class ShopServiceImpl implements ShopService {
 			return null;
 		}
 		
+
 	//mypage_addr
 		@Override
 		public int getAddrInsert(AddrVO avo) {
@@ -126,10 +127,28 @@ public class ShopServiceImpl implements ShopService {
 			return odao.getAddrProductOrder(user_idx);
 		}
 
-	
-
-
+		
 //product============================================================================================
+
+	@Override
+	public List<CartListVO> getCartList(String user_idx) {
+		return odao.getCartList(user_idx);
+	}
+
+	@Override
+	public int getCartlistDelete(String cartlist_idx) {
+		return odao.getCartlistDelete(cartlist_idx);
+	}
+	
+	@Override
+	public List<ProductVO> getProductList() {
+		return odao.getProductList();
+	}
+
+	@Override
+	public List<UserVO> getUserList() {
+		return odao.getUserList();
+	}
 
 
 

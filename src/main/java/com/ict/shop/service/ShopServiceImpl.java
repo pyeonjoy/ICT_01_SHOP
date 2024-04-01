@@ -10,7 +10,6 @@ import com.ict.shop.dao.MypageDAO;
 import com.ict.shop.dao.OrderDAO;
 import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
-import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
@@ -52,46 +51,12 @@ public class ShopServiceImpl implements ShopService {
 		System.out.println("여긴들리니..섭스임플" + vo.getUser_email());
 		return ldao.find_id(vo);
 	}
-	@Override
-	public UserVO find_pwd(UserVO uvo) {
-		return ldao.find_pwd(uvo);
-	}
-	@Override
-	public int reset_pwd(UserVO uvo) {
-		return ldao.reset_pwd(uvo);
-	}
 
 //mypage============================================================================================
 
-	//mypage_addr
-	@Override
-	public int getAddrInsert(AddrVO avo) {
-		return mdao.getAddrInsert(avo);
-	}
-
-	@Override
-	public AddrVO getAddrDetail(AddrVO avo) {
-		return mdao.getAddrDetail(avo);
-	}
-
-	@Override
-	public List<AddrVO> getAddrList() {
-		return mdao.getAddrlist();
-	}
-	
-	@Override
-	public int getAddrEdit(AddrVO avo) {
-		return mdao.getAddrEdit(avo);
-	}
-	
 	@Override
 	public OrderVO getOrderDetail(String order_idx) {
 		return mdao.getOrderDetail(order_idx);
-	}
-
-	@Override
-	public ProductVO getProductDetail(ProductVO pvo) {
-		return odao.getProductDetail(pvo);
 	}
 
 	@Override
@@ -104,6 +69,7 @@ public class ShopServiceImpl implements ShopService {
 	public List<OrderVO> getShopOrderList() {
 		return mdao.getShopOrderList();
 	}
+	
 	 @Override
 	    public List<OrderVO> getOrderList(String order_idx, String product_idx) {
 	        return mdao.getOrderList(order_idx, product_idx);
@@ -121,48 +87,50 @@ public class ShopServiceImpl implements ShopService {
 		public List<HeartVO> getShopHeartList() {
 			return mdao.getShopHeartList();
 		}
-		
+
+
 		@Override
-		public UserVO getUser_id(String user_id) {
-			return mdao.getUser_id(user_id);
+		public List<UserVO> getUserList() {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
+	//mypage_addr
 		@Override
-		public UserVO getMypage_Info(String user_id) {
-			return mdao.getMypage_Info(user_id);
+		public int getAddrInsert(AddrVO avo) {
+			return mdao.getAddrInsert(avo);
 		}
+		
 		@Override
-		public int Mypage_Info_Change(String user_id) {
-			return mdao.Mypage_Info_Change(user_id);
+		public AddrVO getAddrDetail(AddrVO avo) {
+			System.out.println("서비스임플: "+avo.getAddr_addr());
+			return mdao.getAddrDetail(avo);
 		}
+		
+		@Override
+		public List<AddrVO> getAddrList() {
+			return mdao.getAddrlist();
+		}
+		
+		@Override
+		public int getAddrEdit(AddrVO avo) {
+			return mdao.getAddrEdit(avo);
+		}
+
+		
+
 //order============================================================================================
-	@Override
-	public List<CartListVO> getCartList(String user_idx) {
-		return odao.getCartList(user_idx);
-	}
-
-	@Override
-	public int getCartlistDelete(String cartlist_idx) {
-		return odao.getCartlistDelete(cartlist_idx);
-	}
-	
-	@Override
-	public List<ProductVO> getProductList() {
-		return odao.getProductList();
-	}
-
-	@Override
-	public List<UserVO> getUserList() {
-		return odao.getUserList();
-	}
-
-
-
+		//order_pay
+		@Override
+		public OrderVO getAddrProductOrder(String user_idx) {
+			return odao.getAddrProductOrder(user_idx);
+		}
 
 	
 
 
 //product============================================================================================
+
 
 
 }

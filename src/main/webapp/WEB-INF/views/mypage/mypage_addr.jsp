@@ -11,7 +11,8 @@
 <link href="${path}/resources/css/mypage_addr.css" rel="stylesheet" />
 <script type="text/javascript">
 function addr_edit(f) {
-	f.action ="mypage_addr_edit.do?idx=${user_idx}";
+	f.action ="mypage_addr_edit.do?addr_idx=${addr_idx}";
+	//f.action ="mypage_addr_edit.do?addr_idx=${addr_idx}";
 	f.submit();
 }
 </script>
@@ -27,31 +28,32 @@ function addr_edit(f) {
 	<div class="mypage_addr_body">
 		<div class="mypage_tilte">
 			<h2>배송지 목록</h2>
-		</div>
 		<div class="mypage_tilte_stroke"></div>
+		</div>
 		
 		
-							<button class="mypage_addr_btn1" onclick="location.href='mypage_addr_add.do">배송지추가</button>
 		<div class="mypage_addr_wrap">
 			<c:choose>
 				<c:when test="${empty list }">
-					<tr>
-						<td colspan="4"><h3>원하는 정보가 존재하지 않습니다.</h3>
-					</tr>
+					<h3>원하는 정보가 존재하지 않습니다.</h3>
 				</c:when>
-				
-				
-				
 				<c:otherwise>
-						<c:forEach var="k" items="${list}">
-					<c:if test="${k.user_idx == 1}">
-					<div class="mypage_addr_inner"  style=" background-color: red;">
-							<p>${k.addr_name}</p>
-							<p>${k.addr_idx}
-							<p>${k.addr_addr}</p>
-							<button style="position: absolute;" class="mypage_addr_btn2" onclick="addr_edit(this.form)">수정</button>
-					</div>
-					</c:if>
+					<br>
+					<button class="mypage_addr_btn1" onclick="location.href='mypage_addr_add.do'">배송지추가</button>
+					<c:forEach var="k" items="${list}">
+						<div class="mypage_addr_inner">
+							<form action="post">
+								<input type = "hidden" name="addr_idx" value="${k.addr_idx}">
+								<input type = "hidden" name="addr_phone" value="${k.addr_phone}">
+								<input type = "hidden" name="addr_name" value="${k.addr_name}">
+								<input type = "hidden" name="addr_addr" value="${k.addr_addr}">
+								<button class="mypage_addr_btn2" onclick="addr_edit(this.form)">수정</button>
+								<p>${k.addr_name}</p>
+								<p>${k.addr_phone}</p>
+								<p>${k.addr_addr}</p>
+							</form>
+							<hr>
+						</div>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>

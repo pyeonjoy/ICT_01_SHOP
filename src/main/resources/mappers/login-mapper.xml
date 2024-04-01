@@ -17,10 +17,11 @@
 <!-- login_main -->
 
 <!-- login_ok -->
-	<select id="logingo" parameterType="uvo" resultType="uvo">
+	<select id="logingo" resultType="uvo">
 		select user_id, user_pwd
 		from shop_user
 		where user_id = #{user_id}
+		and user_pwd = #{user_pwd}
 	</select>
 
 <!-- signup_fail -->
@@ -34,18 +35,5 @@
 		where user_name = #{user_name}
 		and user_email = #{user_email}
 	</select>
-<!-- login_findinfo / find_pwd -->
-<select id="find_pwd" parameterType="String" resultType="uvo">
-    	select *
-    	from shop_user
-    	where user_id = #{user_id}
-    	and user_phone = #{user_phone}
-</select>
-	<!-- login_findinfo / reset_pwd -->
-	<update id="reset_pwd" parameterType="uvo">
-		update shop_user
-		set user_pwd = #{user_pwd}
-		where user_id = #{user_id}
-	</update>
 </mapper>
 

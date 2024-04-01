@@ -14,19 +14,16 @@
 		f.action="find_id.do";
 		f.submit();
 	}
-	function find_pwd(f) {
-		f.action="find_pwd.do";
-		f.submit();
-	}
+
 </script>
 </head>
 <body>
-<form method="get">
+<form method="post">
 	<%@include file="../main/header.jsp"%>
 	<div class="login_findinfo_wrapper">
 		<div><h2>회원정보찾기</h2></div>
 		<div class="login_findinfo__tilte" ></div>
-
+		
 		<h4>아이디 찾기</h4>
 		<table>
 		<tr>
@@ -41,21 +38,23 @@
 		</table>
 					<p>고객님의 아이디는 <b>${user_id}</b> 입니다.</p>
 		
+		<!-- <p>여기에 아이디 정보 뜨게 할꺼임 + 만약 이메일 인증 받으면 버튼 사라지고 이메일만 뜨게 하고싶엉옹</p> -->
 		<hr style="margin: 20px auto;">
 		<h4>비밀번호 찾기</h4>
 		<table>
 		<tr>
 			<td>아이디</td>
-			<td><input class="login_findinfo_inputbox" type="text" name="user_id" placeholder="아이디를 입력해 주세요" /></td>
-			<td rowspan="2"><input class="login_findinfo_button" type="button" value="찾기" onclick="find_pwd(this.form)"/></td>
+			<td><input class="login_findinfo_inputbox" type="text" id="id" name="id" placeholder="아이디를 입력해 주세요" /></td>
+			<td rowspan="2"><input class="login_findinfo_button" type="submit" value="본인인증" /></td>
 		</tr>
 		<tr>
 			<td>전화번호</td>
-			<td> <input class="login_findinfo_inputbox" type="text" name="user_phone" placeholder="전화번호 입력 해 주세요" /></td>
+			<td> <input class="login_findinfo_inputbox" type="text" id="phone" name="phone" placeholder="전화번호 입력 해 주세요" /></td>
 		</tr>
+		
 		</table>
 	</div>
-	</form>
 	<%@include file="../main/footer.jsp"%>
+	</form>
 </body>
 </html>

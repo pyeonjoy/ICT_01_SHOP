@@ -12,7 +12,6 @@ import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
-import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
 @Service
@@ -152,7 +151,7 @@ public class ShopServiceImpl implements ShopService {
 
 		
 //product============================================================================================
-
+/*
 	@Override
 	public List<CartListVO> getCartList(String user_idx) {
 		return odao.getCartList(user_idx);
@@ -172,7 +171,7 @@ public class ShopServiceImpl implements ShopService {
 	public List<UserVO> getUserList() {
 		return odao.getUserList();
 	}
-
+*/
 
 //product============================================================================================
 

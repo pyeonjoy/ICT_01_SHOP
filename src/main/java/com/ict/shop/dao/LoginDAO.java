@@ -67,4 +67,17 @@ public class LoginDAO {
 		return -1;
 	}
 
+	public String getShopIdChk(String user_id) {
+		try {
+		  	int result = sqlSessionTemplate.selectOne("login.idchk", user_id);
+		  	if(result>0) {
+		  		return "0";
+		  	}
+		  	return "1" ;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+
 }

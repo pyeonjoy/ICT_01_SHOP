@@ -25,7 +25,7 @@ public class ShopServiceImpl implements ShopService {
 	private OrderDAO odao;
 	@Autowired
 	private ProductDAO pdao;
-
+	
 	// 주인없음
 	@Override
 	public UserVO getUserDetail(String idx) {
@@ -59,6 +59,10 @@ public class ShopServiceImpl implements ShopService {
 		return ldao.reset_pwd(uvo);
 	}
 
+	@Override
+	public String getShopIdChk(String user_id) {
+		return ldao.getShopIdChk(user_id);
+	}
 //mypage============================================================================================
 
 	@Override
@@ -120,8 +124,8 @@ public class ShopServiceImpl implements ShopService {
 			return mdao.getMypage_Info(user_id);
 		}
 		@Override
-		public int Mypage_Info_Change(String user_id) {
-			return mdao.Mypage_Info_Change(user_id);
+		public int Mypage_Info_Change(UserVO uvo) {
+			return mdao.Mypage_Info_Change(uvo);
 		}
 
 		public List<AddrVO> getAddrList() {
@@ -148,6 +152,7 @@ public class ShopServiceImpl implements ShopService {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
 
 		
 //product============================================================================================

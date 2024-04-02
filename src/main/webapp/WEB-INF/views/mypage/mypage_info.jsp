@@ -14,6 +14,7 @@
 	function mypage_info_change_go(f) {
 		f.action="mypage_info_change_go.do";
 		f.submit();
+		alert("수정이 완료되었습니다!");
 	}
 
 </script>
@@ -42,11 +43,11 @@
                     <p>주소</p>
                 </div>
                 <div class="mypage_info_right">
-                    <input class="info_input" type="text" name="user_id" value="${user_id}" disabled> 
-                    <input class="info_input" type="text" name="user_name" value="${user_name}" disabled> 
-                    <input class="info_input" type="text" name="user_phone" value="${user_phone}">
-                    <input class="info_input" type="text" name="user_email" value="${user_email}">
-                    <input class="info_input" type="text" name="user_addr" value="${user_addr}">
+                    <input class="info_input" type="text" name="user_id" value="${uvo.user_id}" disabled> 
+                    <input class="info_input" type="text" name="user_name" value="${uvo.user_name}" disabled> 
+                    <input class="info_input" type="text" name="user_phone" value="${uvo.user_phone}">
+                    <input class="info_input" type="text" name="user_email" value="${uvo.user_email}">
+                    <input class="info_input" type="text" name="user_addr" value="${uvo.user_addr}">
                     <div class="mypage_info_bottom">
                         <button class=mypage_info_btn1 onclick="mypage_info_change_go(this.form)">저장</button>
                         <input type="hidden" name="user_id" value="${user_id}">

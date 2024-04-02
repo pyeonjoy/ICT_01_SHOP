@@ -47,5 +47,9 @@
 		set user_pwd = #{user_pwd}
 		where user_id = #{user_id}
 	</update>
+	 	<select id="idchk" parameterType="String" resultType="int">
+ 		select count(*) from shop_user where user_id=#{user_id}
+ 	</select>
+	
 </mapper>
 

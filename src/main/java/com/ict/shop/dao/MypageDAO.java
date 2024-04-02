@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
-import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
 @Repository
@@ -115,9 +114,9 @@ public class MypageDAO {
 		}
 		return null;
 	}
-	public int Mypage_Info_Change(String user_id) {
+	public int Mypage_Info_Change(UserVO uvo) {
 		try {
-			return sqlSessionTemplate.update("mypage.Mypage_Info_Change",user_id);			
+			return sqlSessionTemplate.update("mypage.Mypage_Info_Change",uvo);			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -142,6 +141,7 @@ public class MypageDAO {
 		}
 		return null;
 	}
+
 
 }
 

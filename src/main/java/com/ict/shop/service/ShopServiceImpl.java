@@ -12,7 +12,6 @@ import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
-import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
 @Service
@@ -96,12 +95,6 @@ public class ShopServiceImpl implements ShopService {
 			return mdao.getShopHeartList();
 		}
 
-
-		@Override
-		public List<UserVO> getUserList() {
-			// TODO Auto-generated method stub
-			return null;
-		}
 		
 
 	//mypage_addr
@@ -150,10 +143,16 @@ public class ShopServiceImpl implements ShopService {
 			return odao.getAddrProductOrder(user_idx);
 		}
 
+		@Override
+		public List<UserVO> getUserList() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
 		
 //product============================================================================================
 
-	@Override
+	/*@Override
 	public List<CartListVO> getCartList(String user_idx) {
 		return odao.getCartList(user_idx);
 	}
@@ -172,7 +171,7 @@ public class ShopServiceImpl implements ShopService {
 	public List<UserVO> getUserList() {
 		return odao.getUserList();
 	}
-
+*/
 
 //product============================================================================================
 

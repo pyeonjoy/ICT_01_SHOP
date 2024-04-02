@@ -261,8 +261,8 @@ public class MypageController {
 	    String user_id = (String) session.getAttribute("user_id");
 	    System.out.println(user_id);
 	    	UserVO uvo = shopservice.getUser_id(user_id);
-	        mv.addObject("user_name", uvo.getUser_name());
-	        mv.addObject("user_point", uvo.getUser_point());
+	        //mv.addObject("user_name", uvo.getUser_name());
+	       // mv.addObject("user_point", uvo.getUser_point());
 	        
 	        return mv;
 	}

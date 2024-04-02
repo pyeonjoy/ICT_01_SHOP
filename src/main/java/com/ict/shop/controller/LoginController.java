@@ -108,8 +108,8 @@ public class LoginController {
 	@RequestMapping("login_ok.do") // 로그인 완료
 	public ModelAndView Login_OK(UserVO uvo) {
 		ModelAndView mv = new ModelAndView();
-		
 		UserVO result = shopservice.getShop_Login(uvo);
+		System.out.println(result);
 	    if (result != null && passwordEncoder.matches(uvo.getUser_pwd(), result.getUser_pwd())) {
 	    	session.setAttribute("user_idx", result.getUser_idx());
 			session.setAttribute("user_id", result.getUser_id());

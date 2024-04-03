@@ -10,10 +10,6 @@
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_addr.css" rel="stylesheet" />
 <script type="text/javascript">
-function addr_edit(f) {
-	f.action ="mypage_addr_edit.do?addr_idx=${addr_idx}";
-	f.submit();
-}
 </script>
 
 </head>
@@ -34,6 +30,7 @@ function addr_edit(f) {
 		<div class="mypage_addr_wrap">
 			<c:choose>
 				<c:when test="${empty list }">
+					<button class="mypage_addr_btn1" onclick="location.href='mypage_addr_add.do'">배송지추가</button>
 					<h3>원하는 정보가 존재하지 않습니다.</h3>
 				</c:when>
 				<c:otherwise>
@@ -46,8 +43,8 @@ function addr_edit(f) {
 							    <input type="hidden" name="addr_phone" value="${k.addr_phone}">
 							    <input type="hidden" name="addr_name" value="${k.addr_name}">
 							    <input type="hidden" name="addr_addr" value="${k.addr_addr}">
+							    <input type="button" value="수정" class="mypage_addr_btn2" onclick="location.href='mypage_addr_edit.do?addr_idx=${k.addr_idx}'"/>
 							    <button style="margin-left: 10px;" class="mypage_addr_btn2" type="submit">삭제</button>
-							    <button class="mypage_addr_btn2" onclick="addr_edit(this.form)">수정</button>
 							    <p>${k.addr_name}</p>
 							    <p>${k.addr_phone}</p>
 							    <p>${k.addr_addr}</p>

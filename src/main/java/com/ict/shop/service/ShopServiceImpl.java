@@ -113,6 +113,11 @@ public class ShopServiceImpl implements ShopService {
 		}
 		
 		@Override
+		public int getAddrDelete(String addr_idx) {
+			return mdao.getAddrDelete(addr_idx);
+		}
+		
+		@Override
 
 		public UserVO getUser_id(String user_id) {
 			return mdao.getUser_id(user_id);
@@ -152,6 +157,14 @@ public class ShopServiceImpl implements ShopService {
 			return null;
 		}
 
+	
+
+		@Override
+		public List<CartListVO> getCartList(String user_idx) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+}
 
 
 		

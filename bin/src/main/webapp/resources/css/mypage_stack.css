@@ -1,0 +1,58 @@
+@charset "UTF-8";
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.container {
+width:100%;
+	margin: 0 230px;
+	display: flex;
+	
+	
+}
+
+.stack_title {
+	margin: 0px auto;
+display: inline;
+text-align: center;
+}
+
+.mypage_stack_aside {
+	width: 120px;
+}
+
+.mypage_stack_main {
+	border: 1px solid #ccc;
+	width: 60%;
+	height: 140px;
+	display: flex;
+	justify-content: center;
+	padding: 20px;
+	margin: 100px;
+}
+
+.profile, .points, .coupons {
+	flex: 1;
+	padding: 20px 10px;
+	font-size: 20px;
+	border-right: 1px solid #ccc;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.mypage_stack_stroke{
+background-color: black;
+color: black;
+width: 100px;
+height: 5px;
+font-size: 15px;
+line-height: 35px;
+margin: 10px auto 30px;
+}
+.coupons {
+	border-right: none;
+}

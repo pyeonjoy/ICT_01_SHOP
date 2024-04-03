@@ -19,9 +19,11 @@
 <link href="${path}/resources/css/header.css" rel="stylesheet"/>
 <title>header</title>
 <script type="text/javascript">
-function board_go() {
-	location.href="board_list.do";
-}
+	function mypage_firstchk() {
+		const user_name = "${uvo.user_name}";
+		location.href="mypage_firstchk.do?user_name="+user_name;		
+	}
+
 </script>
 
 </head>
@@ -52,7 +54,7 @@ function board_go() {
 						<li>Shower Re body</li>
 						<li>Perfume De Body</li>
 					</ul></li>
-				<li><a class="menu_tilte" onclick="board_go()">Candle</a></li>
+				<li><a class="menu_tilte" onclick="mypage_firstchk();">Candle</a></li>
 			</ul>
 		</div>
 

@@ -16,13 +16,11 @@
 		<typeAlias type="com.ict.shop.dao.vo.HeartVO" alias="hvo"/>
 		<typeAlias type="com.ict.shop.dao.vo.CartListVO" alias="cvo"/>
 		<typeAlias type="com.ict.shop.dao.vo.OrderVO" alias="ovo"/>
-		<typeAlias type="com.ict.shop.dao.vo.BoardVO" alias="bovo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/login-mapper.xml" />
 		<mapper resource="mappers/mypage-mapper.xml" />
 		<mapper resource="mappers/product-mapper.xml" />
 		<mapper resource="mappers/order-mapper.xml" />
-		<mapper resource="mappers/board-mapper.xml" />
 	</mappers>
 </configuration>

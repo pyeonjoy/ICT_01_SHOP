@@ -12,6 +12,7 @@ import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
+import com.ict.shop.dao.vo.CartListVO;
 
 @Repository
 public class OrderDAO {
@@ -25,8 +26,14 @@ public class OrderDAO {
 	//order===================================================================================================================
 		//order_pay
 
-		public OrderVO getAddrProductOrder(String user_idx) {
-			return sqlSessionTemplate.selectOne("order.addrproductorder",user_idx);
+		public OrderVO getAddrProductOrder(String order_idx) {
+			return sqlSessionTemplate.selectOne("order.addrproductorder",order_idx);
+		}
+
+
+		public List<CartListVO> getCartList(String user_idx) {
+			// TODO Auto-generated method stub
+			return null;
 		}
 		
 

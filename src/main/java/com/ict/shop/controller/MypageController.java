@@ -36,17 +36,30 @@ public class MypageController {
 	private HttpSession session;
 
 //mypage==============================================================================================================================================
+	@PostMapping("mypage_delete.do")
+	public ModelAndView Mypage_Addr_Delete(String addr_idx) {
+	    System.out.println("들어오나 아이디엑스: " + addr_idx);
+	    ModelAndView mv = new ModelAndView();
+	    int result = shopservice.getAddrDelete(addr_idx);
+	    System.out.println("들어오나 리절트 " + result);
+	    if (result >0) {
+	        mv.setViewName("redirect:mypage_addr.do") ;
+	        return mv;
+	    }
+	    mv.setViewName("error");
+	    return mv;
+	}
+
 	@RequestMapping("mypage_addr_add.do") // 마이페이지 주소록 추가 페이지
 	public ModelAndView Mypage_Addr_Add() {
-		//ModelAndView mv = new ModelAndView("mypage/mypage_addr_add");
 		return new ModelAndView("mypage/mypage_addr_add");
 	}
 
 	@PostMapping("mypage_addr_add_ok.do")
 	public ModelAndView Mypage_Addr_Add_OK(AddrVO avo) {
 		ModelAndView mv = new ModelAndView("redirect:mypage_addr.do");
-
 		int result = shopservice.getAddrInsert(avo);
+		System.out.println("에드정보오나"+avo.getAddr_idx());
 		if (result > 0) {
 			return mv;
 		} else {
@@ -67,8 +80,9 @@ public class MypageController {
 
 	@PostMapping("mypage_addr_edit_ok.do")
 	public ModelAndView Mypage_Addr_Edit_OK(AddrVO avo) {
-		ModelAndView mv = new ModelAndView("redirect:mypage_addr.do");
+		ModelAndView mv = new ModelAndView("");
 			int result = shopservice.getAddrEdit(avo);
+			System.out.println("컨트롤러있니"+avo.getAddr_idx());
 			if (result > 0) {
 				mv.setViewName("redirect: mypage_addr.do");
 				return mv;
@@ -78,15 +92,23 @@ public class MypageController {
 	}
 
 	@GetMapping("mypage_addr.do") // 마이페이지 주소록 페이지
-	public ModelAndView Mypage_Addr() {
-		ModelAndView mv = new ModelAndView("mypage/mypage_addr");
-		List<AddrVO> list = shopservice.getAddrList();
-		if (list != null) {
-			mv.addObject("list", list);
-			System.out.println("list222 : " + list);
-			return mv;
-		}
-		return new ModelAndView("mypage/error");
+	public ModelAndView Mypage_Addr(HttpServletRequest request) {
+	    ModelAndView mv = new ModelAndView("mypage/mypage_addr");
+	    // 세션에서 사용자 ID 가져오기
+	    HttpSession session = request.getSession();
+	    UserVO uvo = (UserVO) session.getAttribute("uvo");
+
+	    if (uvo.getUser_idx() != null) {
+	        System.out.println("주소록 idx 확인: " + uvo.getUser_idx());
+	        List<AddrVO> list = shopservice.getAddrList(uvo.getUser_idx());
+	        if (list != null) {
+	            mv.addObject("list", list);
+	            System.out.println("주소록 리스트 : " + list);
+	            return mv;
+	        }
+	    }
+
+	    return new ModelAndView("mypage/error");
 	}
 
 	@RequestMapping("mypage_changepwd.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
@@ -207,12 +229,12 @@ public class MypageController {
 	}
 
 	@GetMapping("mypage_order_after.do") // 마이페이지 결제 내역 페이지
-	public ModelAndView Mypage_Order_After( String order_idx, String product_idx) {
+	public ModelAndView Mypage_Order_After( String user_idx,HttpServletRequest request) {
 	    ModelAndView mv = new ModelAndView("mypage/mypage_order_after");
-	    List<OrderVO> orderList = shopservice.getOrderList(order_idx, product_idx);
+	    HttpSession session = request.getSession();
+	    UserVO uvo = (UserVO) session.getAttribute("uvo");
+	    List<OrderVO> orderList = shopservice.getOrderList(uvo.getUser_idx());
 	    if (orderList != null) {
-	    	 mv.addObject("order", order_idx);
-	         mv.addObject("pro", product_idx);
 	        mv.addObject("ovo", orderList);
 	        System.out.println(orderList);
 	        return mv;
@@ -221,12 +243,12 @@ public class MypageController {
 	}
 	
 	@GetMapping("mypage_order.do") // 마이페이지 주문내역 페이지
-	public ModelAndView Mypage_Order(String order_idx, String product_idx) {
+	public ModelAndView Mypage_Order( String user_idx,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_order");
-		 List<OrderVO> orderList = shopservice.getOrderList(order_idx, product_idx);
+		 List<OrderVO> orderList = shopservice.getOrderList(user_idx);
 		    if (orderList != null) {
-		    	 mv.addObject("order", order_idx);
-		         mv.addObject("pro", product_idx);
+		    	 mv.addObject("order", user_idx);
+		         mv.addObject("pro", user_idx);
 		        mv.addObject("ovo", orderList);
 		        System.out.println("오더 페이지"+orderList);
 		        return mv;

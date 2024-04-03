@@ -1,7 +1,15 @@
 package com.ict.shop.dao.vo;
 
 public class UserVO {
-	private String user_id, user_pwd, user_name, user_birth, user_phone, user_email, user_addr, user_point, user_redate;
+	private String user_idx,user_id, user_pwd, user_name, user_birth, user_phone, user_email, user_addr, user_point, user_redate;
+
+	public String getUser_idx() {
+		return user_idx;
+	}
+
+	public void setUser_idx(String user_idx) {
+		this.user_idx = user_idx;
+	}
 
 	public String getUser_id() {
 		return user_id;

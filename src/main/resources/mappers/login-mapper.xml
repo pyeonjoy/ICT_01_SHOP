@@ -17,11 +17,11 @@
 <!-- login_main -->
 
 <!-- login_ok -->
-	<select id="logingo" parameterType="uvo" resultType="uvo">
-		select user_id, user_pwd
-		from shop_user
-		where user_id = #{user_id}
-	</select>
+ <select id="logingo" parameterType="uvo" resultType="uvo">
+        select *
+        from shop_user
+        where user_id = #{user_id}
+    </select>
 
 <!-- signup_fail -->
 

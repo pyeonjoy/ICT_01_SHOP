@@ -6,7 +6,7 @@
 <mapper namespace="mypage">
 <!-- mypage_addr_add -->
  	<insert id="addrinsert" parameterType="avo">
-	insert into shop_addr(user_idx, addr_name, addr_phone, addr_addr)
+	insert into shop_addr( user_idx,addr_name, addr_phone, addr_addr)
 	values(#{user_idx}, #{addr_name}, #{addr_phone}, #{addr_addr})
 	</insert>
 	
@@ -14,26 +14,27 @@
 	<select id="addrdetail" parameterType="String" resultType="avo">
 		select *
 		from shop_addr
-		where addr_idx= '15'
+		where addr_idx= #{ addr_idx}
 	</select>
-
 	<update id="addredit" parameterType="avo">
 	update shop_addr 
 		set addr_name = #{addr_name}
 		, addr_phone = #{addr_phone}
 		, addr_addr = #{addr_addr}
-		where user_idx = #{user_idx}
-		and addr_idx = #{addr_idx}
+		where addr_idx = #{addr_idx}
 	</update>
 	
-<!-- mypage_addr --> 	
-	<select id ="addrlist" resultType="avo">
+<!-- mypage[_addr --> 	
+	<select id ="addrlist" parameterType="String" resultType="avo">
 		select * 
-		  from shop_addr a, shop_user u
-		 where a.user_idx = u.user_idx
-		   and u.user_idx = '2'
-
+		  from shop_addr
+		 where user_idx = #{user_idx}
 	</select>
+	<delete id="addrdelete" parameterType="String">
+	    delete from shop_addr where addr_idx = #{addr_idx}
+	</delete>
+
+
 
 <!-- mypage_changepwd, mypage_firstchk --> 
 	<select id="firstchek" parameterType="uvo" resultType="uvo">
@@ -44,6 +45,7 @@
 	<update id="changepwd" parameterType="uvo">
 		update shop_user set user_pwd = #{user_pwd} where user_id = #{user_id}
 	</update>
+	
 <!-- mypage_faq --> 	
 
 <!-- mypage_heart --> 
@@ -62,10 +64,11 @@
 
 <!-- mypage_order --> 	
 	<select id="orderlist" resultType="map">
-    select * 
-    from shop_order o, shop_product p
-    where o.product_idx = p.product_idx
-    and o.order_idx = #{order_idx}
+select *
+from shop_user u
+inner join shop_order o on u.user_idx = o.user_idx
+inner join shop_product p on o.product_idx = p.product_idx
+where u.user_idx = #{user_idx}
 	</select>
     <select id="productlist" resultType="pvo" parameterType="String">
 		select * from shop_product  

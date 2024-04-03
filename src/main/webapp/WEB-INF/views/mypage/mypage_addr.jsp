@@ -12,7 +12,6 @@
 <script type="text/javascript">
 function addr_edit(f) {
 	f.action ="mypage_addr_edit.do?addr_idx=${addr_idx}";
-	//f.action ="mypage_addr_edit.do?addr_idx=${addr_idx}";
 	f.submit();
 }
 </script>
@@ -42,15 +41,16 @@ function addr_edit(f) {
 					<button class="mypage_addr_btn1" onclick="location.href='mypage_addr_add.do'">배송지추가</button>
 					<c:forEach var="k" items="${list}">
 						<div class="mypage_addr_inner">
-							<form action="post">
-								<input type = "hidden" name="addr_idx" value="${k.addr_idx}">
-								<input type = "hidden" name="addr_phone" value="${k.addr_phone}">
-								<input type = "hidden" name="addr_name" value="${k.addr_name}">
-								<input type = "hidden" name="addr_addr" value="${k.addr_addr}">
-								<button class="mypage_addr_btn2" onclick="addr_edit(this.form)">수정</button>
-								<p>${k.addr_name}</p>
-								<p>${k.addr_phone}</p>
-								<p>${k.addr_addr}</p>
+							<form method="post" action="/mypage_delete.do">
+							    <input type="hidden" name="addr_idx" value="${k.addr_idx}">
+							    <input type="hidden" name="addr_phone" value="${k.addr_phone}">
+							    <input type="hidden" name="addr_name" value="${k.addr_name}">
+							    <input type="hidden" name="addr_addr" value="${k.addr_addr}">
+							    <button style="margin-left: 10px;" class="mypage_addr_btn2" type="submit">삭제</button>
+							    <button class="mypage_addr_btn2" onclick="addr_edit(this.form)">수정</button>
+							    <p>${k.addr_name}</p>
+							    <p>${k.addr_phone}</p>
+							    <p>${k.addr_addr}</p>
 							</form>
 							<hr>
 						</div>

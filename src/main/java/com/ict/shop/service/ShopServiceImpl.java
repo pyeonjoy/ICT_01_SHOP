@@ -152,6 +152,18 @@ public class ShopServiceImpl implements ShopService {
 			return null;
 		}
 
+		@Override
+		public int getAddrDelete(String addr_idx) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
+
+		@Override
+		public List<CartListVO> getCartList(String user_idx) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+}
 
 
 		

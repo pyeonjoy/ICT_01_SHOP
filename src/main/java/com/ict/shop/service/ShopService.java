@@ -6,7 +6,6 @@ import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
-import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
 public interface ShopService {
@@ -14,6 +13,8 @@ public interface ShopService {
 	
 //로그인 ============================================================
 	int getShop_Insert(UserVO vo); // 회원가입
+
+	String getShopIdChk(String user_id);
 
 	UserVO getShop_Login(UserVO uvo); // 로그인
 
@@ -59,10 +60,9 @@ public interface ShopService {
 	//mypage_addr+order_pay
 	AddrVO getAddrDetail(AddrVO avo);
 
-
 	UserVO getMypage_Info(String user_id);
 
-	int Mypage_Info_Change(String user_id);
+	int Mypage_Info_Change(UserVO uvo);
 
 
 
@@ -71,9 +71,11 @@ public interface ShopService {
 
 	//오더  ============================================================
 	//order-pay
+
 	OrderVO getAddrProductOrder(String order_idx);
 
 	List<CartListVO> getCartList(String user_idx);
+
 
 	
 //프로덕 ============================================================

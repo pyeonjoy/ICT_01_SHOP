@@ -105,19 +105,29 @@ public class LoginController {
 		return mv;
 	}
 
-    @RequestMapping("login_ok.do") // 로그인 완료
-    public ModelAndView Login_OK(UserVO uvo) {
-        ModelAndView mv = new ModelAndView();
-        
-        UserVO result = shopservice.getShop_Login(uvo);
-        if (result != null && passwordEncoder.matches(uvo.getUser_pwd(), result.getUser_pwd())) {
-            session.setAttribute("uvo", result);
-            mv.setViewName("redirect:main.do");
-        } else {
-            mv.setViewName("login/signup_fail");
-        }
-        return mv;
-    }
+
+	@RequestMapping("login_ok.do") // 로그인 완료
+	public ModelAndView Login_OK(UserVO uvo) {
+		ModelAndView mv = new ModelAndView();
+		UserVO result = shopservice.getShop_Login(uvo);
+		System.out.println(result);
+	    if (result != null && passwordEncoder.matches(uvo.getUser_pwd(), result.getUser_pwd())) {
+	    	session.setAttribute("user_idx", result.getUser_idx());
+			session.setAttribute("user_id", result.getUser_id());
+			session.setAttribute("user_pwd", result.getUser_pwd());
+			session.setAttribute("user_name", result.getUser_name());
+			session.setAttribute("user_birth", result.getUser_birth());
+			session.setAttribute("user_email", result.getUser_email());
+			session.setAttribute("user_phone", result.getUser_phone());
+			session.setAttribute("user_addr", result.getUser_addr());
+			session.setAttribute("user_point", result.getUser_point());
+			session.setAttribute("uvo", result);
+			mv.setViewName("redirect:main.do");
+		} else {
+			mv.setViewName("login/signup_fail");
+		}
+		return mv;
+	}
 
 	@GetMapping("signup.do") // 회원가입 페이지 완료
 	public ModelAndView SignUp(UserVO vo) {
@@ -145,4 +155,5 @@ public class LoginController {
 	    }
 	    return new ModelAndView("login/signup_fail");
 	}
+		
 }

@@ -17,11 +17,12 @@
 <!-- login_main -->
 
 <!-- login_ok -->
- <select id="logingo" parameterType="uvo" resultType="uvo">
-        select *
-        from shop_user
-        where user_id = #{user_id}
-    </select>
+
+	<select id="logingo" parameterType="uvo" resultType="uvo">
+		select *
+		from shop_user
+		where user_id = #{user_id}
+	</select>
 
 <!-- signup_fail -->
 
@@ -47,5 +48,9 @@
 		set user_pwd = #{user_pwd}
 		where user_id = #{user_id}
 	</update>
+	 	<select id="idchk" parameterType="String" resultType="int">
+ 		select count(*) from shop_user where user_id=#{user_id}
+ 	</select>
+	
 </mapper>
 

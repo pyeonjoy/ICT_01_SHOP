@@ -13,7 +13,6 @@ import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
-import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
 @Service
@@ -27,7 +26,7 @@ public class ShopServiceImpl implements ShopService {
 	private OrderDAO odao;
 	@Autowired
 	private ProductDAO pdao;
-
+	
 	// 주인없음
 	@Override
 	public UserVO getUserDetail(String idx) {
@@ -61,6 +60,10 @@ public class ShopServiceImpl implements ShopService {
 		return ldao.reset_pwd(uvo);
 	}
 
+	@Override
+	public String getShopIdChk(String user_id) {
+		return ldao.getShopIdChk(user_id);
+	}
 //mypage============================================================================================
 
 	@Override
@@ -97,8 +100,6 @@ public class ShopServiceImpl implements ShopService {
 			return mdao.getShopHeartList();
 		}
 
-
-
 	//mypage_addr
 		@Override
 		public int getAddrInsert(AddrVO avo) {
@@ -122,8 +123,8 @@ public class ShopServiceImpl implements ShopService {
 			return mdao.getMypage_Info(user_id);
 		}
 		@Override
-		public int Mypage_Info_Change(String user_id) {
-			return mdao.Mypage_Info_Change(user_id);
+		public int Mypage_Info_Change(UserVO uvo) {
+			return mdao.Mypage_Info_Change(uvo);
 		}
 
 		public List<AddrVO> getAddrList(String user_idx) {
@@ -151,11 +152,16 @@ public class ShopServiceImpl implements ShopService {
 			return null;
 		}
 
-		@Override
-		public List<CartListVO> getCartList(String user_idx) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+
+
+		
+//product============================================================================================
+
+	/*@Override
+	public List<CartListVO> getCartList(String user_idx) {
+		return odao.getCartList(user_idx);
+	}
+
 
 		@Override
 		public int getAddrDelete(String addr_idx) {
@@ -190,7 +196,7 @@ public class ShopServiceImpl implements ShopService {
 //	public List<UserVO> getUserList() {
 //		return odao.getUserList();
 	}
-
+*/
 
 //product============================================================================================
 

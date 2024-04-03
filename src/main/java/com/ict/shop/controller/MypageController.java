@@ -67,7 +67,7 @@ public class MypageController {
 		}
 	}
 
-@RequestMapping("mypage_addr_edit.do") // 마이페이지 주소록 추가 페이지
+	@RequestMapping("mypage_addr_edit.do") // 마이페이지 주소록 추가 페이지
 	public ModelAndView Mypage_Addr_Edit(AddrVO avo) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr_edit");
 		AddrVO avo1 = shopservice.getAddrDetail(avo);
@@ -80,6 +80,7 @@ public class MypageController {
 
 	@PostMapping("mypage_addr_edit_ok.do")
 	public ModelAndView Mypage_Addr_Edit_OK(AddrVO avo) {
+
 		ModelAndView mv = new ModelAndView("");
 			int result = shopservice.getAddrEdit(avo);
 			System.out.println("컨트롤러있니"+avo.getAddr_idx());
@@ -115,7 +116,7 @@ public class MypageController {
 	public ModelAndView Mypage_Changepwd() {
 		return new ModelAndView("mypage/mypage_changepwd");
 	}
-	
+
 	@PostMapping("mypage_changepwd_ok.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
 	public ModelAndView Mypage_ChangepwdOk(UserVO uvo, HttpServletRequest request, @RequestParam("pwd") String pwd,
 			@RequestParam("pwd2") String pwd2, @RequestParam("c_pwd") String c_pwd) {
@@ -160,25 +161,25 @@ public class MypageController {
 		return new ModelAndView("mypage/mypage_firstchk");
 	}
 
-	 @RequestMapping("mypage_firstchk_ok.do")
-	    public ModelAndView Mypage_FirstChkOk(@RequestParam("user_pwd") String user_pwd) {
-	        ModelAndView mv = new ModelAndView();
+	@RequestMapping("mypage_firstchk_ok.do")
+	public ModelAndView Mypage_FirstChkOk(@RequestParam("user_pwd") String user_pwd) {
+		ModelAndView mv = new ModelAndView();
 
-	        String user_id = (String) session.getAttribute("user_id");
+		String user_id = (String) session.getAttribute("user_id");
 
-	        UserVO vo2 = shopservice.firstchk(user_id);
-	        String dpwd = vo2.getUser_pwd();
+		UserVO vo2 = shopservice.firstchk(user_id);
+		String dpwd = vo2.getUser_pwd();
 
-	        // 암호화 비교
-	        if (passwordEncoder.matches(user_pwd, dpwd)) {
-	            mv.setViewName("redirect:mypage_stack.do");
-	            return mv;
-	        } else {
-	            mv.setViewName("mypage/mypage_firstchk");
-	            mv.addObject("pwdchk", "fail");
-	            return mv;
-	        }
-	    }
+		// 암호화 비교
+		if (passwordEncoder.matches(user_pwd, dpwd)) {
+			mv.setViewName("redirect:mypage_stack.do");
+			return mv;
+		} else {
+			mv.setViewName("mypage/mypage_firstchk");
+			mv.addObject("pwdchk", "fail");
+			return mv;
+		}
+	}
 
 	@GetMapping("mypage_heart.do") // 마이페이지 찜상품 페이지
 	public ModelAndView Mypage_Heart() {
@@ -193,32 +194,28 @@ public class MypageController {
 
 	@GetMapping("mypage_info.do") // 마이페이지 회원정보 페이지
 	public ModelAndView Mypage_Info() {
-		ModelAndView mv = new ModelAndView("mypage/mypage_info");
-		
-		String user_id = (String) session.getAttribute("user_id");
-		
-		UserVO uvo = shopservice.getMypage_Info(user_id);
-        
-		mv.addObject("user_id", uvo.getUser_id());
-        mv.addObject("user_name", uvo.getUser_name());
-        mv.addObject("user_phone", uvo.getUser_phone());
-        mv.addObject("user_email", uvo.getUser_email());
-        mv.addObject("user_addr", uvo.getUser_addr());
-		return mv;
+		return new ModelAndView("mypage/mypage_info");
 	}
-	
-	@RequestMapping("mypage_info_change_go.do")
-	public ModelAndView Mypage_Info_Change(@RequestParam("user_id") String user_id) {
-        ModelAndView mv = new ModelAndView();
-		int res = shopservice.Mypage_Info_Change(user_id);
+
+	@PostMapping("mypage_info_change_go.do")
+	public ModelAndView Mypage_Info_Change(HttpServletRequest request) {
+	    ModelAndView mv = new ModelAndView();
+	    HttpSession session = request.getSession();
+	    UserVO uvo = (UserVO) session.getAttribute("uvo");
+	    uvo.setUser_phone(request.getParameter("user_phone"));
+	    uvo.setUser_email(request.getParameter("user_email"));
+	    uvo.setUser_addr(request.getParameter("user_addr"));
 	    
+	    int res = shopservice.Mypage_Info_Change(uvo);
+
 	    System.out.println(res);
 	    if (res > 0) {
-	    	mv.setViewName("redirect:mypage_info.do");
+	    	session.setAttribute("uvo", uvo);
+	        mv.setViewName("redirect:mypage_info.do");
 	    } else {
 	        return new ModelAndView("main/signup_fail");
 	    }
-		return mv;
+	    return mv;
 	}
 
 
@@ -241,7 +238,7 @@ public class MypageController {
 	    }
 	    return new ModelAndView("main/signup_fail");
 	}
-	
+
 	@GetMapping("mypage_order.do") // 마이페이지 주문내역 페이지
 	public ModelAndView Mypage_Order( String user_idx,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_order");
@@ -254,24 +251,25 @@ public class MypageController {
 		        return mv;
 		    }
 		    return new ModelAndView("main/signup_fail");
+
 	}
-	
+
 	@GetMapping("mypage_pwdchk.do") // 1:1 문의 하는 페이지
 	public ModelAndView Mypage_Pwdchk() {
-		
+
 		return new ModelAndView("mypage/mypage_pwdchk");
 	}
-	
+
 	@GetMapping("mypage_qna_update.do") // 1:1 문의 하는 페이지
 	public ModelAndView Mypage_Qna_Update() {
 		return new ModelAndView("mypage/mypage_qna_update");
 	}
-	
+
 	@GetMapping("mypage_qna_write.do") // 1:1 문의 하는 페이지
 	public ModelAndView Mypage_Qna_Write() {
 		return new ModelAndView("mypage/mypage_qna_write");
 	}
-	
+
 	@GetMapping("mypage_qna.do") // 1:1 문의 하는 페이지
 	public ModelAndView Mypage_Qna() {
 		return new ModelAndView("mypage/mypage_qna");
@@ -279,13 +277,6 @@ public class MypageController {
 
 	@RequestMapping("mypage_stack.do") // 마이페이지 메인페이지
 	public ModelAndView Mypage_Stack() {
-	    ModelAndView mv = new ModelAndView("mypage/mypage_stack");
-	    String user_id = (String) session.getAttribute("user_id");
-	    System.out.println(user_id);
-	    	UserVO uvo = shopservice.getUser_id(user_id);
-	        mv.addObject("user_name", uvo.getUser_name());
-	        mv.addObject("user_point", uvo.getUser_point());
-	        
-	        return mv;
+		return new ModelAndView("mypage/mypage_stack");
 	}
 }

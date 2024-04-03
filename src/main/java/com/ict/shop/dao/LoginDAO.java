@@ -36,6 +36,8 @@ public class LoginDAO {
 		return null;
 	}
 
+	
+	
 	public UserVO find_id(UserVO vo) {
 		try {
 			System.out.println(vo.getUser_name() + "여기는어디징");

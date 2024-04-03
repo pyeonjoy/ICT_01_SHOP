@@ -95,6 +95,56 @@ public class ShopServiceImpl implements ShopService {
 		return mdao.firstchk(user_id);
 	}
 
+	
+	//mypage_heart
+		@Override
+		public List<HeartVO> getShopHeartList() {
+			return mdao.getShopHeartList();
+		}
+
+	//mypage_addr
+		@Override
+		public int getAddrInsert(AddrVO avo) {
+			return mdao.getAddrInsert(avo);
+		}
+		
+		@Override
+		public AddrVO getAddrDetail(AddrVO avo) {
+			System.out.println("서비스임플: "+avo.getAddr_addr());
+			return mdao.getAddrDetail(avo);
+		}
+		
+		@Override
+		public int getAddrDelete(String addr_idx) {
+			return mdao.getAddrDelete(addr_idx);
+		}
+		
+		@Override
+
+		public UserVO getUser_id(String user_id) {
+			return mdao.getUser_id(user_id);
+		}
+		
+		@Override
+		public UserVO getMypage_Info(String user_id) {
+			return mdao.getMypage_Info(user_id);
+		}
+		@Override
+		public int Mypage_Info_Change(UserVO uvo) {
+			return mdao.Mypage_Info_Change(uvo);
+		}
+
+		public List<AddrVO> getAddrList(String user_idx) {
+			return mdao.getAddrlist(user_idx);
+		}
+		
+		@Override
+		public int getAddrEdit(AddrVO avo) {
+			return mdao.getAddrEdit(avo);
+		}
+
+
+
 	// mypage_heart
 	@Override
 	public List<HeartVO> getShopHeartList() {
@@ -128,6 +178,7 @@ public class ShopServiceImpl implements ShopService {
 	public int Mypage_Info_Change(UserVO uvo) {
 		return mdao.Mypage_Info_Change(uvo);
 	}
+
 
 	public List<AddrVO> getAddrList(String user_idx) {
 		return mdao.getAddrlist(user_idx);

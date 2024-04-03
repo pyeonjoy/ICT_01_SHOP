@@ -41,7 +41,6 @@ public class MypageController {
 	    System.out.println("들어오나 아이디엑스: " + addr_idx);
 	    ModelAndView mv = new ModelAndView();
 	    int result = shopservice.getAddrDelete(addr_idx);
-	    System.out.println("들어오나 리절트 " + result);
 	    if (result >0) {
 	        mv.setViewName("redirect:mypage_addr.do") ;
 	        return mv;
@@ -59,7 +58,6 @@ public class MypageController {
 	public ModelAndView Mypage_Addr_Add_OK(AddrVO avo) {
 		ModelAndView mv = new ModelAndView("redirect:mypage_addr.do");
 		int result = shopservice.getAddrInsert(avo);
-		System.out.println("에드정보오나"+avo.getAddr_idx());
 		if (result > 0) {
 			return mv;
 		} else {
@@ -71,6 +69,7 @@ public class MypageController {
 	public ModelAndView Mypage_Addr_Edit(AddrVO avo) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr_edit");
 		AddrVO avo1 = shopservice.getAddrDetail(avo);
+		System.out.println("편집avo"+avo);
 		if (avo1 != null) {
 			mv.addObject("avo", avo1);
 			return mv;
@@ -80,7 +79,6 @@ public class MypageController {
 
 	@PostMapping("mypage_addr_edit_ok.do")
 	public ModelAndView Mypage_Addr_Edit_OK(AddrVO avo) {
-
 		ModelAndView mv = new ModelAndView("");
 			int result = shopservice.getAddrEdit(avo);
 			System.out.println("컨트롤러있니"+avo.getAddr_idx());
@@ -100,11 +98,9 @@ public class MypageController {
 	    UserVO uvo = (UserVO) session.getAttribute("uvo");
 
 	    if (uvo.getUser_idx() != null) {
-	        System.out.println("주소록 idx 확인: " + uvo.getUser_idx());
 	        List<AddrVO> list = shopservice.getAddrList(uvo.getUser_idx());
 	        if (list != null) {
 	            mv.addObject("list", list);
-	            System.out.println("주소록 리스트 : " + list);
 	            return mv;
 	        }
 	    }

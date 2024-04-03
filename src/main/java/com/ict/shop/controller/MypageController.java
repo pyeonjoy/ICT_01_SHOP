@@ -117,12 +117,11 @@ public class MypageController {
 		return new ModelAndView("mypage/mypage_changepwd");
 	}
 
-	@PostMapping("mypage_changepwd_ok.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
+	@RequestMapping("mypage_changepwd_ok.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
 	public ModelAndView Mypage_ChangepwdOk(UserVO uvo, HttpServletRequest request, @RequestParam("pwd") String pwd,
 			@RequestParam("pwd2") String pwd2, @RequestParam("c_pwd") String c_pwd) {
 		ModelAndView mv = new ModelAndView();
 
-		uvo.setUser_id("user1");
 
 		UserVO vo2 = shopservice.firstchk(uvo.getUser_id());
 		String dpwd = vo2.getUser_pwd();

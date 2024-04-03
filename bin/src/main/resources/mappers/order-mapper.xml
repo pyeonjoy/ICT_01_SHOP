@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="order">
+<!-- cart_list -->
+<!-- order_pay -->
+	<select id="addrproductorder" parameterType="String" resultType="ovo">
+			select *
+			from shop_order
+			join shop_addr as order_addr on shop_order.addr_idx = order_addr.addr_idx
+			join shop_product on shop_order.product_idx = shop_product.product_idx
+			where shop_order.order_idx = #{order_idx};
+	</select>
+</mapper>

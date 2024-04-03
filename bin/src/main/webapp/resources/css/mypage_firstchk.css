@@ -1,0 +1,53 @@
+@charset "UTF-8";
+.mypage_firstchk_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 200px 0px;
+}
+
+.mypage_firstchk_wrapper input {
+	border: 1px solid black;
+	background-color: white;
+	padding: 10px 10px;
+	height: 100%;
+	font-weight: bold;
+}
+.mypage_pwdchk_aside{
+	width: 350px;
+	float: left;
+	margin-top: 0;
+	}
+.mypage_firstchk_chk{
+	display: flex;
+}
+
+.mypage_pwdchk_icon {
+    position: relative;
+}
+
+.mypage_pwdchk_icon i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: black;
+    cursor: pointer;
+}
+
+.check_btn{
+	display: inline-block;
+	height: 37px; /* .mypage_firstchk_wrapper input  길이에 맞춤 */
+	margin-left: 10px;
+	width: 20px;
+}
+.mypage_pwdchk_tilte{
+background-color: black;
+color: black;
+width: 130px;
+height: 5px;
+font-size: 15px;
+line-height: 35px;
+margin: 10px auto 30px;
+
+}

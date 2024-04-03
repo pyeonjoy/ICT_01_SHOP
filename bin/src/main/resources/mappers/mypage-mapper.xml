@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypage">
+<!-- mypage_addr_add -->
+ 	<insert id="addrinsert" parameterType="avo">
+	insert into shop_addr( user_idx,addr_name, addr_phone, addr_addr)
+	values(#{user_idx}, #{addr_name}, #{addr_phone}, #{addr_addr})
+	</insert>
+	
+<!-- mypage_addr_edit --> 
+	<select id="addrdetail" parameterType="String" resultType="avo">
+		select *
+		from shop_addr
+		where addr_idx= #{ addr_idx}
+	</select>
+	<update id="addredit" parameterType="avo">
+	update shop_addr 
+		set addr_name = #{addr_name}
+		, addr_phone = #{addr_phone}
+		, addr_addr = #{addr_addr}
+		where addr_idx = #{addr_idx}
+	</update>
+	
+<!-- mypage[_addr --> 	
+	<select id ="addrlist" parameterType="String" resultType="avo">
+		select * 
+		  from shop_addr
+		 where user_idx = #{user_idx}
+	</select>
+	<delete id="addrdelete" parameterType="String">
+	    delete from shop_addr where addr_idx = #{addr_idx}
+	</delete>
+
+
+
+<!-- mypage_changepwd, mypage_firstchk --> 
+	<select id="firstchek" parameterType="uvo" resultType="uvo">
+		select user_pwd from shop_user where user_id = #{user_id}
+	</select>
+		
+<!-- mypage_changepwd --> 
+	<update id="changepwd" parameterType="uvo">
+		update shop_user set user_pwd = #{user_pwd} where user_id = #{user_id}
+	</update>
+	
+<!-- mypage_faq --> 	
+
+<!-- mypage_heart --> 
+ 	<select id="heartlist" resultType="hvo">
+        select * from shop_heart, shop_product order by heart_idx 
+    </select>	
+<!-- mypage_info --> 	
+	<update id="Mypage_Info_Change" parameterType="uvo">
+		update shop_user
+		set user_phone = #{user_phone}, user_email = #{user_email}, user_addr = #{user_addr}
+		where user_id = #{user_id} 
+	</update>
+<!-- mypage_notice --> 	
+
+<!-- mypage_order_after --> 	
+
+<!-- mypage_order --> 	
+	<select id="orderlist" resultType="map">
+select *
+from shop_user u
+inner join shop_order o on u.user_idx = o.user_idx
+inner join shop_product p on o.product_idx = p.product_idx
+where u.user_idx = #{user_idx}
+	</select>
+    <select id="productlist" resultType="pvo" parameterType="String">
+		select * from shop_product  
+		where product_idx = #{product_idx}
+	</select>
+<!-- mypage_pwdchk --> 	
+
+<!-- mypage_qna_update --> 	
+
+<!-- mypage_qna_write --> 	
+
+<!-- mypage_qna --> 	
+
+<!-- mypage_stack/find_id -->
+	<select id="user_id" parameterType="String" resultType="uvo">
+		select * from shop_user where user_id = #{user_id} 
+	</select>
+</mapper>

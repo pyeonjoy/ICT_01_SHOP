@@ -157,7 +157,7 @@ public class ShopServiceImpl implements ShopService {
 			return null;
 		}
 
-
+	
 
 		@Override
 		public List<CartListVO> getCartList(String user_idx) {

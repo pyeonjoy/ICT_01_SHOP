@@ -17,6 +17,7 @@
 <!-- login_main -->
 
 <!-- login_ok -->
+
 	<select id="logingo" parameterType="uvo" resultType="uvo">
 		select *
 		from shop_user

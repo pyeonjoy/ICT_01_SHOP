@@ -7,11 +7,10 @@
 <!-- cart_list -->
 <!-- order_pay -->
 	<select id="addrproductorder" parameterType="String" resultType="ovo">
-		select *
+			select *
 			from shop_order
 			join shop_addr as order_addr on shop_order.addr_idx = order_addr.addr_idx
 			join shop_product on shop_order.product_idx = shop_product.product_idx
-			where shop_order.user_idx = '2';
-		
+			where shop_order.order_idx = #{order_idx};
 	</select>
 </mapper>

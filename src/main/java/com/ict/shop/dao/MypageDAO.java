@@ -25,9 +25,10 @@ public class MypageDAO {
 
 //mypage=========================================================================================================
 	//mypage_addr
-	public List<AddrVO> getAddrlist() {
+	public List<AddrVO> getAddrlist(String user_idx) {
 		try {
-			return sqlSessionTemplate.selectList("mypage.addrlist");
+			System.out.println(user_idx);
+			return sqlSessionTemplate.selectList("mypage.addrlist",user_idx);
 		} catch (Exception e) {
 			logger.info("list", e);
 		}
@@ -103,11 +104,10 @@ public class MypageDAO {
 		return -1;
 	}
 
-	public List<OrderVO> getOrderList(String order_idx, String product_idx) {
+	public List<OrderVO> getOrderList(String user_idx) {
 		try {
 			Map<String, String> map = new HashMap<>();
-			map.put("product_idx", product_idx);
-			map.put("order_idx", order_idx);
+			map.put("user_idx", user_idx);
 			return sqlSessionTemplate.selectList("mypage.orderlist", map);
 		} catch (Exception e) {
 			logger.info("insert", e);
@@ -142,6 +142,14 @@ public class MypageDAO {
 		return null;
 	}
 
+	public int getAddrDelete(String addr_idx) {
+		try {
+			return sqlSessionTemplate.delete("mypage.addrdelete",addr_idx);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
 
 }
 

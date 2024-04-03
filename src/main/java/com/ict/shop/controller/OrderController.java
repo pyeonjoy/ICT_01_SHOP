@@ -35,10 +35,10 @@ public class OrderController {
 	}
 	
 	@GetMapping("order_pay.do")
-	public ModelAndView Order_Pay(String user_idx) {
+	public ModelAndView Order_Pay(String order_idx) {
+		System.out.println(order_idx);
 		ModelAndView mv = new ModelAndView("order/order_pay");
-		OrderVO ovo = shopservice.getAddrProductOrder(user_idx);
-		System.out.println("컨트롤pvo: "+ovo.getAddr_addr());
+		OrderVO ovo = shopservice.getAddrProductOrder(order_idx);
 		if (ovo != null) {
 			mv.addObject("ovo", ovo);
 			return mv;

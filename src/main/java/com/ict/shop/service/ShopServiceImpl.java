@@ -10,6 +10,7 @@ import com.ict.shop.dao.MypageDAO;
 import com.ict.shop.dao.OrderDAO;
 import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
+import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
@@ -82,8 +83,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	 @Override
-	    public List<OrderVO> getOrderList(String order_idx, String product_idx) {
-	        return mdao.getOrderList(order_idx, product_idx);
+	    public List<OrderVO> getOrderList(String user_idx) {
+	        return mdao.getOrderList(user_idx);
 	    }
 	
 	//mypage_firstchk
@@ -98,8 +99,6 @@ public class ShopServiceImpl implements ShopService {
 		public List<HeartVO> getShopHeartList() {
 			return mdao.getShopHeartList();
 		}
-
-		
 
 	//mypage_addr
 		@Override
@@ -128,8 +127,8 @@ public class ShopServiceImpl implements ShopService {
 			return mdao.Mypage_Info_Change(uvo);
 		}
 
-		public List<AddrVO> getAddrList() {
-			return mdao.getAddrlist();
+		public List<AddrVO> getAddrList(String user_idx) {
+			return mdao.getAddrlist(user_idx);
 		}
 		
 		@Override
@@ -143,8 +142,8 @@ public class ShopServiceImpl implements ShopService {
 //order============================================================================================
 		//order_pay
 		@Override
-		public OrderVO getAddrProductOrder(String user_idx) {
-			return odao.getAddrProductOrder(user_idx);
+		public OrderVO getAddrProductOrder(String order_idx) {
+			return odao.getAddrProductOrder(order_idx);
 		}
 
 		@Override
@@ -152,6 +151,7 @@ public class ShopServiceImpl implements ShopService {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
 
 
 		
@@ -162,19 +162,39 @@ public class ShopServiceImpl implements ShopService {
 		return odao.getCartList(user_idx);
 	}
 
-	@Override
-	public int getCartlistDelete(String cartlist_idx) {
-		return odao.getCartlistDelete(cartlist_idx);
-	}
-	
-	@Override
-	public List<ProductVO> getProductList() {
-		return odao.getProductList();
-	}
 
-	@Override
-	public List<UserVO> getUserList() {
-		return odao.getUserList();
+		@Override
+		public int getAddrDelete(String addr_idx) {
+			return mdao.getAddrDelete(addr_idx);
+		}
+
+//		@Override
+//		public List<CartListVO> getCartList(String user_idx) {
+//			// TODO Auto-generated method stub
+//			return null;
+//		}
+
+		
+//product============================================================================================
+
+//	@Override
+//	public List<CartListVO> getCartList(String user_idx) {
+//		return odao.getCartList(user_idx);
+//	}
+//
+//	@Override
+//	public int getCartlistDelete(String cartlist_idx) {
+//		return odao.getCartlistDelete(cartlist_idx);
+//	}
+//	
+//	@Override
+//	public List<ProductVO> getProductList() {
+//		return odao.getProductList();
+//	}
+//
+//	@Override
+//	public List<UserVO> getUserList() {
+//		return odao.getUserList();
 	}
 */
 
@@ -182,4 +202,3 @@ public class ShopServiceImpl implements ShopService {
 
 
 
-}

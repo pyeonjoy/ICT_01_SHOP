@@ -5,6 +5,30 @@
 
 <mapper namespace="order">
 <!-- cart_list -->
+	<select id="cartlist" parameterType="String" resultType="cvo">
+ 		select * from shop_cartlist 
+ 		join shop_product on shop_product.product_idx = shop_cartlist.product_idx
+ 		where shop_cartlist.user_idx = #{user_idx} 
+ 	</select>
+	<delete id="cartlist_delete" parameterType="String">
+ 		delete from shop_cartlist where cartlist_idx = #{cartlist_idx} 
+ 	</delete>
+ 	<update id="cartlist_edit" parameterType="cvo">
+ 		update shop_cartlist set cartlist_count = #{cartlist_count} where cartlist_idx = #{cartlist_idx}
+ 	</update>
+ 	<insert id="cartlist_pass" parameterType="cvo" >
+ 		insert into shop_order(order_idx, user_idx, product_idx, addr_idx, order_count, order_number, order_regdate)
+ 		values(#{order_idx},#{user_idx}, #{product_idx}, #{addr_idx}, #{cartlist_count}, #{order_number}, sysdate())
+ 	</insert> 
+ 	<select id="cartlist_select" parameterType="String" resultType="cvo">
+ 		select * from shop_cartlist 
+ 		join shop_product on shop_product.product_idx = shop_cartlist.product_idx 
+ 		where cartlist_idx = #{cartlist_idx} 
+ 	</select>
+	<select id="cartlist_order_list" resultType="ovo">
+ 		select * from shop_order
+ 	</select>
+
 <!-- order_pay -->
 	<select id="addrproductorder" parameterType="String" resultType="ovo">
 			select *

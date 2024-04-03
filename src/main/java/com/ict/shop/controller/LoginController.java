@@ -121,9 +121,11 @@ public class LoginController {
 			session.setAttribute("user_phone", result.getUser_phone());
 			session.setAttribute("user_addr", result.getUser_addr());
 			session.setAttribute("user_point", result.getUser_point());
+			session.setAttribute("loginchk", "ok");
 			session.setAttribute("uvo", result);
 			mv.setViewName("redirect:main.do");
 		} else {
+			session.setAttribute("loginchk", "fail");
 			mv.setViewName("login/signup_fail");
 		}
 		return mv;

@@ -52,7 +52,9 @@ function board_go() {
 						<li>Shower Re body</li>
 						<li>Perfume De Body</li>
 					</ul></li>
+
 				<li><a class="menu_tilte" onclick="board_go()">Candle</a></li>
+
 			</ul>
 		</div>
 
@@ -65,12 +67,23 @@ function board_go() {
 				</span>
 				<input class="search_input" type="text">
 			</div>
-			<div class="himage my">
-				<a href="login_main.do"><img alt="people" src="resources/image/people-01.png" title="my"></a>
+			<c:choose>
+				<c:when test="${empty user_idx}">
+			<div>
+				<p><a href="login_main.do">로그인</a>  /  <a href="signup.do">회원가입</a></p>
 			</div>
-			<div class="himage cart">
-				<a href="cart_list.do"><img alt="cart" src="resources/image/cart-01.png" title="cart"></a>
-			</div>
+				</c:when>
+			</c:choose>
+			<c:choose>
+				<c:when test="${user_idx > 1}">
+					<div class="himage my">
+						<a onclick="mypage_firstchk()"><img alt="people" src="resources/image/people-01.png" title="my"></a>
+					</div>
+					<div class="himage cart">
+						<a href="cart_list.do"><img alt="cart" src="resources/image/cart-01.png" title="cart"></a>
+					</div>
+				</c:when>
+			</c:choose>
 		</div>
 	</header>
 	<div class="header_space"></div>

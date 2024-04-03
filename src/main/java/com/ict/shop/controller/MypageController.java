@@ -178,14 +178,18 @@ public class MypageController {
 	}
 
 	@GetMapping("mypage_heart.do") // 마이페이지 찜상품 페이지
-	public ModelAndView Mypage_Heart() {
+	public ModelAndView Mypage_Heart(String user_idx, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_heart");
-		List<HeartVO> vo_heart = shopservice.getShopHeartList();
-		if (vo_heart != null) {
-			mv.addObject("vo_heart", vo_heart);
-			return mv;
-		}
-		return new ModelAndView("main/signup_fail");
+		List<OrderVO> vo_heart = shopservice.getOrderList(user_idx);
+		    if (vo_heart != null) {
+		    	 mv.addObject("order", user_idx);
+		         mv.addObject("pro", user_idx);
+		         mv.addObject("vo_heart", vo_heart);
+		        System.out.println("관심상품"+vo_heart);
+		        return mv;
+		    }
+		    return new ModelAndView("main/signup_fail");
+
 	}
 
 	@GetMapping("mypage_info.do") // 마이페이지 회원정보 페이지

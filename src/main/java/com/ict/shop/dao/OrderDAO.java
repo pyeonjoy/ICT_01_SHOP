@@ -79,11 +79,16 @@ public class OrderDAO {
 	}
 
 	// order_pay
-
-	public OrderVO getAddrProductOrder(String order_idx) {
-		return sqlSessionTemplate.selectOne("order.addrproductorder", order_idx);
-	}
-
+	//order_pay
+		public List<OrderVO> orderaddrproduct(String order_idx) {
+			try {
+//				Map<String, String> map = new HashMap<>();
+//				map.put("user_idx", user_idx);
+				return sqlSessionTemplate.selectList("order.orderaddrproduct",order_idx);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			return null;
 	
-
+		}
 }

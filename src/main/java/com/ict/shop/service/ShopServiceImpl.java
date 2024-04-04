@@ -175,10 +175,9 @@ public class ShopServiceImpl implements ShopService {
 		return odao.getCartlistSelect(cartlist_idx);
 	}
 
-	// order_pay
 	@Override
-	public OrderVO getAddrProductOrder(String order_idx) {
-		return odao.getAddrProductOrder(order_idx);
+	public List<OrderVO> orderaddrproduct(String order_idx) {
+		return odao.orderaddrproduct(order_idx);
 	}
 
 	@Override

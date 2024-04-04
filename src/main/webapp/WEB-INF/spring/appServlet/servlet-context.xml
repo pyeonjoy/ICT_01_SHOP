@@ -28,6 +28,8 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/mypage_firstchk.do" />
+			<mapping path="/board_list.do" />
+			
 			<beans:ref bean="log_inter"/>
 		</interceptor>
 	</interceptors>

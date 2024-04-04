@@ -63,17 +63,14 @@
 <!-- mypage_order_after --> 	
 
 <!-- mypage_order --> 	
-	<select id="orderlist" resultType="map">
+  <select id="orderlist" resultType="map">
 select *
 from shop_user u
 inner join shop_order o on u.user_idx = o.user_idx
 inner join shop_product p on o.product_idx = p.product_idx
-where u.user_idx = #{user_idx}
-	</select>
-    <select id="productlist" resultType="pvo" parameterType="String">
-		select * from shop_product  
-		where product_idx = #{product_idx}
-	</select>
+
+where u.user_idx = #{user_idx} and o.order_idx=#{order_idx} and a.addr_idx =#{addr_idx}
+    </select>
 <!-- mypage_pwdchk --> 	
 
 <!-- mypage_qna_update --> 	

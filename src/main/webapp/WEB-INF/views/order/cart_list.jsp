@@ -91,7 +91,7 @@
 						<th><input type="button" value="전체선택/해제" onclick="all_check(this.form)" />
 						<input type="button" value="선택삭제" /></th>
 						<th><b>선택상품금액 : 110,000원&nbsp;&nbsp;&nbsp;</b>
-						<a href="order_pay.do?order_idx=3"><input type="button" value="선택구매" /></a>
+						<a href="order_pay.do?order_idx=12"><input type="button" value="선택구매" /></a>
 					</tr>
 					<tbody>
 						<tr class="cart_list_notice">

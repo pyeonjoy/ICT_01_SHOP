@@ -238,6 +238,8 @@ public class MypageController {
 	@GetMapping("mypage_order.do") // 마이페이지 주문내역 페이지
 	public ModelAndView Mypage_Order( String user_idx,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_order");
+		HttpSession session = request.getSession();
+        UserVO uvo = (UserVO) session.getAttribute("uvo");
 		 List<OrderVO> orderList = shopservice.getOrderList(user_idx);
 		    if (orderList != null) {
 		    	 mv.addObject("order", user_idx);

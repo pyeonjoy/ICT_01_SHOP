@@ -2,12 +2,14 @@ package com.ict.shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.shop.dao.vo.AddrVO;
@@ -34,15 +36,20 @@ public class OrderController {
 		return new ModelAndView("order/cart_list");
 	}
 	
-	@GetMapping("order_pay.do")
-	public ModelAndView Order_Pay(String order_idx) {
-		System.out.println(order_idx);
+	@RequestMapping("order_pay.do")
+	public ModelAndView Order_Pay (String order_idx,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("order/order_pay");
-		OrderVO ovo = shopservice.getAddrProductOrder(order_idx);
-		if (ovo != null) {
-			mv.addObject("ovo", ovo);
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+		List<OrderVO> list =shopservice.orderaddrproduct(order_idx);
+		if (list != null) {
+			System.out.println("유저 idx: "+order_idx);
+			mv.addObject("vo", list);
+			System.out.println("list"+list);
 			return mv;
 		}
 		return new ModelAndView("main/signup_fail");
 	}
 }
+
+

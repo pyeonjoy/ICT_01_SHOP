@@ -16,6 +16,10 @@
 		f.submit();
 		alert("수정이 완료되었습니다!");
 	}
+	
+	function mypage_changepwd_go(f) {
+		f.action="mypage_changepwd.do";
+	}
 
 </script>
 </head>

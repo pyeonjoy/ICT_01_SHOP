@@ -63,7 +63,7 @@
 	})
 
 	function mypage_changepwd_go(f) {
-		const pwd = f.pwd.value;
+		const pwd1 = f.pwd1.value;
 		const pwd2 = f.pwd2.value;
 		const c_pwd = f.c_pwd.value;
 	    for (var i = 0; i < f.elements.length; i++) {
@@ -89,16 +89,12 @@
 		<div class="mypage_changepwd_check">
 			<table>
 				<tr>
-					<td>기존 비밀번호</td>
-					<td><input class="info" type="text" name="c_pwd" placeholder="비밀번호를 입력 해 주세요" /></td>
-				</tr>
-				<tr>
 					<td>신규 비밀번호</td>
-					<td><input class="info" type="text" name="pwd" placeholder="비밀번호를 입력 해 주세요"  /></td>
+					<td><input class="info" type="password" id="pwd1"name="user_pwd" placeholder="비밀번호를 입력 해 주세요"  /></td>
 				</tr>
 				<tr>
 					<td>비빌번호 확인</td>
-					<td><input class="info" type="password" name="pwd2" placeholder="다시 입력 해 주세요"  /></td>
+					<td><input class="info" type="password" id="pwd2" placeholder="다시 입력 해 주세요"  /></td>
 				</tr>
 			</table>
 		</div>

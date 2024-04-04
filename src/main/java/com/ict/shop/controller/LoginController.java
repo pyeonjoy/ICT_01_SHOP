@@ -157,5 +157,9 @@ public class LoginController {
 	    }
 	    return new ModelAndView("login/signup_fail");
 	}
-		
+	@RequestMapping("logout.do")
+	public ModelAndView Logout(HttpSession session) {
+		session.invalidate();
+		return new ModelAndView("home");
+	}
 }

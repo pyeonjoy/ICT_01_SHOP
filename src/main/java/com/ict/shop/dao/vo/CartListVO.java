@@ -2,6 +2,51 @@ package com.ict.shop.dao.vo;
 
 public class CartListVO {
 	private String cartlist_idx, user_idx, product_idx, product_price, cartlist_number, cartlist_count;
+	
+	private String product_name, product_img, order_number, order_idx, addr_idx;
+
+	
+	
+	
+	public String getAddr_idx() {
+		return addr_idx;
+	}
+
+	public void setAddr_idx(String addr_idx) {
+		this.addr_idx = addr_idx;
+	}
+
+	public String getOrder_number() {
+		return order_number;
+	}
+
+	public void setOrder_number(String order_number) {
+		this.order_number = order_number;
+	}
+
+	public String getOrder_idx() {
+		return order_idx;
+	}
+
+	public void setOrder_idx(String order_idx) {
+		this.order_idx = order_idx;
+	}
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	public String getProduct_img() {
+		return product_img;
+	}
+
+	public void setProduct_img(String product_img) {
+		this.product_img = product_img;
+	}
 
 	public String getCartlist_idx() {
 		return cartlist_idx;

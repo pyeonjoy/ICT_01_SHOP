@@ -113,37 +113,26 @@ public class MypageController {
 		return new ModelAndView("mypage/mypage_changepwd");
 	}
 
-	@RequestMapping("mypage_changepwd_ok.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
-	public ModelAndView Mypage_ChangepwdOk(UserVO uvo, HttpServletRequest request, @RequestParam("pwd") String pwd,
-			@RequestParam("pwd2") String pwd2, @RequestParam("c_pwd") String c_pwd) {
-		ModelAndView mv = new ModelAndView();
-
-
-		UserVO vo2 = shopservice.firstchk(uvo.getUser_id());
-		String dpwd = vo2.getUser_pwd();
-
-		// 암호화 비교
-		// if(passwordEncoder.matches(cpwd, dpwd)) {
-		if (pwd.equals(pwd2)) { // 비밀번호 확인 확인
-			if (dpwd.equals(c_pwd)) { // 입력한 비번 확인 후에 암호화
-
-				uvo.setUser_pwd(pwd);
-				int result = shopservice.getChangePwd(uvo);
-				if (result > 0) {
-					mv.setViewName("mypage/mypage_info");
-					return mv;
-				}
-			} else {
-				mv.setViewName("mypage/mypage_changepwd");
-				mv.addObject("pwdchk", "fail");
+	@RequestMapping("mypage_changepwd_go.do") // 완료
+	public ModelAndView Login_Changepwd(HttpServletRequest request,UserVO uvo) {
+		try {
+			String encodedPassword = passwordEncoder.encode(uvo.getUser_pwd());
+			uvo.setUser_pwd(encodedPassword);
+			uvo.setUser_id(request.getParameter("user_id"));
+			int result = shopservice.reset_pwd(uvo);
+			System.out.println(uvo.getUser_id());
+			if (result > 0) {
+				ModelAndView mv = new ModelAndView("mypage/mypage_info");
 				return mv;
+			}else {
+				return new ModelAndView("main/signup_fail"); 				
 			}
-		} else {
-			mv.setViewName("mypage/mypage_changepwd");
-			mv.addObject("pwdchk", "chkfail");
-			return mv;
+		} catch (Exception e) {
+			System.out.println(e);
+			return new ModelAndView("main/signup_fail"); 
 		}
-		return new ModelAndView("mypage/error");
+		
+		
 	}
 
 	@GetMapping("mypage_faq.do") // 마이페이지 자주 묻는 질문 페이지

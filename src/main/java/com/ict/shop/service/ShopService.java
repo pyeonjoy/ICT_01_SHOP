@@ -85,7 +85,7 @@ public interface ShopService {
 
        //order-pay
 
-	OrderVO getAddrProductOrder(String order_idx);
+	List<OrderVO> orderaddrproduct(String order_idx);
 
 ;
 

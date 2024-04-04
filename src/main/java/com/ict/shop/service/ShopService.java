@@ -6,7 +6,6 @@ import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
-import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 
 public interface ShopService {
@@ -51,6 +50,8 @@ public interface ShopService {
 
 	UserVO firstchk(String user_id);
 	 
+	List<UserVO> getUserList();
+
 	int getChangePwd(UserVO uvo);
 
 	List<OrderVO> getOrderList(String order_idx);
@@ -71,8 +72,9 @@ public interface ShopService {
 	//오더  ============================================================
 	//order-pay
 
-	List<OrderVO> orderaddrproduct(String order_idx);
+	OrderVO getAddrProductOrder(String order_idx);
 
+	List<CartListVO> getCartList(String user_idx);
 
 
 	

@@ -1,9 +1,9 @@
 package com.ict.shop.dao.vo;
 
 public class OrderVO { 
-private String order_idx, user_idx, product_idx, addr_idx, order_number, order_request, order_regdate; //오더
-private String addr_name, addr_phone, addr_addr,product_name,product_price,product_content,product_detail,product_img; //addr
-private String user_id, user_pwd, user_name, user_birth, user_phone, user_email, user_addr, user_point, user_redate; //user
+private String order_idx, user_idx, product_idx, addr_idx, order_number, order_request, order_regdate;
+private String addr_name, addr_phone, addr_addr,product_name,product_price,product_content,product_detail,product_img;
+private String user_id, user_pwd, user_name, user_birth, user_phone, user_email, user_addr, user_point, user_redate;
 
 public String getUser_id() {
 	return user_id;

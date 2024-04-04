@@ -1,8 +1,6 @@
 package com.ict.shop.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -26,21 +24,19 @@ public class OrderDAO {
 
 	
 	//order===================================================================================================================
-	//order_pay
-	public List<OrderVO> orderaddrproduct(String order_idx) {
-		try {
-//			Map<String, String> map = new HashMap<>();
-//			map.put("user_idx", user_idx);
-			return sqlSessionTemplate.selectList("order.orderaddrproduct",order_idx);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return null;
+		//order_pay
 
+		public OrderVO getAddrProductOrder(String order_idx) {
+			return sqlSessionTemplate.selectOne("order.addrproductorder",order_idx);
+		}
+
+
+		public List<CartListVO> getCartList(String user_idx) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+
+		
 	}
-}
-	
-	
-	
-	
-	
+

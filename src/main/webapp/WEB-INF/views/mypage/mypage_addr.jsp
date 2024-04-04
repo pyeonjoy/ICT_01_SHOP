@@ -43,8 +43,8 @@
 							    <input type="hidden" name="addr_phone" value="${k.addr_phone}">
 							    <input type="hidden" name="addr_name" value="${k.addr_name}">
 							    <input type="hidden" name="addr_addr" value="${k.addr_addr}">
-							    <button style="margin-left: 10px;" class="mypage_addr_btn2" type="submit">삭제</button>
 							    <input type="button" value="수정" class="mypage_addr_btn2" onclick="location.href='mypage_addr_edit.do?addr_idx=${k.addr_idx}'"/>
+							    <button style="margin-left: 10px;" class="mypage_addr_btn2" type="submit">삭제</button>
 							    <p>${k.addr_name}</p>
 							    <p>${k.addr_phone}</p>
 							    <p>${k.addr_addr}</p>

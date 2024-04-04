@@ -12,6 +12,10 @@
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/order_pay.css" rel="stylesheet" />
 <script type="text/javascript">
+function addr_edit(f) {
+	f.action ="mypage_addr_edit.do?addr_idx=${addr_idx}";
+	f.submit();
+}
 </script>
 </head>
 <body>
@@ -28,17 +32,17 @@
 			<h2>배송지</h2>
 			<hr>
 			<c:choose>
-        <c:when test="${not empty vo}">
-        
-        
-        	<c:forEach var="v" items="${vo}" varStatus="status">
-			    <c:if test="${status.index == 0}">
-			        <button class="order_pay_btn1" onclick="location.href='mypage_addr_edit.do?addr_idx=${v.addr_idx}'">선택</button>
-			        <p>${v.addr_name}</p>
-			        <p>${v.addr_phone}</p>
-			        <p>${v.addr_addr}</p>
-			    </c:if>
-</c:forEach>
+        <c:when test="${not empty ovo}">
+            <form action="post">
+                <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
+                <input type = "hidden" name="addr_idx" value="${ovo.addr_idx}">
+					<input type = "hidden" name="addr_phone" value="${ovo.addr_phone}">
+					<input type = "hidden" name="addr_name" value="${ovo.addr_name}">
+					<input type = "hidden" name="addr_addr" value="${ovo.addr_addr}">
+                     <p>${ovo.addr_name }</p>
+                    <p >${ovo.addr_phone }</p>
+                    <p>${ovo.addr_addr }</p>
+            </form>
         </c:when>
     </c:choose>
 		</div>
@@ -47,13 +51,13 @@
     <h2>주문자</h2>
     <hr>
     <c:choose>
-        <c:when test="${not empty vo}">
-      <c:forEach var="v" items="${vo}" varStatus="status">
-			    <c:if test="${status.index == 1}">
-			        <p>${v.user_name}</p>
-			        <p>${v.user_phone}</p>
-			    </c:if>
-</c:forEach>
+        <c:when test="${not empty ovo}">
+        <form action="post">
+    <button class="order_pay_btn1" onclick="addr_edit(this.form)">변경</button>
+                    <p>${ovo.addr_name }</p>
+                    <p>${ovo.addr_phone }</p>
+                    <p>${ovo.addr_addr }</p>
+                     </form>
         </c:when>
     </c:choose>
 </div>
@@ -64,14 +68,9 @@
 		<div class="order_pay_one">
 			<h2>주문 상품</h2>
 			<hr><c:choose>
-        <c:when test="${not empty vo}">
-        	<c:forEach var="v" items="${vo}" varStatus="status">
-			<p>${v.product_name }</p>
-			<h3>${v.product_price }</h3>
-			<br>
-</c:forEach>
-        
-        
+        <c:when test="${not empty ovo}">
+			<p>${ovo.product_name }</p>
+			<h3>${ovo.product_price }</h3>
         </c:when>
     </c:choose>
 		</div>

@@ -96,8 +96,8 @@ public class ShopServiceImpl implements ShopService {
 	
 	//mypage_heart
 		@Override
-		public List<HeartVO> getShopHeartList() {
-			return mdao.getShopHeartList();
+		public List<OrderVO> getShopHeartList(String user_idx) {
+			return mdao.getShopHeartList(user_idx);
 		}
 
 	//mypage_addr
@@ -140,9 +140,12 @@ public class ShopServiceImpl implements ShopService {
 		public int getAddrEdit(AddrVO avo) {
 			return mdao.getAddrEdit(avo);
 		}
-
 		
+		@Override
+		public int getCartListAdd(OrderVO ovo) {
 
+			return mdao.getCartListAdd(ovo);
+		}
 
 //order============================================================================================
 		//order_pay

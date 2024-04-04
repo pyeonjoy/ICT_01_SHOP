@@ -21,6 +21,8 @@
 		
 	}
 	
+	
+	// 디비가 지멋대로 바뀜,.. 같이 먹는듯?..
 	function mypage_order_status(order_regdate) {
 		
 		const orderRegDate = new Date(order_regdate);
@@ -31,14 +33,34 @@
 	      
 	   	  // 주문이 등록된 시간으로부터 24시간이 지났는지 확인
 	      const tomorrow = new Date(orderRegDate.getTime() + 24 * 60 * 60 * 1000);
+	   	  // 48시간
+	      const tomorrow2 = new Date(orderRegDate.getTime() + 48 * 60 * 60 * 1000);
 	      
-	      if (current_time > tomorrow) {
-	    	 document.querySelector('.mypage_order_status1').style.display = 'none';
-	    	 document.querySelector('.mypage_order_status2').style.display = 'block' ;
-	    	 document.querySelector('.mypage_order_status3').style.display = 'none';
-	         
-	      }
-	   }
+	      const elements = document.querySelectorAll('.mypage_order_status');
+	      elements.forEach(element => {
+
+	          if (current_time > tomorrow2) {
+	              element.innerHTML = "<p>배송완료</p>";
+	          } else if (current_time > tomorrow) {
+	              element.innerHTML = "<p>배송중</p>";
+	          }
+	      });
+	      
+/*	   	  switch (true) {
+	            case current_time > tomorrow2 :
+	                element.innerHTML = "<p>배송완료</p>";
+	                break ;
+	            case current_time > tomorrow:
+	                element.innerHTML = "<p>배송중</p>";
+	                break;
+				
+	        }
+	   	  
+	    });
+*/	    	  
+	     
+	      }  
+	      
 
 </script>
 </head>
@@ -64,9 +86,8 @@
 							</div>
 							<div class="right">
 								<div class="mypage_order_text">
-									<p class="mypage_order_status1" style="float:right;">상품준비중</p>
-									<p class="mypage_order_status2" style="display: none;  float:right; ">배송중</p>
-									<p class="mypage_order_status3" style="display: none; float:right;">배송완료</p>
+								<%-- 	<p class="mypage_order_status1" style="float:right;">${order.order_status}</p> --%>
+									<p class="mypage_order_status" style="float:right;">상품준비중</p> 
 									<p>
 										<fmt:formatDate pattern="yyyyMMdd"
 											value="${order.order_regdate}" />
@@ -87,7 +108,7 @@
 							</div>
 						</div>
 						<!-- 블럭 끝 -->
-						<script>mypage_order_status("${order.order_regdate}");</script>
+ 					<script>mypage_order_status("${order.order_regdate}");</script> 
 
 					</c:forEach>
 				</c:otherwise>

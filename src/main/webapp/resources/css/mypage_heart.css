@@ -37,7 +37,17 @@ margin: 20px 0px;
 	margin: -10px 0px 0px 10px;
 	float: right;}
 	
+.mypage_heart_cart{
+	margin: -10px 0px 0px 10px;
+	float: right;}
+	
 .mypage_heart_heart img{
+	width: 20px;
+	height: 20px;
+    object-fit: cover; 
+    max-width: 100%
+	}
+.mypage_heart_cart img{
 	width: 20px;
 	height: 20px;
     object-fit: cover; 

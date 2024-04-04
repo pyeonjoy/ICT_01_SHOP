@@ -50,8 +50,18 @@
 
 <!-- mypage_heart --> 
  	<select id="heartlist" resultType="hvo">
-        select * from shop_heart, shop_product order by heart_idx 
-    </select>	
+     select *
+        from shop_heart h
+        inner join shop_user u on u.user_idx = h.user_idx
+        inner join shop_product p on h.product_idx = p.product_idx
+        where h.user_idx=#{user_idx}
+        order by heart_idx
+    </select>
+    <insert id="cartlistadd" parameterType="ovo">
+	insert into shop_cartlist(user_idx, product_idx, cartlist_number, cartlist_count)
+	values(#{user_idx}, #{product_idx}, #{product_price}, 1)
+	</insert>
+
 <!-- mypage_info --> 	
 	<update id="Mypage_Info_Change" parameterType="uvo">
 		update shop_user

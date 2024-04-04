@@ -5,6 +5,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+.mypage_heart_cart img{
+	width: 20px;
+	height: 20px;
+    object-fit: cover; 
+    max-width: 100%
+	}
+.mypage_heart_cart{
+	margin: -10px 0px 0px 10px;
+	float: right;}
+</style>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link href="${path}/resources/css/button.css" rel="stylesheet"/>
@@ -15,15 +26,29 @@ function product_detail_go(f){
 	f.submit();
 	
 }
-function cartlist_go(f) {
-	alert("장바구니에 추가되었습니다.");
-	f.submit() ;
-}
-function heart_go(f) {
-	// 클릭했을 때 관심상품에서 삭제되어야함.
-}
 
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	// prodcut_idx 넘겨보기..
+    $(document).ready(function() {
+        $('.mypage_heart_cart').click(function() {
+        	alert('상품이 장바구니에 추가되었습니다.');
+        	const product_idx = "${product_idx}";
+    		location.href="heart_cartlist_ok.do?product_idx="+product_idx ;
+        });
 
+        $('.mypage_heart_img').click(function() {
+            var currentSrc = $(this).attr('src');
+            
+            if (currentSrc === 'resources/image/heart_01.png') {
+                $(this).attr('src', 'resources/image/heart_02.png');
+            } else {
+                $(this).attr('src', 'resources/image/heart_01.png');
+                alert('관심상품에서 해제되었습니다.') ;
+            }
+        });
+    });
 </script>
 </head>
 <body>
@@ -52,8 +77,8 @@ function heart_go(f) {
 		<img alt="resources/image/hand1.jpeg" src="resources/image/hand1.jpeg" <%-- ${vo_heart.product_img} --%>>
 		</div>
 		<div class="mypage_heart_bottom">
-				<div class="mypage_heart_heart" onclick="cartlist_go(this.form)"><img src="resources/image/cart2.png"></div>
-				<div class="mypage_heart_heart" onclick="heart_go(this.form)"><img src="resources/image/heart_02.png"></div>
+				<div class="mypage_heart_cart" ><img src="resources/image/cart2.png"></div>
+				<div class="mypage_heart_heart"><img class="mypage_heart_img"src="resources/image/heart_02.png"></div>
 			<div class="mypage_heart_text" onclick="product_detail_go(this.form)">
 				<p>${k.product_name}</p>
 				<p><small>${k.product_detail}</small></p>

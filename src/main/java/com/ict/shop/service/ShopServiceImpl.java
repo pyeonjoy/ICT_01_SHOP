@@ -187,9 +187,10 @@ public class ShopServiceImpl implements ShopService {
 		return odao.orderaddrproduct(order_idx);
 	}
 
+
 	@Override
-	public List<UserVO> getUserList() {
-		return null;
+	public String orderadd(String order_idx) {
+		return odao.orderadd(order_idx);
 	}
 
 }

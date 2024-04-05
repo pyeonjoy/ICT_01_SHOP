@@ -116,11 +116,27 @@ public class OrderController {
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
 		List<OrderVO> list =shopservice.orderaddrproduct(order_idx);
 		if (list != null) {
-			System.out.println("유저 idx: "+order_idx);
 			mv.addObject("vo", list);
-			System.out.println("list"+list);
 			return mv;
 		}
 		return new ModelAndView("main/signup_fail");
 	}
+	
+	@PostMapping("mypage_order_add_ok")
+	public ModelAndView MypageOrderAdd(String order_idx) {
+		ModelAndView mv = new ModelAndView("redirect:order_pay.do");
+		String add =shopservice.orderadd(order_idx);
+		CartListVO cvo = new CartListVO();
+		List<CartListVO> cartlist = shopservice.getCartList(cvo.getUser_idx());
+		if (add != null) {
+			mv.addObject("cartlist",cartlist);
+			return mv;
+		}
+		return new ModelAndView("main/signup_fail");
+	}
+	
+	
+	
+	
+	
 }

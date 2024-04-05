@@ -38,6 +38,7 @@
 			where shop_order.order_idx = #{order_idx};
 	</select>
 	
+
 	<update id="orderadd" parameterType="String">
 		update shop_addr set addr_name = #{addr_name}, addr_phone = #{addr_phone}, addr_addr = #{addr_addr} 
 		where addr_idx = #{addr_idx}

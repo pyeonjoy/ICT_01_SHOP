@@ -43,7 +43,9 @@ public interface ShopService {
 	UserVO getUserDetail(String idx);
 
 	// 관심상품 리스트
-	public List<HeartVO> getShopHeartList();
+	public List<OrderVO> getShopHeartList(String user_idx);
+	
+	public int getCartListAdd(OrderVO ovo);
 
 	// 주문 내역 리스트
 	public List<OrderVO> getShopOrderList();

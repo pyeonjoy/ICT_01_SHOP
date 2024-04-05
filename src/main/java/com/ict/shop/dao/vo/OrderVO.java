@@ -4,6 +4,49 @@ public class OrderVO {
 private String order_idx, user_idx, product_idx, addr_idx, order_number, order_request, order_regdate;
 private String addr_name, addr_phone, addr_addr,product_name,product_price,product_content,product_detail,product_img;
 private String user_id, user_pwd, user_name, user_birth, user_phone, user_email, user_addr, user_point, user_redate;
+private String order_status;
+private String heart_idx ;
+private String cartlist_idx, cartlist_number, cartlist_count;
+
+public String getCartlist_number() {
+	return cartlist_number;
+}
+
+public void setCartlist_number(String cartlist_number) {
+	this.cartlist_number = cartlist_number;
+}
+
+public String getCartlist_count() {
+	return cartlist_count;
+}
+
+public void setCartlist_count(String cartlist_count) {
+	this.cartlist_count = cartlist_count;
+}
+
+public String getCartlist_idx() {
+	return cartlist_idx;
+}
+
+public void setCartlist_idx(String cartlist_idx) {
+	this.cartlist_idx = cartlist_idx;
+}
+
+public String getHeart_idx() {
+	return heart_idx;
+}
+
+public void setHeart_idx(String heart_idx) {
+	this.heart_idx = heart_idx;
+}
+
+public String getOrder_status() {
+	return order_status;
+}
+
+public void setOrder_status(String order_status) {
+	this.order_status = order_status;
+}
 
 public String getUser_id() {
 	return user_id;

@@ -50,7 +50,6 @@ public interface ShopService {
 
 	UserVO firstchk(String user_id);
 	 
-	List<UserVO> getUserList();
 
 	int getChangePwd(UserVO uvo);
 
@@ -86,9 +85,8 @@ public interface ShopService {
        //order-pay
 
 	List<OrderVO> orderaddrproduct(String order_idx);
-
-;
-
+	
+	String orderadd(String order_idx);
 
 
 

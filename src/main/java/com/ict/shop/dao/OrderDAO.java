@@ -91,4 +91,13 @@ public class OrderDAO {
 			return null;
 	
 		}
+
+		public String orderadd(String order_idx) {
+			try {
+				return sqlSessionTemplate.selectOne("order.orderadd",order_idx);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			return null;
+		}
 }

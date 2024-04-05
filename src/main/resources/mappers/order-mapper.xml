@@ -30,14 +30,14 @@
  	</select>
 
 <!-- order_pay -->
-	<select id="addrproductorder" parameterType="String" resultType="ovo">
+<!-- 	<select id="addrproductorder" parameterType="String" resultType="ovo">
 			select *
 			from shop_order
 			join shop_addr as order_addr on shop_order.addr_idx = order_addr.addr_idx
 			join shop_product on shop_order.product_idx = shop_product.product_idx
 			where shop_order.order_idx = #{order_idx};
 	</select>
-	
+	 -->
 
 	<update id="orderadd" parameterType="String">
 		update shop_addr set addr_name = #{addr_name}, addr_phone = #{addr_phone}, addr_addr = #{addr_addr} 

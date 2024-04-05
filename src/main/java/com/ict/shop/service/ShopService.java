@@ -45,10 +45,12 @@ public interface ShopService {
 	// 관심상품 리스트
 	public List<OrderVO> getShopHeartList(String user_idx);
 	
+	public int getUpdateHeartStatus(OrderVO ovo);
+	
 	public int getCartListAdd(OrderVO ovo);
 
 	// 주문 내역 리스트
-	public List<OrderVO> getShopOrderList();
+	public List<OrderVO> getShopOrderList(String user_idx);
 
 	UserVO firstchk(String user_id);
 	 

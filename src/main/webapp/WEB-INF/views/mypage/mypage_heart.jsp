@@ -28,7 +28,7 @@ function product_detail_go(f){
 }
 
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 	// prodcut_idx 넘겨보기..
     $(document).ready(function() {
@@ -46,9 +46,13 @@ function product_detail_go(f){
             } else {
                 $(this).attr('src', 'resources/image/heart_01.png');
                 alert('관심상품에서 해제되었습니다.') ;
+                UpdateHeartStatus(this);
             }
         });
     });
+    function UpdateHeartStatus(element) {
+    	location.href="update_heart_status.do"
+    }
 </script>
 </head>
 <body>

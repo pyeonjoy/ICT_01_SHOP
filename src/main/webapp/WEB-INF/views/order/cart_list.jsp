@@ -77,14 +77,14 @@
 				</tr>
 				<c:choose>
 					<c:when test="${empty cartlist}">
-						<tr><td colspan="8">&nbsp</td></td>
+						<tr><td colspan="8">&nbsp</td>
 						<tr><td colspan="8"><h3>장바구니가 비었습니다</h3></td></tr>
-						<tr><td colspan="8">&nbsp</td></td>
+						<tr><td colspan="8">&nbsp</td>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="k" items="${cartlist}" varStatus="vs">
 							<tr>
-								<input type="hidden" name="order_number" value="${k.cartlist_number * k.cartlist_count}" form="cartlist_selchk"> 
+								<td><input type="hidden" name="order_number" value="${k.cartlist_number * k.cartlist_count}" form="cartlist_selchk"></td> 
 								<td><input type="checkbox" name="cart_checkbox" value="${k.cartlist_idx}" form="cartlist_selchk" onclick="checkbox_on()"/></td>
 								<td class="img_show"><a href="#"><img src="resources/image/${k.product_img}" alt="향수" /></a></td>
 									

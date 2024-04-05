@@ -22,6 +22,9 @@
 function board_go() {
 	location.href="board_list.do";
 }
+function mypage_firstchk() {
+	location.href="mypage_firstchk.do";
+}
 </script>
 
 </head>
@@ -77,11 +80,12 @@ function board_go() {
 			<c:choose>
 				<c:when test="${user_idx > 1}">
 					<div class="himage my">
-						<a onclick="mypage_firstchk()"><img alt="people" src="resources/image/people-01.png" title="my"></a>
+						<a onclick="mypage_firstchk();"><img alt="people" src="resources/image/people-01.png" title="my"></a>
 					</div>
 					<div class="himage cart">
 						<a href="cart_list.do"><img alt="cart" src="resources/image/cart-01.png" title="cart"></a>
 					</div>
+					<p><a href="logout.do">로그아웃</a></p>
 				</c:when>
 			</c:choose>
 		</div>

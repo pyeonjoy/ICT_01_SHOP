@@ -1,6 +1,10 @@
 package com.ict.shop.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,7 +111,7 @@ public class LoginController {
 
 
 	@RequestMapping("login_ok.do") // 로그인 완료
-	public ModelAndView Login_OK(UserVO uvo) {
+	public ModelAndView Login_OK(UserVO uvo,HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		UserVO result = shopservice.getShop_Login(uvo);
 		System.out.println(result);
@@ -126,7 +130,13 @@ public class LoginController {
 			mv.setViewName("redirect:main.do");
 		} else {
 			session.setAttribute("loginchk", "fail");
-			mv.setViewName("login/signup_fail");
+			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+			out.println("<script> alert('아이디 또는 비밀번호가 틀립니다. ');");
+			out.println("history.go(-1); </script>");
+			out.close();
+			mv.setViewName("redirect:login_main.do");
 		}
 		return mv;
 	}
@@ -157,5 +167,9 @@ public class LoginController {
 	    }
 	    return new ModelAndView("login/signup_fail");
 	}
-		
+	@RequestMapping("logout.do")
+	public ModelAndView Logout(HttpSession session) {
+		session.invalidate();
+		return new ModelAndView("home");
+	}
 }

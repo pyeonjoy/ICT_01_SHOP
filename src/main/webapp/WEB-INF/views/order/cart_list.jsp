@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,95 +19,110 @@
         checkboxes.forEach((checkbox)=>{
             checkbox.checked = !isChecked;
         });
+        
+        let totalsel = 0;
+        let order_number = document.getElementsByName("order_number");
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+            	totalsel += parseInt(order_number[i].value);
+            }
+        }
+        document.getElementById("cart_selTotal").textContent = totalsel;
     }
-    function sum(){
-		let total = 0;
-		//아 이거 하기실ㄷㅎ다핳
-		
+    
+    function select_delete(f) {
+		f.action = "cartlist_delete.do";
+		f.submit();
+	}
+    function select_pay(f) {
+		f.action = "select_pay.do";
+		f.submit();
+	}
+    function cartlist_edit(f, idx) {
+    	f.action = "cartlist_edit.do";
+		f.submit();
+	}
+    
+    function checkbox_on() {
+        let totalsel = 0;
+        let checkboxes = document.getElementsByName("cart_checkbox");
+        let order_number = document.getElementsByName("order_number");
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+            	totalsel += parseInt(order_number[i].value);
+            }
+        }
+        document.getElementById("cart_selTotal").textContent = totalsel;
+        
     }
-    
-    
-    
     
 </script>
 </head>
 <body>
-	<form>
-		<%@include file="../main/header.jsp"%>
-		<div class="cart_list_wrapper">
-			<div class="mypage_tilte">
-				<h2>장바구니</h2>
-				<div class="cart_list_line"></div>				
-				<table class="cart_list_table">
-					<tr class="cart_list_head">
-						<th></th>
-						<th></th>
-						<th></th>
-						<th>상품명</th>
-						<th></th>
-						<th>수량</th>
-						<th>개당가격</th>
-						<th>금액</th>
+	<%@include file="../main/header.jsp"%>
+	<div class="cart_list_wrapper">
+		<div class="mypage_tilte"><h2>장바구니</h2>
+			<div class="cart_list_line"></div></div>
+		
+			<table class="cart_list_table">
+				<tr class="cart_list_head">
+					<th></th>
+					<th></th>
+					<th></th>
+					<th>상품명</th>
+					<th></th>
+					<th>수량</th>
+					<th>개당가격</th>
+					<th>금액</th>
+				</tr>
+				<c:choose>
+					<c:when test="${empty cartlist}">
+						<tr><td colspan="8">&nbsp</td></td>
+						<tr><td colspan="8"><h3>장바구니가 비었습니다</h3></td></tr>
+						<tr><td colspan="8">&nbsp</td></td>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="k" items="${cartlist}" varStatus="vs">
+							<tr>
+								<input type="hidden" name="order_number" value="${k.cartlist_number * k.cartlist_count}" form="cartlist_selchk"> 
+								<td><input type="checkbox" name="cart_checkbox" value="${k.cartlist_idx}" form="cartlist_selchk" onclick="checkbox_on()"/></td>
+								<td class="img_show"><a href="#"><img src="resources/image/${k.product_img}" alt="향수" /></a></td>
+									
+								<td colspan="3">${k.product_name}</td>	
+								<td>
+									<form method="post">
+										<input type="hidden" name="cartlist_idx" value="${k.cartlist_idx}"/>
+										<input type="number" name="cartlist_count" min="1" value="${k.cartlist_count}" style="width: 50px" onchange="cartlist_edit(this.form)">
+									</form>
+								</td>
+								<td><fmt:formatNumber value="${k.cartlist_number}" pattern="#,##0" />원</td>
+								<td><fmt:formatNumber value="${k.cartlist_number * k.cartlist_count}" pattern="#,##0" />원</td>
+							</tr>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</table>
+			<hr>
+			<form id="cartlist_selchk" method="post">
+			<table class="cart_list_button">
+				<tr>
+					<th><input type="button" value="전체선택/해제" onclick="all_check(this.form)" />
+					<input type="button" value="선택삭제" onclick="select_delete(this.form)"></th>
+					<th><b>선택상품금액 : <span id="cart_selTotal">0</span> 원&nbsp;&nbsp;&nbsp;</b>
+					<input type="button" value="선택구매" onclick="select_pay(this.form)"></th>
+				</tr>
+				<tbody>
+					<tr class="cart_list_notice">
+						<td>
+							<p class="cart_list_notice_p">
+								배송비용은 2,500원 이며,3만원 이상 구매하실 경우 배송 비용은 무료입니다.
+							</p>
+						</td>
 					</tr>
-					<tr>
-						<td><input type="checkbox" name="checkbox" /></td>
-						<td class="img_show"><a href="#">
-						<img src="resources/image/pro01.png"alt="향수1" /></a></td>
-						<td colspan="3">더 엘레강스 프리미엄 로얄 샬룻트 퍼퓸</td>
-						<td><select name="count">
-								<option value="1">1개</option>
-								<option value="2">2개</option>
-								<option value="3">3개</option>
-								<option value="4">4개</option>
-								<option value="5">5개</option>
-								<option value="6">6개</option>
-								<option value="7">7개</option>
-								<option value="8">8개</option>
-								<option value="9">9개</option>
-						</select></td>
-						<td>55,000원</td>
-						<td>55,000원</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="checkbox" /></td>
-						<td class="img_show"><a href="#"><img src="resources/image/pro01.png" alt="향수2"/></a></td>
-						<td colspan="3">더 프리미엄 골든 더 빠르 펄</td>
-						<td><select name="count">
-								<option value="1">1개</option>
-								<option value="2">2개</option>
-								<option value="3">3개</option>
-								<option value="4">4개</option>
-								<option value="5">5개</option>
-								<option value="6">6개</option>
-								<option value="7">7개</option>
-								<option value="8">8개</option>
-								<option value="9">9개</option>
-						</select></td>
-						<td>55,000원</td>
-						<td>55,000원</td>
-					</tr>
-				</table>
-					<hr>
-				<table class="cart_list_button">
-					<tr>
-						<th><input type="button" value="전체선택/해제" onclick="all_check(this.form)" />
-						<input type="button" value="선택삭제" /></th>
-						<th><b>선택상품금액 : 110,000원&nbsp;&nbsp;&nbsp;</b>
-						<a href="order_pay.do?order_idx=3"><input type="button" value="선택구매" /></a>
-					</tr>
-					<tbody>
-						<tr class="cart_list_notice">
-							<td>
-								<p class="cart_list_notice_p">
-									배송비용은 2,500원 이며,3만원 이상 구매하실 경우 배송 비용은 무료입니다.
-								</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<%@include file="../main/footer.jsp"%>
-	</form>
+				</tbody>
+			</table>
+			</form>
+	</div>
+	<%@include file="../main/footer.jsp"%>
 </body>
 </html>

@@ -72,11 +72,26 @@ public interface ShopService {
 
 
 	//오더  ============================================================
-	//order-pay
-
-	OrderVO getAddrProductOrder(String order_idx);
-
+	// cart list
 	List<CartListVO> getCartList(String user_idx);
+	
+	int getCartlistDelete(String cartlist_idx);
+	
+	int getCartlistEdit(CartListVO cvo);
+	
+	int getCartlistPass(CartListVO cvo2);
+	
+	List<OrderVO> getCartlistOrderIdx();
+
+	CartListVO getCartlistSelect(String cartlist_idx);
+
+       //order-pay
+
+	List<OrderVO> orderaddrproduct(String order_idx);
+
+;
+
+
 
 
 	

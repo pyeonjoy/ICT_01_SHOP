@@ -26,7 +26,7 @@ public class ShopServiceImpl implements ShopService {
 	private OrderDAO odao;
 	@Autowired
 	private ProductDAO pdao;
-	
+
 	// 주인없음
 	@Override
 	public UserVO getUserDetail(String idx) {
@@ -51,10 +51,12 @@ public class ShopServiceImpl implements ShopService {
 		System.out.println("여긴들리니..섭스임플" + vo.getUser_email());
 		return ldao.find_id(vo);
 	}
+
 	@Override
 	public UserVO find_pwd(UserVO uvo) {
 		return ldao.find_pwd(uvo);
 	}
+
 	@Override
 	public int reset_pwd(UserVO uvo) {
 		return ldao.reset_pwd(uvo);
@@ -76,23 +78,23 @@ public class ShopServiceImpl implements ShopService {
 		return mdao.getChangePwd(uvo);
 	}
 
-	
-	//mypage_order
+	// mypage_order
 	public List<OrderVO> getShopOrderList() {
 		return mdao.getShopOrderList();
 	}
-	
-	 @Override
-	    public List<OrderVO> getOrderList(String user_idx) {
-	        return mdao.getOrderList(user_idx);
-	    }
-	
-	//mypage_firstchk
+
+	@Override
+	public List<OrderVO> getOrderList(String user_idx) {
+		return mdao.getOrderList(user_idx);
+	}
+
+	// mypage_firstchk
 	@Override
 	public UserVO firstchk(String user_id) {
 
 		return mdao.firstchk(user_id);
 	}
+
 	
 	//mypage_heart
 		@Override
@@ -140,6 +142,7 @@ public class ShopServiceImpl implements ShopService {
 		public int getAddrEdit(AddrVO avo) {
 			return mdao.getAddrEdit(avo);
 		}
+
 		
 		@Override
 		public int getCartListAdd(OrderVO ovo) {
@@ -147,74 +150,46 @@ public class ShopServiceImpl implements ShopService {
 			return mdao.getCartListAdd(ovo);
 		}
 
+
 //order============================================================================================
-		//order_pay
-		@Override
-		public OrderVO getAddrProductOrder(String order_idx) {
-			return odao.getAddrProductOrder(order_idx);
-		}
-
-		@Override
-		public List<UserVO> getUserList() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-	
-
-		@Override
-		public List<CartListVO> getCartList(String user_idx) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-}
-
-
-		
-//product============================================================================================
-
-	/*@Override
+	@Override
 	public List<CartListVO> getCartList(String user_idx) {
 		return odao.getCartList(user_idx);
 	}
 
-
-		@Override
-		public int getAddrDelete(String addr_idx) {
-			return mdao.getAddrDelete(addr_idx);
-		}
-
-//		@Override
-//		public List<CartListVO> getCartList(String user_idx) {
-//			// TODO Auto-generated method stub
-//			return null;
-//		}
-
-		
-//product============================================================================================
-
-//	@Override
-//	public List<CartListVO> getCartList(String user_idx) {
-//		return odao.getCartList(user_idx);
-//	}
-//
-//	@Override
-//	public int getCartlistDelete(String cartlist_idx) {
-//		return odao.getCartlistDelete(cartlist_idx);
-//	}
-//	
-//	@Override
-//	public List<ProductVO> getProductList() {
-//		return odao.getProductList();
-//	}
-//
-//	@Override
-//	public List<UserVO> getUserList() {
-//		return odao.getUserList();
+	@Override
+	public int getCartlistDelete(String cartlist_idx) {
+		return odao.getCartlistDelete(cartlist_idx);
 	}
-*/
 
-//product============================================================================================
+	@Override
+	public int getCartlistEdit(CartListVO cvo) {
+		return odao.getCartlistEdit(cvo);
+	}
 
+	@Override
+	public int getCartlistPass(CartListVO cvo) {
+		return odao.getCartlistPass(cvo);
+	}
 
+	@Override
+	public List<OrderVO> getCartlistOrderIdx() {
+		return odao.getCartlistOrderIdx();
+	}
 
+	@Override
+	public CartListVO getCartlistSelect(String cartlist_idx) {
+		return odao.getCartlistSelect(cartlist_idx);
+	}
+
+	@Override
+	public List<OrderVO> orderaddrproduct(String order_idx) {
+		return odao.orderaddrproduct(order_idx);
+	}
+
+	@Override
+	public List<UserVO> getUserList() {
+		return null;
+	}
+
+}

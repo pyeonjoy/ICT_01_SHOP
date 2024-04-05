@@ -36,7 +36,7 @@
 
 .mypage_changepwd_wrapper .button {
 	padding: 5px;
-	width: 300px
+	width: 370px
 }
 
 .mypage_changepwd_check table {
@@ -46,34 +46,19 @@
 .mypage_changepwd_check input {
 	padding: 5px;
 }
+.mypage_changepwd_reset input[type="button"]{
+}
 </style>
 <script type="text/javascript">
-	$(document).ready(function() {
-		let pwdchk = "${pwdchk}";
-		if (pwdchk == 'fail') {
-			alert("기존 비밀번호가 틀렸습니다.");
-			pwdchk = "";
-			return;
+	function reset_pwd(f) {
+		const pwd1 = document.getElementById("pwd1").value;
+		const pwd2 = document.getElementById("pwd2").value;
+		if (pwd1 !== pwd2) {
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
 		}
-		if (pwdchk == 'chkfail') {
-			alert("비밀번호 확인이 틀렸습니다.");
-			pwdchk = "";
-			return;
-		}
-	})
-
-	function mypage_changepwd_go(f) {
-		const pwd = f.pwd.value;
-		const pwd2 = f.pwd2.value;
-		const c_pwd = f.c_pwd.value;
-	    for (var i = 0; i < f.elements.length; i++) {
-	    	if (f.elements[i].value == "") {
-	    		alert("입력 정보를 모두 입력하세요");
-	            return;//수행 중단
-	        }
-	  	}
-
-		f.action = "mypage_changepwd_ok.do";
+		f.action="mypage_changepwd_go.do";
+		alert("성공적으로 변경되었습니다.");
 		f.submit();
 	}
 </script>
@@ -87,22 +72,27 @@
 		</div>
 		<form method="post">
 		<div class="mypage_changepwd_check">
-			<table>
-				<tr>
-					<td>기존 비밀번호</td>
-					<td><input class="info" type="text" name="c_pwd" placeholder="비밀번호를 입력 해 주세요" /></td>
-				</tr>
-				<tr>
-					<td>신규 비밀번호</td>
-					<td><input class="info" type="text" name="pwd" placeholder="비밀번호를 입력 해 주세요"  /></td>
-				</tr>
-				<tr>
-					<td>비빌번호 확인</td>
-					<td><input class="info" type="password" name="pwd2" placeholder="다시 입력 해 주세요"  /></td>
-				</tr>
-			</table>
+				<table>
+					<tr>
+						<td>비밀번호</td>
+						<td><input class="info" type="password" id="pwd1" name="user_pwd"
+							placeholder="비밀번호를 입력 해 주세요" /></td>
+					</tr>
+					<tr>
+						<td>비빌번호 확인</td>
+						<td><input class="info" type="password" id="pwd2"
+							placeholder="다시 입력 해 주세요" /></td>
+					</tr>
+					<tr>
+					<td colspan="2">
+					<input type="button" class="button"
+							value="설정" onclick="reset_pwd(this.form)" />
+							<input type="hidden" name="user_id" value="${user_id}">
+					</td>
+					<td></td>
+					</tr>
+				</table>
 		</div>
-		<input class="button" id="login" type="submit" value="저장" onclick="mypage_changepwd_go(this.form)" />
 	</form>
 	</div>
 	<%@include file="../main/footer.jsp"%>

@@ -54,6 +54,7 @@ $(document).ready(function() {
             alert("개인정보 약관에 동의해야 합니다.");
             return false;
         }
+        SignUp_go(this.form);
     });
 });
     function SignUp_go(f) {
@@ -63,7 +64,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<form method="post" action="congratulation.do">
+<form method="post">
 	<div class="sign_header">
 		<%@include file="../main/header.jsp"%>
 	</div>
@@ -96,7 +97,7 @@ $(document).ready(function() {
 			<div class="sign_bottom">
 				<input type="checkbox">
 				<p style="display: inline-block;">개인정보 약관에 동의하시겠습니까?</p>
-				<button class="sign_btn1" type="button" id ="sign_btn1" onclick="SignUp_go(this.form)">회원가입</button>
+				<button class="sign_btn1" type="button" id ="sign_btn1">회원가입</button>
 			</div>
 		</div>
 	</div>

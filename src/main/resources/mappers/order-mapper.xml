@@ -37,4 +37,6 @@
 			join shop_product on shop_order.product_idx = shop_product.product_idx
 			where shop_order.order_idx = #{order_idx};
 	</select>
+	
+
 </mapper>

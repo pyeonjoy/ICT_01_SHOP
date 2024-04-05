@@ -67,13 +67,23 @@ public class MypageDAO {
 	}
 
 	// 관심상품 리스트
-	public List<HeartVO> getShopHeartList() {
+	public List<OrderVO> getShopHeartList(String user_idx) {
 		try {
-			return sqlSessionTemplate.selectList("mypage.heartlist");
+			return sqlSessionTemplate.selectList("mypage.heartlist",user_idx);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return null;
+	}
+	
+	public int getCartListAdd(OrderVO ovo) {
+		try {
+			return sqlSessionTemplate.insert("mypage.cartlistadd", ovo);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+		
 	}
 
 	// 주문 내역 리스트
@@ -150,6 +160,13 @@ public class MypageDAO {
 		}
 		return -1;
 	}
-
+	
+	/*
+	 * public String Mypage_order_status(String user_idx) { try { return
+	 * sqlSessionTemplate.selectOne(user_idx); } catch (Exception e) {
+	 * System.out.println(e); } return null;
+	 * 
+	 * }
+	 */
 }
 

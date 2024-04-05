@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -166,16 +167,36 @@ public class MypageController {
 	}
 
 	@GetMapping("mypage_heart.do") // 마이페이지 찜상품 페이지
-	public ModelAndView Mypage_Heart() {
+	public ModelAndView Mypage_Heart(String user_idx, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_heart");
-		List<HeartVO> vo_heart = shopservice.getShopHeartList();
-		if (vo_heart != null) {
-			mv.addObject("vo_heart", vo_heart);
-			return mv;
-		}
-		return new ModelAndView("main/signup_fail");
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+		System.out.println(uvo.getUser_idx());
+		List<OrderVO> vo_heart = shopservice.getShopHeartList(user_idx);
+		    if (vo_heart != null) {
+		         mv.addObject("vo_heart", vo_heart);
+		        System.out.println("관심상품"+vo_heart);
+		        return mv;
+		    }
+		    return new ModelAndView("main/signup_fail");
 	}
 
+	@RequestMapping("heart_cartlist_ok.do")
+	public ModelAndView Heart_CartlistOK(String user_idx, HttpServletRequest request, OrderVO ovo) {
+		ModelAndView mv = new ModelAndView("redirect:cart_list.do");
+//		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+//		System.out.println(uvo.getUser_idx());
+		
+		ovo.setUser_idx(uvo.getUser_idx());
+		int result = shopservice.getCartListAdd(ovo);
+		
+		if (result > 0) {
+			return mv;
+		} else {
+			return new ModelAndView("main/signup_fail");
+		}
+	}
 	@GetMapping("mypage_info.do") // 마이페이지 회원정보 페이지
 	public ModelAndView Mypage_Info() {
 		return new ModelAndView("mypage/mypage_info");
@@ -226,12 +247,13 @@ public class MypageController {
 	@GetMapping("mypage_order.do") // 마이페이지 주문내역 페이지
 	public ModelAndView Mypage_Order( String user_idx,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_order");
+		 HttpSession session = request.getSession();
+		 UserVO uvo = (UserVO) session.getAttribute("uvo");
 		 List<OrderVO> orderList = shopservice.getOrderList(user_idx);
 		    if (orderList != null) {
-		    	 mv.addObject("order", user_idx);
-		         mv.addObject("pro", user_idx);
+//		    	 mv.addObject("order", user_idx);
+//		         mv.addObject("pro", user_idx);
 		        mv.addObject("ovo", orderList);
-		        System.out.println("오더 페이지"+orderList);
 		        return mv;
 		    }
 		    return new ModelAndView("main/signup_fail");

@@ -147,7 +147,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping("find_id.do") // 아이디 찾기 완료
-	public ModelAndView Find_id(HttpServletRequest request, UserVO uvo) {
+	public ModelAndView Find_id(HttpServletRequest request, UserVO uvo, HttpServletResponse response)throws IOException {
 	    ModelAndView mv = new ModelAndView();
 
 	    uvo.setUser_name(request.getParameter("user_name"));
@@ -164,6 +164,14 @@ public class LoginController {
 	        mv.addObject("user_id", result.getUser_id());
 	        mv.setViewName("login/login_findinfo");
 	        return mv;
+	    }else {
+			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+			out.println("<script> alert('잘못 입력하셨습니다 다시 입력 해 주세요. ');");
+			out.println("history.go(-1); </script>");
+			out.close();
+			mv.setViewName("redirect:login_findinfo.do");
 	    }
 	    return new ModelAndView("login/signup_fail");
 	}

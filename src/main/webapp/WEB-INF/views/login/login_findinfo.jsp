@@ -39,8 +39,9 @@
 			<td><input class="login_findinfo_inputbox" type="text" name="user_email" placeholder="이메일을 입력 해 주세요" /></td>
 		</tr>
 		</table>
+		<c:if test="${user_id != null}">
 					<p>고객님의 아이디는 <b>${user_id}</b> 입니다.</p>
-		
+		</c:if>
 		<hr style="margin: 20px auto;">
 		<h4>비밀번호 찾기</h4>
 		<table>

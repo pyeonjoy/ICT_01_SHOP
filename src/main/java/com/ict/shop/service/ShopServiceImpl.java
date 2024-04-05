@@ -79,8 +79,8 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	// mypage_order
-	public List<OrderVO> getShopOrderList() {
-		return mdao.getShopOrderList();
+	public List<OrderVO> getShopOrderList(String user_idx) {
+		return mdao.getShopOrderList(user_idx);
 	}
 
 	@Override
@@ -100,6 +100,12 @@ public class ShopServiceImpl implements ShopService {
 		@Override
 		public List<OrderVO> getShopHeartList(String user_idx) {
 			return mdao.getShopHeartList(user_idx);
+		}
+		
+		@Override
+		public int getUpdateHeartStatus(OrderVO ovo) {
+
+			return mdao.getUpdateHeartStatus(ovo);
 		}
 
 	//mypage_addr
@@ -191,5 +197,7 @@ public class ShopServiceImpl implements ShopService {
 	public List<UserVO> getUserList() {
 		return null;
 	}
+
+
 
 }

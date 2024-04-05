@@ -180,6 +180,25 @@ public class MypageController {
 		    }
 		    return new ModelAndView("main/signup_fail");
 	}
+	
+	@RequestMapping("update_heart_status.do") // 관심상품 추가 제외
+	public ModelAndView Mypage_Update_Heart_Status(@ModelAttribute("idx")String user_idx, HttpServletRequest request, OrderVO ovo) {
+		ModelAndView mv = new ModelAndView("redirect:mypage_heart.do");
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+		ovo.setUser_idx(uvo.getUser_idx());
+		int result = shopservice.getUpdateHeartStatus(ovo);
+		System.out.println(result+"dd");
+		if (result > 0) {
+			return mv;
+		} else {
+			return new ModelAndView("mypage/error");
+		}
+	}
+	
+	
+	
+	
 
 	@RequestMapping("heart_cartlist_ok.do")
 	public ModelAndView Heart_CartlistOK(String user_idx, HttpServletRequest request, OrderVO ovo) {
@@ -249,7 +268,8 @@ public class MypageController {
 		ModelAndView mv = new ModelAndView("mypage/mypage_order");
 		 HttpSession session = request.getSession();
 		 UserVO uvo = (UserVO) session.getAttribute("uvo");
-		 List<OrderVO> orderList = shopservice.getOrderList(user_idx);
+		 System.out.println(uvo.getUser_idx());
+		 List<OrderVO> orderList = shopservice.getShopOrderList(uvo.getUser_idx());
 		    if (orderList != null) {
 //		    	 mv.addObject("order", user_idx);
 //		         mv.addObject("pro", user_idx);

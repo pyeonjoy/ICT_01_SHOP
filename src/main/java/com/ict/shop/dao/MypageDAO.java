@@ -76,6 +76,15 @@ public class MypageDAO {
 		return null;
 	}
 	
+	public int getUpdateHeartStatus(OrderVO ovo) {
+		try {
+			return sqlSessionTemplate.update("mypage.Mypage_Update_Heart_Status",ovo);			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	
 	public int getCartListAdd(OrderVO ovo) {
 		try {
 			return sqlSessionTemplate.insert("mypage.cartlistadd", ovo);
@@ -87,9 +96,9 @@ public class MypageDAO {
 	}
 
 	// 주문 내역 리스트
-	public List<OrderVO> getShopOrderList() {
+	public List<OrderVO> getShopOrderList(String user_idx) {
 		try {
-			return sqlSessionTemplate.selectList("mypage.orderlist");
+			return sqlSessionTemplate.selectList("mypage.orderlist",user_idx);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -161,12 +170,6 @@ public class MypageDAO {
 		return -1;
 	}
 	
-	/*
-	 * public String Mypage_order_status(String user_idx) { try { return
-	 * sqlSessionTemplate.selectOne(user_idx); } catch (Exception e) {
-	 * System.out.println(e); } return null;
-	 * 
-	 * }
-	 */
+
 }
 

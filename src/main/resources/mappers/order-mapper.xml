@@ -30,62 +30,17 @@
  	</select>
 
 <!-- order_pay -->
- 	<select id="orderaddrproduct" parameterType="ovo" resultType="ovo">
-		SELECT 
-				o.user_idx, a.addr_name,a.addr_phone,a.addr_addr,addr_base, 
-		    	u.user_name, u.user_phone, p.product_name, p.product_price, o.order_count 
-		FROM 
-				shop_order o
-		INNER join shop_user u on u.user_idx = o.user_idx
-		INNER join shop_addr a on o.user_idx = a.user_idx
-		INNER join shop_product p on p.product_idx = o.product_idx
-		WHERE o.order_idx=#{order_idx}
-		AND u.user_idx = #{user_idx}
-		AND a.addr_base=1
-
-	
-	
-	<!-- 		SELECT
-					o.*
-					,p.product_price
-					,p.product_name
-					,u.user_name
-					,a.addr_addr
-		FROM shop_addr a
-					, shop_order o
-					, shop_product p
-					, shop_user u
-		WHERE 1=1
-					AND u.user_idx = o.user_idx
-					AND u.user_idx = a.user_idx
-					AND p.product_idx = o.product_idx
-					AND a.addr_base = '1'
-					AND o.order_idx = #{order_idx}
-					AND u.user_idx = #{user_idx}; -->
+<!-- 	<select id="addrproductorder" parameterType="String" resultType="ovo">
+			select *
+			from shop_order
+			join shop_addr as order_addr on shop_order.addr_idx = order_addr.addr_idx
+			join shop_product on shop_order.product_idx = shop_product.product_idx
+			where shop_order.order_idx = #{order_idx};
 	</select>
-	
-	<update id="ordercheck" parameterType="avo">
-	update shop_addr 
-		set addr_base = 1
-		where addr_idx = #{addr_idx}
-	</update>
-	
-	<update id="ordercheckmin" parameterType="avo">
-		 update shop_addr 
-		set addr_base = 0
-		where addr_base =1 
-	</update>
-	
-	
-	
-	
-	
-	
-	
-	
-<!-- 
+	 -->
+
 	<update id="orderadd" parameterType="String">
 		update shop_addr set addr_name = #{addr_name}, addr_phone = #{addr_phone}, addr_addr = #{addr_addr} 
 		where addr_idx = #{addr_idx}
-	</update> -->
+	</update>
 </mapper>

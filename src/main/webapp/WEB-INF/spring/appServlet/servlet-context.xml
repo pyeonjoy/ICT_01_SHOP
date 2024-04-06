@@ -29,7 +29,29 @@
 		<interceptor>
 			<mapping path="/mypage_firstchk.do" />
 			<mapping path="/board_list.do" />
-			
+			<mapping path="/cart_list.do" />
+			<mapping path="/order_success.do" />
+			<mapping path="/mypage_addr_add.do" />
+			<mapping path="/mypage_changepwd.do" />
+			<mapping path="/mypage_addr.do" />
+			<mapping path="/mypage_faq.do" />
+			<mapping path="/mypage_firstchk.do" />
+			<mapping path="/mypage_heart.do" />
+			<mapping path="/mypage_info.do" />
+			<mapping path="/mypage_notice.do" />
+			<mapping path="/mypage_order.do" />
+			<mapping path="/mypage_pwdchk.do" />
+			<mapping path="/mypage_qna_update.do" />
+			<mapping path="/mypage_qna_write.do" />
+			<mapping path="/mypage_qna.do" />
+			<mapping path="/mypage_stack.do" />
+			<!-- 게시판 진입 임시 허용<mapping path="/board_list.do" /> -->
+			<mapping path="/board_write.do" />
+			<mapping path="/board_detail.do" />
+			<mapping path="/board_down.do" />
+			<mapping path="/ans_write.do" />
+			<mapping path="/board_delete.do" />
+			<mapping path="/board_update.do" />
 			<beans:ref bean="log_inter"/>
 		</interceptor>
 	</interceptors>

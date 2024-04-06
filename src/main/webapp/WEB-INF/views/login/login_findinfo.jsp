@@ -15,47 +15,50 @@
 		f.submit();
 	}
 	function find_pwd(f) {
-		f.action="find_pwd.do";
+		f.action="login_findpwd.do";
 		f.submit();
 	}
 </script>
 </head>
 <body>
-<form method="get">
-	<%@include file="../main/header.jsp"%>
-	<div class="login_findinfo_wrapper">
-		<div><h2>회원정보찾기</h2></div>
-		<div class="login_findinfo__tilte" ></div>
+<%@include file="../main/header.jsp"%>
+<div class="login_findinfo_wrapper">
+	<div><h2>회원정보찾기</h2></div>
+	<div class="login_findinfo__tilte" ></div>
 
+	<form method="post" name="findid">
 		<h4>아이디 찾기</h4>
 		<table>
-		<tr>
-			<td>이름 </td> 
-			<td> <input class="login_findinfo_inputbox" type="text" name="user_name" placeholder="이름를 입력해 주세요" /></td>
-			<td rowspan="2"><input class="login_findinfo_button" type="button" value="찾기" onclick="find_id(this.form)" /></td>
-		</tr>
-		<tr>
-			<td>이메일 </td>
-			<td><input class="login_findinfo_inputbox" type="text" name="user_email" placeholder="이메일을 입력 해 주세요" /></td>
-		</tr>
+			<tr>
+				<td>이름 </td> 
+				<td> <input class="login_findinfo_inputbox" type="text" name="user_name" placeholder="이름를 입력해 주세요" /></td>
+				<td rowspan="2"><input class="login_findinfo_button" type="button" value="찾기" onclick="find_id(findid)" /></td>
+			</tr>
+			<tr>
+				<td>이메일 </td>
+				<td><input class="login_findinfo_inputbox" type="text" name="user_email" placeholder="이메일을 입력 해 주세요" /></td>
+			</tr>
 		</table>
-					<p>고객님의 아이디는 <b>${user_id}</b> 입니다.</p>
-		
-		<hr style="margin: 20px auto;">
+	</form>
+	<c:if test="${user_id != null}">
+		<p>고객님의 아이디는 <b>${user_id}</b> 입니다.</p>
+	</c:if>
+	<hr style="margin: 20px auto;">
+	<form method="post" name="findpwd">
 		<h4>비밀번호 찾기</h4>
 		<table>
-		<tr>
-			<td>아이디</td>
-			<td><input class="login_findinfo_inputbox" type="text" name="user_id" placeholder="아이디를 입력해 주세요" /></td>
-			<td rowspan="2"><input class="login_findinfo_button" type="button" value="찾기" onclick="find_pwd(this.form)"/></td>
-		</tr>
-		<tr>
-			<td>전화번호</td>
-			<td> <input class="login_findinfo_inputbox" type="text" name="user_phone" placeholder="전화번호 입력 해 주세요" /></td>
-		</tr>
+			<tr>
+				<td>아이디</td>
+				<td><input class="login_findinfo_inputbox" type="text" name="user_id" placeholder="아이디를 입력해 주세요" /></td>
+				<td rowspan="2"><input class="login_findinfo_button" type="button" value="찾기" onclick="find_pwd(findpwd)"/></td>
+			</tr>
+			<tr>
+				<td>이메일</td>
+				<td> <input class="login_findinfo_inputbox" type="text" name="user_email" placeholder="이메일을 입력 해 주세요" /></td>
+			</tr>
 		</table>
-	</div>
 	</form>
-	<%@include file="../main/footer.jsp"%>
+</div>
+<%@include file="../main/footer.jsp"%>
 </body>
 </html>

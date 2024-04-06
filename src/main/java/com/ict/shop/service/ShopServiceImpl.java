@@ -66,6 +66,10 @@ public class ShopServiceImpl implements ShopService {
 	public String getShopIdChk(String user_id) {
 		return ldao.getShopIdChk(user_id);
 	}
+	@Override
+	public int getShop_Insert_addr(UserVO vo) {
+		return ldao.getShop_Insert_addr(vo);
+	}
 //mypage============================================================================================
 
 	@Override
@@ -214,5 +218,4 @@ public class ShopServiceImpl implements ShopService {
 			return -1; // 실패
 		}
 	}
-
 }

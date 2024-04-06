@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
 
@@ -24,9 +23,12 @@ public interface ShopService {
 	UserVO find_pwd(UserVO uvo);
 
 	int reset_pwd(UserVO uvo);
+  
+  int getShop_Insert_addr(UserVO vo);
 
 	// 마이페이지 =========================================================
 	// mypage_addr
+
 	int getAddrInsert(AddrVO vo);
 
 	List<OrderVO> getAddrList(OrderVO ovo);
@@ -88,7 +90,5 @@ public interface ShopService {
 	List<OrderVO> orderaddrproduct(OrderVO ovo);
 
 	int getaddrchecked(AddrVO avo);
-
-//프로덕 ============================================================
 
 }

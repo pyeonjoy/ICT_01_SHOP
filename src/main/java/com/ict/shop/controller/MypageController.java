@@ -99,13 +99,12 @@ public class MypageController {
 	    UserVO uvo = (UserVO) session.getAttribute("uvo");
 
 	    if (uvo.getUser_idx() != null) {
-	        List<AddrVO> list = shopservice.getAddrList(uvo.getUser_idx());
+	        List<AddrVO> list = shopservice.getMyAddrList(uvo.getUser_idx());
 	        if (list != null) {
 	            mv.addObject("list", list);
 	            return mv;
 	        }
 	    }
-
 	    return new ModelAndView("mypage/error");
 	}
 

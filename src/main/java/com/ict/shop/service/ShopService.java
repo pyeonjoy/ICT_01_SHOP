@@ -30,7 +30,9 @@ public interface ShopService {
 	//mypage_addr
 	int getAddrInsert(AddrVO vo);
 
-	List<AddrVO> getAddrList(String user_idx);
+	List<OrderVO> getAddrList(OrderVO ovo);
+	
+	List<AddrVO>getMyAddrList(String user_idx);
 
 	
 //마이페이지 =========================================================
@@ -89,9 +91,11 @@ public interface ShopService {
 
        //order-pay
 
-	List<OrderVO> orderaddrproduct(String order_idx);
+	List<OrderVO> orderaddrproduct(OrderVO ovo);
 	
-	String orderadd(String order_idx);
+
+	int getaddrchecked(AddrVO avo);
+
 
 
 

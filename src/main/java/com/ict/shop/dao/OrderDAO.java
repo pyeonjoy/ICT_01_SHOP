@@ -78,26 +78,35 @@ public class OrderDAO {
 		return null;
 	}
 
-	// order_pay
 	//order_pay
-		public List<OrderVO> orderaddrproduct(String order_idx) {
+		public List<OrderVO> orderaddrproduct(OrderVO ovo) {
 			try {
 //				Map<String, String> map = new HashMap<>();
 //				map.put("user_idx", user_idx);
-				return sqlSessionTemplate.selectList("order.orderaddrproduct",order_idx);
+				return sqlSessionTemplate.selectList("order.orderaddrproduct", ovo);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 			return null;
 	
 		}
-
-		public String orderadd(String order_idx) {
+		// 1을 0으로 변경
+		public int getaddrcheckedmin(AddrVO avo) {
 			try {
-				return sqlSessionTemplate.selectOne("order.orderadd",order_idx);
+				return sqlSessionTemplate.update("order.ordercheckmin",avo);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			return null;
+			return -1;
+		}
+		
+		//addr_idx에 해당하는 base를 1로 set
+		public int getaddrchecked(AddrVO avo) {
+			try {
+				return sqlSessionTemplate.update("order.ordercheck",avo);
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+			return -1;
 		}
 }

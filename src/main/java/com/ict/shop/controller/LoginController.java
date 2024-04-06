@@ -45,6 +45,7 @@ public class LoginController {
 			vo.setUser_pwd(encodedPassword);
 
 			int result = shopservice.getShop_Insert(vo);
+			int result2 = shopservice.getShop_Insert_addr(vo);
 
 			if (result > 0) {
 				ModelAndView mv = new ModelAndView("login/congratulation");
@@ -58,21 +59,6 @@ public class LoginController {
 			return new ModelAndView("main/signup_fail");
 		}
 	}
-
-	@RequestMapping("find_pwd.do") // 아이디/비밀번호 찾기 진입 후 비밀번호 찾기 완료
-	public ModelAndView Find_pwd(HttpServletRequest request, UserVO uvo) {
-		ModelAndView mv = new ModelAndView("login/login_changepwd");
-		
-	    uvo.setUser_id(request.getParameter("user_id"));
-	    uvo.setUser_phone(request.getParameter("user_phone"));
-
-	    UserVO result = shopservice.find_pwd(uvo);
-	    if (result !=null) {
-	    	mv.addObject("user_id", uvo.getUser_id());
-	    	return mv; 		
-		}
-		return new ModelAndView("main/signup_fail"); 
-	}
 	
 	@RequestMapping("login_changepwd.do") // 완료
 	public ModelAndView Login_Changepwd(HttpServletRequest request,UserVO uvo) {
@@ -81,7 +67,6 @@ public class LoginController {
 			uvo.setUser_pwd(encodedPassword);
 			uvo.setUser_id(request.getParameter("user_id"));
 			int result = shopservice.reset_pwd(uvo);
-			System.out.println(uvo.getUser_id());
 			if (result > 0) {
 				ModelAndView mv = new ModelAndView("login/login_main");
 				return mv;
@@ -114,7 +99,6 @@ public class LoginController {
 	public ModelAndView Login_OK(UserVO uvo,HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
 		UserVO result = shopservice.getShop_Login(uvo);
-		System.out.println(result);
 	    if (result != null && passwordEncoder.matches(uvo.getUser_pwd(), result.getUser_pwd())) {
 	    	session.setAttribute("user_idx", result.getUser_idx());
 			session.setAttribute("user_id", result.getUser_id());
@@ -153,14 +137,10 @@ public class LoginController {
 	    uvo.setUser_name(request.getParameter("user_name"));
 	    uvo.setUser_email(request.getParameter("user_email"));
 
-	    System.out.println(uvo.getUser_name() + "이름입력칸 컨트롤러");
-	    System.out.println(uvo.getUser_email() + "이메일입력칸 컨트롤러");
 
 	    UserVO result = shopservice.find_id(uvo);
 
 	    if (result != null) {
-	        System.out.println(result.getUser_id() + "내 아이디는 !?");
-	        System.out.println(uvo.getUser_id()+"uvo");
 	        mv.addObject("user_id", result.getUser_id());
 	        mv.setViewName("login/login_findinfo");
 	        return mv;

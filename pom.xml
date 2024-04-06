@@ -184,12 +184,16 @@
         <artifactId>jsch</artifactId>
         <version>0.1.55</version> <!-- 현재 사용 가능한 최신 버전을 사용하십시오 -->
     </dependency>
-    <!-- 이메일 인증: https://mvnrepository.com/artifact/javax.mail/mail -->
 <dependency>
 	<groupId>javax.mail</groupId>
 	<artifactId>mail</artifactId>
 	<version>1.4.7</version>
 </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.0.1.RELEASE</version>
+        </dependency>
 	</dependencies>
 	<build>
 		<plugins>

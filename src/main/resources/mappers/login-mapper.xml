@@ -9,12 +9,10 @@
 	insert into shop_user(user_id,user_pwd,user_name,user_birth,user_phone,user_email,user_addr,user_regdate)
 	values(#{user_id}, #{user_pwd}, #{user_name}, #{user_birth}, #{user_phone}, #{user_email}, #{user_addr},sysdate())
 	</insert>
-
-<!-- login_changepwd -->
-
-<!-- login_findinfo -->
-
-<!-- login_main -->
+	<insert id="login_addr_insert" parameterType="uvo">
+    insert into shop_addr(user_idx,addr_name, addr_phone, addr_addr,addr_base)
+    values(last_insert_id(),'기본배송지', #{user_phone}, #{user_addr},1)
+	</insert>
 
 <!-- login_ok -->
 
@@ -24,10 +22,6 @@
 		where user_id = #{user_id}
 	</select>
 
-<!-- signup_fail -->
-
-<!-- signup_ -->
-
 <!-- login_findinfo / findid-->
 	<select id="findid" parameterType="String" resultType="uvo">
 		select user_id
@@ -35,13 +29,7 @@
 		where user_name = #{user_name}
 		and user_email = #{user_email}
 	</select>
-<!-- login_findinfo / find_pwd -->
-<select id="find_pwd" parameterType="String" resultType="uvo">
-    	select *
-    	from shop_user
-    	where user_id = #{user_id}
-    	and user_phone = #{user_phone}
-</select>
+
 	<!-- login_findinfo / reset_pwd -->
 	<update id="reset_pwd" parameterType="uvo">
 		update shop_user

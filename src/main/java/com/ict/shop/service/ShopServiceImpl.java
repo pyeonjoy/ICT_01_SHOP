@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.ict.shop.dao.LoginDAO;
 import com.ict.shop.dao.MypageDAO;
@@ -190,27 +189,16 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<OrderVO> orderaddrproduct(OrderVO ovo) {
-		return odao.orderaddrproduct(ovo);
+	public List<OrderVO> orderaddrproduct(String order_idx) {
+		return odao.orderaddrproduct(order_idx);
 	}
 
 
-
-
-	@Transactional
 	@Override
-	public int getaddrchecked(AddrVO avo) {
-		int result2 = odao.getaddrcheckedmin(avo); // 두 번째 데이터베이스 작업의 결과
-	    int result1 = odao.getaddrchecked(avo); // 첫 번째 데이터베이스 작업의 결과
-	    System.out.println(result1);
-	    System.out.println(result2);
-	    // 각 데이터베이스 작업이 성공하면 1을 반환, 그렇지 않으면 -1을 반환
-	    if (result1 == 1 && result2 == 1) {
-	        return 1; // 성공
-	    } else {
-	        return -1; // 실패
-	    }
+	public String orderadd(String order_idx) {
+		return odao.orderadd(order_idx);
 	}
+
 
 
 }

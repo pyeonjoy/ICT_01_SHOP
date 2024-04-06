@@ -78,12 +78,13 @@ public class OrderDAO {
 		return null;
 	}
 
+	// order_pay
 	//order_pay
-		public List<OrderVO> orderaddrproduct(OrderVO ovo) {
+		public List<OrderVO> orderaddrproduct(String order_idx) {
 			try {
 //				Map<String, String> map = new HashMap<>();
 //				map.put("user_idx", user_idx);
-				return sqlSessionTemplate.selectList("order.orderaddrproduct", ovo);
+				return sqlSessionTemplate.selectList("order.orderaddrproduct",order_idx);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
@@ -91,23 +92,12 @@ public class OrderDAO {
 	
 		}
 
-	
-
-		public int getaddrchecked(AddrVO avo) {
+		public String orderadd(String order_idx) {
 			try {
-				return sqlSessionTemplate.update("order.ordercheck",avo);
+				return sqlSessionTemplate.selectOne("order.orderadd",order_idx);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
-			return -1;
-		}
-		
-		public int getaddrcheckedmin(AddrVO avo) {
-			try {
-				return sqlSessionTemplate.update("order.ordercheckmin",avo);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-			return -1;
+			return null;
 		}
 }

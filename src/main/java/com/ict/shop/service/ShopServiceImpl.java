@@ -12,7 +12,6 @@ import com.ict.shop.dao.OrderDAO;
 import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
 
@@ -66,6 +65,10 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public String getShopIdChk(String user_id) {
 		return ldao.getShopIdChk(user_id);
+	}
+	@Override
+	public int getShop_Insert_addr(UserVO vo) {
+		return ldao.getShop_Insert_addr(vo);
 	}
 //mypage============================================================================================
 
@@ -215,6 +218,4 @@ public class ShopServiceImpl implements ShopService {
 	        return -1; // 실패
 	    }
 	}
-
-
 }

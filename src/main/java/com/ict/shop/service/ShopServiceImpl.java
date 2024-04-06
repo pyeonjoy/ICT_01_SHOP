@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ict.shop.dao.LoginDAO;
 import com.ict.shop.dao.MypageDAO;
@@ -11,7 +12,6 @@ import com.ict.shop.dao.OrderDAO;
 import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
 
@@ -66,6 +66,10 @@ public class ShopServiceImpl implements ShopService {
 	public String getShopIdChk(String user_id) {
 		return ldao.getShopIdChk(user_id);
 	}
+	@Override
+	public int getShop_Insert_addr(UserVO vo) {
+		return ldao.getShop_Insert_addr(vo);
+	}
 //mypage============================================================================================
 
 	@Override
@@ -95,67 +99,69 @@ public class ShopServiceImpl implements ShopService {
 		return mdao.firstchk(user_id);
 	}
 
-	
-	//mypage_heart
-		@Override
-		public List<OrderVO> getShopHeartList(String user_idx) {
-			return mdao.getShopHeartList(user_idx);
-		}
-		
-		@Override
-		public int getUpdateHeartStatus(OrderVO ovo) {
+	// mypage_heart
+	@Override
+	public List<OrderVO> getShopHeartList(String user_idx) {
+		return mdao.getShopHeartList(user_idx);
+	}
 
-			return mdao.getUpdateHeartStatus(ovo);
-		}
+	@Override
+	public int getUpdateHeartStatus(OrderVO ovo) {
 
-	//mypage_addr
-		@Override
-		public int getAddrInsert(AddrVO avo) {
-			return mdao.getAddrInsert(avo);
-		}
-		
-		@Override
-		public AddrVO getAddrDetail(AddrVO avo) {
-			System.out.println("서비스임플: "+avo.getAddr_addr());
-			return mdao.getAddrDetail(avo);
-		}
-		
-		@Override
-		public int getAddrDelete(String addr_idx) {
-			return mdao.getAddrDelete(addr_idx);
-		}
-		
-		@Override
+		return mdao.getUpdateHeartStatus(ovo);
+	}
 
-		public UserVO getUser_id(String user_id) {
-			return mdao.getUser_id(user_id);
-		}
-		
-		@Override
-		public UserVO getMypage_Info(String user_id) {
-			return mdao.getMypage_Info(user_id);
-		}
-		@Override
-		public int Mypage_Info_Change(UserVO uvo) {
-			return mdao.Mypage_Info_Change(uvo);
-		}
+	// mypage_addr
+	@Override
+	public int getAddrInsert(AddrVO avo) {
+		return mdao.getAddrInsert(avo);
+	}
 
-		public List<AddrVO> getAddrList(String user_idx) {
-			return mdao.getAddrlist(user_idx);
-		}
-		
-		@Override
-		public int getAddrEdit(AddrVO avo) {
-			return mdao.getAddrEdit(avo);
-		}
+	@Override
+	public AddrVO getAddrDetail(AddrVO avo) {
+		System.out.println("서비스임플: " + avo.getAddr_addr());
+		return mdao.getAddrDetail(avo);
+	}
 
-		
-		@Override
-		public int getCartListAdd(OrderVO ovo) {
+	@Override
+	public int getAddrDelete(String addr_idx) {
+		return mdao.getAddrDelete(addr_idx);
+	}
 
-			return mdao.getCartListAdd(ovo);
-		}
+	@Override
 
+	public UserVO getUser_id(String user_id) {
+		return mdao.getUser_id(user_id);
+	}
+
+	@Override
+	public UserVO getMypage_Info(String user_id) {
+		return mdao.getMypage_Info(user_id);
+	}
+
+	@Override
+	public int Mypage_Info_Change(UserVO uvo) {
+		return mdao.Mypage_Info_Change(uvo);
+	}
+
+	public List<OrderVO> getAddrList(OrderVO ovo) {
+		return mdao.getAddrlist(ovo);
+	}
+
+	public List<AddrVO> getMyAddrList(String user_idx) {
+		return mdao.getMyAddrlist(user_idx);
+	}
+
+	@Override
+	public int getAddrEdit(AddrVO avo) {
+		return mdao.getAddrEdit(avo);
+	}
+
+	@Override
+	public int getCartListAdd(OrderVO ovo) {
+
+		return mdao.getCartListAdd(ovo);
+	}
 
 //order============================================================================================
 	@Override
@@ -179,8 +185,13 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<OrderVO> getCartlistOrderIdx() {
+	public List<CartListVO> getCartlistOrderIdx() {
 		return odao.getCartlistOrderIdx();
+	}
+
+	@Override
+	public CartListVO getCartListAddr(String user_idx) {
+		return odao.getCartListAddr(user_idx);
 	}
 
 	@Override
@@ -189,16 +200,22 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<OrderVO> orderaddrproduct(String order_idx) {
-		return odao.orderaddrproduct(order_idx);
+	public List<OrderVO> orderaddrproduct(OrderVO ovo) {
+		return odao.orderaddrproduct(ovo);
 	}
 
-
+	@Transactional
 	@Override
-	public String orderadd(String order_idx) {
-		return odao.orderadd(order_idx);
+	public int getaddrchecked(AddrVO avo) {
+		int result2 = odao.getaddrcheckedmin(avo); // 1을 0으로
+		int result1 = odao.getaddrchecked(avo); // addr_idx의 base를 1로
+		System.out.println("result2 : " + result2);
+		System.out.println("result1 : " + result1);
+		// 각 데이터베이스 작업이 성공하면 1을 반환, 그렇지 않으면 -1을 반환
+		if (result1 == 1 && result2 == 1) {
+			return 1; // 성공
+		} else {
+			return -1; // 실패
+		}
 	}
-
-
-
 }

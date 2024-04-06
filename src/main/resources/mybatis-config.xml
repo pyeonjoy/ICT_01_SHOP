@@ -24,5 +24,6 @@
 		<mapper resource="mappers/product-mapper.xml" />
 		<mapper resource="mappers/order-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
+		<mapper resource="mappers/email-mapper.xml" />
 	</mappers>
 </configuration>

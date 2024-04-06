@@ -6,8 +6,8 @@
 <mapper namespace="mypage">
 <!-- mypage_addr_add -->
  	<insert id="addrinsert" parameterType="avo">
-	insert into shop_addr( user_idx,addr_name, addr_phone, addr_addr)
-	values(#{user_idx}, #{addr_name}, #{addr_phone}, #{addr_addr})
+	insert into shop_addr( user_idx,addr_name, addr_phone, addr_addr,addr_base)
+	values(#{user_idx}, #{addr_name}, #{addr_phone}, #{addr_addr},0)
 	</insert>
 	
 <!-- mypage_addr_edit --> 
@@ -25,10 +25,23 @@
 	</update>
 	
 <!-- mypage[_addr --> 	
-	<select id ="addrlist" parameterType="String" resultType="avo">
-		select * 
-		  from shop_addr
-		 where user_idx = #{user_idx}
+	<select id ="addrlist" parameterType="ovo" resultType="ovo">
+		SELECT a.*
+		,  o.order_idx
+		  from shop_addr a
+		  , shop_order o
+		 where
+		 a.user_idx = o.user_idx 
+		 AND a.user_idx = #{user_idx}
+		 AND o.order_idx = #{order_idx}
+		 		order by a.addr_base desc
+	</select>
+	
+	<select id ="myaddrlist" parameterType="String" resultType="avo">
+		SELECT a.*
+		  from shop_addr a
+		 where  a.user_idx = #{user_idx}
+		 		order by a.addr_base desc
 	</select>
 	<delete id="addrdelete" parameterType="String">
 	    delete from shop_addr where addr_idx = #{addr_idx}

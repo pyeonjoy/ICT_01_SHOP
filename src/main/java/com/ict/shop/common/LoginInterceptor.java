@@ -1,5 +1,7 @@
 package com.ict.shop.common;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,7 +15,11 @@ public class LoginInterceptor implements AsyncHandlerInterceptor{
 		HttpSession session = request.getSession(true);
 		Object obj =  session.getAttribute("loginchk");
 		if(obj == null) {
-			request.getRequestDispatcher("/WEB-INF/views/login/login_main.jsp").forward(request, response);
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script> alert('로그인 이후 이후 이용 부탁드립니다..');");
+			out.println("window.location.href = 'login_main.do'; </script>");
 			return false;
 		}
 		return true;

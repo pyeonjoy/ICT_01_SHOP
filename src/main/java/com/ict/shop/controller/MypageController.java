@@ -105,7 +105,6 @@ public class MypageController {
 	            return mv;
 	        }
 	    }
-
 	    return new ModelAndView("mypage/error");
 	}
 

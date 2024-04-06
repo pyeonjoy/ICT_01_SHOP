@@ -11,7 +11,7 @@
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link href="${path}/resources/css/button.css" rel="stylesheet"/>
 <link href="${path}/resources/css/cart_list.css" rel="stylesheet"/>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
     function all_check() {
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
@@ -19,16 +19,17 @@
         checkboxes.forEach((checkbox)=>{
             checkbox.checked = !isChecked;
         });
-        
-        let totalsel = 0;
-        let order_number = document.getElementsByName("order_number");
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-            	totalsel += parseInt(order_number[i].value);
-            }
-        }
-        document.getElementById("cart_selTotal").textContent = totalsel;
     }
+    
+    $(document).ready(function() {
+    	const urlParams = new URLSearchParams(window.location.search);
+    	let cartlist_status = urlParams.get('cartlist_status');
+			
+		switch (cartlist_status) {
+		case 'check_none': alert("선택한 상품이 없습니다."); return;
+		case 'error': alert("에러 발생 다시 시도해주세요."); return;
+		}
+	});
     
     function select_delete(f) {
 		f.action = "cartlist_delete.do";
@@ -43,19 +44,27 @@
 		f.submit();
 	}
     
-    function checkbox_on() {
-        let totalsel = 0;
-        let checkboxes = document.getElementsByName("cart_checkbox");
-        let order_number = document.getElementsByName("order_number");
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-            	totalsel += parseInt(order_number[i].value);
-            }
-        }
-        document.getElementById("cart_selTotal").textContent = totalsel;
-        
-    }
+    function select_pay(f, idx) {
+    	f.action = "cartlist_select_pay.do";
+		f.submit();
+	}
     
+    $(document).ready(function() {
+        $("input[name='cart_check_idx'], input[name='cart_checkbox_all']").click(function() {
+            let totalsel = 0;
+            let checkboxes = document.getElementsByName("cart_check_idx");
+            let check_number = document.getElementsByName("check_number");
+            
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    totalsel += parseInt(check_number[i].value);
+                    
+                }
+            }
+            
+            $("#cart_selTotal").text(totalsel.toLocaleString());
+        });
+    });    
 </script>
 </head>
 <body>
@@ -84,8 +93,8 @@
 					<c:otherwise>
 						<c:forEach var="k" items="${cartlist}" varStatus="vs">
 							<tr>
-								<td><input type="hidden" name="order_number" value="${k.cartlist_number * k.cartlist_count}" form="cartlist_selchk"></td> 
-								<td><input type="checkbox" name="cart_checkbox" value="${k.cartlist_idx}" form="cartlist_selchk" onclick="checkbox_on()"/></td>
+								<input type="hidden" name="check_number" value="${k.cartlist_number * k.cartlist_count}" form="cartlist_selchk">
+								<td><input type="checkbox" name="cart_check_idx" value="${k.cartlist_idx}" form="cartlist_selchk" onclick="checkbox_on()"/></td>
 								<td class="img_show"><a href="#"><img src="resources/image/${k.product_img}" alt="향수" /></a></td>
 									
 								<td colspan="3">${k.product_name}</td>	
@@ -106,7 +115,7 @@
 			<form id="cartlist_selchk" method="post">
 			<table class="cart_list_button">
 				<tr>
-					<th><input type="button" value="전체선택/해제" onclick="all_check(this.form)" />
+					<th><input type="button" value="전체선택/해제" name="cart_checkbox_all" onclick="all_check(this.form)" />
 					<input type="button" value="선택삭제" onclick="select_delete(this.form)"></th>
 					<th><b>선택상품금액 : <span id="cart_selTotal">0</span> 원&nbsp;&nbsp;&nbsp;</b>
 					<input type="button" value="선택구매" onclick="select_pay(this.form)"></th>

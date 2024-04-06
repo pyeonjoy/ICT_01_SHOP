@@ -179,7 +179,7 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public List<OrderVO> getCartlistOrderIdx() {
+	public List<CartListVO> getCartlistOrderIdx() {
 		return odao.getCartlistOrderIdx();
 	}
 
@@ -187,6 +187,12 @@ public class ShopServiceImpl implements ShopService {
 	public CartListVO getCartlistSelect(String cartlist_idx) {
 		return odao.getCartlistSelect(cartlist_idx);
 	}
+	
+	@Override
+	public CartListVO getCartListAddr(String user_idx) {
+		return odao.getCartListAddr(user_idx);
+	}
+
 
 	@Override
 	public List<OrderVO> orderaddrproduct(String order_idx) {

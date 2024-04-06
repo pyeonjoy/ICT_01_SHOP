@@ -25,8 +25,11 @@
  		join shop_product on shop_product.product_idx = shop_cartlist.product_idx 
  		where cartlist_idx = #{cartlist_idx} 
  	</select>
-	<select id="cartlist_order_list" resultType="ovo">
- 		select * from shop_order
+	<select id="cartlist_order_list" resultType="cvo">
+ 		select * from shop_order group by order_idx
+ 	</select>
+	<select id="cartlist_addr" parameterType="String" resultType="cvo">
+ 		select * from shop_addr where user_idx = #{user_idx} and addr_base = 1;
  	</select>
 
 <!-- order_pay -->

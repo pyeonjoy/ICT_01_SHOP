@@ -51,7 +51,7 @@ public class OrderDAO {
 		return 0;
 	}
 
-	public List<OrderVO> getCartlistOrderIdx() {
+	public List<CartListVO> getCartlistOrderIdx() {
 		try {
 			return sqlSessionTemplate.selectList("order.cartlist_order_list");
 		} catch (Exception e) {
@@ -59,7 +59,7 @@ public class OrderDAO {
 		}
 		return null;
 	}
-	
+
 	public int getCartlistPass(CartListVO cvo) {
 		try {
 			return sqlSessionTemplate.insert("order.cartlist_pass", cvo);
@@ -71,7 +71,16 @@ public class OrderDAO {
 
 	public CartListVO getCartlistSelect(String cartlist_idx) {
 		try {
-			return sqlSessionTemplate.selectOne("order.cartlist_select",cartlist_idx);
+			return sqlSessionTemplate.selectOne("order.cartlist_select", cartlist_idx);
+		} catch (Exception e) {
+			logger.info("cartlistOrderIdx", e);
+		}
+		return null;
+	}
+
+	public CartListVO getCartListAddr(String user_idx) {
+		try {
+			return sqlSessionTemplate.selectOne("order.cartlist_addr", user_idx);
 		} catch (Exception e) {
 			logger.info("cartlistOrderIdx", e);
 		}
@@ -79,25 +88,25 @@ public class OrderDAO {
 	}
 
 	// order_pay
-	//order_pay
-		public List<OrderVO> orderaddrproduct(String order_idx) {
-			try {
+	// order_pay
+	public List<OrderVO> orderaddrproduct(String order_idx) {
+		try {
 //				Map<String, String> map = new HashMap<>();
 //				map.put("user_idx", user_idx);
-				return sqlSessionTemplate.selectList("order.orderaddrproduct",order_idx);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-			return null;
-	
+			return sqlSessionTemplate.selectList("order.orderaddrproduct", order_idx);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
+		return null;
 
-		public String orderadd(String order_idx) {
-			try {
-				return sqlSessionTemplate.selectOne("order.orderadd",order_idx);
-			} catch (Exception e) {
-				System.out.println(e);
-			}
-			return null;
+	}
+
+	public String orderadd(String order_idx) {
+		try {
+			return sqlSessionTemplate.selectOne("order.orderadd", order_idx);
+		} catch (Exception e) {
+			System.out.println(e);
 		}
+		return null;
+	}
 }

@@ -82,9 +82,11 @@ public interface ShopService {
 	
 	int getCartlistPass(CartListVO cvo2);
 	
-	List<OrderVO> getCartlistOrderIdx();
+	List<CartListVO> getCartlistOrderIdx();
 
 	CartListVO getCartlistSelect(String cartlist_idx);
+
+	CartListVO getCartListAddr(String user_idx);
 
        //order-pay
 

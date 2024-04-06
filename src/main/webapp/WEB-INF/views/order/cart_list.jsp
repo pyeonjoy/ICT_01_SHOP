@@ -29,6 +29,7 @@
 		case 'check_none': alert("선택한 상품이 없습니다."); return;
 		case 'error': alert("에러 발생 다시 시도해주세요."); return;
 		}
+		
 	});
     
     function select_delete(f) {
@@ -45,6 +46,9 @@
 	}
     
     function select_pay(f, idx) {
+    	if (document.getElementsByName("cart_check_idx").length === 0) {
+    		alert("선택한 상품이 없습니다."); return;
+    	} 
     	f.action = "cartlist_select_pay.do";
 		f.submit();
 	}
@@ -54,7 +58,6 @@
             let totalsel = 0;
             let checkboxes = document.getElementsByName("cart_check_idx");
             let check_number = document.getElementsByName("check_number");
-            
             for (var i = 0; i < checkboxes.length; i++) {
                 if (checkboxes[i].checked) {
                     totalsel += parseInt(check_number[i].value);

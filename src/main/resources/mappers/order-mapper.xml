@@ -33,7 +33,7 @@
  	<select id="orderaddrproduct" parameterType="ovo" resultType="ovo">
 		SELECT 
 				o.user_idx, a.addr_name,a.addr_phone,a.addr_addr,addr_base, 
-		    	u.user_name, u.user_phone, p.product_name, p.product_price, o.order_count 
+		    	u.user_name, u.user_phone, p.product_name, p.product_price, o.order_count, o.order_idx 
 		FROM 
 				shop_order o
 		INNER join shop_user u on u.user_idx = o.user_idx
@@ -64,16 +64,21 @@
 					AND u.user_idx = #{user_idx}; -->
 	</select>
 	
+	
+	<update id="ordercheckmin" parameterType="avo">
+		 update 
+		 	shop_addr 
+		set 
+			addr_base = 0
+		where 
+		    user_idx = #{user_idx}
+		    and addr_base = 1
+	</update>
+	
 	<update id="ordercheck" parameterType="avo">
 	update shop_addr 
 		set addr_base = 1
 		where addr_idx = #{addr_idx}
-	</update>
-	
-	<update id="ordercheckmin" parameterType="avo">
-		 update shop_addr 
-		set addr_base = 0
-		where addr_base =1 
 	</update>
 	
 	

@@ -90,21 +90,20 @@ public class OrderDAO {
 			return null;
 	
 		}
-
-	
-
-		public int getaddrchecked(AddrVO avo) {
+		// 1을 0으로 변경
+		public int getaddrcheckedmin(AddrVO avo) {
 			try {
-				return sqlSessionTemplate.update("order.ordercheck",avo);
+				return sqlSessionTemplate.update("order.ordercheckmin",avo);
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 			return -1;
 		}
 		
-		public int getaddrcheckedmin(AddrVO avo) {
+		//addr_idx에 해당하는 base를 1로 set
+		public int getaddrchecked(AddrVO avo) {
 			try {
-				return sqlSessionTemplate.update("order.ordercheckmin",avo);
+				return sqlSessionTemplate.update("order.ordercheck",avo);
 			} catch (Exception e) {
 				System.out.println(e);
 			}

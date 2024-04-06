@@ -109,9 +109,9 @@ public class OrderController {
 		return mv;
 	}
 
-	///////////////////////////////////////
+
 	@RequestMapping("order_pay.do")
-	public ModelAndView Order_Pay (String order_idx,HttpServletRequest request) {
+	public ModelAndView Order_Pay (String order_idx, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("order/order_pay");
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
@@ -127,15 +127,19 @@ public class OrderController {
 		return new ModelAndView("main/signup_fail");
 	}
 	@RequestMapping("mypage_addr_select.do")
-	public ModelAndView Mypage_addr_Select(String order_idx, HttpServletRequest request) {
-		System.out.println("여기 : " + order_idx);		//null
+	public ModelAndView Mypage_addr_Select(@RequestParam("order_idx") String order_idx,  HttpServletRequest request) {
+		System.out.println("여기 : " + order_idx);		//성공
 	    ModelAndView mv = new ModelAndView("mypage/mypage_addr_select");
 	    // 세션에서 사용자 ID 가져오기
 	    HttpSession session = request.getSession();
 	    UserVO uvo = (UserVO) session.getAttribute("uvo");
-
+	    
+		OrderVO ovo = new OrderVO();
+		ovo.setUser_idx(uvo.getUser_idx());
+		ovo.setOrder_idx(order_idx);
+	    
 	    if (uvo.getUser_idx() != null) {
-	        List<AddrVO> list = shopservice.getAddrList(uvo.getUser_idx());
+	        List<OrderVO> list = shopservice.getAddrList(ovo);
 	        if (list != null) {
 	            mv.addObject("list", list);
 	            return mv;
@@ -145,20 +149,27 @@ public class OrderController {
 	}
 	
 	@RequestMapping("addr_checked.do")
-	public ModelAndView AddrChecked(@ModelAttribute("addr_idx") AddrVO avo, String order_idx, HttpServletRequest request) {
-		System.out.println("order_idx : "+order_idx);	//null
+	public ModelAndView AddrChecked(@RequestParam("addr_idx") String addr_idx, @RequestParam("order_idx") String order_idx, HttpServletRequest request) {
+		System.out.println("order_idx : "+order_idx);	//성공
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
-		int result = shopservice.getaddrchecked(avo);
 		OrderVO ovo = new OrderVO();
 		ovo.setUser_idx(uvo.getUser_idx());
 		ovo.setOrder_idx(order_idx);
+		AddrVO avo =  new AddrVO();
+		avo.setAddr_idx(addr_idx);
+		avo.setUser_idx(uvo.getUser_idx());
+		
+		
 		List<OrderVO> list =shopservice.orderaddrproduct(ovo);
+		System.out.println("avo.user_idx : "+ avo.getUser_idx());
+		System.out.println("avo.addr_idx : "+ avo.getAddr_addr());
+		int result = shopservice.getaddrchecked(avo);	//실패
 		System.out.println("result: "+result);
 		if (result >0) {
 			mv.addObject("vo", list);
-			mv.setViewName("redirect:order_pay.do");
+			mv.setViewName("redirect:order_pay.do?order_idx="+order_idx);
 			return mv;
 		}else {
 			return new ModelAndView("main/signup_fail");

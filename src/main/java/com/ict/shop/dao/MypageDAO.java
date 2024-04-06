@@ -25,10 +25,17 @@ public class MypageDAO {
 
 //mypage=========================================================================================================
 	//mypage_addr
-	public List<AddrVO> getAddrlist(String user_idx) {
+	public List<OrderVO> getAddrlist(OrderVO ovo) {
 		try {
-			System.out.println(user_idx);
-			return sqlSessionTemplate.selectList("mypage.addrlist",user_idx);
+			return sqlSessionTemplate.selectList("mypage.addrlist",ovo);
+		} catch (Exception e) {
+			logger.info("list", e);
+		}
+		return null;
+	}
+	public List<AddrVO> getMyAddrlist(String user_idx) {
+		try {
+			return sqlSessionTemplate.selectList("mypage.myaddrlist", user_idx);
 		} catch (Exception e) {
 			logger.info("list", e);
 		}

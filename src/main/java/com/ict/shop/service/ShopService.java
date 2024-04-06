@@ -29,7 +29,9 @@ public interface ShopService {
 	//mypage_addr
 	int getAddrInsert(AddrVO vo);
 
-	List<AddrVO> getAddrList(String user_idx);
+	List<OrderVO> getAddrList(OrderVO ovo);
+	
+	List<AddrVO>getMyAddrList(String user_idx);
 
 	
 //마이페이지 =========================================================

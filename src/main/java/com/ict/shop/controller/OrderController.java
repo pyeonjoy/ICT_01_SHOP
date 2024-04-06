@@ -3,7 +3,6 @@ package com.ict.shop.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
@@ -126,7 +126,7 @@ public class OrderController {
 			int su = Integer.parseInt(cvo.getCartlist_count());
 			int price = Integer.parseInt(cvo.getCartlist_number());
 			cvo.setOrder_number(String.valueOf(su * price));
-			
+
 			cvo.setAddr_idx(cvo2.getAddr_idx());
 			cvo.setOrder_idx(String.valueOf(maxIdx)); // order_idx 같게
 
@@ -150,25 +150,66 @@ public class OrderController {
 		ModelAndView mv = new ModelAndView("order/order_pay");
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
-		List<OrderVO> list = shopservice.orderaddrproduct(order_idx);
+		OrderVO ovo = new OrderVO();
+		ovo.setUser_idx(uvo.getUser_idx());
+		ovo.setOrder_idx(order_idx);
+		List<OrderVO> list = shopservice.orderaddrproduct(ovo);
 		if (list != null) {
 			mv.addObject("vo", list);
+			mv.addObject("uvo", uvo);
 			return mv;
 		}
 		return new ModelAndView("main/signup_fail");
 	}
 
-	@PostMapping("mypage_order_add_ok")
-	public ModelAndView MypageOrderAdd(String order_idx) {
-		ModelAndView mv = new ModelAndView("redirect:order_pay.do");
-		String add = shopservice.orderadd(order_idx);
-		CartListVO cvo = new CartListVO();
-		List<CartListVO> cartlist = shopservice.getCartList(cvo.getUser_idx());
-		if (add != null) {
-			mv.addObject("cartlist", cartlist);
-			return mv;
+	@RequestMapping("mypage_addr_select.do")
+	public ModelAndView Mypage_addr_Select(@RequestParam("order_idx") String order_idx, HttpServletRequest request) {
+		System.out.println("여기 : " + order_idx); // 성공
+		ModelAndView mv = new ModelAndView("mypage/mypage_addr_select");
+		// 세션에서 사용자 ID 가져오기
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+
+		OrderVO ovo = new OrderVO();
+		ovo.setUser_idx(uvo.getUser_idx());
+		ovo.setOrder_idx(order_idx);
+
+		if (uvo.getUser_idx() != null) {
+			List<OrderVO> list = shopservice.getAddrList(ovo);
+			if (list != null) {
+				mv.addObject("list", list);
+				return mv;
+			}
 		}
-		return new ModelAndView("main/signup_fail");
+		return new ModelAndView("mypage/error");
+	}
+
+	@RequestMapping("addr_checked.do")
+	public ModelAndView AddrChecked(@RequestParam("addr_idx") String addr_idx,
+			@RequestParam("order_idx") String order_idx, HttpServletRequest request) {
+		System.out.println("order_idx : " + order_idx); // 성공
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+		OrderVO ovo = new OrderVO();
+		ovo.setUser_idx(uvo.getUser_idx());
+		ovo.setOrder_idx(order_idx);
+		AddrVO avo = new AddrVO();
+		avo.setAddr_idx(addr_idx);
+		avo.setUser_idx(uvo.getUser_idx());
+
+		List<OrderVO> list = shopservice.orderaddrproduct(ovo);
+		System.out.println("avo.user_idx : " + avo.getUser_idx());
+		System.out.println("avo.addr_idx : " + avo.getAddr_addr());
+		int result = shopservice.getaddrchecked(avo); // 실패
+		System.out.println("result: " + result);
+		if (result > 0) {
+			mv.addObject("vo", list);
+			mv.setViewName("redirect:order_pay.do?order_idx=" + order_idx);
+			return mv;
+		} else {
+			return new ModelAndView("main/signup_fail");
+		}
 	}
 
 }

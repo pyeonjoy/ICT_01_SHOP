@@ -34,7 +34,17 @@
 			<h2>배송지</h2>
 			<hr>
 			<c:choose>
-				<c:when test="${not empty vo}">
+			<c:when test="${not empty vo}">
+			    <c:forEach var="v" items="${vo}" varStatus="status">
+			        <c:if test="${status.index == 0}">
+			        	    <button class="order_pay_btn1" onclick="location.href='mypage_addr_select.do?order_idx=${v.order_idx}'">선택</button>
+			    	        <p>${v.addr_name}</p>
+				            <p>${v.addr_phone}</p>
+			    	        <p>${order_idx}</p>
+				            <p>${v.addr_addr}</p>
+			        </c:if>
+			    </c:forEach>
+
 
 
 					<c:forEach var="v" items="${vo}" varStatus="status">

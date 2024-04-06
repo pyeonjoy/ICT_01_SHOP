@@ -109,7 +109,7 @@ public class OrderController {
 		return mv;
 	}
 
-	
+	///////////////////////////////////////
 	@RequestMapping("order_pay.do")
 	public ModelAndView Order_Pay (String order_idx,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("order/order_pay");

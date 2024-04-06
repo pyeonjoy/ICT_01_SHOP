@@ -3,15 +3,7 @@ package com.ict.shop.dao.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AddrVO {
-	private String addr_idx, user_idx, addr_name, addr_phone, addr_addr,addr_base;
-	public String getAddr_base() {
-		return addr_base;
-	}
-
-	public void setAddr_base(String addr_base) {
-		this.addr_base = addr_base;
-	}
-
+	private String addr_idx, user_idx, addr_name, addr_phone, addr_addr;
 	public String getAddr_idx() {
 		return addr_idx;
 	}

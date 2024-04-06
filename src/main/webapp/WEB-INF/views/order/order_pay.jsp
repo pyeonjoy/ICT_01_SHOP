@@ -35,22 +35,9 @@
 			<hr>
 			<c:choose>
 			<c:when test="${not empty vo}">
-			    <c:forEach var="v" items="${vo}" varStatus="status">
-			        <c:if test="${status.index == 0}">
-			        	    <button class="order_pay_btn1" onclick="location.href='mypage_addr_select.do?order_idx=${v.order_idx}'">선택</button>
-			    	        <p>${v.addr_name}</p>
-				            <p>${v.addr_phone}</p>
-			    	        <p>${order_idx}</p>
-				            <p>${v.addr_addr}</p>
-			        </c:if>
-			    </c:forEach>
-
-
-
 					<c:forEach var="v" items="${vo}" varStatus="status">
 						<c:if test="${status.index == 0}">
-							<button class="order_pay_btn1"
-								onclick="location.href='mypage_order_check.do'">선택</button>
+							  <button class="order_pay_btn1" onclick="location.href='mypage_addr_select.do?order_idx=${v.order_idx}'">선택</button>
 							<p>${v.addr_name}</p>
 							<p>${v.addr_phone}</p>
 							<p>${v.addr_addr}</p>
@@ -66,10 +53,8 @@
 			<c:choose>
 				<c:when test="${not empty vo}">
 					<c:forEach var="v" items="${vo}" varStatus="status">
-						<c:if test="${status.index == 1}">
 							<p>${v.user_name}</p>
 							<p>${v.user_phone}</p>
-						</c:if>
 					</c:forEach>
 				</c:when>
 			</c:choose>
@@ -85,7 +70,7 @@
 				<c:when test="${not empty vo}">
 					<c:forEach var="v" items="${vo}" varStatus="status">
 						<p>${v.product_name }</p>
-						<h3>${v.product_price }</h3>
+						<h3>${v.product_price } * ${v.order_count }</h3>
 						<br>
 					</c:forEach>
 
@@ -103,15 +88,18 @@
 				<h3>총 주문 금액</h3>
 			</div>
 			<div class="order_pay_right">
-				<c:forEach var="k" items="${cartlist}" varStatus="vs">
-					<tr>
-						<td><fmt:formatNumber value="${k.cartlist_number}"
-								pattern="#,##0" />원</td>
-						<td><fmt:formatNumber
-								value="${k.cartlist_number * k.cartlist_count}" pattern="#,##0" />원</td>
-					</tr>
-				</c:forEach>
-			</div>
+				  <c:set var="totalPrice" value="0" />
+    <c:forEach var="k" items="${vo}" varStatus="vs">
+        <c:set var="totalPrice" value="${totalPrice + (k.product_price * k.order_count)}" />
+    </c:forEach>
+        <p><fmt:formatNumber value="${totalPrice}" pattern="#,##0" />원</p>
+        <p>3,000원</p>
+    <tr>
+        <td colspan="3">
+            <h2><fmt:formatNumber value="${totalPrice+3000}" pattern="#,##0" />원</h2>
+        </td>
+    </tr>
+</div>
 			<div class="order_pay_btn2_p">
 				<button class="order_pay_btn2"
 					onclick="location.href='order_success.do'">

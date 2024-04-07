@@ -259,13 +259,18 @@ public class ShopServiceImpl implements ShopService {
 		return odao.getOrderSuccess(order_idx);
 	}
 	
+	@Override
+	public List<OrderVO> getOrderSuccessPage(String order_idx) {
+		return odao.getOrderSuccessPage(order_idx);
+	}
+	
 	
 	//product
 	 
 
     @Override
-    public List<ProductVO> getShopList(String category)throws Exception {
-        return pdao.getShopList(category);
+    public List<ProductVO> getShopList(ProductVO pvo)throws Exception {
+        return pdao.getShopList(pvo);
     }
 
     @Override

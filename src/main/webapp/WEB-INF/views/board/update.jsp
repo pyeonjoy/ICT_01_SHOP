@@ -9,18 +9,40 @@
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_addr_add.css" rel="stylesheet" />
 <style type="text/css">
+#bbs table {
+	width:800px;
+	margin:0 auto;
+	margin-top:20px;
+/* 	border: 1px solid black;
+	border-collapse: collapse; */
+	font-size: 14px;
+}
 tr {
 	    text-align:center;
 	    padding:4px 10px;
-	    background-color: #F6F6F6;
+	    border-bottom: 1px solid black;
 	}
 	
 th {
 		width:120px;
 	    text-align:center;
-	    padding:4px 10px;
-	    background-color: #B2CCFF;
+	    padding:14px 20px;
 	}
+input{
+margin: 10px;
+}
+	input[type="button"]{
+line-height: 20px;
+text-align: center;
+width: 100px;
+padding: 5px;
+}
+	input[type="reset"]{
+padding: 5px;
+line-height: 20px;
+text-align: center;
+width: 100px;
+}
 </style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -57,6 +79,7 @@ th {
 <body>
 <%@include file="../main/header.jsp"%>
 	<%@include file="../main/aside_mypage.jsp"%>
+		<div id="bbs" align="center">
 	<form  method="post" enctype="multipart/form-data">
 		<table width="700">
 		<tbody>
@@ -103,6 +126,7 @@ th {
             </tbody>
 		</table>
 	</form>
+	</div>
 		<footer>
 		<%@include file="../main/footer.jsp"%>
 	</footer>

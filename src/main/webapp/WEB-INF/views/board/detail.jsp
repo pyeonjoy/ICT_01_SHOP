@@ -9,19 +9,40 @@
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_addr_add.css" rel="stylesheet" />
 <style type="text/css">
+#bbs table {
+	width:800px;
+	margin:0 auto;
+	margin-top:20px;
+/* 	border: 1px solid black;
+	border-collapse: collapse; */
+	font-size: 14px;
+}
+input{
+margin: 10px;
+}
 tr {
 		
 	    text-align:center;
-	    padding:4px 10px;
-	    background-color: #F6F6F6;
 	}
 	
-th {
+th {margin: 10px;
+	    border-bottom: 1px solid black;
 		width:120px;
 	    text-align:center;
-	    padding:4px 10px;
-	    background-color: #B2CCFF;
+	    padding:14px 20px;
 	}
+		input[type="button"]{
+line-height: 20px;
+text-align: center;
+width: 100px;
+padding: 5px;
+}
+	input[type="reset"]{
+padding: 5px;
+line-height: 20px;
+text-align: center;
+width: 100px;
+}
 </style>
 <script type="text/javascript">
 	function board_list(f) {
@@ -45,28 +66,29 @@ th {
 <body>
 <%@include file="../main/header.jsp"%>
 	<%@include file="../main/aside_mypage.jsp"%>
+		<div id="bbs" align="center">
 	<form method="post">
 	<table width="700">
 	<tbody>
 	<tr>
-		<th bgcolor="#B2EBF4">제목</th>
+		<th>제목</th>
 		<td>${bovo.title} </td>
 	</tr>
 	<tr>
-		<th bgcolor="#B2EBF4">작성자</th>
+		<th>작성자</th>
 		<td> ${bovo.writer}</td>
 	</tr>
 	<tr>
-		<th bgcolor="#B2EBF4">날짜</th>
+		<th>날짜</th>
 		<td>${bovo.regdate.substring(0,10)} </td>
 	</tr>
 	<tr>
-		<th bgcolor="#B2EBF4">내용</th>
+		<th>내용</th>
 		<td><pre>${bovo.content }</pre></td>
 	</tr>
 	
 	<tr>
-		<th bgcolor="#B2EBF4">첨부파일</th>
+		<th>첨부파일</th>
 		<c:choose>
 			<c:when test="${empty bovo.f_name }">
 				<td><b>첨부파일없음</b></td>
@@ -93,6 +115,7 @@ th {
 	</tfoot>
 	</table>
 	</form>
+</div>
 		<footer>
 		<%@include file="../main/footer.jsp"%>
 	</footer>

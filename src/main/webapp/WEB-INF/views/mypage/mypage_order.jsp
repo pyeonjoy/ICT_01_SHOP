@@ -42,12 +42,12 @@
 						<div class="mypage_order">
 							<!-- 블럭 시작 -->
 							<div class="left">
-								<img alt="resources/image/hand1.jpeg"
-									src="resources/image/hand1.jpeg">
 							</div>
 							<div class="right">
 								<div class="mypage_order_text">
 									<p class="mypage_order_status" style="float:right;">
+								<img alt="resources/image/hand1.jpeg"
+									src="resources/image/hand1.jpeg">
 												<c:if test="${order.order_status eq '1'}">
 												    <p>배송준비중</p>
 												</c:if>

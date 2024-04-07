@@ -1,7 +1,11 @@
 package com.ict.shop.dao.vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductVO {
-	 private String product_idx, user_idx, product_name, product_price, product_content, product_detail, product_img,user_name, user_phone, user_addr;
+	private String product_idx, user_idx, product_name, product_price, product_content, product_detail, product_img,
+			user_name, user_phone, user_addr, category;
+	private MultipartFile file;
 
 	public String getProduct_idx() {
 		return product_idx;
@@ -81,5 +85,21 @@ public class ProductVO {
 
 	public void setProduct_img(String product_img) {
 		this.product_img = product_img;
+	}
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

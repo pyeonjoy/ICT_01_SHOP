@@ -87,6 +87,7 @@ public class OrderDAO {
 		return null;
 	}
 
+
 	// order_pay
 	public List<OrderVO> orderaddrproduct(OrderVO ovo) {
 		try {
@@ -119,4 +120,15 @@ public class OrderDAO {
 		}
 		return -1;
 	}
+	
+	public int getOrderSuccess(String order_idx) {
+		try {
+			return sqlSessionTemplate.update("order.orderSuccess", order_idx);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+
+
 }

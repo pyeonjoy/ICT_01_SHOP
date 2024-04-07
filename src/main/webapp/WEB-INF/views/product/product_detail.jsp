@@ -289,9 +289,8 @@
       </div>
       <div class="product_detail_under_wrap2">
       
-         <button class="product_detail_btn2" onclick="goToBuyPage()">구매하기</button>
-         <button class="product_detail_btn2" onclick="cartList_go()">장바구니에
-            추가하기</button>
+         <button class="product_detail_btn2" onclick="orderProduct(${productIdx})">구매하기</button>
+         <button class="product_detail_btn2" onclick="addToCart(${productIdx})">장바구니에 추가하기</button>
 
       </div>
       <%@include file="../main/footer.jsp"%>

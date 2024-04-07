@@ -35,7 +35,7 @@
 <!-- order_pay -->
  	<select id="orderaddrproduct" parameterType="ovo" resultType="ovo">
 		SELECT 
-				o.user_idx, a.addr_name,a.addr_phone,a.addr_addr,addr_base, 
+				o.user_idx, a.addr_name,a.addr_phone,a.addr_addr,addr_base, order_idx, 
 		    	u.user_name, u.user_phone, p.product_name, p.product_price, o.order_count, o.order_idx 
 		FROM 
 				shop_order o
@@ -45,28 +45,7 @@
 		WHERE o.order_idx=#{order_idx}
 		AND u.user_idx = #{user_idx}
 		AND a.addr_base=1
-
-	
-	
-	<!-- 		SELECT
-					o.*
-					,p.product_price
-					,p.product_name
-					,u.user_name
-					,a.addr_addr
-		FROM shop_addr a
-					, shop_order o
-					, shop_product p
-					, shop_user u
-		WHERE 1=1
-					AND u.user_idx = o.user_idx
-					AND u.user_idx = a.user_idx
-					AND p.product_idx = o.product_idx
-					AND a.addr_base = '1'
-					AND o.order_idx = #{order_idx}
-					AND u.user_idx = #{user_idx}; -->
 	</select>
-	
 	
 	<update id="ordercheckmin" parameterType="avo">
 		 update 
@@ -84,6 +63,15 @@
 		where addr_idx = #{addr_idx}
 	</update>
 	
+	<update id="orderSuccess" parameterType="avo">
+		 update 
+		 	shop_order
+		set 
+			order_status = 1
+		where 
+		    order_idx = #{order_idx}
+		    and order_status = 0
+	</update>
 	
 	
 	

@@ -87,25 +87,25 @@
 				<p>배송비</p>
 				<h3>총 주문 금액</h3>
 			</div>
+    <c:forEach var="k" items="${vo}" varStatus="vs">
 			<div class="order_pay_right">
 				  <c:set var="totalPrice" value="0" />
-    <c:forEach var="k" items="${vo}" varStatus="vs">
         <c:set var="totalPrice" value="${totalPrice + (k.product_price * k.order_count)}" />
-    </c:forEach>
         <p><fmt:formatNumber value="${totalPrice}" pattern="#,##0" />원</p>
         <p>3,000원</p>
-    <tr>
-        <td colspan="3">
-            <h2><fmt:formatNumber value="${totalPrice+3000}" pattern="#,##0" />원</h2>
-        </td>
-    </tr>
-</div>
+			    <tr>
+			        <td colspan="3">
+			            <h2><fmt:formatNumber value="${totalPrice+3000}" pattern="#,##0" />원</h2>
+			        </td>
+			    </tr>
+		</div>
 			<div class="order_pay_btn2_p">
 				<button class="order_pay_btn2"
-					onclick="location.href='order_success.do'">
+					onclick="location.href='product/order_success.do?order_idx=${k.order_idx}'">
 					<h2>결제하기</h2>
 				</button>
 			</div>
+    </c:forEach>
 		</div>
 		<div class="order_pay_footer">
 			<%@include file="../main/footer.jsp"%>

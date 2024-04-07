@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,9 +99,9 @@
 		let image = document.getElementById('product_list_heart_button'
 				+ productIdx);
 		if (image.src.match('heart_01')) {
-			image.src = '${path}/resources/heart_02.png';
+			image.src = '${path}/resources/image/heart_02.png';
 		} else {
-			image.src = '${path}/resources/heart_01.png';
+			image.src = '${path}/resources/image/heart_01.png';
 		}
 	}
 </script>
@@ -108,41 +109,28 @@
 </head>
 <body>
 	<%@include file="../main/header.jsp"%>
-	<div class="product_list_sort">
-		<select>
-			<option>최신순</option>
-			<option>인기순</option>
-			<option>가격순</option>
-		</select>
-	</div>
 	<br>
 	<div class="product_list_wrapper">
-		<c:forEach items="${shop_list}" var="product">
+		<c:forEach items="${shop_list}" var="k">
 			<div class="product_list_product">
-				<a href="product_detail.do?product_idx=${product.product_idx}">
-					<img src="${path}/resources/images/${product.product_img}"
-					class="product_list_main_image">
-				</a>
+				<a href="product_detail.do?product_idx=${k.product_idx}">
+					<img src="resources/image/${k.product_img}" class="product_list_main_image"></a>
 				<table class="product_list_table">
 					<tbody>
 						<tr>
-							<th colspan="5"><a
-								href="product_detail.do?product_idx=${product.product_idx}">
-									${product.product_name} </a></th>
-							<th><img src="${path}/resources/images/cart2.png"
-								class="product_list_cart_button"
-								onclick="addToCart('${product.product_idx}')"> <img
-								src="${path}/resources/images/heart_01.png"
+							<th colspan="5">
+							<a href="product_detail.do?product_idx=${k.product_idx}">${k.product_name}</a></th>
+							<th><img src="${path}/resources/image/cart2.png" class="product_list_cart_button" onclick="addToCart('${k.product_idx}')"> <img
+								src="${path}/resources/image/heart_01.png"
 								class="product_list_heart_button"
-								id="product_list_heart_button${product.product_idx}"
-								onclick="addToHeart('${product.product_idx}')"></th>
-
+								id="product_list_heart_button"
+								onclick="addToHeart('${k.product_idx}')"></th>
 						</tr>
 						<tr>
-							<td colspan="6">${product.product_description}</td>
+							<td colspan="6">${k.product_detail}</td>
 						</tr>
 						<tr>
-							<td colspan="6">${product.product_price}</td>
+							<td colspan="6"><fmt:formatNumber value="${k.product_price}" pattern="#,###원"></fmt:formatNumber></td>
 						</tr>
 					</tbody>
 				</table>

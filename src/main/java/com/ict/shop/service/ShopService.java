@@ -94,7 +94,7 @@ public interface ShopService {
 	int getaddrchecked(AddrVO avo);
 	int getOrderSuccess(String order_idx);
 	//프로덕트=======================================================
-		 List<ProductVO> getShopList(String category)throws Exception;
+		 List<ProductVO> getShopList(ProductVO pvo)throws Exception;
 		    
 		    ProductVO getShopDetail(String product_idx)throws Exception;
 		    
@@ -103,8 +103,6 @@ public interface ShopService {
 		    int cartInsert(ProductVO productVO)throws Exception;
 		    
 		    int cartUpdate(ProductVO productVO)throws Exception;
-		    
-		    //List<CartListVO> getCartList(String user_idx); 중복되서 뺌
 		    
 		    int cartEdit(CartListVO cartVO)throws Exception;
 		    

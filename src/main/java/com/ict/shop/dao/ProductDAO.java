@@ -24,8 +24,8 @@ public class ProductDAO {
     private SqlSessionTemplate sqlSessionTemplate;
     
     // product========================================================================
-    public List<ProductVO> getShopList(String category) {
-        return sqlSessionTemplate.selectList("product.getShopList", category);
+    public List<ProductVO> getShopList(ProductVO pvo) {
+        return sqlSessionTemplate.selectList("product.getShopList", pvo);
     }
 
     public ProductVO getShopDetail(String product_idx) {

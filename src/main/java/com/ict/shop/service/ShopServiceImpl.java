@@ -231,8 +231,8 @@ public class ShopServiceImpl implements ShopService {
 	 
 
     @Override
-    public List<ProductVO> getShopList(String category)throws Exception {
-        return pdao.getShopList(category);
+    public List<ProductVO> getShopList(ProductVO pvo)throws Exception {
+        return pdao.getShopList(pvo);
     }
 
     @Override

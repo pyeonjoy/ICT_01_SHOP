@@ -92,33 +92,34 @@ public interface ShopService {
 	List<OrderVO> orderaddrproduct(OrderVO ovo);
 
 	int getaddrchecked(AddrVO avo);
-//프로덕트=======================================================
-	 List<ProductVO> getShopList(String category)throws Exception;
-	    
-	    ProductVO getShopDetail(String product_idx)throws Exception;
-	    
-	    CartListVO getCartChk(String user_idx, String product_idx);
-	    
-	    int cartInsert(ProductVO productVO)throws Exception;
-	    
-	    int cartUpdate(ProductVO productVO)throws Exception;
-	    
-	    //List<CartListVO> getCartList(String user_idx); 중복되서 뺌
-	    
-	    int cartEdit(CartListVO cartVO)throws Exception;
-	    
-	    int cartDelete(String cartlist_idx)throws Exception;
-	    
-	    int productInsert(ProductVO productVO)throws Exception;
-	    
-	    // Heart 관련 기능
-	    int add_to_heart(String user_idx, String product_idx)throws Exception;
-	    
-	    int check_heart_item(String user_idx, String product_idx)throws Exception;
-	    
-	    List<HeartVO> get_heart_items(String user_idx)throws Exception;
-	    
-	    int remove_from_heart(String user_idx, String product_idx)throws Exception;
+	int getOrderSuccess(String order_idx);
+	//프로덕트=======================================================
+		 List<ProductVO> getShopList(String category)throws Exception;
+		    
+		    ProductVO getShopDetail(String product_idx)throws Exception;
+		    
+		    CartListVO getCartChk(String user_idx, String product_idx);
+		    
+		    int cartInsert(ProductVO productVO)throws Exception;
+		    
+		    int cartUpdate(ProductVO productVO)throws Exception;
+		    
+		    //List<CartListVO> getCartList(String user_idx); 중복되서 뺌
+		    
+		    int cartEdit(CartListVO cartVO)throws Exception;
+		    
+		    int cartDelete(String cartlist_idx)throws Exception;
+		    
+		    int productInsert(ProductVO productVO)throws Exception;
+		    
+		    // Heart 관련 기능
+		    int add_to_heart(String user_idx, String product_idx)throws Exception;
+		    
+		    int check_heart_item(String user_idx, String product_idx)throws Exception;
+		    
+		    List<HeartVO> get_heart_items(String user_idx)throws Exception;
+		    
+		    int remove_from_heart(String user_idx, String product_idx)throws Exception;
 
 
 }

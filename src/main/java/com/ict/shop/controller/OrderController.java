@@ -33,7 +33,7 @@ public class OrderController {
 	private HttpSession session;
 
 //order===================================================================================================================================================================
-	@GetMapping("cart_list.do") // 장바구니 페이지
+	@GetMapping("cart_list.do") // �옣諛붽뎄�땲 �럹�씠吏�
 	public ModelAndView cart_List(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("order/cart_list");
 		try {
@@ -53,7 +53,7 @@ public class OrderController {
 	}
 
 	@PostMapping("cartlist_delete.do")
-	public ModelAndView cartlistDelete(HttpServletRequest request) { // 장바구니 삭제
+	public ModelAndView cartlistDelete(HttpServletRequest request) { // �옣諛붽뎄�땲 �궘�젣
 		ModelAndView mv = new ModelAndView("redirect:cart_list.do");
 		String[] cart_check_idx = request.getParameterValues("cart_check_idx");
 
@@ -71,7 +71,7 @@ public class OrderController {
 		return new ModelAndView("login/singup_fail");
 	}
 
-	@PostMapping("cartlist_edit.do") // 수량 변경
+	@PostMapping("cartlist_edit.do") // �닔�웾 蹂�寃�
 	public ModelAndView cartlistEdit(CartListVO cvo, @RequestParam("cartlist_idx") String[] cartlist_idx,
 			@RequestParam("cartlist_count") String[] cartlist_count, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -85,7 +85,7 @@ public class OrderController {
 		return new ModelAndView("login/singup_fail");
 	}
 
-	@PostMapping("cartlist_select_pay.do") // 선택구매시
+	@PostMapping("cartlist_select_pay.do") // �꽑�깮援щℓ�떆
 	public ModelAndView cartlistSelectPay(@RequestParam("cart_check_idx") String[] cart_check_idx,
 			@RequestParam("check_number") String[] check_number, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -93,17 +93,17 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
 
-		// 선택한 주문이 없을 때
+		// �꽑�깮�븳 二쇰Ц�씠 �뾾�쓣 �븣
 		if (cart_check_idx == null) {
 			mv.setViewName("redirect:cart_list.do?cartlist_status=check_none");
 			return mv;
 		}
 
-		// 가장 큰 수 가져오기
+		// 媛��옣 �겙 �닔 媛��졇�삤湲�
 		List<CartListVO> orderlist = shopservice.getCartlistOrderIdx();
 		int maxIdx = 0;
 
-		// order_idx 값 중복 안 되게
+		// order_idx 媛� 以묐났 �븞 �릺寃�
 		for (int i = 0; i < orderlist.size(); i++) {
 			int cIdx = Integer.parseInt(orderlist.get(i).getOrder_idx());
 			if (cIdx > maxIdx) {
@@ -113,29 +113,29 @@ public class OrderController {
 		}
 		maxIdx++;
 		CartListVO cvo = new CartListVO();
-		// 주소 가져오기
+		// 二쇱냼 媛��졇�삤湲�
 		CartListVO cvo2 = shopservice.getCartListAddr(uvo.getUser_idx());
 		int result = 0;
 		int result2 = 0;
 
 		for (int j = 0; j < cart_check_idx.length; j++) {
-			// 선택한 제품
+			// �꽑�깮�븳 �젣�뭹
 			cvo = shopservice.getCartlistSelect(cart_check_idx[j]);
 
-			// order_number 계산
+			// order_number 怨꾩궛
 			int su = Integer.parseInt(cvo.getCartlist_count());
 			int price = Integer.parseInt(cvo.getCartlist_number());
 			cvo.setOrder_number(String.valueOf(su * price));
 
 			cvo.setAddr_idx(cvo2.getAddr_idx());
-			cvo.setOrder_idx(String.valueOf(maxIdx)); // order_idx 같게
+			cvo.setOrder_idx(String.valueOf(maxIdx)); // order_idx 媛숆쾶
 
 			result = shopservice.getCartlistPass(cvo);
 
 		}
 		if (result > 0) {
 			for (String k : cart_check_idx) {
-				result2 = shopservice.getCartlistDelete(k); // 결제로 넘어간 건 삭제
+				result2 = shopservice.getCartlistDelete(k); // 寃곗젣濡� �꽆�뼱媛� 嫄� �궘�젣
 			}
 			mv.setViewName("redirect:order_pay.do?order_idx=" + maxIdx);
 			return mv;
@@ -164,9 +164,9 @@ public class OrderController {
 
 	@RequestMapping("mypage_addr_select.do")
 	public ModelAndView Mypage_addr_Select(@RequestParam("order_idx") String order_idx, HttpServletRequest request) {
-		System.out.println("여기 : " + order_idx); // 성공
+		System.out.println("�뿬湲� : " + order_idx); // �꽦怨�
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr_select");
-		// 세션에서 사용자 ID 가져오기
+		// �꽭�뀡�뿉�꽌 �궗�슜�옄 ID 媛��졇�삤湲�
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
 
@@ -187,7 +187,7 @@ public class OrderController {
 	@RequestMapping("addr_checked.do")
 	public ModelAndView AddrChecked(@RequestParam("addr_idx") String addr_idx,
 			@RequestParam("order_idx") String order_idx, HttpServletRequest request) {
-		System.out.println("order_idx : " + order_idx); // 성공
+		System.out.println("order_idx : " + order_idx); // �꽦怨�
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
@@ -201,7 +201,7 @@ public class OrderController {
 		List<OrderVO> list = shopservice.orderaddrproduct(ovo);
 		System.out.println("avo.user_idx : " + avo.getUser_idx());
 		System.out.println("avo.addr_idx : " + avo.getAddr_addr());
-		int result = shopservice.getaddrchecked(avo); // 실패
+		int result = shopservice.getaddrchecked(avo); // �떎�뙣
 		System.out.println("result: " + result);
 		if (result > 0) {
 			mv.addObject("vo", list);
@@ -210,6 +210,16 @@ public class OrderController {
 		} else {
 			return new ModelAndView("main/signup_fail");
 		}
+	}
+	@RequestMapping("product/order_success.do")
+	public ModelAndView AddrChecked(String order_idx) {
+		ModelAndView mv = new ModelAndView("product/order_success");
+		int result = shopservice.getOrderSuccess(order_idx);
+		System.out.println(result);
+		if (result > 0) {
+			return mv;
+		}
+			return new ModelAndView("main/signup_fail");
 	}
 
 }

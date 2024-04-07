@@ -254,7 +254,7 @@ public class MypageController {
 	    ModelAndView mv = new ModelAndView("mypage/mypage_order_after");
 	    HttpSession session = request.getSession();
 	    UserVO uvo = (UserVO) session.getAttribute("uvo");
-	    List<OrderVO> orderList = shopservice.getOrderList(uvo.getUser_idx());
+	    List<OrderVO> orderList = shopservice.getOrderList2(uvo.getUser_idx());
 	    if (orderList != null) {
 	        mv.addObject("ovo", orderList);
 	        System.out.println(orderList);
@@ -266,20 +266,36 @@ public class MypageController {
 	@GetMapping("mypage_order.do") // 마이페이지 주문내역 페이지
 	public ModelAndView Mypage_Order( String user_idx,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_order");
-		 HttpSession session = request.getSession();
-		 UserVO uvo = (UserVO) session.getAttribute("uvo");
-		 System.out.println(uvo.getUser_idx());
-		 List<OrderVO> orderList = shopservice.getShopOrderList(uvo.getUser_idx());
-		    if (orderList != null) {
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+		List<OrderVO> orderList = shopservice.getShopOrderList(uvo.getUser_idx());
+		
+		//구매내역, 구매 시간에 따른 배송 상태 변경
+		
+		int result = shopservice.getDeliveryStatus(orderList);
+		
+		if(result > 0) {
+			 if (orderList != null) {
 //		    	 mv.addObject("order", user_idx);
 //		         mv.addObject("pro", user_idx);
-		        mv.addObject("ovo", orderList);
-		        return mv;
-		    }
-		    return new ModelAndView("main/signup_fail");
-
-	}
-
+				 mv.addObject("ovo", orderList);
+				 return mv;
+			}
+		}
+			return new ModelAndView("main/signup_fail");
+		}
+		 
+	@GetMapping("confirm.do") // 마이페이지 주문내역 페이지
+	public ModelAndView Confirm( String order_idx) {
+		ModelAndView mv = new ModelAndView("redirect:mypage_order.do");
+		 int result = shopservice.orderupdate4(order_idx);
+			System.out.println(result);
+			if (result > 0) {
+				return mv;
+			}
+				return new ModelAndView("main/signup_fail");
+		}
+	
 	@GetMapping("mypage_pwdchk.do") // 1:1 문의 하는 페이지
 	public ModelAndView Mypage_Pwdchk() {
 

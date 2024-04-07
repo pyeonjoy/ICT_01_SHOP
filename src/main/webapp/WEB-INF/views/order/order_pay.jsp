@@ -24,9 +24,6 @@
 	<div class="order_pay_header">
 		<%@include file="../main/header.jsp"%>
 	</div>
-	<div class="order_pay_aside">
-		<%@include file="../main/aside_mypage.jsp"%>
-	</div>
 	<div class="order_pay_wrap">
 		<h2>결제 확인</h2>
 		<div class="order_pay_stroke"></div>

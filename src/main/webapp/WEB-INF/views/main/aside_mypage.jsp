@@ -70,7 +70,7 @@ a:hover {
 				<li><a href="mypage_addr.do?user_idx=${uvo.user_idx }">배송지 목록</a></li>
 				<li><a href="mypage_order.do?user_idx=${uvo.user_idx }">주문내역</a></li>
 
-				<li><a href="mypage_order_after.do?order_idx=3">결제내역</a></li>
+				<li><a href="mypage_order_after.do?user_idx=${uvo.user_idx }">결제내역</a></li>
 				<li><a href="mypage_heart.do?user_idx=${uvo.user_idx}">관심상품</a></li>
 
 				<li><a href="mypage_notice.do">공지사항</a></li>

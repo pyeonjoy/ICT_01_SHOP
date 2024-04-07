@@ -215,8 +215,12 @@ public class OrderController {
 	public ModelAndView AddrChecked(String order_idx) {
 		ModelAndView mv = new ModelAndView("product/order_success");
 		int result = shopservice.getOrderSuccess(order_idx);
+		int result1 = shopservice.orderupdate1(order_idx);
 		System.out.println(result);
-		if (result > 0) {
+		System.out.println(result1);
+		
+		System.out.println(result);
+		if (result > 0 && result1 >0) {
 			return mv;
 		}
 			return new ModelAndView("main/signup_fail");

@@ -33,7 +33,10 @@
 	});
     
     function select_delete(f) {
-		f.action = "cartlist_delete.do";
+    	if (document.getElementsByName("cart_check_idx").length === 0) {
+    		alert("선택한 상품이 없습니다."); return;
+    	}
+    	f.action = "cartlist_delete.do";
 		f.submit();
 	}
     function select_pay(f) {

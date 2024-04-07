@@ -127,6 +127,8 @@ public interface ShopService {
 		    
 		    int remove_from_heart(String user_idx, String product_idx)throws Exception;
 
+			List<OrderVO> getOrderSuccessPage(String order_idx);
+
 
 
 }

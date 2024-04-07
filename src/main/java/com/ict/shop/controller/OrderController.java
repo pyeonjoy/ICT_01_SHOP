@@ -211,10 +211,12 @@ public class OrderController {
 			return new ModelAndView("main/signup_fail");
 		}
 	}
-	@RequestMapping("product/order_success.do")
+
+	@RequestMapping("order_success.do")
 	public ModelAndView AddrChecked(String order_idx) {
 		ModelAndView mv = new ModelAndView("product/order_success");
 		int result = shopservice.getOrderSuccess(order_idx);
+
 		int result1 = shopservice.orderupdate1(order_idx);
 		System.out.println(result);
 		System.out.println(result1);
@@ -223,7 +225,8 @@ public class OrderController {
 		if (result > 0 && result1 >0) {
 			return mv;
 		}
-			return new ModelAndView("main/signup_fail");
+
+		return new ModelAndView("main/signup_fail");
 	}
 
 }

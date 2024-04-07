@@ -259,6 +259,11 @@ public class ShopServiceImpl implements ShopService {
 		return odao.getOrderSuccess(order_idx);
 	}
 	
+	@Override
+	public List<OrderVO> getOrderSuccessPage(String order_idx) {
+		return odao.getOrderSuccessPage(order_idx);
+	}
+	
 	
 	//product
 	 

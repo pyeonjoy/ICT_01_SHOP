@@ -13,8 +13,8 @@
 	width:800px;
 	margin:0 auto;
 	margin-top:20px;
-	border: 1px solid black;
-	border-collapse: collapse;
+/* 	border: 1px solid black;
+	border-collapse: collapse; */
 	font-size: 14px;
 }
 
@@ -26,8 +26,11 @@
 
 #bbs table th, #bbs table td {
 	text-align: center;
-	border: 1px solid black;
+	border-bottom: 1px solid black;
 	padding: 4px 10px;
+}
+input{
+margin: 10px;
 }
 
 .no { width: 15% }
@@ -35,7 +38,6 @@
 .writer {	width: 20% }
 .reg {	width: 20% }
 .hit {	width: 15% }
-.title {	background: lightsteelblue }
 .odd {	background: silver }
 
 /* paging */
@@ -75,6 +77,9 @@ table tfoot ol.paging li a:hover {
 	color: white;
 	font-weight: bold;
 }
+input[type="button"]{
+padding: 5px;
+}
 </style>
 <script type="text/javascript">
 	function board_write() {
@@ -87,7 +92,7 @@ table tfoot ol.paging li a:hover {
 	<%@include file="../main/aside_mypage.jsp"%>
 	<div id="bbs" align="center">
 		<table summary="게시판 목록">
-			<caption>게시판 목록</caption>
+			<caption>공지사항</caption>
 			<thead>
 				<tr class="title">
 					<th class="no">번호</th>

@@ -101,7 +101,7 @@
 		</div>
 			<div class="order_pay_btn2_p">
 				<button class="order_pay_btn2"
-					onclick="location.href='product/order_success.do?order_idx=${k.order_idx}'">
+					onclick="location.href='order_success.do?order_idx=${k.order_idx}'">
 					<h2>결제하기</h2>
 				</button>
 			</div>

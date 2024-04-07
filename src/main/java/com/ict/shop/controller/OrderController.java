@@ -218,15 +218,13 @@ public class OrderController {
 		int result = shopservice.getOrderSuccess(order_idx);
 
 		if (result > 0) {
-			return mv;
-		}
-
-		List<OrderVO> order = shopservice.getOrderSuccessPage(order_idx);
-		if (order != null) {
-			mv.addObject("order_addr", order.get(0).getAddr_addr());
-			mv.addObject("order_phone", order.get(0).getAddr_phone());
-			mv.addObject("order", order);
-			return mv;
+			List<OrderVO> order = shopservice.getOrderSuccessPage(order_idx);
+			if (order != null) {
+				mv.addObject("order_addr", order.get(0).getAddr_addr());
+				mv.addObject("order_phone", order.get(0).getAddr_phone());
+				mv.addObject("order", order);
+				return mv;
+			}
 		}
 
 		return new ModelAndView("main/signup_fail");

@@ -3,7 +3,15 @@ package com.ict.shop.dao.vo;
 
 public class ProductVO {
 	private String product_idx, user_idx, product_name, product_price, product_content, product_detail, product_img,
-			user_name, user_phone, user_addr;
+			user_name, user_phone, user_addr,product_number;
+
+	public String getProduct_number() {
+		return product_number;
+	}
+
+	public void setProduct_number(String product_number) {
+		this.product_number = product_number;
+	}
 
 	public String getProduct_idx() {
 		return product_idx;

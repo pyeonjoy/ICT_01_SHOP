@@ -5,10 +5,11 @@
 <head>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insert title here</title>
+<title>상품페이지</title>
 <style type="text/css">
 .product_list_heart_button {
 	float: right;
@@ -66,45 +67,30 @@
 }
 </style>
 <script type="text/javascript">
-	// 찜하기 버튼 클릭 시
-	function addToHeart(productIdx) {
-		$.ajax({
-			type : "POST",
-			url : "add_to_heart_ajax",
-			data : {
-				user_idx : "${sessionScope.userVO.user_idx}",
-				product_idx : productIdx
-			},
-			success : function(response) {
-				if (response === "success") {
-					alert("찜");
-					changeHeartButtonImage(productIdx);
-				} else if (response === "fail") {
-					alert("이미 찜한 상품입니다.");
-				} else {
-					alert("오류");
-				}
-			},
-			error : function(error) {
-				console.log(error);
-			}
-		});
-	}
-
-	function addToCart(productId) {
-		alert('상품이 장바구니에 추가되었습니다.');
-	}
-
-	function changeHeartButtonImage(productIdx) {
-		let image = document.getElementById('product_list_heart_button'
-				+ productIdx);
-		if (image.src.match('heart_01')) {
-			image.src = '${path}/resources/image/heart_02.png';
-		} else {
-			image.src = '${path}/resources/image/heart_01.png';
-		}
-	}
+    $(document).ready(function(){
+        function addToCart(product_idx,product_price) {
+            $.ajax({
+                url: "product_list_add_cart.do",
+                method: "post",
+                data: { product_idx: product_idx, product_price: product_price},
+                dataType: "text",
+                success: function(data) {
+                alert("장바구니에 정상적으로 추가되었습니다.");
+                },
+                error: function() {
+                alert("추가불가능~");
+               	 }
+            });
+        }
+        $(".product_list_cart_button").click(function() {
+        	 let product_idx = $(this).siblings(".product_idx").val();
+             let product_price = $(this).siblings(".product_price").val();
+            addToCart(product_idx,product_price);
+        });
+    });
 </script>
+
+
 
 </head>
 <body>
@@ -120,11 +106,10 @@
 						<tr>
 							<th colspan="5">
 							<a href="product_detail.do?product_idx=${k.product_idx}">${k.product_name}</a></th>
-							<th><img src="${path}/resources/image/cart2.png" class="product_list_cart_button" onclick="addToCart('${k.product_idx}')"> <img
-								src="${path}/resources/image/heart_01.png"
-								class="product_list_heart_button"
-								id="product_list_heart_button"
-								onclick="addToHeart('${k.product_idx}')"></th>
+							<th><img src="${path}/resources/image/cart2.png" class="product_list_cart_button">
+							<input type="hidden" class="product_idx" value="${k.product_idx}">
+							<input type="hidden" class="product_price" value="${k.product_price}">
+							<img src="${path}/resources/image/heart_01.png" class="product_list_heart_button" id="product_list_heart_button" onclick="addToHeart('${k.product_idx}')"></th>
 						</tr>
 						<tr>
 							<td colspan="6">${k.product_detail}</td>

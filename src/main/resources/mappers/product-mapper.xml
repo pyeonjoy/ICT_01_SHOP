@@ -5,10 +5,22 @@
 <mapper namespace="product">
 
 	<select id="getShopList" parameterType="String" resultType="pvo">
-		select * from shop_product
+		select * from shop_product where product_category = 'perfume'
 	</select>
+	<select id="getShopListbalm" parameterType="String" resultType="pvo">
+		select * from shop_product where product_category = 'balm'
+	</select>
+	<select id="get_price" parameterType="String" resultType="String">
+		select product_price from shop_product where product_idx = #{product_idx}
+	</select>
+	
+	<insert id="add_cart" parameterType="Map">
+		insert into shop_cartlist(user_idx, product_idx, cartlist_number, cartlist_count)
+		values(#{user_idx}, #{product_idx}, #{product_price}, 1)
+	</insert>
+	
 	<select id="getShopDetail" parameterType="String" resultType="pvo">
-		SELECT * FROM SHOP_PRODUCT WHERE product_idx = #{product_idx}
+		select * from shop_product where product_idx = #{product_idx}
 	</select>
 	<select id="getCartChk" parameterType="Map" resultType="cvo">
 		SELECT * FROM SHOP_CARTLIST WHERE user_idx = #{user_idx} AND product_idx = #{product_idx}

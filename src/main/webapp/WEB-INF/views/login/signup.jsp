@@ -84,15 +84,15 @@ $(document).ready(function() {
 			</div>
 			<div class="sign_right">
 				<!-- 파일 변경으로 인해 수정해야할 부분 -->
-				<input class="sign_info_input" type="text" id="user_id" name="user_id" placeholder="아이디를 입력해주세요." required>
+				<input class="sign_info_input" type="text" id="user_id" name="user_id" placeholder="아이디를 입력해주세요." >
 				<span class="signup_idchk" style="font-size: 8px;"></span>
-				<input class="sign_info_input" type="password" id="pwd1" name="user_pwd" placeholder="비밀번호를 입력해주세요." required>
+				<input class="sign_info_input" type="password" id="pwd1" name="user_pwd" placeholder="비밀번호를 입력해주세요." >
 				<input class="sign_info_input" type="password" id="pwd2" placeholder="다시한번 입력해주세요." required> 
-				<input class="sign_info_input" type="text" id="user_name" name="user_name" placeholder="이름을 입력해주세요." required> 
-				<input class="sign_info_input" type="text" id="user_phone"name="user_phone" placeholder="전화번호를 입력해주세요." required>
-				<input class="sign_info_input" type="text" id="user_birth"name="user_birth" placeholder="생년월일 ex)980331" required>
-				<input class="sign_info_input" type="text" id="user_email"name="user_email" placeholder="이메일을 입력해주세요." required>
-				<input class="sign_info_input" type="text" id="user_addr" name="user_addr" placeholder="주소를 입력해주세요." required>
+				<input class="sign_info_input" type="text" id="user_name" name="user_name" placeholder="이름을 입력해주세요."> 
+				<input class="sign_info_input" type="text" id="user_phone"name="user_phone" placeholder="전화번호를 입력해주세요."  maxlength="11">
+				<input class="sign_info_input" type="text" id="user_birth"name="user_birth" placeholder="생년월일 ex)980331"  maxlength="6">
+				<input class="sign_info_input" type="text" id="user_email"name="user_email" placeholder="이메일을 입력해주세요." >
+				<input class="sign_info_input" type="text" id="user_addr" name="user_addr" placeholder="주소를 입력해주세요." >
 			</div>
 			<div class="sign_bottom">
 				<input type="checkbox">

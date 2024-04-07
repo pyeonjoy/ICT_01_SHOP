@@ -119,5 +119,10 @@ public interface ShopService {
 		    
 		    int remove_from_heart(String user_idx, String product_idx)throws Exception;
 
+			List<ProductVO> getShopListbalm(ProductVO pvo);
+
+			int ProductAddCart(String product_idx, String user_idx, String product_price);
+
+
 
 }

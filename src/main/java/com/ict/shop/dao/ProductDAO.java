@@ -27,6 +27,9 @@ public class ProductDAO {
     public List<ProductVO> getShopList(ProductVO pvo) {
         return sqlSessionTemplate.selectList("product.getShopList", pvo);
     }
+    public List<ProductVO> getShopListbalm(ProductVO pvo) {
+    	return sqlSessionTemplate.selectList("product.getShopListbalm",pvo);
+    }
 
     public ProductVO getShopDetail(String product_idx) {
         return sqlSessionTemplate.selectOne("product.getShopDetail", product_idx);
@@ -87,4 +90,18 @@ public class ProductDAO {
         map.put("product_idx", product_idx);
         return sqlSessionTemplate.delete("product.remove_from_heart", map);
     }
+	public int ProductAddCart(String product_idx, String user_idx, String product_price) {
+		try {
+			Map<String, String> map = new HashMap<String,String>();
+			map.put("product_idx", product_idx);
+			map.put("user_idx", user_idx);
+			map.put("product_price", product_price);
+			System.out.println(product_price+"상품가격?");
+			return sqlSessionTemplate.insert("product.add_cart",map);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+
 }

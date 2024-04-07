@@ -290,4 +290,13 @@ public class ShopServiceImpl implements ShopService {
         return pdao.remove_from_heart(user_idx, product_idx);
     }
 
+	@Override
+	public List<ProductVO> getShopListbalm(ProductVO pvo) {
+		return pdao.getShopListbalm(pvo);
+	}
+	@Override
+	public int ProductAddCart(String product_idx, String user_idx,String product_price) {
+		return pdao.ProductAddCart(product_idx,user_idx,product_price);
+	}
+
 }

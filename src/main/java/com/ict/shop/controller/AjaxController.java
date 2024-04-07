@@ -2,6 +2,9 @@ package com.ict.shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.service.ShopService;
 
 @RestController
@@ -28,65 +31,22 @@ public class AjaxController {
 		System.out.println(result);
 		return result;
 	}
+
+	@RequestMapping(value="removeHeart.do", produces = "text/plain; charset=utf-8")
+	@ResponseBody
+	public String getAjaxHeartAdd(@RequestParam("product_idx") String product_idx, HttpServletRequest request, @RequestParam("user_idx")String user_idx, @RequestParam("heart_idx")String heart_idx) {
+	        int result = shopservice.getRemoveHeart(product_idx, user_idx,heart_idx) ;
+	        HttpSession session = request.getSession();
+	        session.setAttribute("product_idx", product_idx);
+	        session.setAttribute("user_idx", user_idx);
+	        session.setAttribute("heart_idx", heart_idx);
+	       System.out.println(product_idx);
+	       System.out.println(user_idx);
+	       System.out.println(heart_idx);
+
+	        return String.valueOf(result);
+	    }
 	
-	@PostMapping("/add_to_heart_ajax")
-	@ResponseBody
-	public String addToHeartAjax(@RequestParam("user_idx") String user_idx,
-			@RequestParam("product_idx") String product_idx) {
-		try {
-			int result = shopservice.add_to_heart(user_idx, product_idx);
-			if (result == 1) {
-				return "success";
-			} else {
-				return "fail";
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			return "error";
-		}
-	}
-
-	@PostMapping("/check_heart_ajax")
-	@ResponseBody
-	public String checkHeartAjax(@RequestParam("user_idx") String user_idx,
-			@RequestParam("product_idx") String product_idx) {
-		try {
-			int result = shopservice.check_heart_item(user_idx, product_idx);
-			if (result > 0) {
-				return "exists";
-			} else {
-				return "noexists";
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			return "error";
-		}
-	}
-
-	@GetMapping("/getHeartItems")
-	public List<HeartVO> getHeartItems(@RequestParam String user_idx) {
-		try {
-			return shopservice.get_heart_items(user_idx);
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
-
-	@PostMapping("/remove_from_heart_ajax")
-	@ResponseBody
-	public String removeFromHeartAjax(@RequestParam("user_idx") String user_idx,
-			@RequestParam("product_idx") String product_idx) {
-		try {
-			int result = shopservice.remove_from_heart(user_idx, product_idx);
-			if (result == 1) {
-				return "success";
-			} else {
-				return "fail";
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			return "error";
-		}
-	}
+	
+	
 }

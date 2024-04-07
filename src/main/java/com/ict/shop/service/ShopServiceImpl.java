@@ -108,9 +108,9 @@ public class ShopServiceImpl implements ShopService {
 	}
 
 	@Override
-	public int getUpdateHeartStatus(OrderVO ovo) {
+	public int getUpdateHeartStatus(String user_idx, String product_idx) {
 
-		return mdao.getUpdateHeartStatus(ovo);
+		return mdao.getUpdateHeartStatus(user_idx, product_idx);
 	}
 
 	// mypage_addr
@@ -290,4 +290,11 @@ public class ShopServiceImpl implements ShopService {
         return pdao.remove_from_heart(user_idx, product_idx);
     }
 
+	@Override
+	public int getRemoveHeart(String product_idx, String user_idx, String heart_idx) {
+		return mdao.getRemoveHeart(product_idx, user_idx, heart_idx);
+	}
+    
+    
+    
 }

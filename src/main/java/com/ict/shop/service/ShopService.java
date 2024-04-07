@@ -49,7 +49,7 @@ public interface ShopService {
 	// 관심상품 리스트
 	public List<OrderVO> getShopHeartList(String user_idx);
 
-	public int getUpdateHeartStatus(OrderVO ovo);
+	public int getUpdateHeartStatus(String user_idx, String product_idx);
 
 	public int getCartListAdd(OrderVO ovo);
 
@@ -118,6 +118,8 @@ public interface ShopService {
 		    List<HeartVO> get_heart_items(String user_idx)throws Exception;
 		    
 		    int remove_from_heart(String user_idx, String product_idx)throws Exception;
+		    
+		    int getRemoveHeart(String product_idx, String user_idx, String heart_idx) ;
 
 
 }

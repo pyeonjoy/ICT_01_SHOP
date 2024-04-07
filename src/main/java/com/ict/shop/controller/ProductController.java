@@ -1,23 +1,15 @@
 package com.ict.shop.controller;
 
-import java.io.File;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.shop.dao.vo.CartListVO;
@@ -49,28 +41,12 @@ public class ProductController {
 	}
 
 	@GetMapping("product_list.do") // 상품리스트 페이지
-	public ModelAndView Product_List() {
-		return new ModelAndView("product/product_list");
+	public ModelAndView Product_List(ProductVO pvo) throws Exception {
+		ModelAndView mv = new ModelAndView("product/product_list");
+		List<ProductVO> shop_list = shopService.getShopList(pvo);
+		mv.addObject("shop_list", shop_list);
+		return mv;
 	}
-
-	@GetMapping("shop_list.do")
-	public ModelAndView getShopList(String category) {
-		try {
-			ModelAndView mv = new ModelAndView("shop/shop_list");
-			if (category == null || category.equals("")) {
-				category = "ele002";
-			}
-			List<ProductVO> shop_list = shopService.getShopList(category);
-			if (shop_list != null) {
-				mv.addObject("shop_list", shop_list);
-				return mv;
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return new ModelAndView("shop/error");
-	}
-
 	@GetMapping("shop_detail.do")
 	public ModelAndView getShopDetail(String product_idx) {
 		try {
@@ -181,32 +157,5 @@ public class ProductController {
 	    ModelAndView modelAndView = new ModelAndView("shop/product_insertForm");
 	    modelAndView.addObject("productVO", new ProductVO()); // 폼 데이터를 바인딩할 빈 ProductVO 객체를 모델에 추가합니다.
 	    return modelAndView;
-	}
-	@PostMapping("shop_product_insert.do")
-	public ModelAndView getProductInsert(ProductVO productVO, HttpServletRequest request) {
-	    try {
-	        String path = request.getSession().getServletContext().getRealPath("/resources/images");
-	        MultipartFile file = productVO.getFile();
-	        
-	        if (file.isEmpty()) {
-	            productVO.setProduct_img("");
-	        } else {
-	            UUID uuid = UUID.randomUUID();
-	            String fileName = uuid.toString() + "_" + file.getOriginalFilename();
-	            productVO.setProduct_img(fileName);
-	            
-	            byte[] in = file.getBytes();
-	            File out = new File(path, fileName);
-	            FileCopyUtils.copy(in, out);
-	        }
-	        
-	        int result = shopService.productInsert(productVO);
-	        if (result > 0) {
-	            return new ModelAndView("redirect:shop_list.do?category=" + productVO.getCategory());
-	        }
-	    } catch (Exception e) {
-	        System.out.println(e);
-	    }
-	    return new ModelAndView("shop/error");
 	}
 }

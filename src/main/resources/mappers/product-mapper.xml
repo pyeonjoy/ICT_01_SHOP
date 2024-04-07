@@ -5,7 +5,7 @@
 <mapper namespace="product">
 
 	<select id="getShopList" parameterType="String" resultType="pvo">
-		SELECT * FROM SHOP_PRODUCT WHERE category = #{category}
+		select * from shop_product
 	</select>
 	<select id="getShopDetail" parameterType="String" resultType="pvo">
 		SELECT * FROM SHOP_PRODUCT WHERE product_idx = #{product_idx}

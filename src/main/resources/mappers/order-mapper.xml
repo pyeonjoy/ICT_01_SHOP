@@ -73,6 +73,14 @@
 		    and order_status = 0
 	</update>
 	
+	<!-- order_success -->
+	<select id="odersuccess_page" parameterType="Map" resultType="ovo">
+		select * from shop_order o
+		join shop_user u on u.user_idx = o.user_idx
+		join shop_addr a on o.addr_idx = a.addr_idx
+		join shop_product p on p.product_idx = o.product_idx
+		where o.order_idx=#{order_idx}
+	</select>
 	
 	
 	

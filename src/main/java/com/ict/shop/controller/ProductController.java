@@ -30,10 +30,6 @@ public class ProductController {
 	private HttpSession session;
 
 //product=================================================================================================================================================================
-	@GetMapping("order_success.do") // 주문 완료 후 페이지
-	public ModelAndView Order_Success() {
-		return new ModelAndView("order/order_success");
-	}
 
 	@GetMapping("product_detail.do") // 상품 상세페이지
 	public ModelAndView Product_Detail() {

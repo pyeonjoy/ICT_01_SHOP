@@ -20,7 +20,6 @@ import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.ShopService;
 
-
 @Controller
 public class OrderController {
 
@@ -212,29 +211,25 @@ public class OrderController {
 			return new ModelAndView("main/signup_fail");
 		}
 	}
-	
-	@RequestMapping("product/order_success.do")
+
+	@RequestMapping("order_success.do")
 	public ModelAndView AddrChecked(String order_idx) {
 		ModelAndView mv = new ModelAndView("product/order_success");
-		
-		List<OrderVO> order = shopservice.getOrderSuccessPage(order_idx);
-		if (order != null) {
-			
-			mv.addObject("order_addr", order.get(0).getAddr_addr());
-			mv.addObject("order_phone", order.get(0).getAddr_phone());
-			System.out.println(order.get(0).getOrder_number());
-			System.out.println(order.get(1).getOrder_number());
-			System.out.println(order.get(2).getOrder_number());
-			mv.addObject("order", order);
-			return mv;
-		}
-		
 		int result = shopservice.getOrderSuccess(order_idx);
-		System.out.println(result);
+
 		if (result > 0) {
 			return mv;
 		}
-			return new ModelAndView("main/signup_fail");
+
+		List<OrderVO> order = shopservice.getOrderSuccessPage(order_idx);
+		if (order != null) {
+			mv.addObject("order_addr", order.get(0).getAddr_addr());
+			mv.addObject("order_phone", order.get(0).getAddr_phone());
+			mv.addObject("order", order);
+			return mv;
+		}
+
+		return new ModelAndView("main/signup_fail");
 	}
 
 }

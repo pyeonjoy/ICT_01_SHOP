@@ -15,7 +15,7 @@
 }
 
 .mypage_order {
-	width: auto;
+	width: 744px;
 	border-bottom: 1px solid gray;
 	display: flex;
 }
@@ -27,21 +27,23 @@
 }
 .mypage_order .top{
 	margin: 20px;
+	width: 210px;
 }
 .mypage_order .left {
 	float: left;
-	    margin: 20px 0px 20px 0px;
+	    margin: 70px 0px 20px 0px;
 	width: 450px;
 }
 z
 .mypage_order .right {
 	float:left;
 	width: 200px;
+	margin-top: 70px;
 }
 
- img {
-	width: 120px;
-	height: 120px;
+ .top >img {
+	width: 200px;
+	height: 200px;
     object-fit: cover; 
     max-width: 100%;
     float: left;
@@ -59,14 +61,16 @@ z
 	height: 40px;
 	float:left;
 	font-weight: bold;
+	margin-left: 15px;
 }
 .mypage_order_status:nth-child(2){
-	    margin: 0px;
+	margin-left: 15px;
     display: inline-block;
     width: 250px;
     height: 50px;
     float: left;
-    font-size: 14px;
+    font-size: 20px;
+    line-height: 36px;
 }
 /* .mypage_order_status:nth-child(3){
 	margin: 0px;
@@ -82,7 +86,7 @@ z
 	width: 200px;
 	height: 30px;
 	text-align: center;
-	margin:20px 10px 0px -5px;
+	margin:20px 10px 0px 12px;
 	display: inline-block;
 }
 .mypage_order_text_pay{
@@ -93,7 +97,7 @@ z
 float: left;
 padding-left: 15px;
 height: 20px;
-width: 250px;
+width: 400px;
 font-size: 14px;
 line-height: 20px;
 text-align: left;
@@ -117,3 +121,4 @@ margin: -80px auto 30px;
 #footer {
 	position: static;
 }
+

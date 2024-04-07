@@ -91,7 +91,20 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public List<OrderVO> getOrderList(String user_idx) {
+		
 		return mdao.getOrderList(user_idx);
+	}
+	
+	
+	 @Override 
+	 public int getDeliveryStatus(List<OrderVO> ovo) {
+		 return mdao.getDeliveryStatus(ovo); 
+	 }
+	
+	
+	@Override
+	public List<OrderVO> getOrderList2(String user_idx) {
+		return mdao.getOrderList2(user_idx);
 	}
 
 	// mypage_firstchk
@@ -164,8 +177,28 @@ public class ShopServiceImpl implements ShopService {
 
 		return mdao.getCartListAdd(ovo);
 	}
+	
 
 //order============================================================================================
+	@Override
+	public int orderupdate1(String order_idx) {
+		return odao.orderupdate1(order_idx);
+	}
+	
+	@Override
+	public int orderupdate2(String order_idx) {
+		return mdao.orderupdate2(order_idx);
+	}
+	
+	@Override
+	public int orderupdate3(String order_idx) {
+		return mdao.orderupdate3(order_idx);
+	}
+	
+	@Override
+	public int orderupdate4(String order_idx) {
+		return mdao.orderupdate4(order_idx);
+	}
 	@Override
 	public List<CartListVO> getCartList(String user_idx) {
 		return odao.getCartList(user_idx);
@@ -294,5 +327,7 @@ public class ShopServiceImpl implements ShopService {
     public int remove_from_heart(String user_idx, String product_idx) throws Exception{
         return pdao.remove_from_heart(user_idx, product_idx);
     }
+
+	
 
 }

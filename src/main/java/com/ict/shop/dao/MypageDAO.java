@@ -24,6 +24,7 @@ public class MypageDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 //mypage=========================================================================================================
+	
 	//mypage_addr
 	public List<OrderVO> getAddrlist(OrderVO ovo) {
 		try {
@@ -103,6 +104,31 @@ public class MypageDAO {
 	}
 
 	// 주문 내역 리스트
+	public int orderupdate2(String order_idx) {
+		try {
+			return sqlSessionTemplate.delete("mypage.orderupdate2",order_idx);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	public int orderupdate3(String order_idx) {
+		try {
+			return sqlSessionTemplate.delete("mypage.orderupdate3",order_idx);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	public int orderupdate4(String order_idx) {
+		try {
+			return sqlSessionTemplate.delete("mypage.orderupdate4",order_idx);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	
 	public List<OrderVO> getShopOrderList(String user_idx) {
 		try {
 			return sqlSessionTemplate.selectList("mypage.orderlist",user_idx);
@@ -130,11 +156,27 @@ public class MypageDAO {
 		return -1;
 	}
 
+	public int getDeliveryStatus(List<OrderVO> ovo) {
+		
+		return sqlSessionTemplate.update("mypage.deliveryStatus", ovo);
+	}
+	
 	public List<OrderVO> getOrderList(String user_idx) {
 		try {
 			Map<String, String> map = new HashMap<>();
 			map.put("user_idx", user_idx);
 			return sqlSessionTemplate.selectList("mypage.orderlist", map);
+		} catch (Exception e) {
+			logger.info("insert", e);
+		}
+		return null;
+	}
+	
+	public List<OrderVO> getOrderList2(String user_idx) {
+		try {
+			Map<String, String> map = new HashMap<>();
+			map.put("user_idx", user_idx);
+			return sqlSessionTemplate.selectList("mypage.orderlist2", map);
 		} catch (Exception e) {
 			logger.info("insert", e);
 		}
@@ -176,6 +218,7 @@ public class MypageDAO {
 		}
 		return -1;
 	}
+
 	
 
 }

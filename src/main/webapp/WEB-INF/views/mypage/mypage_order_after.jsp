@@ -21,6 +21,9 @@
 
 	}
 </script>
+<style type="text/css">
+
+</style>
 </head>
 <body>
 	<%@include file="../main/header.jsp"%>
@@ -40,26 +43,23 @@
 								<div class="top">
 								<p class="mypage_order_status" style="border-left: 1px solid blavk;">
 								<fmt:formatDate pattern="yyyy-MM-dd" value="${order.order_regdate}"/>&nbsp;&#9654;</p>
-								</div>
-								<div class="left">
-									<p class="mypage_order_status">${order.order_request}</p>
 										<p class="mypage_order_status"><fmt:formatDate pattern="yyyy-MM-dd" value="${order.order_regdate}"/>도착</p>
 									<img alt="이미지" src="${pageContext.request.contextPath}/resources/image/hand1.jpeg">
+								</div>
+								<div class="left">
+									<p class="mypage_order_status">주문상태</p>
 									<div class="mypage_order_text">
 										<p>주문 번호: ${order.order_idx}</p>
 										<p>${order.product_name}</p>
 										<p>${order.product_content}</p>
 										<p>${order.product_content}</p>
+										<p>${order.product_content}</p>
 										<p class="mypage_order_text_pay" style="font-size: 24px; margin-top: 20px;">
 										<fmt:formatNumber value="${order.product_price}" pattern="#,###" /></p>
-									</div>
-								</div>
-								<div class="right">
-									<button class="mypage_order_btn1" onclick="delivery_go()">교환,
-										반품 신청</button>
 									<button class="mypage_order_btn1" onclick="delivery_go()">리뷰
 										작성하기</button>
 									<button class="mypage_order_btn1" onclick="delivery_go()">재구매</button>
+									</div>
 								</div>
 							</div>
 					</c:forEach>

@@ -20,7 +20,9 @@
 		location.href = "order_pay.do"
 		
 	}
-	
+		function mypage_order_after_go() {
+		location.href = "mypage_order_after.do"
+		
 	
 	// 디비가 지멋대로 바뀜,.. 같이 먹는듯?..
 	function mypage_order_status(order_regdate) {
@@ -63,6 +65,93 @@
 	      
 
 </script>
+<style type="text/css">
+.mypage_order_body {
+	display: flex;
+	justify-content: center;
+	flex-direction: row; 
+}
+
+.mypage_order_wrap {
+	line-height: 40px;
+	
+}
+
+.mypage_title{
+	text-align: center;
+	margin: 30px 0px 80px 0px;
+}
+
+.mypage_order {
+	width: auto;
+	border-bottom: 1px solid gray;
+	display: flex;
+}
+
+.mypage_order .left {
+	margin: 20px;
+}
+
+.mypage_order img {
+	width: 200px;
+	height: 200px;
+    object-fit: cover; 
+    max-width: 100%;
+  }
+ 
+
+.mypage_order .right {
+	margin: 20px;
+}
+
+.bottom {
+	foat:left;
+}
+
+.mypage_order_status {
+	float: right;
+	margin: 0px;
+}
+
+.mypage_order_btn1 {
+	font-size: 10px;
+	color: black;
+	width: 240px;
+	height: 30px;
+	margin: 0;
+	text-align: center;
+	display: inline-block;
+}
+
+.mypage_order_text > p{
+float: left;
+padding-left: 15px;
+height: 20px;
+width: 200px;
+font-size: 14px;
+line-height: 20px;
+text-align: left;
+}
+.mypage_order_footer {
+	width: 100%;
+	display: inline-block;
+}
+
+.login_changepwd_tilte{
+background-color: black;
+color: black;
+width: 90px;
+height: 5px;
+font-size: 15px;
+line-height: 35px;
+margin: -80px auto 30px;
+
+}
+#footer {
+	position: static;
+}
+
+</style>
 </head>
 <body>
 	<%@include file="../main/header.jsp"%>
@@ -83,9 +172,7 @@
 							<div class="left">
 								<img alt="resources/image/hand1.jpeg"
 									src="resources/image/hand1.jpeg">
-							</div>
 							<div class="right">
-								<div class="mypage_order_text">
 								<%-- 	<p class="mypage_order_status1" style="float:right;">${order.order_status}</p> --%>
 									<p class="mypage_order_status" style="float:right;">상품준비중</p> 
 									<p>
@@ -101,10 +188,13 @@
 									</p>
 
 								</div>
+								<div class="mypage_order_text">
 								<div>
 									<button class="mypage_order_btn1" onclick="delivery_go()">배송조회</button>
 									<button class="mypage_order_btn1" onclick="reorder_go()">재구매</button>
+									<button class="mypage_order_btn1" onclick="mypage_order_after_go()">구매확정</button>
 								</div>
+							</div>
 							</div>
 						</div>
 						<!-- 블럭 끝 -->

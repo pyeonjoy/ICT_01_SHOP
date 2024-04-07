@@ -215,14 +215,22 @@ public class OrderController {
 	@RequestMapping("order_success.do")
 	public ModelAndView AddrChecked(String order_idx) {
 		ModelAndView mv = new ModelAndView("product/order_success");
+
+		List<OrderVO> order = shopservice.getOrderSuccessPage(order_idx);
+		if (order != null) {
+			mv.addObject("order_addr", order.get(0).getAddr_addr());
+			mv.addObject("order_phone", order.get(0).getAddr_phone());
+			mv.addObject("order", order);
+		}
+
 		int result = shopservice.getOrderSuccess(order_idx);
 
 		int result1 = shopservice.orderupdate1(order_idx);
 		System.out.println(result);
 		System.out.println(result1);
-		
+
 		System.out.println(result);
-		if (result > 0 && result1 >0) {
+		if (result > 0 && result1 > 0) {
 			return mv;
 		}
 

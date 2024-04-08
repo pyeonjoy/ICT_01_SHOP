@@ -26,7 +26,7 @@ th {
 		for (var i = 0; i < f.elements.length; i++) {
 			if (f.elements[i].value == "") {
 				if (i == 3) continue;
-				alert(f.elements[i].name + "를 입력하세요");
+				alert("이름을 입력하세요");
 				f.elements[i].focus();
 				return;//수행 중단
 			}

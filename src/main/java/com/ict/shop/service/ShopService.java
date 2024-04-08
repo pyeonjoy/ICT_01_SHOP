@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
@@ -25,8 +24,8 @@ public interface ShopService {
 	UserVO find_pwd(UserVO uvo);
 
 	int reset_pwd(UserVO uvo);
-  
-  int getShop_Insert_addr(UserVO vo);
+
+	int getShop_Insert_addr(UserVO vo);
 
 	// 마이페이지 =========================================================
 	// mypage_addr
@@ -90,29 +89,24 @@ public interface ShopService {
 	List<OrderVO> orderaddrproduct(OrderVO ovo);
 
 	int getaddrchecked(AddrVO avo);
-	int getOrderSuccess(String order_idx);
-	//프로덕트=======================================================
-		 List<ProductVO> getShopList(ProductVO pvo)throws Exception;
-		    
-		    ProductVO getShopDetail(String product_idx)throws Exception;
-		    
-		    CartListVO getCartChk(String user_idx, String product_idx);
-		    
-		    int cartInsert(ProductVO productVO)throws Exception;
-		    
-		    int cartUpdate(ProductVO productVO)throws Exception;
-		    
-		    int cartEdit(CartListVO cartVO)throws Exception;
-		    
-		    int cartDelete(String cartlist_idx)throws Exception;
-		    
-		    int productInsert(ProductVO productVO)throws Exception;
-		    
-		    // Heart 관련 기능
-		    
-		    int getRemoveHeart(String product_idx, String user_idx, String heart_idx) ;
-		    
-		    int getAddHeart(String product_idx, String user_idx) ;
 
+	int getOrderSuccess(String order_idx);
+
+	// 프로덕트=======================================================	    
+	int getRemoveHeart(String product_idx, String user_idx, String heart_idx) ;
+		    
+	int getAddHeart(String product_idx, String user_idx) ;
+
+	List<ProductVO> getShopList(ProductVO pvo) throws Exception;
+
+	List<ProductVO> getShopListbalm(ProductVO pvo);
+
+	ProductVO getShopDetail(String product_idx) throws Exception;
+
+	CartListVO getCartChk(String user_idx, String product_idx);
+
+	int cartUpdate(CartListVO cvo);
+
+	int ProductAddCart(String product_idx, String user_idx, String product_price);
 
 }

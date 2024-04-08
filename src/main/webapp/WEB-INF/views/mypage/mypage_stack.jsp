@@ -30,7 +30,7 @@
 		<div class="mypage_stack_main">
 			<div class="profile">
 				<span>${user_name} 님
-					안녕하세요</span><br>
+					안녕하세요</span>
 			</div>
 
 			<div class="points">

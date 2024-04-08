@@ -25,6 +25,10 @@ function board_go() {
 function mypage_firstchk() {
 	location.href="mypage_firstchk.do";
 }
+function not_connect() {
+	alert("준비중입니다.");
+}
+
 </script>
 
 </head>
@@ -35,25 +39,25 @@ function mypage_firstchk() {
 				<a href="main.do">perfume</a>
 			</p>
 			<ul class="menu">
-				<li><a class="menu_tilte" href="product_list.do">PERFUME</a>
+				<li><a class="menu_tilte">PERFUME</a>
 					<ul class="submenu">
-						<li>Perfume</li>
-						<li>Perfume balm</li>
+						<li><a href="product_list.do">Perfume</a></li>
+						<li><a href="product_balm.do">Perfume balm</a></li>
 						
 					</ul></li>
 
-				<li><a class="menu_tilte" href="product_list.do">HAND</a>
+				<li><a class="menu_tilte" onclick="not_connect()">HAND</a>
 					<ul class="submenu">
-						<li>Hand Cream</li>
+<!-- 						<li>Hand Cream</li>
 						<li>Soap</li>
-						<li>Hand sanitizer</li>
+						<li>Hand sanitizer</li> -->
 					</ul></li>
 
-				<li><a class="menu_tilte" href="product_list.do">LIP</a>
+				<li><a class="menu_tilte" onclick="not_connect()">LIP</a>
 					<ul class="submenu">
-						<li>BODY</li>
+<!-- 						<li>BODY</li>
 						<li>Shower Re body</li>
-						<li>Perfume De Body</li>
+						<li>Perfume De Body</li> -->
 					</ul></li>
 
 				<li><a class="menu_tilte" onclick="board_go()">Candle</a></li>

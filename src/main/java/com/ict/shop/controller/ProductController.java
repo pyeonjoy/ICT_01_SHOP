@@ -2,6 +2,7 @@ package com.ict.shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.shop.dao.vo.CartListVO;
@@ -31,9 +33,26 @@ public class ProductController {
 
 //product=================================================================================================================================================================
 
+	// product detail
 	@GetMapping("product_detail.do") // 상품 상세페이지
-	public ModelAndView Product_Detail() {
-		return new ModelAndView("product/product_detail");
+	public ModelAndView getProductDatailInfo(HttpServletRequest request,
+			@RequestParam("product_idx") String product_idx) {
+		try {
+			ModelAndView mv = new ModelAndView("product/product_detail");
+			HttpSession session = request.getSession();
+			UserVO uvo = (UserVO) session.getAttribute("uvo");
+
+			ProductVO pvo = shopService.productDetailInfo(product_idx);
+			List<ProductVO> pvoList = shopService.productDetailList();
+			
+			mv.addObject("pvoList", pvoList);
+			mv.addObject("pvo", pvo);
+			return mv;
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+
 	}
 
 	@GetMapping("product_list.do") // 상품리스트 페이지
@@ -43,6 +62,7 @@ public class ProductController {
 		mv.addObject("shop_list", shop_list);
 		return mv;
 	}
+
 	@GetMapping("shop_detail.do")
 	public ModelAndView getShopDetail(String product_idx) {
 		try {
@@ -104,7 +124,6 @@ public class ProductController {
 			} else if (loginChk.equals("ok")) {
 				ModelAndView mv = new ModelAndView("shop/cart_list");
 
-				
 				UserVO userVO = (UserVO) session.getAttribute("userVO");
 				String user_idx = userVO.getUser_idx();
 
@@ -150,8 +169,8 @@ public class ProductController {
 
 	@GetMapping("shop_product_insertForm.do")
 	public ModelAndView getProductInsertForm() {
-	    ModelAndView modelAndView = new ModelAndView("shop/product_insertForm");
-	    modelAndView.addObject("productVO", new ProductVO()); // 폼 데이터를 바인딩할 빈 ProductVO 객체를 모델에 추가합니다.
-	    return modelAndView;
+		ModelAndView modelAndView = new ModelAndView("shop/product_insertForm");
+		modelAndView.addObject("productVO", new ProductVO()); // 폼 데이터를 바인딩할 빈 ProductVO 객체를 모델에 추가합니다.
+		return modelAndView;
 	}
 }

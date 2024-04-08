@@ -129,6 +129,13 @@ public interface ShopService {
 
 			List<OrderVO> getOrderSuccessPage(String order_idx);
 
+			// product_detail
+			int productDetailCart(String product_idx, String user_idx) throws Exception;
+
+			ProductVO productDetailInfo(String product_idx) throws Exception;
+
+			List<ProductVO> productDetailList() throws Exception;
+
 
 
 }

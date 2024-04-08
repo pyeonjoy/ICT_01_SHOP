@@ -68,6 +68,7 @@ public class ShopServiceImpl implements ShopService {
 	public String getShopIdChk(String user_id) {
 		return ldao.getShopIdChk(user_id);
 	}
+
 	@Override
 	public int getShop_Insert_addr(UserVO vo) {
 		return ldao.getShop_Insert_addr(vo);
@@ -91,17 +92,15 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public List<OrderVO> getOrderList(String user_idx) {
-		
+
 		return mdao.getOrderList(user_idx);
 	}
-	
-	
-	 @Override 
-	 public int getDeliveryStatus(List<OrderVO> ovo) {
-		 return mdao.getDeliveryStatus(ovo); 
-	 }
-	
-	
+
+	@Override
+	public int getDeliveryStatus(List<OrderVO> ovo) {
+		return mdao.getDeliveryStatus(ovo);
+	}
+
 	@Override
 	public List<OrderVO> getOrderList2(String user_idx) {
 		return mdao.getOrderList2(user_idx);
@@ -177,28 +176,28 @@ public class ShopServiceImpl implements ShopService {
 
 		return mdao.getCartListAdd(ovo);
 	}
-	
 
 //order============================================================================================
 	@Override
 	public int orderupdate1(String order_idx) {
 		return odao.orderupdate1(order_idx);
 	}
-	
+
 	@Override
 	public int orderupdate2(String order_idx) {
 		return mdao.orderupdate2(order_idx);
 	}
-	
+
 	@Override
 	public int orderupdate3(String order_idx) {
 		return mdao.orderupdate3(order_idx);
 	}
-	
+
 	@Override
 	public int orderupdate4(String order_idx) {
 		return mdao.orderupdate4(order_idx);
 	}
+
 	@Override
 	public List<CartListVO> getCartList(String user_idx) {
 		return odao.getCartList(user_idx);
@@ -253,81 +252,93 @@ public class ShopServiceImpl implements ShopService {
 			return -1; // 실패
 		}
 	}
-	
+
 	@Override
 	public int getOrderSuccess(String order_idx) {
 		return odao.getOrderSuccess(order_idx);
 	}
-	
+
 	@Override
 	public List<OrderVO> getOrderSuccessPage(String order_idx) {
 		return odao.getOrderSuccessPage(order_idx);
 	}
-	
-	
-	//product
-	 
 
-    @Override
-    public List<ProductVO> getShopList(ProductVO pvo)throws Exception {
-        return pdao.getShopList(pvo);
-    }
+	// product
 
-    @Override
-    public ProductVO getShopDetail(String product_idx)throws Exception {
-        return pdao.getShopDetail(product_idx);
-    }
+	@Override
+	public List<ProductVO> getShopList(ProductVO pvo) throws Exception {
+		return pdao.getShopList(pvo);
+	}
 
-    @Override
-    public CartListVO getCartChk(String user_idx, String product_idx) {
-        return pdao.getCartChk(user_idx, product_idx);
-    }
+	@Override
+	public ProductVO getShopDetail(String product_idx) throws Exception {
+		return pdao.getShopDetail(product_idx);
+	}
 
-    @Override
-    public int cartInsert(ProductVO productVO) throws Exception{
-        return pdao.cartInsert(productVO);
-    }
+	@Override
+	public CartListVO getCartChk(String user_idx, String product_idx) {
+		return pdao.getCartChk(user_idx, product_idx);
+	}
 
-    @Override
-    public int cartUpdate(ProductVO productVO) throws Exception{
-        return pdao.cartUpdate(productVO);
-    }
+	@Override
+	public int cartInsert(ProductVO productVO) throws Exception {
+		return pdao.cartInsert(productVO);
+	}
 
-    @Override
-    public int cartEdit(CartListVO cartVO) throws Exception{
-        return pdao.cartEdit(cartVO);
-    }
+	@Override
+	public int cartUpdate(ProductVO productVO) throws Exception {
+		return pdao.cartUpdate(productVO);
+	}
 
-    @Override
-    public int cartDelete(String cartlist_idx) throws Exception{
-        return pdao.cartDelete(cartlist_idx);
-    }
+	@Override
+	public int cartEdit(CartListVO cartVO) throws Exception {
+		return pdao.cartEdit(cartVO);
+	}
 
-    @Override
-    public int productInsert(ProductVO productVO) throws Exception{
-        return pdao.productInsert(productVO);
-    }
+	@Override
+	public int cartDelete(String cartlist_idx) throws Exception {
+		return pdao.cartDelete(cartlist_idx);
+	}
 
-    @Override
-    public int add_to_heart(String user_idx, String product_idx) throws Exception{
-        return pdao.add_to_heart(user_idx, product_idx);
-    }
+	@Override
+	public int productInsert(ProductVO productVO) throws Exception {
+		return pdao.productInsert(productVO);
+	}
 
-    @Override
-    public int check_heart_item(String user_idx, String product_idx) throws Exception{
-        return pdao.check_heart_item(user_idx, product_idx);
-    }
+	@Override
+	public int add_to_heart(String user_idx, String product_idx) throws Exception {
+		return pdao.add_to_heart(user_idx, product_idx);
+	}
 
-    @Override
-    public List<HeartVO> get_heart_items(String user_idx) throws Exception{
-        return pdao.get_heart_items(user_idx);
-    }
+	@Override
+	public int check_heart_item(String user_idx, String product_idx) throws Exception {
+		return pdao.check_heart_item(user_idx, product_idx);
+	}
 
-    @Override
-    public int remove_from_heart(String user_idx, String product_idx) throws Exception{
-        return pdao.remove_from_heart(user_idx, product_idx);
-    }
+	@Override
+	public List<HeartVO> get_heart_items(String user_idx) throws Exception {
+		return pdao.get_heart_items(user_idx);
+	}
 
-	
+	@Override
+	public int remove_from_heart(String user_idx, String product_idx) throws Exception {
+		return pdao.remove_from_heart(user_idx, product_idx);
+	}
+
+	// product detail
+	@Override
+	public int productDetailCart(String product_idx, String user_idx) throws Exception {
+		return pdao.productDetailCart(product_idx, user_idx);
+	}
+
+	@Override
+	public List<ProductVO> productDetailList() throws Exception {
+		return pdao.productDetailList();
+	}
+
+	@Override
+	public ProductVO productDetailInfo(String product_idx) throws Exception {
+		return pdao.productDetailInfo(product_idx);
+	}
 
 }

@@ -2,8 +2,26 @@ package com.ict.shop.dao.vo;
 
 
 public class ProductVO {
-	private String product_idx, user_idx, product_name, product_price, product_content, product_detail, product_img,
-			user_name, user_phone, user_addr;
+	private String product_idx, user_idx, product_name, product_price, product_content, product_detail, product_img, product_category,
+			user_name, user_phone, user_addr, product_count;
+
+	
+	
+	public String getProduct_count() {
+		return product_count;
+	}
+
+	public void setProduct_count(String product_count) {
+		this.product_count = product_count;
+	}
+
+	public String getProduct_category() {
+		return product_category;
+	}
+
+	public void setProduct_category(String product_category) {
+		this.product_category = product_category;
+	}
 
 	public String getProduct_idx() {
 		return product_idx;

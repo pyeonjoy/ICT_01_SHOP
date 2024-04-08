@@ -83,13 +83,31 @@ public class MypageDAO {
 		return null;
 	}
 	
-	public int getUpdateHeartStatus(OrderVO ovo) {
+	public int getRemoveHeart(String product_idx, String user_idx, String heart_idx) {
 		try {
-			return sqlSessionTemplate.update("mypage.Mypage_Update_Heart_Status",ovo);			
+	        Map<String, String> params = new HashMap<>();
+	        params.put("user_idx", user_idx);
+	        params.put("product_idx", product_idx);
+	        params.put("heart_idx", heart_idx);
+	        return sqlSessionTemplate.update("mypage.MypageRemoveHeart", params);          
+	    } catch (Exception e) {
+	        System.out.println(e);
+	    }
+	    return -1;
+
+	}
+	
+	public int getAddHeart(String product_idx, String user_idx) {
+		try {
+			Map<String, String> params = new HashMap<>();
+			params.put("user_idx", user_idx);
+			params.put("product_idx", product_idx);
+			return sqlSessionTemplate.insert("mypage.MypageAddHeart", params);          
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return -1;
+		
 	}
 	
 	public int getCartListAdd(OrderVO ovo) {

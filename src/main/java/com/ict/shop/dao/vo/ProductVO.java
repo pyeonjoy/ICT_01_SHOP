@@ -3,7 +3,7 @@ package com.ict.shop.dao.vo;
 
 public class ProductVO {
 	private String product_idx, user_idx, product_name, product_price, product_content, product_detail, product_img, product_category,
-			user_name, user_phone, user_addr, product_count;
+			user_name, user_phone, user_addr, product_count,product_number;
 
 	
 	
@@ -21,7 +21,7 @@ public class ProductVO {
 
 	public void setProduct_category(String product_category) {
 		this.product_category = product_category;
-
+	}
 	public String getProduct_number() {
 		return product_number;
 	}

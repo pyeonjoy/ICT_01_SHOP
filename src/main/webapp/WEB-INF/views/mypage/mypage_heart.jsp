@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
@@ -22,55 +26,40 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_heart.css" rel="stylesheet" />
-<script type="text/javascript">
-	function product_detail_go(f) {
-		location.href = "product_detail.do";
-		f.submit();
-
-	}
-</script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <script type="text/javascript">
 
 	$(document).ready(function() {
-		$('.mypage_heart_cart').click(function() {
-			alert('상품이 장바구니에 추가되었습니다.');
-			const product_idx = "${product_idx}";
-			location.href = "heart_cartlist_ok.do?product_idx=" + product_idx;
-		});
-/* 
-		$('.mypage_heart_heart').click(function() {
-
-			var currentSrc = $(this).attr('src');
-
-			if (currentSrc === 'resources/image/heart_01.png') {
-				$(this).attr('src', 'resources/image/heart_02.png');
-			} else {
-				$(this).attr('src', 'resources/image/heart_01.png');
-				alert('관심상품에서 해제되었습니다.');
-				
-			}
-		}); */
+	        function addToCart(product_idx,product_price) {
+	            $.ajax({
+	                url: "product_list_add_cart.do",
+	                method: "post",
+	                data: { product_idx: product_idx, product_price: product_price},
+	                dataType: "text",
+	                success: function(data) {
+	                alert("장바구니에 정상적으로 추가되었습니다.");
+	                },
+	                error: function() {
+	                alert("추가불가능~");
+	               	 }
+	            });
+	        }
+	        $(".product_list_cart_button").click(function() {
+	        	 let product_idx = $(this).siblings(".product_idx").val();
+	             let product_price = $(this).siblings(".product_price").val();
+	            addToCart(product_idx,product_price);
+	        });
 		
-		$(function() {
 			$('.mypage_heart_heart').click(function() {
-		        let $heart = $(this);
-		        /* let currentSrc = $heart.attr('src'); */
-		        let $img = $heart.find('.mypage_heart_img');
-    			let currentSrc = $img.attr('src');
-		        let product_idx = $heart.data('product-idx');
-		        let user_idx = $heart.data('user-idx');
-		        let heart_idx = $heart.data('heart-idx');
-		        
-		        if (currentSrc === 'resources/image/heart_01.png') {
-		            $img.attr('src', 'resources/image/heart_02.png');
-		            addHeart(product_idx, user_idx, heart_idx);
-		        } else {
-		            $img.attr('src', 'resources/image/heart_01.png');
+		        	let $heart = $(this);
+		        	let product_idx = $heart.data('product-idx');
+		        	let user_idx = $heart.data('user-idx');
+		        	let heart_idx = $heart.data('heart-idx');
+		        	
 		            alert('관심상품에서 해제되었습니다.'); 
 		            removeHeart(product_idx, user_idx, heart_idx);
-		        }
+
 		    });
 
 		    function removeHeart(product_idx, user_idx, heart_idx) {
@@ -88,24 +77,8 @@
 		        });
 		    }
 
-		    function addHeart(product_idx, user_idx, heart_idx) {
-		        $.ajax({
-		            url: "addHeart.do",
-		            type: "POST",
-		            data: { product_idx: product_idx, user_idx: user_idx, heart_idx: heart_idx },
-		            dataType: "text" ,
-		            success: function(data) {
-		                alert('추가성공');
-		                document.location.reload(true);
-		            },
-		            error: function() {
-		                alert('에러');
-		            }
-		        });
-		    }
+		}); 
 
-		});
-	});
 </script>
 </head>
 <body>
@@ -130,26 +103,27 @@
 							<c:forEach var="k" items="${vo_heart}" varStatus="vs">
 
 								<div class="mypage_heart_one">
-									<div class="mypage_heart_box"
-										onclick="product_detail_go(this.form)">
-										<img alt="resources/image/hand1.jpeg"
-											src="resources/image/hand1.jpeg"<%-- ${vo_heart.product_img} --%>>
+									<div class="mypage_heart_box">
+										<a href="product_detail.do?product_idx=${k.product_idx}">
+										<img alt="resources/image/hand1.jpeg" src="resources/image/${k.product_img}"></a>
 									</div>
 									<div class="mypage_heart_bottom">
-										<div class="mypage_heart_cart">
-											<img src="resources/image/cart2.png">
+									<div class="mypage_heart_bottom_first">
+										 <div class="mypage_heart_cart">
+										<!-- 	<img src="resources/image/cart2.png"> -->
+										<img src="${path}/resources/image/cart2.png" class="product_list_cart_button">
+										<input type="hidden" class="product_idx" value="${k.product_idx}">
+										<input type="hidden" class="product_price" value="${k.product_price}">
 										</div>
 										<div class="mypage_heart_heart" data-product-idx="${k.product_idx }" data-user-idx="${k.user_idx}" data-heart-idx="${k.heart_idx }">
 											<img class="mypage_heart_img"
 												src="resources/image/heart_02.png" >
 										</div>
-										<div class="mypage_heart_text"
-											onclick="product_detail_go(this.form)">
-											<p>${k.product_name}</p>
-											<p>
-												<small>${k.product_detail}</small>
-											</p>
-											<p>${k.product_price}</p>
+											<a href="product_detail.do?product_idx=${k.product_idx}">${k.product_name}</a>
+										</div>
+										<div class="mypage_heart_text">
+											<p style="font-size: 12px; margin-top: 5px;">${k.product_detail}</p>
+											<p><fmt:formatNumber value="${k.product_price}" pattern="#,###원"></fmt:formatNumber></p>
 										</div>
 									</div>
 								</div>

@@ -35,7 +35,7 @@
 							<!-- 블럭 시작 -->
 							<div class="left" style="float: left;">
 								<img alt="resources/image/hand1.jpeg"
-									src="resources/image/hand1.jpeg" style="border-radius: 10%;">
+									src="resources/image/${order.product_img }" style="border-radius: 10%;">
 							</div>
 							<div class="right" style="float: left;">
 								<div class="mypage_order_text">

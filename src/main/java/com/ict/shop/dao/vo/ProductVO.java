@@ -3,10 +3,18 @@ package com.ict.shop.dao.vo;
 
 public class ProductVO {
 	private String product_idx, user_idx, product_name, product_price, product_content, product_detail, product_img, product_category,
-			user_name, user_phone, user_addr, product_count;
+			user_name, user_phone, user_addr, product_count,product_number, heart_idx;
 
 	
 	
+	public String getHeart_idx() {
+		return heart_idx;
+	}
+
+	public void setHeart_idx(String heart_idx) {
+		this.heart_idx = heart_idx;
+	}
+
 	public String getProduct_count() {
 		return product_count;
 	}
@@ -21,7 +29,7 @@ public class ProductVO {
 
 	public void setProduct_category(String product_category) {
 		this.product_category = product_category;
-
+	}
 	public String getProduct_number() {
 		return product_number;
 	}

@@ -24,7 +24,7 @@
 	<div class="order_pay_header">
 		<%@include file="../main/header.jsp"%>
 	</div>
-	<div class="order_pay_wrap">
+	<div class="order_pay_wrap" style="height=5000px;">
 		<h2>결제 확인</h2>
 		<div class="order_pay_stroke"></div>
 		<div class="order_pay_one">
@@ -84,29 +84,27 @@
 				<p>배송비</p>
 				<h3>총 주문 금액</h3>
 			</div>
-    <c:forEach var="k" items="${vo}" varStatus="vs">
+		<div class="order_pay_right">
+		<c:set var="totalOrderPrice" value="0" />
+			<c:forEach var="k" items="${vo}">
+			    <c:set var="totalPrice" value="${k.product_price * k.order_count}" />
+			    <c:set var="totalOrderPrice" value="${totalOrderPrice + totalPrice}" />
+			</c:forEach>
+			
 			<div class="order_pay_right">
-				  <c:set var="totalPrice" value="0" />
-        <c:set var="totalPrice" value="${totalPrice + (k.product_price * k.order_count)}" />
-        <p><fmt:formatNumber value="${totalPrice}" pattern="#,##0" />원</p>
-        <p>3,000원</p>
-			    <tr>
-			        <td colspan="3">
-			            <h2><fmt:formatNumber value="${totalPrice+3000}" pattern="#,##0" />원</h2>
-			        </td>
-			    </tr>
-		</div>
-			<div class="order_pay_btn2_p">
-				<button class="order_pay_btn2"
-					onclick="location.href='order_success.do?order_idx=${k.order_idx}'">
-					<h2>결제하기</h2>
-				</button>
+			    <h2><fmt:formatNumber value="${totalOrderPrice}" pattern="#,##0" />원</h2>
+			    <p>3,000원</p>
+			    <h2><fmt:formatNumber value="${totalOrderPrice + 3000}" pattern="#,##0" />원</h2>
 			</div>
-    </c:forEach>
+			<div class="order_pay_btn2_p">
+			    <button class="order_pay_btn2" onclick="location.href='order_success.do?order_idx=${vo[0].order_idx}'">
+			        <h2>결제하기</h2>
+			    </button>
+			</div>
+	</div>
 		</div>
-		<div class="order_pay_footer">
+		<div class="order_pay_footer" style="width: auto;">
 			<%@include file="../main/footer.jsp"%>
 		</div>
-	</div>
 </body>
 </html>

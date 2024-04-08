@@ -15,14 +15,6 @@
 	function delivery_go() {
 		location.href = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=운송장번호들어갈곳 "
 	}
-	function reorder_go() {
-		location.href = "order_pay.do"
-	}
-	function confirm_go() {
-		location.href = "confirm.do"
-	}
-	
-
 </script>
 </head>
 <body>
@@ -41,40 +33,37 @@
 					<c:forEach var="order" items="${ovo}" varStatus="vs">
 						<div class="mypage_order">
 							<!-- 블럭 시작 -->
-							<div class="left">
-							</div>
-							<div class="right">
-								<div class="mypage_order_text">
-									<p class="mypage_order_status" style="float:right;">
+							<div class="left" style="float: left;">
 								<img alt="resources/image/hand1.jpeg"
-									src="resources/image/hand1.jpeg">
+									src="resources/image/hand1.jpeg" style="border-radius: 10%;">
+							</div>
+							<div class="right" style="float: left;">
+								<div class="mypage_order_text">
+									<p class="mypage_order_status" style="float:right; font-weight: ;">
 												<c:if test="${order.order_status eq '1'}">
-												    <p>배송준비중</p>
+												    <p  style="font-weight: bold; font-size:24px;">배송준비중</p>
 												</c:if>
 												<c:if test="${order.order_status eq '2'}">
-												    <p>배송중</p>
+												    <p style="font-weight: bold; font-size:24px;">배송중</p>
 												</c:if>
 											 	<c:if test="${order.order_status eq '3'}">
-												    <p>배송완료</p>
+												    <p style="font-weight: bold; font-size:24px;">배송완료</p>
 												</c:if> 
 									</p> 
 									<p>
-										<fmt:formatNumber value="${order.product_price}"
-											pattern="#,###" />
-										${order.order_idx}
+										${order.order_date} 주문
 									</p>
-									<h3>${order.product_name}</h3>
-									<p>${order.product_content}</p>
-									<p class="mypage_order_text_pay" style="font-size: 24px;">
+									<p>${order.product_name} </p>
+									<p class="mypage_order_text_pay" style="font-size: 24px; font-weight: bold;">
 										<fmt:formatNumber value="${order.product_price}"
-											pattern="#,###" /> 
+											pattern="#,###" /> 원, ${order.order_count} 개
 									</p>
 
 								</div>
 								<div>
-									<button class="mypage_order_btn1" onclick="confirm_go()">구매확정</button>
+									<button class="mypage_order_btn1" onclick="location.href='confirm.do?order_idx=${order.order_idx}'">구매확정</button>
 									<button class="mypage_order_btn1" onclick="delivery_go()">배송조회</button>
-									<button class="mypage_order_btn1" onclick="reorder_go()">재구매</button>
+									<button class="mypage_order_btn1" onclick="location.href='cart_list.do?order_idx=${order.order_idx}'">장바구니 담기</button>
 								</div>
 							</div>
 						</div>

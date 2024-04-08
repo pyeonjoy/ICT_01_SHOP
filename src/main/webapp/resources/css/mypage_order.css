@@ -17,7 +17,7 @@
 }
 
 .mypage_order {
-    width: auto;
+    width: 832px;
     border-bottom: 1px solid gray;
     display: flex;
 }
@@ -46,7 +46,7 @@
 .mypage_order_btn1 {
     font-size: 10px;
     color: black;
-    width: 240px;
+    width: 180px;
     height: 30px;
     margin: 0;
     text-align: center;

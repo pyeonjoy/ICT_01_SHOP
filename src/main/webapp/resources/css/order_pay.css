@@ -60,7 +60,9 @@
 	height: 60px;
 	text-align: center;
 	line-height: 15px;
-	position: static;
+	position: relative;
+    top: 32px;
+    left: -21px;
 }
 
 .order_pay_footer {

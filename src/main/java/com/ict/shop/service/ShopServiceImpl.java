@@ -67,6 +67,7 @@ public class ShopServiceImpl implements ShopService {
 	public String getShopIdChk(String user_id) {
 		return ldao.getShopIdChk(user_id);
 	}
+
 	@Override
 	public int getShop_Insert_addr(UserVO vo) {
 		return ldao.getShop_Insert_addr(vo);
@@ -90,7 +91,18 @@ public class ShopServiceImpl implements ShopService {
 
 	@Override
 	public List<OrderVO> getOrderList(String user_idx) {
+
 		return mdao.getOrderList(user_idx);
+	}
+
+	@Override
+	public int getDeliveryStatus(List<OrderVO> ovo) {
+		return mdao.getDeliveryStatus(ovo);
+	}
+
+	@Override
+	public List<OrderVO> getOrderList2(String user_idx) {
+		return mdao.getOrderList2(user_idx);
 	}
 
 	// mypage_firstchk
@@ -160,6 +172,26 @@ public class ShopServiceImpl implements ShopService {
 
 //order============================================================================================
 	@Override
+	public int orderupdate1(String order_idx) {
+		return odao.orderupdate1(order_idx);
+	}
+
+	@Override
+	public int orderupdate2(String order_idx) {
+		return mdao.orderupdate2(order_idx);
+	}
+
+	@Override
+	public int orderupdate3(String order_idx) {
+		return mdao.orderupdate3(order_idx);
+	}
+
+	@Override
+	public int orderupdate4(String order_idx) {
+		return mdao.orderupdate4(order_idx);
+	}
+
+	@Override
 	public List<CartListVO> getCartList(String user_idx) {
 		return odao.getCartList(user_idx);
 	}
@@ -213,11 +245,34 @@ public class ShopServiceImpl implements ShopService {
 			return -1; // 실패
 		}
 	}
-	
+
 	@Override
 	public int getOrderSuccess(String order_idx) {
 		return odao.getOrderSuccess(order_idx);
 	}
+
+
+	@Override
+	public List<OrderVO> getOrderSuccessPage(String order_idx) {
+		return odao.getOrderSuccessPage(order_idx);
+	}
+
+	// product detail
+	@Override
+	public int productDetailCart(String product_idx, String user_idx) throws Exception {
+		return pdao.productDetailCart(product_idx, user_idx);
+	}
+
+	@Override
+	public List<ProductVO> productDetailList() throws Exception {
+		return pdao.productDetailList();
+	}
+
+	@Override
+	public ProductVO productDetailInfo(String product_idx) throws Exception {
+		return pdao.productDetailInfo(product_idx);
+	}
+
 	
 	
 	//product
@@ -259,6 +314,5 @@ public class ShopServiceImpl implements ShopService {
 	public int ProductAddCart(String product_idx, String user_idx,String product_price) {
 		return pdao.ProductAddCart(product_idx,user_idx,product_price);
 	}
-
 
 }

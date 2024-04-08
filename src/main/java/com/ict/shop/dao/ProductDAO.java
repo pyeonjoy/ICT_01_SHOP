@@ -1,6 +1,5 @@
 package com.ict.shop.dao;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +13,39 @@ import com.ict.shop.dao.vo.ProductVO;
 
 @Repository
 public class ProductDAO {
-
-    @Autowired
-    private SqlSessionTemplate sqlSessionTemplate;
+	@Autowired
+	private SqlSessionTemplate sqlSessionTemplate;
+  
+	// product_detail
+	public ProductVO productDetailInfo(String product_idx) {
+		try {
+			return sqlSessionTemplate.selectOne("product.detail_info", product_idx);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+	
+	public List<ProductVO> productDetailList() {
+		try {
+			return sqlSessionTemplate.selectList("product.detail_list");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
+	
+	public int productDetailCart(String product_idx, String user_idx) {
+		try {
+			Map<String, String> map = new HashMap<>();
+			map.put("user_idx", user_idx);
+			map.put("product_idx", product_idx);
+			return sqlSessionTemplate.insert("product.cart_go", map);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return 0;
+	}
     
     // product========================================================================
     // 향수만 보이게

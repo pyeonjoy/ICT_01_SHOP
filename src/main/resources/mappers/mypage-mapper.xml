@@ -105,6 +105,35 @@
 		select * from shop_product  
 		where product_idx = #{product_idx}
 	</select>
+	
+	<select id="getdeliveryStatus" parameterType="String" resultType="int">
+	     SELECT count(1) FROM shop_order WHERE (NOW() - #{order_regdate} = 3);
+	</select>
+	
+	
+	<update id="orderupdate1" parameterType="String">
+	update shop_order
+	set order_status = 1
+	where order_idx = #{order_idx} 
+	</update>	
+	
+	<update id="orderupdate2" parameterType="String">
+	update shop_order
+	set order_status = 2
+	where order_idx = #{order_idx} 
+	</update>
+	
+	<update id="orderupdate3" parameterType="String">
+	update shop_order
+	set order_status = 3
+	where order_idx = #{order_idx} 
+	</update>
+	<update id="orderupdate4" parameterType="String">
+	update shop_order
+	set order_status = 4
+	where order_idx = #{order_idx} 
+	</update>
+	
 	<select id="orderaddrproduct"  resultType="ovo"  parameterType="String">
 		SELECT *  from shop_order o
 			INNER join shop_user u on u.user_idx = o.user_idx
@@ -112,12 +141,36 @@
 			INNER join shop_product p on p.product_idx = o.product_idx
 			where o.order_idx=#{order_idx}
 	</select>
-    <select id="orderlist" resultType="map"> 
+	
+    <select id="orderlist" resultType="ovo"> 
     select * from shop_user u
      inner join shop_order o on u.user_idx = o.user_idx 
      inner join shop_product p on o.product_idx = p.product_idx 
-     where u.user_idx = #{user_idx} 
+     where u.user_idx = #{user_idx} and (o.order_status = 1 or o.order_status =2 or o.order_status =3)
      </select>
+     
+     <select id="orderlist2" resultType="ovo"> 
+    select * from shop_user u
+     inner join shop_order o on u.user_idx = o.user_idx 
+     inner join shop_product p on o.product_idx = p.product_idx 
+     where u.user_idx = #{user_idx} and o.order_status = 4
+     </select>
+     
+     <update id="deliveryStatus" parameterType="ovo">
+		UPDATE shop_order
+		SET order_status = 
+		    CASE 
+		        WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') > 3 THEN 4
+		        WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 3 THEN 3
+		        WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 2 THEN 2
+		        WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 1 THEN 1
+		        ELSE order_status
+		    END;
+     </update>
+<!--      <select id="deliveryStatus" parameterType="ovo" resultType="ovo">
+     	select * from shop_order where (now()-#{order_regdate} > 3);
+     </select> -->
+     
 <!-- mypage_pwdchk --> 	
 
 <!-- mypage_qna_update --> 	

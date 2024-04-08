@@ -58,7 +58,11 @@ public interface ShopService {
 	int getChangePwd(UserVO uvo);
 
 	List<OrderVO> getOrderList(String order_idx);
+	List<OrderVO> getOrderList2(String order_idx);
 
+	int getDeliveryStatus(List<OrderVO> ovo);
+	
+	
 	int getAddrEdit(AddrVO avo);
 
 	// mypage_addr+order_pay
@@ -67,7 +71,11 @@ public interface ShopService {
 	UserVO getMypage_Info(String user_id);
 
 	int Mypage_Info_Change(UserVO uvo);
-
+	
+	int orderupdate1(String order_idx);
+	int orderupdate2(String order_idx);
+	int orderupdate3(String order_idx);
+	int orderupdate4(String order_idx);
 	// 오더 ============================================================
 	// cart list
 	List<CartListVO> getCartList(String user_idx);
@@ -107,6 +115,17 @@ public interface ShopService {
 
 	int cartUpdate(CartListVO cvo);
 
+
+	List<OrderVO> getOrderSuccessPage(String order_idx);
+
+	// product_detail
+	int productDetailCart(String product_idx, String user_idx) throws Exception;
+
+	ProductVO productDetailInfo(String product_idx) throws Exception;
+
+	List<ProductVO> productDetailList() throws Exception;
+
 	int ProductAddCart(String product_idx, String user_idx, String product_price);
+
 
 }

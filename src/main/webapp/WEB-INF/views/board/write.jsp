@@ -8,18 +8,56 @@
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_addr_add.css" rel="stylesheet" />
 <style type="text/css">
+#bbs table {
+	width:800px;
+	margin:0 auto;
+	margin-top:20px;
+/* 	border: 1px solid black;
+	border-collapse: collapse; */
+	font-size: 14px;
+}
+
+input {
+  font-size: 15px;
+  color: #222222;
+  width: 300px;
+  border: none;
+  border-bottom: solid #aaaaaa 1px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+
+input::placeholder { color: #aaaaaa; }
+
 tr {
 	    text-align:center;
 	    padding:4px 10px;
-	    background-color: #F6F6F6;
+	    margin: 10px;
 	}
 	
 th {
 		width:120px;
 	    text-align:center;
 	    padding:4px 10px;
-	    background-color: #B2CCFF;
 	}
+input{
+margin: 10px;
+}
+	input[type="button"]{
+line-height: 20px;
+text-align: center;
+width: 100px;
+padding: 5px;
+}
+	input[type="reset"]{
+padding: 5px;
+line-height: 20px;
+text-align: center;
+width: 100px;
+}
 </style>
 <script type="text/javascript">
 	function board_write_ok(f) {
@@ -38,8 +76,9 @@ th {
 <body>
 <%@include file="../main/header.jsp"%>
 	<%@include file="../main/aside_mypage.jsp"%>
-	<form action="board_write_ok.do" method="post" enctype="multipart/form-data">
-		<table width="700">
+	<div id="bbs" align="center">
+	<form action="board_write_ok.do" method="post" enctype="multipart/form-data" align="center">
+		<table>
 		<tbody>
 			<tr>
 				<th>작성자</th>
@@ -71,6 +110,7 @@ th {
             </tbody>
 		</table>
 	</form>
+	</div>
 		<footer>
 		<%@include file="../main/footer.jsp"%>
 	</footer>

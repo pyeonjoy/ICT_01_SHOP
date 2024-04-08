@@ -129,6 +129,25 @@ public class OrderDAO {
 		}
 		return -1;
 	}
+	public int orderupdate1(String order_idx) {
+		try {
+			return sqlSessionTemplate.delete("mypage.orderupdate1",order_idx);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+	}
+	
+
+	// order_success
+	public List<OrderVO> getOrderSuccessPage(String order_idx) {
+		try {
+			return sqlSessionTemplate.selectList("order.odersuccess_page", order_idx);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+	}
 
 
 }

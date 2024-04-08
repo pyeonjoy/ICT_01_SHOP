@@ -42,6 +42,19 @@
 	<delete id="remove_from_heart" parameterType="Map">
 		DELETE FROM shop_heart WHERE user_idx = #{user_idx} AND product_idx = #{product_idx}
 	</delete>
+	
+	<!-- product_detail -->
+	<insert id="cart_go" parameterType="Map">
+		INSERT INTO shop_cartlist(user_idx, product_idx, cartlist_number, cartlist_count)
+		VALUES ( #{user_idx}, #{product_idx}, #{product_price}, #{product_count})
+	</insert>
+	<select id="detail_list" resultType="pvo">
+		select * from shop_product group by product_idx;
+	</select>
+	<select id="detail_info" parameterType="String" resultType="pvo">
+		select * from shop_product where product_idx = #{product_idx};
+	</select>
+	
 
 
 

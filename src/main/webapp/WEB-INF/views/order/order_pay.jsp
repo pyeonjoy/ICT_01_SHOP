@@ -24,9 +24,6 @@
 	<div class="order_pay_header">
 		<%@include file="../main/header.jsp"%>
 	</div>
-	<div class="order_pay_aside">
-		<%@include file="../main/aside_mypage.jsp"%>
-	</div>
 	<div class="order_pay_wrap">
 		<h2>결제 확인</h2>
 		<div class="order_pay_stroke"></div>
@@ -101,7 +98,7 @@
 		</div>
 			<div class="order_pay_btn2_p">
 				<button class="order_pay_btn2"
-					onclick="location.href='product/order_success.do?order_idx=${k.order_idx}'">
+					onclick="location.href='order_success.do?order_idx=${k.order_idx}'">
 					<h2>결제하기</h2>
 				</button>
 			</div>

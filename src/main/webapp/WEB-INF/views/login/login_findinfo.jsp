@@ -31,12 +31,12 @@
 		<table>
 			<tr>
 				<td>이름 </td> 
-				<td> <input class="login_findinfo_inputbox" type="text" name="user_name" placeholder="이름를 입력해 주세요" /></td>
+				<td> <input class="login_findinfo_inputbox" type="text" name="user_name" placeholder="이름를 입력해 주세요" autocomplete="off"/></td>
 				<td rowspan="2"><input class="login_findinfo_button" type="button" value="찾기" onclick="find_id(findid)" /></td>
 			</tr>
 			<tr>
 				<td>이메일 </td>
-				<td><input class="login_findinfo_inputbox" type="text" name="user_email" placeholder="이메일을 입력 해 주세요" /></td>
+				<td><input class="login_findinfo_inputbox" type="text" name="user_email" placeholder="이메일을 입력 해 주세요" autocomplete="off"/></td>
 			</tr>
 		</table>
 	</form>
@@ -49,12 +49,12 @@
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input class="login_findinfo_inputbox" type="text" name="user_id" placeholder="아이디를 입력해 주세요" /></td>
+				<td><input class="login_findinfo_inputbox" type="text" name="user_id" placeholder="아이디를 입력해 주세요"autocomplete="off" /></td>
 				<td rowspan="2"><input class="login_findinfo_button" type="button" value="찾기" onclick="find_pwd(findpwd)"/></td>
 			</tr>
 			<tr>
 				<td>이메일</td>
-				<td> <input class="login_findinfo_inputbox" type="text" name="user_email" placeholder="이메일을 입력 해 주세요" /></td>
+				<td> <input class="login_findinfo_inputbox" type="text" name="user_email" placeholder="이메일을 입력 해 주세요"autocomplete="off" /></td>
 			</tr>
 		</table>
 	</form>

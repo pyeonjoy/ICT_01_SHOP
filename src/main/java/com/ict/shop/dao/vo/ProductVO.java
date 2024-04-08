@@ -21,6 +21,14 @@ public class ProductVO {
 
 	public void setProduct_category(String product_category) {
 		this.product_category = product_category;
+
+	public String getProduct_number() {
+		return product_number;
+	}
+
+	public void setProduct_number(String product_number) {
+		this.product_number = product_number;
+
 	}
 
 	public String getProduct_idx() {

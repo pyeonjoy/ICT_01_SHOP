@@ -12,7 +12,6 @@ import com.ict.shop.dao.OrderDAO;
 import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
@@ -117,12 +116,6 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public List<OrderVO> getShopHeartList(String user_idx) {
 		return mdao.getShopHeartList(user_idx);
-	}
-
-	@Override
-	public int getUpdateHeartStatus(OrderVO ovo) {
-
-		return mdao.getUpdateHeartStatus(ovo);
 	}
 
 	// mypage_addr
@@ -258,71 +251,10 @@ public class ShopServiceImpl implements ShopService {
 		return odao.getOrderSuccess(order_idx);
 	}
 
+
 	@Override
 	public List<OrderVO> getOrderSuccessPage(String order_idx) {
 		return odao.getOrderSuccessPage(order_idx);
-	}
-
-	// product
-
-	@Override
-	public List<ProductVO> getShopList(ProductVO pvo) throws Exception {
-		return pdao.getShopList(pvo);
-	}
-
-	@Override
-	public ProductVO getShopDetail(String product_idx) throws Exception {
-		return pdao.getShopDetail(product_idx);
-	}
-
-	@Override
-	public CartListVO getCartChk(String user_idx, String product_idx) {
-		return pdao.getCartChk(user_idx, product_idx);
-	}
-
-	@Override
-	public int cartInsert(ProductVO productVO) throws Exception {
-		return pdao.cartInsert(productVO);
-	}
-
-	@Override
-	public int cartUpdate(ProductVO productVO) throws Exception {
-		return pdao.cartUpdate(productVO);
-	}
-
-	@Override
-	public int cartEdit(CartListVO cartVO) throws Exception {
-		return pdao.cartEdit(cartVO);
-	}
-
-	@Override
-	public int cartDelete(String cartlist_idx) throws Exception {
-		return pdao.cartDelete(cartlist_idx);
-	}
-
-	@Override
-	public int productInsert(ProductVO productVO) throws Exception {
-		return pdao.productInsert(productVO);
-	}
-
-	@Override
-	public int add_to_heart(String user_idx, String product_idx) throws Exception {
-		return pdao.add_to_heart(user_idx, product_idx);
-	}
-
-	@Override
-	public int check_heart_item(String user_idx, String product_idx) throws Exception {
-		return pdao.check_heart_item(user_idx, product_idx);
-	}
-
-	@Override
-	public List<HeartVO> get_heart_items(String user_idx) throws Exception {
-		return pdao.get_heart_items(user_idx);
-	}
-
-	@Override
-	public int remove_from_heart(String user_idx, String product_idx) throws Exception {
-		return pdao.remove_from_heart(user_idx, product_idx);
 	}
 
 	// product detail
@@ -339,6 +271,48 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public ProductVO productDetailInfo(String product_idx) throws Exception {
 		return pdao.productDetailInfo(product_idx);
+	}
+
+	
+	
+	//product
+	 
+
+    @Override
+    public List<ProductVO> getShopList(ProductVO pvo)throws Exception {
+        return pdao.getShopList(pvo);
+    }
+    @Override
+    public ProductVO getShopDetail(String product_idx)throws Exception {
+        return pdao.getShopDetail(product_idx);
+    }
+    @Override
+    public CartListVO getCartChk(String user_idx, String product_idx) {
+        return pdao.getCartChk(user_idx, product_idx);
+    }
+
+
+    @Override
+    public int cartUpdate(CartListVO cvo){
+        return pdao.cartUpdate(cvo);
+    }
+
+	@Override
+	public int getRemoveHeart(String product_idx, String user_idx, String heart_idx) {
+		return mdao.getRemoveHeart(product_idx, user_idx, heart_idx);
+	}
+	
+	@Override
+	public int getAddHeart(String product_idx, String user_idx) {
+		return mdao.getAddHeart(product_idx, user_idx);
+	}
+    
+	public List<ProductVO> getShopListbalm(ProductVO pvo) {
+		return pdao.getShopListbalm(pvo);
+	}
+	@Override
+	public int ProductAddCart(String product_idx, String user_idx,String product_price) {
+		return pdao.ProductAddCart(product_idx,user_idx,product_price);
 	}
 
 }

@@ -3,48 +3,42 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="product">
-
+	<!-- 향수만 보이게 -->
 	<select id="getShopList" parameterType="String" resultType="pvo">
-		select * from shop_product
+		select * from shop_product where product_category = 'perfume'
 	</select>
+	<!-- 비누만 보이게  -->
+	<select id="getShopListbalm" parameterType="String" resultType="pvo">
+		select * from shop_product where product_category = 'balm'
+	</select>
+	<!-- 상품 가격 불러오기 -->
+	<select id="get_price" parameterType="String" resultType="String">
+		select product_price from shop_product where product_idx = #{product_idx}
+	</select>
+	<!-- 장바구니 추가 1 -->
+	<insert id="add_cart" parameterType="Map">
+		insert into shop_cartlist(user_idx, product_idx, cartlist_number, cartlist_count)
+		values(#{user_idx}, #{product_idx}, #{product_price}, 1)
+	</insert>
+	<!-- 상품 디테일 화면 -->
 	<select id="getShopDetail" parameterType="String" resultType="pvo">
-		SELECT * FROM SHOP_PRODUCT WHERE product_idx = #{product_idx}
+		select * from shop_product where product_idx = #{product_idx}
 	</select>
+	<!-- 장바구니 이미 담겨있는지 확인 -->
 	<select id="getCartChk" parameterType="Map" resultType="cvo">
-		SELECT * FROM SHOP_CARTLIST WHERE user_idx = #{user_idx} AND product_idx = #{product_idx}
+		select * from shop_cartlist where user_idx = #{user_idx} and product_idx = #{product_idx}
 	</select>
-	<insert id="cartInsert" parameterType="cvo">
-		INSERT INTO SHOP_CARTLIST (product_idx, user_idx, product_name, product_price, cartlist_count)
-		VALUES (#{product_idx}, #{user_idx}, #{product_name}, #{product_price}, 1)
-	</insert>
-	<update id="cartUpdate" parameterType="cvo">
-		UPDATE SHOP_CARTLIST SET cartlist_count = cartlist_count + 1
-		WHERE user_idx = #{user_idx} AND product_idx = #{product_idx}
+	<!-- 장바구니 이미 담겨있으면 + 1 하기 -->
+	<update id="cartUpdate" parameterType="cvo"> 
+		update shop_cartlist set cartlist_count = cartlist_count + 1
+		where user_idx = #{user_idx} and product_idx =#{product_idx}
 	</update>
-	<select id="getCartList" parameterType="String" resultType="cvo">
-		SELECT * FROM SHOP_CARTLIST WHERE user_idx = #{user_idx}
-	</select>
-	<update id="cartEdit" parameterType="cvo">
-		UPDATE SHOP_CARTLIST SET cartlist_count = #{cartlist_count}
-		WHERE cartlist_idx = #{cartlist_idx}
-	</update>
-	<delete id="cartDelete" parameterType="String">
-		DELETE FROM SHOP_CARTLIST WHERE cartlist_idx = #{cartlist_idx}
-	</delete>
-	<insert id="productInsert" parameterType="pvo">
-		INSERT INTO SHOP_PRODUCT (category, product_name, product_price, product_content, product_detail, product_img)
-		VALUES (#{category}, #{product_name}, #{product_price}, #{product_content}, #{product_detail}, #{product_img})
-	</insert>
+	
 	<insert id="add_to_heart" parameterType="hvo">
 		INSERT INTO shop_heart (user_idx, product_idx)
 		VALUES (#{user_idx}, #{product_idx})
 	</insert>
-	<select id="check_heart_item" parameterType="Map" resultType="int">
-		SELECT COUNT(*) FROM shop_heart WHERE user_idx = #{user_idx} AND product_idx = #{product_idx}
-	</select>
-	<select id="get_heart_items" parameterType="String" resultType="hvo">
-		SELECT * FROM shop_heart WHERE user_idx = #{user_idx}
-	</select>
+	
 	<delete id="remove_from_heart" parameterType="Map">
 		DELETE FROM shop_heart WHERE user_idx = #{user_idx} AND product_idx = #{product_idx}
 	</delete>
@@ -61,5 +55,7 @@
 		select * from shop_product where product_idx = #{product_idx};
 	</select>
 	
+
+
 
 </mapper>

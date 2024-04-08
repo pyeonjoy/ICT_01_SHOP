@@ -1,21 +1,22 @@
 package com.ict.shop.controller;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+
 import com.ict.shop.dao.vo.HeartVO;
+import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.ShopService;
@@ -34,69 +35,55 @@ public class AjaxController {
 		return result;
 	}
 
-	@PostMapping("/add_to_heart_ajax")
+	@RequestMapping(value="removeHeart.do", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String addToHeartAjax(@RequestParam("user_idx") String user_idx,
-			@RequestParam("product_idx") String product_idx) {
-		try {
-			int result = shopservice.add_to_heart(user_idx, product_idx);
-			if (result == 1) {
-				return "success";
-			} else {
-				return "fail";
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			return "error";
-		}
-	}
+	public String getAjaxHeartRemove(@RequestParam("product_idx") String product_idx, HttpServletRequest request, @RequestParam("user_idx")String user_idx, @RequestParam("heart_idx")String heart_idx) {
+	        int result = shopservice.getRemoveHeart(product_idx, user_idx,heart_idx) ;
+	        HttpSession session = request.getSession();
+	        session.setAttribute("product_idx", product_idx);
+	        session.setAttribute("user_idx", user_idx);
+	        session.setAttribute("heart_idx", heart_idx);
+	       System.out.println(product_idx);
+	       System.out.println(user_idx);
+	       System.out.println(heart_idx);
 
-	@PostMapping("/check_heart_ajax")
-	@ResponseBody
-	public String checkHeartAjax(@RequestParam("user_idx") String user_idx,
-			@RequestParam("product_idx") String product_idx) {
-		try {
-			int result = shopservice.check_heart_item(user_idx, product_idx);
-			if (result > 0) {
-				return "exists";
-			} else {
-				return "noexists";
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			return "error";
-		}
-	}
-
-	@GetMapping("/getHeartItems")
-	public List<HeartVO> getHeartItems(@RequestParam String user_idx) {
-		try {
-			return shopservice.get_heart_items(user_idx);
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-	}
-
-	@PostMapping("/remove_from_heart_ajax")
-	@ResponseBody
-	public String removeFromHeartAjax(@RequestParam("user_idx") String user_idx,
-			@RequestParam("product_idx") String product_idx) {
-		try {
-			int result = shopservice.remove_from_heart(user_idx, product_idx);
-			if (result == 1) {
-				return "success";
-			} else {
-				return "fail";
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			return "error";
-		}
-	}
-
+	        return String.valueOf(result);
+	    }
 	
+	@RequestMapping(value="addHeart.do", produces = "text/plain; charset=utf-8")
+	@ResponseBody
+	public String getAjaxHeartAdd(@RequestParam("product_idx") String product_idx, HttpServletRequest request, @RequestParam("user_idx")String user_idx) {
+		int result = shopservice.getAddHeart(product_idx, user_idx) ;
+		HttpSession session = request.getSession();
+		session.setAttribute("product_idx", product_idx);
+		session.setAttribute("user_idx", user_idx);
+		System.out.println(product_idx);
+		System.out.println(user_idx);
+		
+		return String.valueOf(result);
+	}
 	
+	@RequestMapping(value="product_list_add_cart.do", produces="text/plain; charset=utf-8")
+	@ResponseBody
+	public String ProductAddCart(@ModelAttribute("product_idx")String product_idx,
+							  	 HttpServletRequest request,
+							  	 @ModelAttribute("product_price")String product_price) throws Exception {
+	    HttpSession session = request.getSession();
+	    UserVO uvo = (UserVO) session.getAttribute("uvo");
+	    String user_idx = uvo.getUser_idx();
+	    ProductVO pvo = shopservice.getShopDetail(product_idx);
+	    CartListVO cvo = shopservice.getCartChk(user_idx, pvo.getProduct_idx());
+	    if (cvo == null) {
+	    	int result = shopservice.ProductAddCart(product_idx,user_idx,product_price);
+	    	System.out.println("새롭게추가~");
+	    	return String.valueOf(result);
+		}else {
+			System.out.println("중복추가~");
+			int result = shopservice.cartUpdate(cvo);
+			return String.valueOf(result);
+		}
+
+	}
 	@PostMapping(value = "detail_cart_add.do", produces = "text/plain; charset=utf-8")
 	@ResponseBody
 	public ModelAndView productDetailCartAdd(@RequestParam("product_idx")String product_idx, HttpServletRequest request) {
@@ -115,4 +102,5 @@ public class AjaxController {
 		return null;
 
 	}
+
 }

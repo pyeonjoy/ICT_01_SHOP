@@ -3,22 +3,16 @@ package com.ict.shop.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
-
-
 
 import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
-
 import com.ict.shop.service.ShopService;
 
 @RestController
@@ -64,7 +58,7 @@ public class AjaxController {
 		System.out.println(user_idx);
 		
 		return String.valueOf(result);
-
+	}
 	
 	@RequestMapping(value="product_list_add_cart.do", produces="text/plain; charset=utf-8")
 	@ResponseBody

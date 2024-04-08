@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,8 +14,6 @@ import com.ict.shop.dao.vo.ProductVO;
 
 @Repository
 public class ProductDAO {
-
-    private static final Logger logger = LoggerFactory.getLogger(ProductDAO.class);
 
     @Autowired
     private SqlSessionTemplate sqlSessionTemplate;
@@ -58,6 +54,32 @@ public class ProductDAO {
 			System.out.println(e);
 		}
 		return -1;
+	}
+	public int getRemoveHeart(String product_idx, String user_idx, String heart_idx) {
+		try {
+	        Map<String, String> params = new HashMap<>();
+	        params.put("user_idx", user_idx);
+	        params.put("product_idx", product_idx);
+	        params.put("heart_idx", heart_idx);
+	        return sqlSessionTemplate.update("mypage.MypageRemoveHeart", params);          
+	    } catch (Exception e) {
+	        System.out.println(e);
+	    }
+	    return -1;
+
+	}
+	
+	public int getAddHeart(String product_idx, String user_idx) {
+		try {
+			Map<String, String> params = new HashMap<>();
+			params.put("user_idx", user_idx);
+			params.put("product_idx", product_idx);
+			return sqlSessionTemplate.insert("mypage.MypageAddHeart", params);          
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
+		
 	}
 
 }

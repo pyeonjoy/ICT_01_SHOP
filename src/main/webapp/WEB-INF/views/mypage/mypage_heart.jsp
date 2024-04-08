@@ -54,19 +54,21 @@
 		}); */
 		
 		$(function() {
-		    $('.mypage_heart_heart').click(function() {
+			$('.mypage_heart_heart').click(function() {
 		        let $heart = $(this);
-		        let currentSrc = $heart.attr('src');
+		        /* let currentSrc = $heart.attr('src'); */
+		        let $img = $heart.find('.mypage_heart_img');
+    			let currentSrc = $img.attr('src');
 		        let product_idx = $heart.data('product-idx');
 		        let user_idx = $heart.data('user-idx');
 		        let heart_idx = $heart.data('heart-idx');
 		        
 		        if (currentSrc === 'resources/image/heart_01.png') {
-		            $heart.attr('src', 'resources/image/heart_02.png');
+		            $img.attr('src', 'resources/image/heart_02.png');
 		            addHeart(product_idx, user_idx, heart_idx);
 		        } else {
-		            $heart.attr('src', 'resources/image/heart_01.png');
-		            alert('관심상품에서 해제되었습니다.');
+		            $img.attr('src', 'resources/image/heart_01.png');
+		            alert('관심상품에서 해제되었습니다.'); 
 		            removeHeart(product_idx, user_idx, heart_idx);
 		        }
 		    });
@@ -78,7 +80,7 @@
 		            data: { product_idx: product_idx, user_idx: user_idx, heart_idx: heart_idx },
 		            dataType: "text" ,
 		            success: function(data) {
-		                alert('성공');
+		                document.location.reload(true);
 		            },
 		            error: function() {
 		                alert('에러');
@@ -86,19 +88,22 @@
 		        });
 		    }
 
-		    function addHeart(product_idx) {
+		    function addHeart(product_idx, user_idx, heart_idx) {
 		        $.ajax({
-		            url: "add_favorite_product.do",
+		            url: "addHeart.do",
 		            type: "POST",
-		            data: { product_idx: product_idx },
-		            success: function(response) {
-		                // 성공 시 추가 작업을 수행할 수 있습니다.
+		            data: { product_idx: product_idx, user_idx: user_idx, heart_idx: heart_idx },
+		            dataType: "text" ,
+		            success: function(data) {
+		                alert('추가성공');
+		                document.location.reload(true);
 		            },
-		            error: function(xhr, status, error) {
-		                console.error("에러 발생:", error);
+		            error: function() {
+		                alert('에러');
 		            }
 		        });
 		    }
+
 		});
 	});
 </script>
@@ -137,7 +142,6 @@
 										<div class="mypage_heart_heart" data-product-idx="${k.product_idx }" data-user-idx="${k.user_idx}" data-heart-idx="${k.heart_idx }">
 											<img class="mypage_heart_img"
 												src="resources/image/heart_02.png" >
-												<%-- <input type="hidden" value="${k.product_idx}"> --%>
 										</div>
 										<div class="mypage_heart_text"
 											onclick="product_detail_go(this.form)">

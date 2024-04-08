@@ -107,12 +107,6 @@ public class ShopServiceImpl implements ShopService {
 		return mdao.getShopHeartList(user_idx);
 	}
 
-	@Override
-	public int getUpdateHeartStatus(String user_idx, String product_idx) {
-
-		return mdao.getUpdateHeartStatus(user_idx, product_idx);
-	}
-
 	// mypage_addr
 	@Override
 	public int getAddrInsert(AddrVO avo) {
@@ -270,29 +264,14 @@ public class ShopServiceImpl implements ShopService {
         return pdao.productInsert(productVO);
     }
 
-    @Override
-    public int add_to_heart(String user_idx, String product_idx) throws Exception{
-        return pdao.add_to_heart(user_idx, product_idx);
-    }
-
-    @Override
-    public int check_heart_item(String user_idx, String product_idx) throws Exception{
-        return pdao.check_heart_item(user_idx, product_idx);
-    }
-
-    @Override
-    public List<HeartVO> get_heart_items(String user_idx) throws Exception{
-        return pdao.get_heart_items(user_idx);
-    }
-
-    @Override
-    public int remove_from_heart(String user_idx, String product_idx) throws Exception{
-        return pdao.remove_from_heart(user_idx, product_idx);
-    }
-
 	@Override
 	public int getRemoveHeart(String product_idx, String user_idx, String heart_idx) {
 		return mdao.getRemoveHeart(product_idx, user_idx, heart_idx);
+	}
+	
+	@Override
+	public int getAddHeart(String product_idx, String user_idx) {
+		return mdao.getAddHeart(product_idx, user_idx);
 	}
     
     

@@ -41,7 +41,7 @@ $(document).ready(function() {
         let email = $("#user_email").val();
         let addr = $("#user_addr").val();
         let email_pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        let phone_pattern = /^\d{3}-\d{3,4}-\d{4}$/;
+        let phone_pattern = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
         
         if (pwd1 === "" || pwd2 === "" || id === "" || name === "" || phone === "" || birth === "" || email === "" || addr === "") {
             alert("입력칸을 모두 채워주세요.");
@@ -52,6 +52,7 @@ $(document).ready(function() {
             return false;
         }
         if (!phone_pattern.test(phone)) {
+            console.log("입력된 전화번호:", phone);
             alert("올바른 전화번호 형식이 아닙니다.");
             return false;
         }
@@ -98,7 +99,7 @@ $(document).ready(function() {
 				<input class="sign_info_input" type="password" id="pwd1" name="user_pwd" placeholder="비밀번호를 입력해주세요." autocomplete="off" >
 				<input class="sign_info_input" type="password" id="pwd2" placeholder="다시한번 입력해주세요." autocomplete="off"> 
 				<input class="sign_info_input" type="text" id="user_name" name="user_name" placeholder="이름을 입력해주세요." autocomplete="off"> 
-				<input class="sign_info_input" type="text" id="user_phone"name="user_phone" placeholder="- 제외 후 입력 해 주세요"  maxlength="11" autocomplete="off">
+				<input class="sign_info_input" type="text" id="user_phone"name="user_phone" placeholder="제외 후 입력 해 주세요" autocomplete="off">
 				<input class="sign_info_input" type="text" id="user_birth"name="user_birth" placeholder="생년월일 ex)980331"  maxlength="6" autocomplete="off">
 				<input class="sign_info_input" type="text" id="user_email"name="user_email" placeholder="이메일을 입력해주세요." autocomplete="off">
 				<input class="sign_info_input" type="text" id="user_addr" name="user_addr" placeholder="주소를 입력해주세요." autocomplete="off">

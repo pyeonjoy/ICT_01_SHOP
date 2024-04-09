@@ -35,12 +35,9 @@ public class ProductDAO {
 		return null;
 	}
 	
-	public int productDetailCart(String product_idx, String user_idx) {
+	public int getProductDetailAddCart(ProductVO pvo) {
 		try {
-			Map<String, String> map = new HashMap<>();
-			map.put("user_idx", user_idx);
-			map.put("product_idx", product_idx);
-			return sqlSessionTemplate.insert("product.cart_go", map);
+			return sqlSessionTemplate.insert("product.cart_go", pvo);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -109,6 +106,12 @@ public class ProductDAO {
 		}
 		return -1;
 		
+	}
+	public HeartVO getHeartChk(String product_idx, String user_idx) {
+        Map<String, String> map = new HashMap<>();
+        map.put("user_idx", user_idx);
+        map.put("product_idx", product_idx);
+        return sqlSessionTemplate.selectOne("product.getHeartChk", map);
 	}
 
 }

@@ -187,7 +187,7 @@ public class OrderController {
 	@RequestMapping("addr_checked.do")
 	public ModelAndView AddrChecked(@RequestParam("addr_idx") String addr_idx,
 			@RequestParam("order_idx") String order_idx, HttpServletRequest request) {
-		System.out.println("order_idx : " + order_idx); // �꽦怨�
+		System.out.println("order_idx : " + order_idx); 
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
@@ -201,7 +201,7 @@ public class OrderController {
 		List<OrderVO> list = shopservice.orderaddrproduct(ovo);
 		System.out.println("avo.user_idx : " + avo.getUser_idx());
 		System.out.println("avo.addr_idx : " + avo.getAddr_addr());
-		int result = shopservice.getaddrchecked(avo); // �떎�뙣
+		int result = shopservice.getaddrchecked(avo); 
 		System.out.println("result: " + result);
 		if (result > 0) {
 			mv.addObject("vo", list);

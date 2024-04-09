@@ -76,7 +76,7 @@
 												</c:if> 
 									</p> 
 									<p>
-										${order.order_date} 주문
+										${order.order_date} 주문 ${order.order_idx} 
 									</p>
 									<p>${order.product_name} </p>
 									<p class="mypage_order_text_pay" style="font-size: 24px; font-weight: bold;">
@@ -94,8 +94,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- 블럭 끝 -->
- 					<!-- <script>mypage_order_status("${order.order_regdate}");</script>  -->
 
 					</c:forEach>
 				</c:otherwise>

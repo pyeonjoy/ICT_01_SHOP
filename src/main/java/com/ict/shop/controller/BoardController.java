@@ -217,6 +217,7 @@ public class BoardController {
 
 			int result2 = boardService.getAnsInsert(bovo);
 			if (result2 > 0) {
+				
 				return mv;
 			}
 		} catch (Exception e) {

@@ -9,6 +9,7 @@
 <title>결제 내역</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_order.css" rel="stylesheet" />
 <script type="text/javascript">
@@ -20,8 +21,32 @@
 		location.href = "order_pay.do"
 		
 	}
-	      
-
+	
+/* 	function board_go() {
+		location href = "board_list.do"
+	}
+	 */
+	$(document).ready(function(){
+        function addToCart(product_idx,product_price) {
+            $.ajax({
+                url: "product_list_add_cart.do",
+                method: "post",
+                data: { product_idx: product_idx, product_price: product_price},
+                dataType: "text",
+                success: function(data) {
+                alert("장바구니에 정상적으로 추가되었습니다.");
+                },
+                error: function() {
+                alert("추가불가능~");
+               	 }
+            });
+        }
+        $(".mypage_order_cartlist_go").click(function() {
+        	 let product_idx = $(this).siblings(".product_idx").val();
+             let product_price = $(this).siblings(".product_price").val();
+            addToCart(product_idx,product_price);
+        });
+    });
 </script>
 </head>
 <body>
@@ -59,12 +84,15 @@
 
 								</div>
 								<div>
-									<button class="mypage_order_btn1" onclick="location.href='cart_list.do?order_idx=${order.order_idx}'">장바구니 담기</button>
+									<button class="mypage_order_cartlist_go" >장바구니 담기</button>
+									<input type="hidden" class="product_idx" value="${order.product_idx}">
+									<input type="hidden" class="product_price" value="${order.product_price}">
+									<button class="mypage_order_btn1" onclick="location.href='board_list.do?user_idx=${order.user_idx}' ">1:1문의게시판 이동</button>
 								</div>
 							</div>
 						</div>
 						<!-- 블럭 끝 -->
- 					<script>mypage_order_status("${order.order_regdate}");</script> 
+<!--  					<script>mypage_order_status("${order.order_regdate}");</script>  -->
 
 					</c:forEach>
 				</c:otherwise>

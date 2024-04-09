@@ -187,7 +187,7 @@ public class OrderController {
 	@RequestMapping("addr_checked.do")
 	public ModelAndView AddrChecked(@RequestParam("addr_idx") String addr_idx,
 			@RequestParam("order_idx") String order_idx, HttpServletRequest request) {
-		System.out.println("order_idx : " + order_idx); 
+		System.out.println("order_idx : " + order_idx);
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
@@ -201,7 +201,7 @@ public class OrderController {
 		List<OrderVO> list = shopservice.orderaddrproduct(ovo);
 		System.out.println("avo.user_idx : " + avo.getUser_idx());
 		System.out.println("avo.addr_idx : " + avo.getAddr_addr());
-		int result = shopservice.getaddrchecked(avo); 
+		int result = shopservice.getaddrchecked(avo);
 		System.out.println("result: " + result);
 		if (result > 0) {
 			mv.addObject("vo", list);
@@ -214,44 +214,43 @@ public class OrderController {
 
 	@RequestMapping("addr_checked2.do")
 	public ModelAndView AddrChecked(@RequestParam("addr_idx") String addr_idx, HttpServletRequest request) {
-	    ModelAndView mv = new ModelAndView();
-	    HttpSession session = request.getSession();
-	    UserVO uvo = (UserVO) session.getAttribute("uvo");
-	    AddrVO avo = new AddrVO();
-	    avo.setAddr_idx(addr_idx);
-	    avo.setUser_idx(uvo.getUser_idx());
-	    int result = shopservice.getaddrchecked(avo); 
-	    if (result > 0) {
-	        mv.setViewName("redirect:mypage_addr.do"); 
-	        return mv;
-	    } else {
-	        return new ModelAndView("main/signup_fail");
-	    }
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
+		AddrVO avo = new AddrVO();
+		avo.setAddr_idx(addr_idx);
+		avo.setUser_idx(uvo.getUser_idx());
+		int result = shopservice.getaddrchecked(avo);
+		if (result > 0) {
+			mv.setViewName("redirect:mypage_addr.do");
+			return mv;
+		} else {
+			return new ModelAndView("main/signup_fail");
+		}
 	}
 
 	@RequestMapping("order_success.do")
-	public ModelAndView AddrChecked(String order_idx) {
+	public ModelAndView orderSuccess(String order_idx, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("product/order_success");
 
 		List<OrderVO> order = shopservice.getOrderSuccessPage(order_idx);
 		if (order != null) {
+			String order_num = order.get(0).getOrder_date().replaceAll("[-: ]", "") + order_idx;
+			mv.addObject("order_num", order_num);
 			mv.addObject("order_addr", order.get(0).getAddr_addr());
 			mv.addObject("order_phone", order.get(0).getAddr_phone());
 			mv.addObject("order", order);
 		}
 
 		int result = shopservice.getOrderSuccess(order_idx);
-
 		int result1 = shopservice.orderupdate1(order_idx);
-		System.out.println(result);
-		System.out.println(result1);
 
 		System.out.println(result);
 		if (result > 0 && result1 > 0) {
 			return mv;
 		}
 
-		return new ModelAndView("main/signup_fail");
+		return new ModelAndView("home");
 	}
 
 }

@@ -212,6 +212,23 @@ public class OrderController {
 		}
 	}
 
+	@RequestMapping("addr_checked2.do")
+	public ModelAndView AddrChecked(@RequestParam("addr_idx") String addr_idx, HttpServletRequest request) {
+	    ModelAndView mv = new ModelAndView();
+	    HttpSession session = request.getSession();
+	    UserVO uvo = (UserVO) session.getAttribute("uvo");
+	    AddrVO avo = new AddrVO();
+	    avo.setAddr_idx(addr_idx);
+	    avo.setUser_idx(uvo.getUser_idx());
+	    int result = shopservice.getaddrchecked(avo); 
+	    if (result > 0) {
+	        mv.setViewName("redirect:mypage_addr.do"); 
+	        return mv;
+	    } else {
+	        return new ModelAndView("main/signup_fail");
+	    }
+	}
+
 	@RequestMapping("order_success.do")
 	public ModelAndView AddrChecked(String order_idx) {
 		ModelAndView mv = new ModelAndView("product/order_success");

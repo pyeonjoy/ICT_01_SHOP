@@ -24,6 +24,7 @@
 
 .mypage_addr_inner {
 	margin: 30px 0px;
+	display: flex;
 }
 
 .mypage_addr_btn1 {
@@ -35,9 +36,16 @@
 	text-align: center;
 	line-height: 15px;
 }
+.mypage_addr_inner_in2{
+	flex:1;
+}
+.mypage_addr_inner_in1{
+	flex:1;
+}
 
 .mypage_addr_btn2 {
-	width: 50px;
+	width: 155px;
+    margin: 5px;
 	height: 30px;
 	border-radius: 5px;
 	line-height: 15px;

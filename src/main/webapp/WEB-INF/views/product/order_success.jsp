@@ -66,9 +66,9 @@
 	<%@include file="../main/header.jsp"%>
 	<div class="order_success_wrapper">
 		<h2>${user_name}님,주문이 완료되었습니다.</h2>
-		<img src="../resources/image/success.png" alt="주문완료" />
-		<h4>주문번호 : 20240317190755</h4>
-		<!-- 주문번호 랜덤값 보단 오늘날짜+시간 분 초 이런식으로 하는게 좋아보임 -->
+		<img src="resources/image/success.png" alt="주문완료" />
+		<h4>주문번호 : ${order_num}</h4>
+		<%--	오늘날짜+시간분초+order_idx --%>
 		<br>
 		<h4>주문정보</h4>
 		<br>
@@ -98,10 +98,10 @@
 				<td colspan="2" class="order_sucess_left">${order_phone}</td>
 			</tr>
 			<tr>
-				<td class="order_sucess_right">주문 금액</td>
+				<td class="order_sucess_right">결제 금액</td>
 				<td></td>
 				<td colspan="2" class="order_sucess_left">
-					<fmt:formatNumber value="${orderTotal}" pattern="#,##0" />원
+					<fmt:formatNumber value="${orderTotal + 3000}" pattern="#,##0" />원
 				</td>
 			</tr>
 		</table>

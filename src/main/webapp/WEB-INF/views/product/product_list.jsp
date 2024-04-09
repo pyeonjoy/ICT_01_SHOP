@@ -44,6 +44,7 @@
 	border-collapse: collapse;
 	text-align: left;
 	padding-bottom: 10px;
+	
 }
 
 .product_list_main_image {
@@ -52,6 +53,7 @@
 
 .product_list_product {
 	margin: 0px 10px;
+	text-decoration: none;
 }
 
 .product_list_sort select {
@@ -65,8 +67,12 @@
 #footer {
 	position: static;
 }
+.product_list_product a:link, .product_list_product a:visited{
+  color : black;
+}
 </style>
 <script type="text/javascript">
+//장바구니 추가 ajax
     $(document).ready(function(){
         function addToCart(product_idx,product_price) {
             $.ajax({
@@ -89,9 +95,34 @@
         });
     });
 </script>
-
-
-
+<script>
+// 찜추가
+$(document).ready(function() {
+    function addToHeart(user_idx, product_idx) {
+        $.ajax({
+            url: "addHeart.do",
+            method: "post",
+            data: { user_idx: user_idx, product_idx: product_idx },
+            dataType: "text",
+            success: function(data) {
+                if(data != "error") {
+                    alert("찜 등록");
+                } else {
+                    alert("이미 찜한 상품입니다.");
+                }
+            },
+            error: function(error) {
+                alert("서버오류");
+            }
+        });
+    }
+    $(".product_list_heart_button").click(function() {
+        let user_idx = $(this).siblings(".user_idx").val();
+        let product_idx = $(this).siblings(".product_idx").val();
+        addToHeart(user_idx, product_idx);
+    });
+});
+</script>
 </head>
 <body>
 	<%@include file="../main/header.jsp"%>
@@ -107,9 +138,10 @@
 							<th colspan="5">
 							<a href="product_detail.do?product_idx=${k.product_idx}">${k.product_name}</a></th>
 							<th><img src="${path}/resources/image/cart2.png" class="product_list_cart_button">
+							<input type="hidden" class="user_idx" value="${user_idx}">
 							<input type="hidden" class="product_idx" value="${k.product_idx}">
 							<input type="hidden" class="product_price" value="${k.product_price}">
-							<img src="${path}/resources/image/heart_01.png" class="product_list_heart_button" id="product_list_heart_button" onclick="addToHeart('${k.product_idx}')"></th>
+							<img src="${path}/resources/image/heart_01.png" class="product_list_heart_button" id="product_list_heart_button"></th>
 						</tr>
 						<tr>
 							<td colspan="6">${k.product_detail}</td>

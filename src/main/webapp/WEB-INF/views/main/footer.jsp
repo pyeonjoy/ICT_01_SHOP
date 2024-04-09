@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style type="text/css">
 .footer {
 	position: absolute;
@@ -34,11 +35,36 @@
 .footer_title {
 	margin: 10px 0px;
 }
+.btn_gotop{
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  display: inline-block;
+  background-color: white;
+  width: 70px;
+  height: 70px;
+  opacity: 1;
+  transition: 0.7s ease;
+  font-size: 17px;
+  z-index: 5;
+  border-radius: 100% ;
+}
 
+.btn_gotop img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover; 
+    max-width: 100%;
+  }
+ 
 </style>
 </head>
 <body>
 	<div id="footer" class="footer">
+	<a href="#" class="btn_gotop"><img alt="people" src="resources/image/top.png" title="my"></a>
+  <span class="glyphicon glyphicon-chevron-up">
+  </span>
+</a>
 		<div class="item">
 			<div class="footer_title">
 				<b>Features</b>

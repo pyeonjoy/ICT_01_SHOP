@@ -259,11 +259,6 @@ public class ShopServiceImpl implements ShopService {
 
 	// product detail
 	@Override
-	public int productDetailCart(String product_idx, String user_idx) throws Exception {
-		return pdao.productDetailCart(product_idx, user_idx);
-	}
-
-	@Override
 	public List<ProductVO> productDetailList() throws Exception {
 		return pdao.productDetailList();
 	}
@@ -273,7 +268,10 @@ public class ShopServiceImpl implements ShopService {
 		return pdao.productDetailInfo(product_idx);
 	}
 
-	
+	@Override
+	public int getProductDetailAddCart(ProductVO pvo) throws Exception {
+		return pdao.getProductDetailAddCart(pvo);
+	}
 	
 	//product
 	 

@@ -30,7 +30,7 @@
 	</select>
 	<!-- 장바구니 이미 담겨있으면 + 1 하기 -->
 	<update id="cartUpdate" parameterType="cvo"> 
-		update shop_cartlist set cartlist_count = cartlist_count + 1
+		update shop_cartlist set cartlist_count = cartlist_count + #{cartlist_count}
 		where user_idx = #{user_idx} and product_idx =#{product_idx}
 	</update>
 	
@@ -44,9 +44,9 @@
 	</delete>
 	
 	<!-- product_detail -->
-	<insert id="cart_go" parameterType="Map">
-		INSERT INTO shop_cartlist(user_idx, product_idx, cartlist_number, cartlist_count)
-		VALUES ( #{user_idx}, #{product_idx}, #{product_price}, #{product_count})
+	<insert id="cart_go" parameterType="pvo">
+		insert into shop_cartlist(user_idx, product_idx, cartlist_number, cartlist_count)
+		VALUES (#{user_idx}, #{product_idx}, #{product_price}, #{product_count})
 	</insert>
 	<select id="detail_list" resultType="pvo">
 		select * from shop_product group by product_idx;

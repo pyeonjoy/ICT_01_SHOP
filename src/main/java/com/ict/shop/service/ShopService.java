@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
@@ -127,8 +126,6 @@ public interface ShopService {
 	List<ProductVO> productDetailList() throws Exception;
 
 	int ProductAddCart(String product_idx, String user_idx, String product_price);
-
-	HeartVO getHeartChk(String product_idx, String user_idx);
 
 
 }

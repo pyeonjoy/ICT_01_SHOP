@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.shop.dao.vo.CartListVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.ShopService;
@@ -40,6 +39,9 @@ public class AjaxController {
 	        session.setAttribute("product_idx", product_idx);
 	        session.setAttribute("user_idx", user_idx);
 	        session.setAttribute("heart_idx", heart_idx);
+	       System.out.println(product_idx);
+	       System.out.println(user_idx);
+	       System.out.println(heart_idx);
 
 	        return String.valueOf(result);
 	    }
@@ -47,13 +49,14 @@ public class AjaxController {
 	@RequestMapping(value="addHeart.do", produces = "text/plain; charset=utf-8")
 	@ResponseBody
 	public String getAjaxHeartAdd(@RequestParam("product_idx") String product_idx, HttpServletRequest request, @RequestParam("user_idx")String user_idx) {
-	    HeartVO hvo = shopservice.getHeartChk(product_idx,user_idx);
-	    if (hvo == null) {
-	        int result = shopservice.getAddHeart(product_idx, user_idx) ;
-	        return String.valueOf(result);           
-	    } else {
-	        return "error";
-	    }
+		int result = shopservice.getAddHeart(product_idx, user_idx) ;
+		HttpSession session = request.getSession();
+		session.setAttribute("product_idx", product_idx);
+		session.setAttribute("user_idx", user_idx);
+		System.out.println(product_idx);
+		System.out.println(user_idx);
+		
+		return String.valueOf(result);
 	}
 	
 	@RequestMapping(value="product_list_add_cart.do", produces="text/plain; charset=utf-8")

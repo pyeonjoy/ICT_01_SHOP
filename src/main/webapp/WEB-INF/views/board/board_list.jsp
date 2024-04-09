@@ -92,7 +92,7 @@ padding: 5px;
 	<%@include file="../main/aside_mypage.jsp"%>
 	<div id="bbs" align="center">
 		<table summary="게시판 목록">
-			<caption>공지사항</caption>
+			<caption>1:1 문의 게시판</caption>
 			<thead>
 				<tr class="title">
 					<th class="no">번호</th>

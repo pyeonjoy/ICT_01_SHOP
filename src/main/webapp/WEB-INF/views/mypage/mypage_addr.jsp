@@ -10,8 +10,12 @@
 <link href="${path}/resources/css/button.css" rel="stylesheet" />
 <link href="${path}/resources/css/mypage_addr.css" rel="stylesheet" />
 <script type="text/javascript">
+function addr_addr_ok(f) {
+	f.action = "addr_checked2.do";
+	alert("추가 되었습니다.");
+	f.submit();
+}
 </script>
-
 </head>
 <body>
 	<div class="mypage_addr_header">
@@ -38,18 +42,28 @@
 					<button class="mypage_addr_btn1" onclick="location.href='mypage_addr_add.do'">배송지추가</button>
 					<c:forEach var="k" items="${list}">
 						<div class="mypage_addr_inner">
-							<form method="post" action="/mypage_delete.do">
+							<form method="post" action="mypage_delete.do">
+							    <div class="mypage_addr_inner_1">
+							    <p>${k.addr_name}</p>
+							    <p>${k.addr_phone}</p>
+							    <p>${k.addr_addr}</p>
 							    <input type="hidden" name="addr_idx" value="${k.addr_idx}">
 							    <input type="hidden" name="addr_phone" value="${k.addr_phone}">
 							    <input type="hidden" name="addr_name" value="${k.addr_name}">
 							    <input type="hidden" name="addr_addr" value="${k.addr_addr}">
-							    <input type="button" value="수정" class="mypage_addr_btn2" onclick="location.href='mypage_addr_edit.do?addr_idx=${k.addr_idx}'"/>
+							    </div>
+							   <div class="mypage_addr_inner_in2">
+							    <p>
 							    <button style="margin-left: 10px;" class="mypage_addr_btn2" type="submit">삭제</button>
-							    <p>${k.addr_name}</p>
-							    <p>${k.addr_phone}</p>
-							    <p>${k.addr_addr}</p>
+							    </p>
+							    <p>
+							    <button class="mypage_addr_btn2"  value="배송지 선택하기"  onclick="addr_addr_ok(this.form)">배송지 선택하기</button>
+							    </p>
+							    <p>
+							    <input type="button" value="수정" class="mypage_addr_btn2" onclick="location.href='mypage_addr_edit.do?addr_idx=${k.addr_idx}'"/>
+							    </p>
+							   </div>
 							</form>
-							<hr>
 						</div>
 					</c:forEach>
 				</c:otherwise>

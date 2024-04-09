@@ -16,7 +16,7 @@ $(document).ready(function() {
 		let name = $("#addr_name").val();
 		let phone = $("#addr_phone").val();
 		let addr = $("#addr_name").val();
-		let phone_pattern = /^\d{3}-\d{3,4}-\d{4}$/;
+		let phone_pattern = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 		
 		
 		if (name === "" || phone === "" || addr === "") {

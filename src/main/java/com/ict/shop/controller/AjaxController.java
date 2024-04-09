@@ -40,9 +40,6 @@ public class AjaxController {
 	        session.setAttribute("product_idx", product_idx);
 	        session.setAttribute("user_idx", user_idx);
 	        session.setAttribute("heart_idx", heart_idx);
-	       System.out.println(product_idx);
-	       System.out.println(user_idx);
-	       System.out.println(heart_idx);
 
 	        return String.valueOf(result);
 	    }

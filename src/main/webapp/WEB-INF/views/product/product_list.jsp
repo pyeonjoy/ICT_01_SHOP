@@ -44,6 +44,7 @@
 	border-collapse: collapse;
 	text-align: left;
 	padding-bottom: 10px;
+	
 }
 
 .product_list_main_image {
@@ -52,6 +53,7 @@
 
 .product_list_product {
 	margin: 0px 10px;
+	text-decoration: none;
 }
 
 .product_list_sort select {
@@ -64,6 +66,9 @@
 
 #footer {
 	position: static;
+}
+.product_list_product a:link, .product_list_product a:visited{
+  color : black;
 }
 </style>
 <script type="text/javascript">
@@ -91,6 +96,7 @@
     });
 </script>
 <script>
+// 찜추가
 $(document).ready(function() {
     function addToHeart(user_idx, product_idx) {
         $.ajax({

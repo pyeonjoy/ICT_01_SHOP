@@ -27,7 +27,7 @@
 #bbs table th, #bbs table td {
 	text-align: center;
 	border-bottom: 1px solid black;
-	padding: 4px 10px;
+	padding: 10px 10px;
 }
 input{
 margin: 10px;
@@ -72,8 +72,8 @@ table tfoot ol.paging li a:hover {
 
 .now {
 	padding: 3px 7px;
-	border: 1px solid #ff4aa5;
-	background: #ff4aa5;
+	border: 1px solid #black;
+	background: black;
 	color: white;
 	font-weight: bold;
 }

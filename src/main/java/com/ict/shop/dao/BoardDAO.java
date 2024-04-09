@@ -25,11 +25,12 @@ public class BoardDAO {
 		return -1;
 	}
 
-	public List<BoardVO> getBoardList(int offset, int limit) {
+	public List<BoardVO> getBoardList(int offset, int limit, String user_idx) {
 		try {
-			Map<String, Integer> map = new HashMap<String, Integer>();
+			Map<String, Object> map = new HashMap<>();
 			map.put("offset", offset);
 			map.put("limit", limit);
+			map.put("user_idx", user_idx);
 		return sqlSessionTemplate.selectList("board.board_list", map );
 		}catch (Exception e) {
 		System.out.println(e);
@@ -105,6 +106,7 @@ public class BoardDAO {
 		}
 		return -1;
 	}
+
 }
 
 

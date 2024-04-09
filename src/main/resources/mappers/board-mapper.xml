@@ -8,7 +8,11 @@
  		select count(*) from board 
  	</select>
  	<select id="board_list" parameterType="Map" resultType="bovo">
- 		select * from board order by groups desc, lev asc  limit #{limit} offset #{offset}  
+ 		SELECT * 
+			FROM board 
+			WHERE user_idx = #{user_idx} 
+			ORDER BY groups DESC, lev ASC 
+			LIMIT #{limit} OFFSET #{offset}
  	</select>
  	
  	<!-- 입력하기전에 특정키값을 가져온 다음 그 값을 이용해서 처리하고 싶다.=> selectkey -->
@@ -16,8 +20,8 @@
  		<selectKey keyProperty="groups" resultType="String" order="BEFORE">
 			SELECT (IFNULL(MAX(bo_idx),0)+1) as groups FROM board
 		</selectKey>
- 		insert into board(writer,title, content, pwd, hit, groups,step,lev, regdate, f_name)
- 		values(#{writer},#{title},#{content},#{pwd},0, #{groups},0,0, sysdate(), #{f_name})
+ 		insert into board(user_idx,writer,title, content, pwd, hit, groups,step,lev, regdate, f_name)
+ 		values(#{user_idx},#{writer},#{title},#{content},#{pwd},0, #{groups},0,0, sysdate(), #{f_name})
  	</insert>
  	<update id="board_hit" parameterType="String">
  		update board set hit = hit + 1 where bo_idx = #{bo_idx} 
@@ -33,8 +37,8 @@
  	 </update>
  	 
  	 <insert id="ans_insert" parameterType="bovo">
- 	 	insert into board(writer,title, content, pwd, hit, groups,step,lev, regdate, f_name)
- 		values(#{writer},#{title},#{content},#{pwd},0, #{groups},#{step},#{lev}, sysdate(), #{f_name})
+ 	 	insert into board(user_idx,writer,title, content, pwd, hit, groups,step,lev, regdate, f_name)
+ 		values(#{user_idx},#{writer},#{title},#{content},#{pwd},0, #{groups},#{step},#{lev}, sysdate(), #{f_name})
  	 </insert>
  	 
  	 <update id="board_delete" parameterType="bovo">

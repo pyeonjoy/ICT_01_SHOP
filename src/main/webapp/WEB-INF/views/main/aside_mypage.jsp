@@ -73,9 +73,9 @@ a:hover {
 				<li><a href="mypage_order_after.do?user_idx=${uvo.user_idx }">결제내역</a></li>
 				<li><a href="mypage_heart.do?user_idx=${uvo.user_idx}">관심상품</a></li>
 
-				<li><a href="mypage_notice.do">공지사항</a></li>
+				<li><a href="board_list.do?user_idx=${uvo.user_idx }">공지사항</a></li>
 				<li><a href="mypage_faq.do">자주 묻는 질문</a></li>
-				<li><a href="mypage_qna.do">1:1 문의하기</a></li>
+				<li><a href="board_list.do?user_idx=${uvo.user_idx }">1:1 문의하기</a></li>
 			</ul>
 		</div>
 	</div>

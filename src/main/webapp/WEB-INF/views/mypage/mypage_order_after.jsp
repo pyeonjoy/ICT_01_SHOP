@@ -42,13 +42,12 @@
 							<!-- 블럭 시작 -->
 							<div class="left">
 								<img alt="resources/image/hand1.jpeg"
-									src="resources/image/hand1.jpeg" style="border-radius: 10%;">
+									src="resources/image/${order.product_img}" style="border-radius: 10%;">
 							</div>
 							<div class="right">
 								<div class="mypage_order_text">
-									<p style="font-size: 24px; font-weight: bold;">
 									    <p style="font-weight: bold; font-size:24px;">구매확정</p>
-									</p> 
+									
 									<p>
 										${order.order_date} 주문
 									</p>

@@ -3,7 +3,7 @@ package com.ict.shop.dao.vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class BoardVO {
-	private String bo_idx, writer, title, content, pwd, hit, 
+	private String bo_idx, writer, title, content, pwd, hit, user_idx,
 	groups, step, lev, regdate, f_name, active, old_f_name;
 	
 	public String getOld_f_name() {
@@ -11,6 +11,12 @@ public class BoardVO {
 	}
 	public void setOld_f_name(String old_f_name) {
 		this.old_f_name = old_f_name;
+	}
+	public String getUser_idx() {
+		return user_idx;
+	}
+	public void setUser_idx(String user_idx) {
+		this.user_idx = user_idx;
 	}
 	private MultipartFile file;
 	

@@ -2,7 +2,7 @@
 
 .mypage_heart_wrap{
 	margin: 0px auto;
-	width: 960px;
+	width: 1020px;
 }
 .mypage_heart_all{
 margin: 0 auto;}
@@ -18,27 +18,30 @@ margin: 0 auto;}
 
 .mypage_heart_one{
 	float:left;
-	width: 200px;
+	width: 300px;
 	margin: 50px 20px 0px;
 }
 
 
 .mypage_heart_box{
-	width: 200px;
-	height: 200px;
-	background-color: #999999;}
+	width: 300px;
+	height: 300px;
+
+	}
 	
 
 .mypage_heart_bottom{
-margin: 20px 0px;
+margin: 10px 0px;
 }
-
+.mypage_heart_bottom_first{
+	margin-bottom: 6px;
+}
 .mypage_heart_heart{
-	margin: -10px 0px 0px 10px;
+	margin: 0px 0px 0px 10px;
 	float: right;}
 	
 .mypage_heart_cart{
-	margin: -10px 0px 0px 10px;
+	margin: 0px 0px 0px 10px;
 	float: right;}
 	
 .mypage_heart_heart img{
@@ -57,6 +60,7 @@ margin: 20px 0px;
 .mypage_heart_body{
 	display:flex;
 	justify-content: center;
+	margin-bottom: 230px;
 }
 
 .mypage_heart_footer{
@@ -64,10 +68,11 @@ margin: 20px 0px;
 	display: inline-block;
 }
 .mypage_heart_box img{
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: 300px;
     object-fit: cover; 
     max-width: 100%;
+    border-radius: 10%;
 }
 #footer {
 	margin-top: 150px;

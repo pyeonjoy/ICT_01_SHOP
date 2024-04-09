@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.shop.common.Paging;
 import com.ict.shop.dao.vo.BoardVO;
+import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.BoardService;
 
 @Controller
@@ -38,8 +40,10 @@ public class BoardController {
 
 	@RequestMapping("board_list.do")
 	public ModelAndView boardList(HttpServletRequest request) {
+		
 		ModelAndView mv = new ModelAndView("board/board_list");
-
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
 		// 페이징 기법
 		// 전체 게시물의 수
 		int count = boardService.getTotalCount();
@@ -76,10 +80,10 @@ public class BoardController {
 		if (paging.getEndBlock() > paging.getTotalPage()) {
 			paging.setEndBlock(paging.getTotalPage());
 		}
-
-		List<BoardVO> board_list = boardService.getBoardList(paging.getOffset(), paging.getNumPerPage());
+		List<BoardVO> board_list = boardService.getBoardList(paging.getOffset(), paging.getNumPerPage(),uvo.getUser_idx());
 		if (board_list != null) {
 			mv.addObject("board_list", board_list);
+			System.out.println(board_list);
 			mv.addObject("paging", paging);
 			return mv;
 		}
@@ -95,6 +99,9 @@ public class BoardController {
 	public ModelAndView getBoardWriteOK(BoardVO bovo, HttpServletRequest request) {
 		try {
 			ModelAndView mv = new ModelAndView("redirect:board_list.do");
+			HttpSession session = request.getSession();
+			UserVO uvo = (UserVO) session.getAttribute("uvo");
+			System.out.println(uvo.getUser_idx());
 			String path = request.getSession().getServletContext().getRealPath("/resources/upload");
 			MultipartFile file = bovo.getFile();
 			if (file.isEmpty()) {
@@ -110,8 +117,8 @@ public class BoardController {
 			}
 
 			bovo.setPwd(passwordEncoder.encode(bovo.getPwd()));
-
 			int result = boardService.getBoardInsert(bovo);
+			System.out.println(result);
 			if (result > 0) {
 				return mv;
 			}
@@ -166,6 +173,8 @@ public class BoardController {
 	public ModelAndView getBoardAnsWriteOK(@ModelAttribute("cPage") String cPage, BoardVO bovo,
 			HttpServletRequest request) {
 		try {
+			HttpSession session = request.getSession();
+			UserVO uvo = (UserVO) session.getAttribute("uvo");
 			// 답글에서만 처리 할 일
 			// 원글의 groups, step, lev를 가져와라
 			BoardVO bovo2 = boardService.getBoardDetail(bovo.getBo_idx());
@@ -173,14 +182,14 @@ public class BoardController {
 			int groups = Integer.parseInt(bovo2.getGroups());
 			int step = Integer.parseInt(bovo2.getStep());
 			int lev = Integer.parseInt(bovo2.getLev());
-
+			String uvo2 = uvo.getUser_idx();
 			// step, lev를 하나씩 올리자
 			step++;
 			lev++;
 
 			// DB에서 lev를 업데이트 하자
 			// ** groups이 같은 글을 찾아서 기존데이터의 레벨이 같거나 크면 기존 데이터의 레벨 증가
-			Map<String, Integer> map = new HashMap<String, Integer>();
+			Map<String, Object> map = new HashMap<>();
 			map.put("groups", groups);
 			map.put("lev", lev);
 

@@ -108,6 +108,7 @@ margin: 10px;
 				<td colspan="2">
 				<input type="hidden" name="cPage" value="${cPage }">
 				<input type="hidden" name="bo_idx" value="${bo_idx }">
+				<input type="hidden" name="user_idx" value="${uvo.user_idx }">
 				<input type="button" value="답글입력" onclick="board_ans_write_ok(this.form)" /> 
 				<input type="button" value="목록" onclick="board_list(this.form)" /> 
 				<input type="reset" value="취소" />

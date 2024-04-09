@@ -61,7 +61,15 @@
 		
 }
 
-
+.mypage_faq_title {
+    background-color: black;
+    color: black;
+    width: 149px;
+    height: 5px;
+    font-size: 15px;
+    line-height: 35px;
+    margin: -47px auto 60px;
+}
 
 input[type="button"] {
     background-color: white; 
@@ -107,6 +115,7 @@ function showInfoBenefit(){
 	<form action="" method="post" class="mypage_faq_all">
 		<div class="mypage_faq_div">
 		<h2>자주 묻는 질문</h2>
+		<div class="mypage_faq_title"></div>
 		<input type="button" value="배송" onclick="showDelivery()">
 		<input type="button" value="주문/결제" onclick="showOrderPay()">
 		<input type="button" value="취소/반품/교환" onclick="showCancelChange()">

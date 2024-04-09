@@ -189,7 +189,7 @@ public class BoardController {
 
 			// DB에서 lev를 업데이트 하자
 			// ** groups이 같은 글을 찾아서 기존데이터의 레벨이 같거나 크면 기존 데이터의 레벨 증가
-			Map<String, Object> map = new HashMap<>();
+			Map<String, Integer> map = new HashMap<>();
 			map.put("groups", groups);
 			map.put("lev", lev);
 

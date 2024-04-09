@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ict.shop.dao.vo.CartListVO;
+import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.ProductVO;
 
 @Repository

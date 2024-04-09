@@ -33,7 +33,9 @@
 		update shop_cartlist set cartlist_count = cartlist_count + #{cartlist_count}
 		where user_idx = #{user_idx} and product_idx =#{product_idx}
 	</update>
-	
+		<select id="getHeartChk" parameterType="Map" resultType="hvo">
+		select * from shop_heart where user_idx = #{user_idx} and product_idx = #{product_idx}
+	</select>
 	<insert id="add_to_heart" parameterType="hvo">
 		INSERT INTO shop_heart (user_idx, product_idx)
 		VALUES (#{user_idx}, #{product_idx})

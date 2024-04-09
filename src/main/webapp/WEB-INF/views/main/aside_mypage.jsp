@@ -66,16 +66,15 @@ a:hover {
 		</div>
 		<div class="mypage_menu_list">
 			<ul>
-				<li><a href="mypage_info.do">${uvo.user_idx }</a></li>
+				<li><a href="mypage_info.do">나의 정보</a></li>
 				<li><a href="mypage_addr.do?user_idx=${uvo.user_idx }">배송지 목록</a></li>
 				<li><a href="mypage_order.do?user_idx=${uvo.user_idx }">주문내역</a></li>
 
 				<li><a href="mypage_order_after.do?user_idx=${uvo.user_idx }">결제내역</a></li>
 				<li><a href="mypage_heart.do?user_idx=${uvo.user_idx}">관심상품</a></li>
 
-				<li><a href="board_list.do?user_idx=${uvo.user_idx }">공지사항</a></li>
 				<li><a href="mypage_faq.do">자주 묻는 질문</a></li>
-				<li><a href="board_list.do?user_idx=${uvo.user_idx }">1:1 문의하기</a></li>
+				<li><a href="board_list.do?user_idx=${uvo.user_idx }">1:1 문의게시판</a></li>
 			</ul>
 		</div>
 	</div>

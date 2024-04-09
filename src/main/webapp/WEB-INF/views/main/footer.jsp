@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <style type="text/css">
 .footer {
 	position: absolute;
@@ -36,11 +37,15 @@
 }
 .footer li{
 	padding: 5px;
-}
+ }
 </style>
 </head>
 <body>
 	<div id="footer" class="footer">
+	<a href="#" class="btn_gotop"><img alt="people" src="resources/image/top.png" title="my"></a>
+  <span class="glyphicon glyphicon-chevron-up">
+  </span>
+</a>
 		<div class="item">
 			<div class="footer_title">
 				<b>회사정보</b>

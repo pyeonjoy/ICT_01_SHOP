@@ -97,7 +97,7 @@
 
 					<c:choose>
 						<c:when test="${empty vo_heart}">
-							<h3>관심상품 없다</h3>
+							<h3 style="text-align: center;">관심상품이 없습니다.</h3>
 						</c:when>
 						<c:otherwise>
 							<c:forEach var="k" items="${vo_heart}" varStatus="vs">
@@ -110,7 +110,6 @@
 									<div class="mypage_heart_bottom">
 									<div class="mypage_heart_bottom_first">
 										 <div class="mypage_heart_cart">
-										<!-- 	<img src="resources/image/cart2.png"> -->
 										<img src="${path}/resources/image/cart2.png" class="product_list_cart_button">
 										<input type="hidden" class="product_idx" value="${k.product_idx}">
 										<input type="hidden" class="product_price" value="${k.product_price}">
@@ -119,7 +118,7 @@
 											<img class="mypage_heart_img"
 												src="resources/image/heart_02.png" >
 										</div>
-											<a href="product_detail.do?product_idx=${k.product_idx}">${k.product_name}</a>
+											<a href="product_detail.do?product_idx=${k.product_idx}" style="font-weight: bold;">${k.product_name}</a>
 										</div>
 										<div class="mypage_heart_text">
 											<p style="font-size: 12px; margin-top: 5px;">${k.product_detail}</p>

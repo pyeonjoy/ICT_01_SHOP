@@ -17,8 +17,8 @@
  		update shop_cartlist set cartlist_count = #{cartlist_count} where cartlist_idx = #{cartlist_idx}
  	</update>
  	<insert id="cartlist_pass" parameterType="cvo" >
- 		insert into shop_order(order_idx, user_idx, product_idx, addr_idx, order_count, order_number, order_regdate)
- 		values(#{order_idx},#{user_idx}, #{product_idx}, #{addr_idx}, #{cartlist_count}, #{order_number}, sysdate())
+ 		insert into shop_order(order_idx, user_idx, product_idx, addr_idx, order_count, order_number, order_regdate,order_date)
+ 		values(#{order_idx},#{user_idx}, #{product_idx}, #{addr_idx}, #{cartlist_count}, #{order_number}, sysdate(),sysdate())
  	</insert> 
  	<select id="cartlist_select" parameterType="String" resultType="cvo">
  		select * from shop_cartlist 

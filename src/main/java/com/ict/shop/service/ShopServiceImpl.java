@@ -12,6 +12,7 @@ import com.ict.shop.dao.OrderDAO;
 import com.ict.shop.dao.ProductDAO;
 import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
+import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
@@ -259,11 +260,6 @@ public class ShopServiceImpl implements ShopService {
 
 	// product detail
 	@Override
-	public int productDetailCart(String product_idx, String user_idx) throws Exception {
-		return pdao.productDetailCart(product_idx, user_idx);
-	}
-
-	@Override
 	public List<ProductVO> productDetailList() throws Exception {
 		return pdao.productDetailList();
 	}
@@ -273,7 +269,10 @@ public class ShopServiceImpl implements ShopService {
 		return pdao.productDetailInfo(product_idx);
 	}
 
-	
+	@Override
+	public int getProductDetailAddCart(ProductVO pvo) throws Exception {
+		return pdao.getProductDetailAddCart(pvo);
+	}
 	
 	//product
 	 
@@ -313,6 +312,11 @@ public class ShopServiceImpl implements ShopService {
 	@Override
 	public int ProductAddCart(String product_idx, String user_idx,String product_price) {
 		return pdao.ProductAddCart(product_idx,user_idx,product_price);
+	}
+
+	@Override
+	public HeartVO getHeartChk(String product_idx, String user_idx) {
+		return pdao.getHeartChk(product_idx,user_idx);
 	}
 
 }

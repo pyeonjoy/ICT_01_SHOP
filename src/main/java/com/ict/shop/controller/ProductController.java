@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.service.ShopService;
@@ -50,6 +52,37 @@ public class ProductController {
 		}
 		return null;
 
+	}
+	@PostMapping("product_detail_pay.do") // 상품 상세페이지
+	public ModelAndView getProductDatailPay(HttpServletRequest request,
+			@RequestParam("product_idx") String product_idx, @RequestParam("product_count") String product_count) {
+		try {
+			ModelAndView mv = new ModelAndView("redirect:cart_list.do");
+			HttpSession session = request.getSession();
+			UserVO uvo = (UserVO) session.getAttribute("uvo");
+			
+			ProductVO pvo = shopService.getShopDetail(product_idx);
+			CartListVO cvo = shopService.getCartChk(uvo.getUser_idx(), product_idx);
+			pvo.setUser_idx(uvo.getUser_idx());
+			pvo.setProduct_count(product_count);
+			
+			int result = 0;
+			if (cvo == null) {
+				result = shopService.getProductDetailAddCart(pvo);
+				System.out.println("새롭게 구매 추가");
+			} else {
+				cvo.setCartlist_count(product_count);
+				result = shopService.cartUpdate(cvo);
+				System.out.println("중복 구매 추가");
+			}
+			if (result > 0) {
+				return mv;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return null;
+		
 	}
 
 	@GetMapping("product_list.do") // 상품리스트 향수 페이지

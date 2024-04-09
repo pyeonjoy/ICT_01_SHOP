@@ -20,8 +20,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> getBoardList(int offset, int limit) {
-		return boardDAO.getBoardList(offset, limit);
+	public List<BoardVO> getBoardList(int offset, int limit, String user_idx) {
+		return boardDAO.getBoardList(offset, limit, user_idx);
 	}
 
 	@Override

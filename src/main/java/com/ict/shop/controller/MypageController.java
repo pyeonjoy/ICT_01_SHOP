@@ -259,7 +259,7 @@ public class MypageController {
 		if(result > 0) {
 			 if (orderList != null) {
 //		    	 mv.addObject("order", user_idx);
-//		         mv.addObject("pro", user_idx);
+		         mv.addObject("uvo", uvo);
 				 mv.addObject("ovo", orderList);
 				 return mv;
 			}
@@ -271,7 +271,7 @@ public class MypageController {
 	public ModelAndView Confirm( String order_idx) {
 		ModelAndView mv = new ModelAndView("redirect:mypage_order.do");
 		 int result = shopservice.orderupdate4(order_idx);
-			System.out.println(result);
+			System.out.println("result: "+result);
 			if (result > 0) {
 				return mv;
 			}

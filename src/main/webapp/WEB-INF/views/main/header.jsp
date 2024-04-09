@@ -19,9 +19,7 @@
 <link href="${path}/resources/css/header.css" rel="stylesheet"/>
 <title>header</title>
 <script type="text/javascript">
-function board_go() {
-	location.href="board_list.do";
-}
+
 function mypage_firstchk() {
 	location.href="mypage_firstchk.do";
 }
@@ -60,7 +58,7 @@ function not_connect() {
 						<li>Perfume De Body</li> -->
 					</ul></li>
 
-				<li><a class="menu_tilte" onclick="board_go()">Candle</a></li>
+				<li><a class="menu_tilte"">Candle</a></li>
 
 			</ul>
 		</div>

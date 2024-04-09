@@ -20,46 +20,6 @@
 		location.href = "order_pay.do"
 		
 	}
-	
-	
-	// 디비가 지멋대로 바뀜,.. 같이 먹는듯?..
-	function mypage_order_status(order_regdate) {
-		
-		const orderRegDate = new Date(order_regdate);
-		 console.log(orderRegDate);
-		 
-	      const current_time = new Date();
-
-	      
-	   	  // 주문이 등록된 시간으로부터 24시간이 지났는지 확인
-	      const tomorrow = new Date(orderRegDate.getTime() + 24 * 60 * 60 * 1000);
-	   	  // 48시간
-	      const tomorrow2 = new Date(orderRegDate.getTime() + 48 * 60 * 60 * 1000);
-	      
-	      const elements = document.querySelectorAll('.mypage_order_status');
-	      elements.forEach(element => {
-
-	          if (current_time > tomorrow2) {
-	              element.innerHTML = "<p>배송완료</p>";
-	          } else if (current_time > tomorrow) {
-	              element.innerHTML = "<p>배송중</p>";
-	          }
-	      });
-	      
-/*	   	  switch (true) {
-	            case current_time > tomorrow2 :
-	                element.innerHTML = "<p>배송완료</p>";
-	                break ;
-	            case current_time > tomorrow:
-	                element.innerHTML = "<p>배송중</p>";
-	                break;
-				
-	        }
-	   	  
-	    });
-*/	    	  
-	     
-	      }  
 	      
 
 </script>
@@ -82,28 +42,25 @@
 							<!-- 블럭 시작 -->
 							<div class="left">
 								<img alt="resources/image/hand1.jpeg"
-									src="resources/image/hand1.jpeg">
+									src="resources/image/hand1.jpeg" style="border-radius: 10%;">
 							</div>
 							<div class="right">
 								<div class="mypage_order_text">
 									<p style="font-size: 24px; font-weight: bold;">
-									<c:if test="${order.order_status eq '4'}">
-									    <p>구매확정</p>
-									</c:if>
+									    <p style="font-weight: bold; font-size:24px;">구매확정</p>
 									</p> 
 									<p>
-										<fmt:formatNumber value="${order.product_price}"
-											pattern="#,###" />
+										${order.order_date} 주문
 									</p>
 									<h3>${order.product_name}</h3>
-									<p class="mypage_order_text_pay" style="font-size: 24px;">
+									<p class="mypage_order_text_pay" style="font-size: 24px; font-weight: bold;">
 										<fmt:formatNumber value="${order.product_price}"
-											pattern="#,###" />
+											pattern="#,###" /> 원, ${order.order_count} 개
 									</p>
 
 								</div>
 								<div>
-									<button class="mypage_order_btn1" onclick="reorder_go()">재구매</button>
+									<button class="mypage_order_btn1" onclick="location.href='cart_list.do?order_idx=${order.order_idx}'">장바구니 담기</button>
 								</div>
 							</div>
 						</div>

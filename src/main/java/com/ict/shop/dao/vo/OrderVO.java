@@ -1,7 +1,15 @@
 package com.ict.shop.dao.vo;
 
 public class OrderVO {
-	private String order_idx, user_idx, product_idx, addr_idx, order_number, order_request, order_regdate;
+	private String order_idx, user_idx, product_idx, addr_idx, order_number, order_request, order_regdate,order_date;
+	public String getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(String order_date) {
+		this.order_date = order_date;
+	}
+
 	private String addr_name, addr_phone, addr_addr, addr_base, product_name, product_price, product_content,order_count,
 			product_detail, product_img;
 	public String getAddr_base() {

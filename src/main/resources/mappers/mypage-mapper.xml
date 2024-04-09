@@ -130,7 +130,7 @@
 	</update>
 	<update id="orderupdate4" parameterType="String">
 	update shop_order
-	set order_status = 4
+	set order_status = 4, order_regdate =now()
 	where order_idx = #{order_idx} 
 	</update>
 	
@@ -157,15 +157,15 @@
      </select>
      
      <update id="deliveryStatus" parameterType="ovo">
-		UPDATE shop_order
-		SET order_status = 
-		    CASE 
-		        WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') > 3 THEN 4
-		        WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 3 THEN 3
-		        WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 2 THEN 2
-		        WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 1 THEN 1
-		        ELSE order_status
-		    END;
+		 UPDATE shop_order
+		    SET order_status = 
+		        CASE 
+		            WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 6 THEN 4
+		            WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 3 THEN 3
+		            WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 2 THEN 2
+		            WHEN to_char(now(), 'yyyymmdd') - to_char(order_regdate, 'yyyymmdd') = 1 THEN 1
+		            ELSE order_status
+		        END
      </update>
 <!--      <select id="deliveryStatus" parameterType="ovo" resultType="ovo">
      	select * from shop_order where (now()-#{order_regdate} > 3);

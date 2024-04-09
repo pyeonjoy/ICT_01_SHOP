@@ -20,7 +20,7 @@
 input {
   font-size: 15px;
   color: #222222;
-  width: 300px;
+  width: 410px;
   border: none;
   border-bottom: solid #aaaaaa 1px;
   padding-bottom: 10px;
@@ -103,8 +103,9 @@ width: 100px;
 			</tr>
 			<tr>
 				<td colspan="2">
+				<input type="hidden" name="user_idx" value="${uvo.user_idx }">
 				<input type="button" value="입력" onclick="board_write_ok(this.form)" /> 
-				<input type="reset" value="취소" />
+				<input type="button" value="취소" onclick="history.go(-1)"/>
 				</td>
 			</tr>
             </tbody>

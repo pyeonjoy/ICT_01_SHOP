@@ -36,10 +36,11 @@
 
 .product_detail_select_one {
 	flex: 1;
+	width: 85px;
+	white-space: nowrap;
 }
 
 .product_detail_select_img {
-	width: 85px;
 	height: 110px;
 	background-color: gray;
 	position: relative;
@@ -53,9 +54,11 @@
 }
 
 .product_detail_select_one p {
-	font-size: 14px;
+width: 85px;
+	font-size: 11px;
 	padding-top: 5px;
 	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .product_detail_image {
@@ -82,7 +85,7 @@
 }
 .product_detail_select_bottom {
 	position: absolute;
-	bottom: 60px;
+	display: inline-block;
 }
 
 
@@ -203,24 +206,29 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#cart_add").click(function() {
-		let pDetail = $("#product_detail_form").serialize();
+		let product_idx = $("#product_idx").val();
+		let product_count = $("#product_count").val();
+		if(product_count == "") {
+			alert("수량을 입력해주세요");
+			return;
+		}
 		$.ajax({
 			url: "detail_cart_add.do",     
 			method: "post",          
 			dataType: "text",
-			data: pDetail,
+			data: {product_idx:product_idx,product_count:product_count},
 		    success: function (data) {
 		    	alert("장바구니에 추가되었습니다.");
 			},
 			error:function(){
-				alert("읽기 실패");
+				alert("추가 실패");
 			}
 		});
-	});
+	})
 });
 
-	function order_pay(f) {
-		f.action = "";
+	function order_chk(f) {
+		f.action = "product_detail_pay.do";
 		f.submit();
 	}
 </script>
@@ -256,7 +264,9 @@ $(document).ready(function() {
 							<c:forEach begin="1" end="4" items="${pvoList}" var="k">
 								<div class="product_detail_select_one">
 									<div class="product_detail_select_img">
+									<a href="product_detail.do?product_idx=${k.product_idx}">
 										<img alt="상품이미지" src="resources/image/${k.product_img}">
+									</a>
 									</div>
 									<p>${k.product_name}</p>
 								</div>
@@ -264,12 +274,12 @@ $(document).ready(function() {
 						</div>
 	
 						<div class="count_bnt">수량: 
-							<input type="number" name="product_count" min="1" value="${product_count}" onchange="cartlist_edit(this.form)">
+							<input type="number" name="product_count" id="product_count" min="1" value="1">
 						</div>
 						<div class="buy_btn_wrap">
-							<input type="hidden" id="product_idx" name="product_idx" values="${product_idx}"> 
-							<input class="buy_btn" id="cart_add" type="button" value="장바구니에 추가하기" onclick="cartList_add(this.form)"> 
-							<input class="buy_btn" id="pay" type="button" value="구매하기" onclick="order_pay(this.form)">
+							<input type="hidden" id="product_idx" name="product_idx" value="${pvo.product_idx}"> 
+							<input class="buy_btn" id="cart_add" type="button" value="장바구니에 추가하기"> 
+							<input class="buy_btn" id="pay" type="button" value="구매하기" onclick="order_chk(this.form)">
 						</div>
 					</div>
 				</div>

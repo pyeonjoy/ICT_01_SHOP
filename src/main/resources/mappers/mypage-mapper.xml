@@ -150,6 +150,7 @@
      inner join shop_order o on u.user_idx = o.user_idx 
      inner join shop_product p on o.product_idx = p.product_idx 
      where u.user_idx = #{user_idx} and (o.order_status = 1 or o.order_status =2 or o.order_status =3)
+     order by o.order_idx desc
      </select>
      
      <select id="orderlist2" resultType="ovo"> 

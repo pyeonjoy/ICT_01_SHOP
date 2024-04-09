@@ -58,29 +58,27 @@ function not_connect() {
 						<li>Perfume De Body</li> -->
 					</ul></li>
 
-				<li><a class="menu_tilte"">Candle</a></li>
-
+				<li><a class="menu_tilte"">Board</a></li>
 			</ul>
 		</div>
 
 		<div class="header_el header_right">
-			<!--오른쪽 -->
-			<!-- 사진이 없어서 유니코드로 대체했습니다. 후에 span은 삭제-->
-			<div class="himage search">
-				<span id="serch_icon">
-				<img alt="search" src="resources/image/search-01.png" title="search">
-				</span>
-				<input class="search_input" type="text">
-			</div>
 			<c:choose>
 				<c:when test="${empty user_idx}">
-			<div>
-				<p><a href="login_main.do">로그인</a>  /  <a href="signup.do">회원가입</a></p>
+			<div class="header_login_login">
+				<p><a href="login_main.do">로그인</a></p>
+				
+			</div>
+			<div class="header_login_signup">
+				<p><a href="signup.do">회원가입</a></p>
 			</div>
 				</c:when>
 			</c:choose>
 			<c:choose>
 				<c:when test="${user_idx > 1}">
+			<div class="himage search">
+					<p class="search_input">${user_name}님, 환영합니다.</p>
+			</div>
 					<div class="himage my">
 						<a onclick="mypage_firstchk();"><img alt="people" src="resources/image/people-01.png" title="my"></a>
 					</div>

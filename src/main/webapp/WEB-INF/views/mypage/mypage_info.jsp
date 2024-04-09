@@ -18,13 +18,18 @@
 		        let email = $("#user_email").val();
 		        let addr = $("#user_addr").val();
 		        let email_pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-		        
+		        let phone_pattern = /^\d{3}-\d{3,4}-\d{4}$/;
+
 		        if (phone === "" || email === "" || addr === "") {
 		            alert("입력칸을 모두 채워주세요.");
 		            return false;
 		        }
 		        if (!email_pattern.test(email)) {
 		            alert("올바른 이메일 형식이 아닙니다.");
+		            return false;
+		        }
+		        if (!phone_pattern.test(phone)) {
+		            alert("올바른 전화번호가 아닙니다. (- 금지)");
 		            return false;
 		        }
 		        mypage_info_change_go(this.form);

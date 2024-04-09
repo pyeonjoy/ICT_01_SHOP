@@ -35,28 +35,9 @@
 .footer_title {
 	margin: 10px 0px;
 }
-.btn_gotop{
-  position: fixed;
-  right: 30px;
-  bottom: 30px;
-  display: inline-block;
-  background-color: white;
-  width: 70px;
-  height: 70px;
-  opacity: 1;
-  transition: 0.7s ease;
-  font-size: 17px;
-  z-index: 5;
-  border-radius: 100% ;
-}
-
-.btn_gotop img {
-    width: 70px;
-    height: 70px;
-    object-fit: cover; 
-    max-width: 100%;
-  }
- 
+.footer li{
+	padding: 5px;
+ }
 </style>
 </head>
 <body>
@@ -67,44 +48,39 @@
 </a>
 		<div class="item">
 			<div class="footer_title">
-				<b>Features</b>
+				<b>회사정보</b>
 			</div>
 			<ul>
-				<li>Cool stuff</li>
-				<li>Random feature</li>
-				<li>Team feature</li>
-				<li>Stuff for developers</li>
-				<li>Another one</li>
-				<li>Last time</li>
-				<li>Resources</li>
+				<li>상호 : 한국ICT기술협회</li>
+				<li>대표 : 편조이</li>
+				<li>주소 : 서울특별시 마포구 백범로 23, 3층 (신수동, 케이터틀)</li>
+				<li>개인정보관리 책임자 : 노준형</li>
+				<li>사업자 등록번호 :000-00-00000</li>
+				<li>통신판매업 신고 : 제 0000-서울-0000호</li>
 			</ul>
 		</div>
 		<div class="item">
 			<div class="footer_title">
-				<b>Features</b>
+				<b>고객센터 C/S Center</b>
 			</div>
 			<ul>
-				<li>Resource</li>
-				<li>Resource name</li>
-				<li>Another resource</li>
-				<li>Final resource</li>
-				<li>Team</li>
-				<li>Locations</li>
-				<li>Terms</li>
+				<li>전화 : 02.739.7235</li>
+				<li>팩스 : 02-733-3460</li>
+				<li>elseks123@gmail.com</li>
+				<li>상담시간 : 9:00am ~ 6:00pm(월~금)</li>
+				
 			</ul>
 		</div>
 		<div class="item" class="footer_title">
 			<div class="footer_title">
-				<b>Features</b>
+				<!-- <b></b> -->
 			</div>
 			<ul>
-				<li>Resource</li>
-				<li>Resource name</li>
-				<li>Another resource</li>
-				<li>Final resource</li>
-				<li>Team</li>
-				<li>Locations</li>
-				<li>Terms</li>
+				<li>회사소개</li>
+				<li>쇼핑가이드</li>
+				<li>개인정보보호정책</li>
+				<li>이용약관</li>
+				<li>인재채용</li>
 			</ul>
 		</div>
 	</div>

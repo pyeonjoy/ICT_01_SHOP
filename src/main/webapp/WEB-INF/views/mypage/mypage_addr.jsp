@@ -42,7 +42,7 @@ function addr_addr_ok(f) {
 					<button class="mypage_addr_btn1" onclick="location.href='mypage_addr_add.do'">배송지추가</button>
 					<c:forEach var="k" items="${list}">
 						<div class="mypage_addr_inner">
-							<form method="post" action="/mypage_delete.do">
+							<form method="post" action="mypage_delete.do">
 							    <div class="mypage_addr_inner_1">
 							    <p>${k.addr_name}</p>
 							    <p>${k.addr_phone}</p>

@@ -100,7 +100,6 @@
 	width: 300px;
 	height: 40px;
 	position: relative;
-	border: 2px solid black;
 	border-radius: 5px;
 }
 
@@ -127,18 +126,37 @@
 	position: fixed;
 }
 
-.search input {
-	background-color: pink; /* 위치 확인용 transparent */
-	position: absolute;
+.search p {
+	background-color: transparent;
+	font-weight: bold;
 	min-width: 100px;
 	width: 200px;
 	height: 38px;
-	padding:5px;
+	padding:10px;
 	border-style: none;
-	font-size: 30px;
+	font-size: 18px;
+	width: 310px;
+	text-align: right;
+}
+.header_login_signup{
+	text-decoration: underline black;
+	font-weight: bold;
+	min-width: 100px;
+	padding:25px 60px;
+	border-style: none;
+	font-size: 20px;
 	width: 200px;
 }
-
+.header_login_login{
+	text-decoration: underline black;
+	font-weight: bold;
+	min-width: 100px;
+	padding:25px 0px;
+	border-style: none;
+	font-size: 20px;
+	width: 200px;
+	text-align: right;
+}
 /* 검색 박스 사라지게 */
 @media screen and (max-width:1010px) {
 	.himage {

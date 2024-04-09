@@ -13,8 +13,8 @@
 
 ### 🏡 팀원 현황
 
-[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=pyeonjoy)](https://github.com/pyeonjoy/github-readme-stats)
-[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=Jun-Hyeong-98)](https://github.com/Jun-Hyeong-98/github-readme-stats)
-[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=wonyuyeong)](https://github.com/wonyuyeong/github-readme-stats)
-[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=Haeseongl)](https://github.com/Haeseongl/github-readme-stats)
-[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=rlcks)](https://github.com/rlcks/github-readme-stats)
+[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=pyeonjoy)](https://github.com/ictedu2jo/Shop)
+[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=Jun-Hyeong-98)](https://github.com/ictedu2jo/Shop)
+[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=wonyuyeong)](https://github.com/ictedu2jo/Shop)
+[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=Haeseongl)](https://github.com/ictedu2jo/Shop)
+[![Perfume Shop stats](https://github-readme-stats.vercel.app/api?username=rlcks)](https://github.com/ictedu2jo/Shop)

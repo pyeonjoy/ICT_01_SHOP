@@ -104,8 +104,10 @@ $(document).ready(function() {
 				<input class="sign_info_input" type="text" id="user_addr" name="user_addr" placeholder="주소를 입력해주세요." autocomplete="off">
 			</div>
 			<div class="sign_bottom">
+				<div class="signup_check">
 				<input type="checkbox">
 				<p style="display: inline-block;">개인정보 약관에 동의하시겠습니까?</p>
+				</div>
 				<button class="sign_btn1" type="button" id ="sign_btn1">회원가입</button>
 			</div>
 		</div>

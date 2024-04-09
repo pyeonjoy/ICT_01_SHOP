@@ -33,14 +33,15 @@
 		update shop_cartlist set cartlist_count = cartlist_count + #{cartlist_count}
 		where user_idx = #{user_idx} and product_idx =#{product_idx}
 	</update>
-	<select id="getHeartChk" parameterType="Map" resultType="hvo">
-		select * from shop_heart where user_idx = #{user_idx} and product_idx = #{product_idx}
-	</select>
 	
-    <insert id="MypageAddHeart" parameterType="Map" >
-    insert into shop_heart(user_idx, product_idx) 
-    values(#{user_idx}, #{product_idx})
-    </insert> 
+	<insert id="add_to_heart" parameterType="hvo">
+		INSERT INTO shop_heart (user_idx, product_idx)
+		VALUES (#{user_idx}, #{product_idx})
+	</insert>
+	
+	<delete id="remove_from_heart" parameterType="Map">
+		DELETE FROM shop_heart WHERE user_idx = #{user_idx} AND product_idx = #{product_idx}
+	</delete>
 	
 	<!-- product_detail -->
 	<insert id="cart_go" parameterType="pvo">

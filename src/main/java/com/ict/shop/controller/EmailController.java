@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ict.shop.common.MailUtils;
 import com.ict.shop.common.TempKey;
 import com.ict.shop.dao.vo.UserVO;
-import com.ict.shop.service.EmailService;
+import com.ict.shop.service.email.EmailService;
 
 @Controller
 public class EmailController {
@@ -23,7 +23,6 @@ public class EmailController {
     @RequestMapping("login_findpwd.do")
     public ModelAndView findPw(UserVO uvo, Model model) throws Exception {
     	int result = emailService.findPwCheck(uvo);
-    	System.out.println(result);
         if (result > 0) {
             return new ModelAndView("login/login_findinfo");
         } else {

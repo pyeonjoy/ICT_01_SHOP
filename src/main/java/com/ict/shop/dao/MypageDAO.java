@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ict.shop.dao.vo.AddrVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
 
@@ -25,15 +24,6 @@ public class MypageDAO {
 
 //mypage=========================================================================================================
 	
-	//mypage_addr
-	public List<OrderVO> getAddrlist(OrderVO ovo) {
-		try {
-			return sqlSessionTemplate.selectList("mypage.addrlist",ovo);
-		} catch (Exception e) {
-			logger.info("list", e);
-		}
-		return null;
-	}
 	public List<AddrVO> getMyAddrlist(String user_idx) {
 		try {
 			return sqlSessionTemplate.selectList("mypage.myaddrlist", user_idx);
@@ -83,21 +73,15 @@ public class MypageDAO {
 		}
 		return null;
 	}
-/*	
-	public int getRemoveHeart(String product_idx, String user_idx, String heart_idx) {
+	public int reset_pwd(UserVO uvo) {
 		try {
-	        Map<String, String> params = new HashMap<>();
-	        params.put("user_idx", user_idx);
-	        params.put("product_idx", product_idx);
-	        params.put("heart_idx", heart_idx);
-	        return sqlSessionTemplate.update("mypage.MypageRemoveHeart", params);          
-	    } catch (Exception e) {
-	        System.out.println(e);
-	    }
-	    return -1;
-
+			return sqlSessionTemplate.update("mypage.reset_pwd",uvo);			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return -1;
 	}
-	*/
+	
 	public int getRemoveHeart(String product_idx, String user_idx, String heart_idx) {
 		try {
 			Map<String, String> params = new HashMap<>();

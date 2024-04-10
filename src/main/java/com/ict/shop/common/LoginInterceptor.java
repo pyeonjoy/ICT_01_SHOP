@@ -18,7 +18,7 @@ public class LoginInterceptor implements AsyncHandlerInterceptor{
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script> alert('로그인 이후 이후 이용 부탁드립니다..');");
+			out.println("<script> alert('로그인 후 이용 부탁드립니다.');");
 			out.println("window.location.href = 'login_main.do'; </script>");
 			return false;
 		}

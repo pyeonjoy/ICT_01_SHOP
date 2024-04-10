@@ -14,7 +14,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $('.login_main_pwdchk i').on('click', function(){
-        var $input = $(this).closest('.login_main_pwdchk').prev('input');
+        let $input = $(this).closest('.login_main_pwdchk').prev('input');
         if ($input.attr('type') === 'password') {
             $input.attr('type', 'text');
             $(this).removeClass('fa-eye').addClass('fa-eye-slash');

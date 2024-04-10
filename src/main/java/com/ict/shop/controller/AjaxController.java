@@ -15,43 +15,47 @@ import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
-import com.ict.shop.service.ShopService;
+import com.ict.shop.service.login.ShopLoginService;
+import com.ict.shop.service.mypage.ShopMypageService;
+import com.ict.shop.service.product.ShopProductService;
 
 @RestController
 public class AjaxController {
 
 	@Autowired
-	private ShopService shopservice;
+	private ShopLoginService shoploginservice;
+	@Autowired
+	private ShopMypageService shopmypageservice;
+	@Autowired
+	private ShopProductService shopproductservice;
 
 	@RequestMapping(value = "Signup_idchk.do", produces = "text/plain; charset=utf-8")
 	@ResponseBody
 	public String getAjaxIdChk(String user_id) {
-		String result = shopservice.getShopIdChk(user_id);
-		System.out.println(result);
+		String result = shoploginservice.getShopIdChk(user_id);
 		return result;
 	}
 
 	@RequestMapping(value = "removeHeart.do", produces = "text/plain; charset=utf-8")
 	@ResponseBody
 	public String getAjaxHeartRemove(@RequestParam("product_idx") String product_idx, HttpServletRequest request, @RequestParam("user_idx")String user_idx, @RequestParam("heart_idx")String heart_idx) {
-	        int result = shopservice.getRemoveHeart(product_idx, user_idx,heart_idx) ;
+	        int result = shopmypageservice.getRemoveHeart(product_idx, user_idx,heart_idx) ;
 	        HttpSession session = request.getSession();
 	        session.setAttribute("product_idx", product_idx);
 	        session.setAttribute("user_idx", user_idx);
 	        session.setAttribute("heart_idx", heart_idx);
-	       System.out.println(product_idx);
-	       System.out.println(user_idx);
-	       System.out.println(heart_idx);
 
 	        return String.valueOf(result);
 	    }
 	
 	@RequestMapping(value="addHeart.do", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String getAjaxHeartAdd(@RequestParam("product_idx") String product_idx, HttpServletRequest request, @RequestParam("user_idx")String user_idx) {
-	    HeartVO hvo = shopservice.getHeartChk(product_idx,user_idx);
+	public String getAjaxHeartAdd(@RequestParam("product_idx") String product_idx,
+								  HttpServletRequest request,
+								  @RequestParam("user_idx")String user_idx){
+	    HeartVO hvo = shopproductservice.getHeartChk(product_idx,user_idx);
 	    if (hvo == null) {
-	        int result = shopservice.getAddHeart(product_idx, user_idx) ;
+	        int result = shopmypageservice.getAddHeart(product_idx, user_idx) ;
 	        return String.valueOf(result);           
 	    } else {
 	        return "error";
@@ -65,19 +69,16 @@ public class AjaxController {
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
 		String user_idx = uvo.getUser_idx();
-		ProductVO pvo = shopservice.getShopDetail(product_idx);
-		CartListVO cvo = shopservice.getCartChk(user_idx, pvo.getProduct_idx());
+		ProductVO pvo = shopproductservice.getShopDetail(product_idx);
+		CartListVO cvo = shopproductservice.getCartChk(user_idx, pvo.getProduct_idx());
 		if (cvo == null) {
-			int result = shopservice.ProductAddCart(product_idx, user_idx, product_price);
-			System.out.println("새롭게추가~");
+			int result = shopproductservice.ProductAddCart(product_idx, user_idx, product_price);
 			return String.valueOf(result);
 		} else {
-			System.out.println("중복추가~");
 			cvo.setCartlist_count("1");
-			int result = shopservice.cartUpdate(cvo);
+			int result = shopproductservice.cartUpdate(cvo);
 			return String.valueOf(result);
 		}
-
 	}
 
 	@PostMapping(value = "detail_cart_add.do", produces = "text/plain; charset=utf-8")
@@ -87,17 +88,17 @@ public class AjaxController {
 			HttpSession session = request.getSession();
 			UserVO uvo = (UserVO) session.getAttribute("uvo");
 
-			ProductVO pvo = shopservice.getShopDetail(product_idx);
-			CartListVO cvo = shopservice.getCartChk(uvo.getUser_idx(), product_idx);
+			ProductVO pvo = shopproductservice.getShopDetail(product_idx);
+			CartListVO cvo = shopproductservice.getCartChk(uvo.getUser_idx(), product_idx);
 			pvo.setUser_idx(uvo.getUser_idx());
 			pvo.setProduct_count(product_count);
 			
 			int result = 0;
 			if (cvo == null) {
-				result = shopservice.getProductDetailAddCart(pvo);
+				result = shopproductservice.getProductDetailAddCart(pvo);
 			} else {
 				cvo.setCartlist_count(product_count);
-				result = shopservice.cartUpdate(cvo);
+				result = shopproductservice.cartUpdate(cvo);
 			}
 			
 			return String.valueOf(result);

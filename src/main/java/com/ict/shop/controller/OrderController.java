@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,22 +17,16 @@ import com.ict.shop.dao.vo.AddrVO;
 import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
-import com.ict.shop.service.ShopService;
+import com.ict.shop.service.order.ShopOrderService;
 
 @Controller
 public class OrderController {
 
 	@Autowired
-	private ShopService shopservice;
-
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-
-	@Autowired
-	private HttpSession session;
+	private ShopOrderService shoporderservice;
 
 //order===================================================================================================================================================================
-	@GetMapping("cart_list.do") // �옣諛붽뎄�땲 �럹�씠吏�
+	@GetMapping("cart_list.do")
 	public ModelAndView cart_List(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("order/cart_list");
 		try {
@@ -41,7 +34,7 @@ public class OrderController {
 			UserVO uvo = (UserVO) session.getAttribute("uvo");
 
 			CartListVO cvo = new CartListVO();
-			List<CartListVO> cartlist = shopservice.getCartList(uvo.getUser_idx());
+			List<CartListVO> cartlist = shoporderservice.getCartList(uvo.getUser_idx());
 			if (cartlist != null) {
 				mv.addObject("cartlist", cartlist);
 				return mv;
@@ -60,7 +53,7 @@ public class OrderController {
 		int result = 0;
 		if (cart_check_idx != null) {
 			for (String cartlist_idx : cart_check_idx) {
-				result = shopservice.getCartlistDelete(cartlist_idx);
+				result = shoporderservice.getCartlistDelete(cartlist_idx);
 			}
 			if (result > 0) {
 				return mv;
@@ -78,7 +71,7 @@ public class OrderController {
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
 
 		ModelAndView mv = new ModelAndView("redirect:cart_list.do");
-		int result = shopservice.getCartlistEdit(cvo);
+		int result = shoporderservice.getCartlistEdit(cvo);
 		if (result > 0) {
 			return mv;
 		}
@@ -100,7 +93,7 @@ public class OrderController {
 		}
 
 		// 媛��옣 �겙 �닔 媛��졇�삤湲�
-		List<CartListVO> orderlist = shopservice.getCartlistOrderIdx();
+		List<CartListVO> orderlist = shoporderservice.getCartlistOrderIdx();
 		int maxIdx = 0;
 
 		// order_idx 媛� 以묐났 �븞 �릺寃�
@@ -114,13 +107,13 @@ public class OrderController {
 		maxIdx++;
 		CartListVO cvo = new CartListVO();
 		// 二쇱냼 媛��졇�삤湲�
-		CartListVO cvo2 = shopservice.getCartListAddr(uvo.getUser_idx());
+		CartListVO cvo2 = shoporderservice.getCartListAddr(uvo.getUser_idx());
 		int result = 0;
 		int result2 = 0;
 
 		for (int j = 0; j < cart_check_idx.length; j++) {
 			// �꽑�깮�븳 �젣�뭹
-			cvo = shopservice.getCartlistSelect(cart_check_idx[j]);
+			cvo = shoporderservice.getCartlistSelect(cart_check_idx[j]);
 
 			// order_number 怨꾩궛
 			int su = Integer.parseInt(cvo.getCartlist_count());
@@ -130,12 +123,12 @@ public class OrderController {
 			cvo.setAddr_idx(cvo2.getAddr_idx());
 			cvo.setOrder_idx(String.valueOf(maxIdx)); // order_idx 媛숆쾶
 
-			result = shopservice.getCartlistPass(cvo);
+			result = shoporderservice.getCartlistPass(cvo);
 
 		}
 		if (result > 0) {
 			for (String k : cart_check_idx) {
-				result2 = shopservice.getCartlistDelete(k); // 寃곗젣濡� �꽆�뼱媛� 嫄� �궘�젣
+				result2 = shoporderservice.getCartlistDelete(k); // 寃곗젣濡� �꽆�뼱媛� 嫄� �궘�젣
 			}
 			mv.setViewName("redirect:order_pay.do?order_idx=" + maxIdx);
 			return mv;
@@ -153,7 +146,7 @@ public class OrderController {
 		OrderVO ovo = new OrderVO();
 		ovo.setUser_idx(uvo.getUser_idx());
 		ovo.setOrder_idx(order_idx);
-		List<OrderVO> list = shopservice.orderaddrproduct(ovo);
+		List<OrderVO> list = shoporderservice.orderaddrproduct(ovo);
 		if (list != null) {
 			mv.addObject("vo", list);
 			mv.addObject("uvo", uvo);
@@ -164,9 +157,7 @@ public class OrderController {
 
 	@RequestMapping("mypage_addr_select.do")
 	public ModelAndView Mypage_addr_Select(@RequestParam("order_idx") String order_idx, HttpServletRequest request) {
-		System.out.println("�뿬湲� : " + order_idx); // �꽦怨�
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr_select");
-		// �꽭�뀡�뿉�꽌 �궗�슜�옄 ID 媛��졇�삤湲�
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
 
@@ -175,7 +166,7 @@ public class OrderController {
 		ovo.setOrder_idx(order_idx);
 
 		if (uvo.getUser_idx() != null) {
-			List<OrderVO> list = shopservice.getAddrList(ovo);
+			List<OrderVO> list = shoporderservice.getAddrList(ovo);
 			if (list != null) {
 				mv.addObject("list", list);
 				return mv;
@@ -187,7 +178,6 @@ public class OrderController {
 	@RequestMapping("addr_checked.do")
 	public ModelAndView AddrChecked(@RequestParam("addr_idx") String addr_idx,
 			@RequestParam("order_idx") String order_idx, HttpServletRequest request) {
-		System.out.println("order_idx : " + order_idx);
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
@@ -198,11 +188,8 @@ public class OrderController {
 		avo.setAddr_idx(addr_idx);
 		avo.setUser_idx(uvo.getUser_idx());
 
-		List<OrderVO> list = shopservice.orderaddrproduct(ovo);
-		System.out.println("avo.user_idx : " + avo.getUser_idx());
-		System.out.println("avo.addr_idx : " + avo.getAddr_addr());
-		int result = shopservice.getaddrchecked(avo);
-		System.out.println("result: " + result);
+		List<OrderVO> list = shoporderservice.orderaddrproduct(ovo);
+		int result = shoporderservice.getaddrchecked(avo);
 		if (result > 0) {
 			mv.addObject("vo", list);
 			mv.setViewName("redirect:order_pay.do?order_idx=" + order_idx);
@@ -220,7 +207,7 @@ public class OrderController {
 		AddrVO avo = new AddrVO();
 		avo.setAddr_idx(addr_idx);
 		avo.setUser_idx(uvo.getUser_idx());
-		int result = shopservice.getaddrchecked(avo);
+		int result = shoporderservice.getaddrchecked(avo);
 		if (result > 0) {
 			mv.setViewName("redirect:mypage_addr.do");
 			return mv;
@@ -233,7 +220,7 @@ public class OrderController {
 	public ModelAndView orderSuccess(String order_idx, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("product/order_success");
 
-		List<OrderVO> order = shopservice.getOrderSuccessPage(order_idx);
+		List<OrderVO> order = shoporderservice.getOrderSuccessPage(order_idx);
 		if (order != null) {
 			String order_num = order.get(0).getOrder_date().replaceAll("[-: ]", "") + order_idx;
 			mv.addObject("order_num", order_num);
@@ -242,10 +229,9 @@ public class OrderController {
 			mv.addObject("order", order);
 		}
 
-		int result = shopservice.getOrderSuccess(order_idx);
-		int result1 = shopservice.orderupdate1(order_idx);
+		int result = shoporderservice.getOrderSuccess(order_idx);
+		int result1 = shoporderservice.orderupdate1(order_idx);
 
-		System.out.println(result);
 		if (result > 0 && result1 > 0) {
 			return mv;
 		}

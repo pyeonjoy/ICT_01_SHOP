@@ -15,8 +15,8 @@ $(document).ready(function() {
 	$("#addr_edit").click(function() {
 		let name = $("#addr_name").val();
 		let phone = $("#addr_phone").val();
-		let addr = $("#addr_name").val();
-		let phone_pattern = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+		let addr = $("#addr_addr").val();
+		let phone_pattern = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/;
 		
 		
 		if (name === "" || phone === "" || addr === "") {
@@ -27,8 +27,8 @@ $(document).ready(function() {
 	            alert("올바른 전화번호 형식이 아닙니다.");
 	            return false;
 	    }
-	});
 	     addr_edit_ok(this.form);
+	});
 });      
 	function addr_edit_ok(f) {
 		f.action = "mypage_addr_edit_ok.do";

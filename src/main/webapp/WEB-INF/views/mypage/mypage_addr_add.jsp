@@ -15,8 +15,8 @@ $(document).ready(function() {
 	$("#mypage_addr_go").click(function() {
 		let name = $("#addr_name").val();
 		let phone = $("#addr_phone").val();
-		let addr = $("#addr_name").val();
-		let phone_pattern = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+		let addr = $("#addr_addr").val();
+		let phone_pattern = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/;
 		
 		
 		if (name === "" || phone === "" || addr === "") {
@@ -24,11 +24,11 @@ $(document).ready(function() {
 			return false;
 		}
 	      if (!phone_pattern.test(phone)) {
-	            alert("올바른 전화번호 형식이 아닙니다.");
+	            alert("올바른 전화번호 형식이 아닙니다. ex)01012341234");
 	            return false;
-	    }
-	});
+	    }	
 	addr_addr_ok(this.form);
+	});
 });     
 	function addr_addr_ok(f) {
 		f.action = "mypage_addr_add_ok.do";

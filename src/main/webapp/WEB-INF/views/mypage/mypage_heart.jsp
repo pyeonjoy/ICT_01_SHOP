@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>관심상품</title>
 <style type="text/css">
 .mypage_heart_cart img {
 	width: 20px;

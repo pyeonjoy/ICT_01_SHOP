@@ -23,20 +23,7 @@
 		, addr_addr = #{addr_addr}
 		where addr_idx = #{addr_idx}
 	</update>
-	
-<!-- mypage[_addr --> 	
-	<select id ="addrlist" parameterType="ovo" resultType="ovo">
-		SELECT a.*
-		,  o.order_idx
-		  from shop_addr a
-		  , shop_order o
-		 where
-		 a.user_idx = o.user_idx 
-		 AND a.user_idx = #{user_idx}
-		 AND o.order_idx = #{order_idx}
-		 		order by a.addr_base desc
-	</select>
-	
+		
 	<select id ="myaddrlist" parameterType="String" resultType="avo">
 		SELECT a.*
 		  from shop_addr a
@@ -74,14 +61,11 @@
 	insert into shop_cartlist(user_idx, product_idx, cartlist_number, cartlist_count)
 	values(#{user_idx}, #{product_idx}, #{product_price}, 1)
 	</insert>
-<!-- 	
-	<update id="MypageRemoveHeart" parameterType="Map">
-    update shop_heart h
-    inner join shop_user u on h.user_idx = u.user_idx
-    inner join shop_product p on h.product_idx = p.product_idx
-    set h.heart_active = 0
-    where h.heart_idx=#{heart_idx}
-	</update>  -->
+		<update id="reset_pwd" parameterType="uvo">
+		update shop_user
+		set user_pwd = #{user_pwd}
+		where user_id = #{user_id}
+	</update>
 	<delete id="MypageRemoveHeart" parameterType="Map">
 	delete from shop_heart where heart_idx=#{heart_idx}
 	</delete>

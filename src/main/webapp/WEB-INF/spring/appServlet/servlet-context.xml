@@ -45,7 +45,7 @@
 			<mapping path="/mypage_qna_write.do" />
 			<mapping path="/mypage_qna.do" />
 			<mapping path="/mypage_stack.do" />
-			<!-- 게시판 진입 임시 허용<mapping path="/board_list.do" /> -->
+			<mapping path="/board_list.do" />
 			<mapping path="/board_write.do" />
 			<mapping path="/board_detail.do" />
 			<mapping path="/board_down.do" />

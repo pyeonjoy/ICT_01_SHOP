@@ -27,7 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ict.shop.common.Paging;
 import com.ict.shop.dao.vo.BoardVO;
 import com.ict.shop.dao.vo.UserVO;
-import com.ict.shop.service.BoardService;
+import com.ict.shop.service.board.BoardService;
 
 @Controller
 public class BoardController {

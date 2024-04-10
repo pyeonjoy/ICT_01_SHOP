@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ict.shop.dao.vo.AddrVO;
-import com.ict.shop.dao.vo.OrderVO;
-import com.ict.shop.dao.vo.ProductVO;
-import com.ict.shop.dao.vo.UserVO;
 import com.ict.shop.dao.vo.CartListVO;
+import com.ict.shop.dao.vo.OrderVO;
 
 @Repository
 public class OrderDAO {
@@ -21,9 +19,16 @@ public class OrderDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
+	
+	public List<OrderVO> getAddrlist(OrderVO ovo) {
+		try {
+			return sqlSessionTemplate.selectList("order.addrlist",ovo);
+		} catch (Exception e) {
+			logger.info("list", e);
+		}
+		return null;
+	}
 
-	// order===================================================================================================================
-	// cartlist
 	public List<CartListVO> getCartList(String user_idx) {
 		try {
 			return sqlSessionTemplate.selectList("order.cartlist", user_idx);

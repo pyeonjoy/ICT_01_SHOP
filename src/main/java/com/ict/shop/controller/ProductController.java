@@ -1,5 +1,6 @@
 package com.ict.shop.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,9 +43,27 @@ public class ProductController {
 			UserVO uvo = (UserVO) session.getAttribute("uvo");
 
 			ProductVO pvo = shopService.productDetailInfo(product_idx);
-			List<ProductVO> pvoList = shopService.productDetailList();
 			
-			mv.addObject("pvoList", pvoList);
+			// 다른 상품들
+			List<ProductVO> pvoList = shopService.productDetailList();
+
+			// 다른 상품 4개를 뽑아 가져오기
+			List<ProductVO> otherList = new ArrayList<ProductVO>();
+			int pvoList_idx = Integer.valueOf(product_idx) - 1;
+			for (int i = -2; i <= 2; i++) {
+				if (pvoList_idx + i < 0) {
+					otherList.add(pvoList.get(pvoList.size() + i));
+				} else if (i == 0) {
+					continue;
+				} else if ((pvoList_idx + i) > (pvoList.size() - 1)) {
+					otherList.add(pvoList.get(pvoList_idx - 8));
+				} else {
+					otherList.add(pvoList.get(pvoList_idx + i));
+				}
+			}
+			
+
+			mv.addObject("otherList", otherList);
 			mv.addObject("pvo", pvo);
 			return mv;
 		} catch (Exception e) {
@@ -53,19 +72,20 @@ public class ProductController {
 		return null;
 
 	}
+
 	@PostMapping("product_detail_pay.do") // 상품 상세페이지
-	public ModelAndView getProductDatailPay(HttpServletRequest request,
-			@RequestParam("product_idx") String product_idx, @RequestParam("product_count") String product_count) {
+	public ModelAndView getProductDatailPay(HttpServletRequest request, @RequestParam("product_idx") String product_idx,
+			@RequestParam("product_count") String product_count) {
 		try {
 			ModelAndView mv = new ModelAndView("redirect:cart_list.do");
 			HttpSession session = request.getSession();
 			UserVO uvo = (UserVO) session.getAttribute("uvo");
-			
+
 			ProductVO pvo = shopService.getShopDetail(product_idx);
 			CartListVO cvo = shopService.getCartChk(uvo.getUser_idx(), product_idx);
 			pvo.setUser_idx(uvo.getUser_idx());
 			pvo.setProduct_count(product_count);
-			
+
 			int result = 0;
 			if (cvo == null) {
 				result = shopService.getProductDetailAddCart(pvo);
@@ -82,7 +102,7 @@ public class ProductController {
 			System.out.println(e);
 		}
 		return null;
-		
+
 	}
 
 	@GetMapping("product_list.do") // 상품리스트 향수 페이지
@@ -100,5 +120,5 @@ public class ProductController {
 		mv.addObject("shop_list", shop_list);
 		return mv;
 	}
-	
+
 }

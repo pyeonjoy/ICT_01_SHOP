@@ -27,7 +27,7 @@
 
 .product_detail_select_wrapper {
 	position: relative;
-	width: 100%;
+	width: 370px;
 	display: flex;
 	margin: 40px 0px 20px 0px;
 	gap: 10px;
@@ -224,7 +224,29 @@ $(document).ready(function() {
 				alert("추가 실패");
 			}
 		});
-	})
+	});
+	
+    $(".product_detail_heart").click(function() {
+    	let product_idx = $("#product_idx").val();
+    	let user_idx = $("#user_idx").val();
+    	
+        $.ajax({
+            url: "addHeart.do",
+            method: "post",
+            dataType: "text",
+            data: { user_idx: user_idx, product_idx: product_idx},
+            success: function(data) {
+                if(data != "error") {
+                    alert("찜 등록");
+                } else {
+                    alert("이미 찜한 상품입니다.");
+                }
+            },
+            error: function(error) {
+                alert("서버오류");
+            }
+        });
+    });
 });
 
 	function order_chk(f) {
@@ -244,7 +266,7 @@ $(document).ready(function() {
 				<hr>
 			</div>
 			<form name="product_detail_form" id="product_detail_form" method="post">
-				<div class="product_detail_image">
+				<div class="product_detail_image"><b>
 					<img class="product_image" alt="상품이미지" src="resources/image/${pvo.product_img}"> 
 					<img class="product_detail_heart" alt="찜" src="resources/image/heart_01.png">
 				</div>
@@ -259,9 +281,21 @@ $(document).ready(function() {
 						<p class="product_detail_subtitle">${pvo.product_detail}</p>
 						<p style="font-size: 14px;">${pvo.product_content}</p>
 					</div>
+					
+					<c:choose>
+						<c:when test="${pvo.product_idx >= 6 }">
+							<c:set var="pbegin" value="${6}" />
+							<c:set var="pend" value="${10}" />
+						</c:when>
+						<c:otherwise>
+							<c:set var="pbegin" value="${pvo.product_idx}" />
+							<c:set var="pend" value="${pvo.product_idx + 4}" />
+						</c:otherwise>
+					</c:choose>
+							
 					<div class="product_detail_select_bottom">
 						<div class="product_detail_select_wrapper">
-							<c:forEach begin="1" end="4" items="${pvoList}" var="k">
+							<c:forEach items="${otherList}" var="k">
 								<div class="product_detail_select_one">
 									<div class="product_detail_select_img">
 									<a href="product_detail.do?product_idx=${k.product_idx}">
@@ -278,6 +312,7 @@ $(document).ready(function() {
 						</div>
 						<div class="buy_btn_wrap">
 							<input type="hidden" id="product_idx" name="product_idx" value="${pvo.product_idx}"> 
+							<input type="hidden" id="user_idx" name="user_idx" value="${user_idx}"> 
 							<input class="buy_btn" id="cart_add" type="button" value="장바구니에 추가하기"> 
 							<input class="buy_btn" id="pay" type="button" value="구매하기" onclick="order_chk(this.form)">
 						</div>
@@ -293,12 +328,6 @@ $(document).ready(function() {
 				id="product_detail_check_btn1" type="checkbox">
 			<hr>
 			<label for="product_detail_check_btn1">&#10148;제품 상세 정보</label>
-			<h2 class="product_detail_detail">DAY OF NEST</h2>
-			<p class="product_detail_detail">둥지 속에 포근히 감싸인 알의 따뜻하고 부드러운 곡선과
-				질감을 닮은 에그퍼퓸은 알을 깨고 속을 경험하기 전에는 무엇이 들어 있을지 예상할 수 없는 궁금증을 자아냅니다. 세상에
-				흩어진 모든 이야기에서 영감을 받은 감각적인 향이 단조로운 일상에 자유롭고 새로운 리듬을 부여합니다. 탬버린즈가 찾아낸
-				규정되지 않은 아름다움을 향수를 통해 경험해보세요.</p>
-			<br>
 			<h2 class="product_detail_detail">전성분</h2>
 			<p class="product_detail_detail">변성알코올, 향료, 부틸렌글라이콜, 정제수, 리모넨,
 				리날룰, 알파-아이소메틸아이오논, 헥실신남알, 쿠마린, 제라니올, 하이드록시시트로넬알, 시트랄</p>
@@ -335,8 +364,7 @@ $(document).ready(function() {
 				id="product_detail_check_btn2" type="checkbox">
 			<hr>
 			<label for="product_detail_check_btn2">&#10148; 배송 및 반품</label>
-			<p class="product_detail_detail">배송비는 2,500원이며, 3만원 이상 구매하실 경우 배송
-				비용은 무료입니다.</p>
+			<p class="product_detail_detail">배송비는 3,000원입니다</p>
 			<p class="product_detail_detail">주문일로부터 1-2 영업일 이내 출고됩니다.</p>
 			<p class="product_detail_detail">배송은 지역 택배사 사정에 따라 약간의 지연이 생길 수
 				있습니다.</p>

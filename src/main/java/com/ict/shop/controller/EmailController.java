@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ict.shop.common.MailUtils;
 import com.ict.shop.common.TempKey;
 import com.ict.shop.dao.vo.UserVO;
-import com.ict.shop.service.EmailService;
+import com.ict.shop.service.email.EmailService;
 
 @Controller
 public class EmailController {

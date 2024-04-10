@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.shop.dao.vo.UserVO;
-import com.ict.shop.service.ShopService;
+import com.ict.shop.service.login.ShopLoginService;
 
 @Controller
 public class LoginController {
 
 	@Autowired
-	private ShopService shopservice;
+	private ShopLoginService shoploginservice;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -44,8 +44,8 @@ public class LoginController {
 			String encodedPassword = passwordEncoder.encode(vo.getUser_pwd());
 			vo.setUser_pwd(encodedPassword);
 
-			int result = shopservice.getShop_Insert(vo);
-			int result2 = shopservice.getShop_Insert_addr(vo);
+			int result = shoploginservice.getShop_Insert(vo);
+			int result2 = shoploginservice.getShop_Insert_addr(vo);
 
 			if (result > 0) {
 				ModelAndView mv = new ModelAndView("login/congratulation");
@@ -58,27 +58,6 @@ public class LoginController {
 			System.out.println(e);
 			return new ModelAndView("main/signup_fail");
 		}
-	}
-	
-	@RequestMapping("login_changepwd.do") // 완료
-	public ModelAndView Login_Changepwd(HttpServletRequest request,UserVO uvo) {
-		try {
-			String encodedPassword = passwordEncoder.encode(uvo.getUser_pwd());
-			uvo.setUser_pwd(encodedPassword);
-			uvo.setUser_id(request.getParameter("user_id"));
-			int result = shopservice.reset_pwd(uvo);
-			if (result > 0) {
-				ModelAndView mv = new ModelAndView("login/login_main");
-				return mv;
-			}else {
-				return new ModelAndView("main/signup_fail"); 				
-			}
-		} catch (Exception e) {
-			System.out.println(e);
-			return new ModelAndView("main/signup_fail"); 
-		}
-		
-		
 	}
 
 	@GetMapping("login_findinfo.do") // 아이디/비밀번호 진입 페이지 완료
@@ -98,7 +77,7 @@ public class LoginController {
 	@RequestMapping("login_ok.do") // 로그인 완료
 	public ModelAndView Login_OK(UserVO uvo,HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
-		UserVO result = shopservice.getShop_Login(uvo);
+		UserVO result = shoploginservice.getShop_Login(uvo);
 	    if (result != null && passwordEncoder.matches(uvo.getUser_pwd(), result.getUser_pwd())) {
 	    	session.setAttribute("user_idx", result.getUser_idx());
 			session.setAttribute("user_id", result.getUser_id());
@@ -138,7 +117,7 @@ public class LoginController {
 	    uvo.setUser_email(request.getParameter("user_email"));
 
 
-	    UserVO result = shopservice.find_id(uvo);
+	    UserVO result = shoploginservice.find_id(uvo);
 
 	    if (result != null) {
 	        mv.addObject("user_id", result.getUser_id());

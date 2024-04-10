@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,19 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ict.shop.dao.vo.CartListVO;
 import com.ict.shop.dao.vo.ProductVO;
 import com.ict.shop.dao.vo.UserVO;
-import com.ict.shop.service.ShopService;
+import com.ict.shop.service.product.ShopProductService;
 
 @Controller
 public class ProductController {
 
 	@Autowired
-	private ShopService shopService;
-
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
-
-	@Autowired
-	private HttpSession session;
+	private ShopProductService shopproductservice;
 
 //product=================================================================================================================================================================
 
@@ -42,10 +35,10 @@ public class ProductController {
 			HttpSession session = request.getSession();
 			UserVO uvo = (UserVO) session.getAttribute("uvo");
 
-			ProductVO pvo = shopService.productDetailInfo(product_idx);
+			ProductVO pvo = shopproductservice.productDetailInfo(product_idx);
 			
 			// 다른 상품들
-			List<ProductVO> pvoList = shopService.productDetailList();
+			List<ProductVO> pvoList = shopproductservice.productDetailList();
 
 			// 다른 상품 4개를 뽑아 가져오기
 			List<ProductVO> otherList = new ArrayList<ProductVO>();
@@ -81,19 +74,17 @@ public class ProductController {
 			HttpSession session = request.getSession();
 			UserVO uvo = (UserVO) session.getAttribute("uvo");
 
-			ProductVO pvo = shopService.getShopDetail(product_idx);
-			CartListVO cvo = shopService.getCartChk(uvo.getUser_idx(), product_idx);
+			ProductVO pvo = shopproductservice.getShopDetail(product_idx);
+			CartListVO cvo = shopproductservice.getCartChk(uvo.getUser_idx(), product_idx);
 			pvo.setUser_idx(uvo.getUser_idx());
 			pvo.setProduct_count(product_count);
 
 			int result = 0;
 			if (cvo == null) {
-				result = shopService.getProductDetailAddCart(pvo);
-				System.out.println("새롭게 구매 추가");
+				result = shopproductservice.getProductDetailAddCart(pvo);
 			} else {
 				cvo.setCartlist_count(product_count);
-				result = shopService.cartUpdate(cvo);
-				System.out.println("중복 구매 추가");
+				result = shopproductservice.cartUpdate(cvo);
 			}
 			if (result > 0) {
 				return mv;
@@ -108,7 +99,7 @@ public class ProductController {
 	@GetMapping("product_list.do") // 상품리스트 향수 페이지
 	public ModelAndView Product_List(ProductVO pvo) throws Exception {
 		ModelAndView mv = new ModelAndView("product/product_list");
-		List<ProductVO> shop_list = shopService.getShopList(pvo);
+		List<ProductVO> shop_list = shopproductservice.getShopList(pvo);
 		mv.addObject("shop_list", shop_list);
 		return mv;
 	}
@@ -116,7 +107,7 @@ public class ProductController {
 	@GetMapping("product_balm.do") // 상품리스트 비누 페이지
 	public ModelAndView Product_balm_List(ProductVO pvo) throws Exception {
 		ModelAndView mv = new ModelAndView("product/product_list");
-		List<ProductVO> shop_list = shopService.getShopListbalm(pvo);
+		List<ProductVO> shop_list = shopproductservice.getShopListbalm(pvo);
 		mv.addObject("shop_list", shop_list);
 		return mv;
 	}

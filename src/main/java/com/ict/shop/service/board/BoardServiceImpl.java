@@ -1,4 +1,4 @@
-package com.ict.shop.service;
+package com.ict.shop.service.board;
 
 import java.util.List;
 import java.util.Map;
@@ -10,10 +10,10 @@ import com.ict.shop.dao.BoardDAO;
 import com.ict.shop.dao.vo.BoardVO;
 
 @Service
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardDAO boardDAO;
-	
+
 	@Override
 	public int getTotalCount() {
 		return boardDAO.getTotalCount();
@@ -48,29 +48,14 @@ public class BoardServiceImpl implements BoardService{
 	public int getAnsInsert(BoardVO bovo) {
 		return boardDAO.getAnsInsert(bovo);
 	}
-	
+
 	@Override
 	public int getBoardDelete(BoardVO bovo) {
 		return boardDAO.getBoardDelete(bovo);
 	}
-	
+
 	@Override
 	public int getBoardUpdate(BoardVO bovo) {
 		return boardDAO.getBoardUpdate(bovo);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

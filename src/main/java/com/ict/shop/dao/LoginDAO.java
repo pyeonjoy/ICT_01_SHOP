@@ -16,7 +16,8 @@ public class LoginDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-//login==================================================================================================
+	
+	// 회원가입
 	public int getShopInsert(UserVO uvo) {
 		try {
 			return sqlSessionTemplate.insert("login.login_insert", uvo);
@@ -25,7 +26,7 @@ public class LoginDAO {
 		}
 		return -1;
 	}
-
+	// 로그인
 	public UserVO getShopLogin(UserVO uvo) {
 		try {
 			return sqlSessionTemplate.selectOne("login.logingo", uvo);
@@ -34,9 +35,7 @@ public class LoginDAO {
 		}
 		return null;
 	}
-
-	
-	
+	// 아이디찾기
 	public UserVO find_id(UserVO vo) {
 		try {
 			return sqlSessionTemplate.selectOne("login.findid", vo);
@@ -45,24 +44,7 @@ public class LoginDAO {
 		}
 		return null;
 	}
-	
-	public UserVO find_pwd(UserVO uvo) {
-		try {
-			return sqlSessionTemplate.selectOne("login.find_pwd", uvo);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return null;
-	}
 
-	public int reset_pwd(UserVO uvo) {
-		try {
-			return sqlSessionTemplate.update("login.reset_pwd",uvo);			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		return -1;
-	}
 
 	public String getShopIdChk(String user_id) {
 		try {

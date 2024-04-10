@@ -17,7 +17,6 @@ public class ProductDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
   
-	// product_detail
 	public ProductVO productDetailInfo(String product_idx) {
 		try {
 			return sqlSessionTemplate.selectOne("product.detail_info", product_idx);
@@ -44,8 +43,6 @@ public class ProductDAO {
 		}
 		return 0;
 	}
-    
-    // product========================================================================
     // 향수만 보이게
     public List<ProductVO> getShopList(ProductVO pvo) {
         return sqlSessionTemplate.selectList("product.getShopList", pvo);

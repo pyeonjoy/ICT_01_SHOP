@@ -1,4 +1,4 @@
-package com.ict.shop.service;
+package com.ict.shop.service.email;
 
 import com.ict.shop.dao.vo.UserVO;
 

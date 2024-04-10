@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상세페이지</title>
 <link rel="stylesheet" href="resources/css/button.css">
 <style type="text/css">
 .product_detail_wrap {

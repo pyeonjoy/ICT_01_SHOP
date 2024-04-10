@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,10 +16,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ict.shop.dao.vo.AddrVO;
-import com.ict.shop.dao.vo.HeartVO;
 import com.ict.shop.dao.vo.OrderVO;
 import com.ict.shop.dao.vo.UserVO;
-import com.ict.shop.service.ShopService;
+import com.ict.shop.service.mypage.ShopMypageService;
 
 @SessionAttributes("UserVO")
 
@@ -28,7 +26,7 @@ import com.ict.shop.service.ShopService;
 public class MypageController {
 
 	@Autowired
-	private ShopService shopservice;
+	private ShopMypageService shopmypageservice;
 
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -39,9 +37,8 @@ public class MypageController {
 //mypage==============================================================================================================================================
 	@PostMapping("mypage_delete.do")
 	public ModelAndView Mypage_Addr_Delete(String addr_idx) {
-	    System.out.println("들어오나 아이디엑스: " + addr_idx);
 	    ModelAndView mv = new ModelAndView();
-	    int result = shopservice.getAddrDelete(addr_idx);
+	    int result = shopmypageservice.getAddrDelete(addr_idx);
 	    if (result >0) {
 	        mv.setViewName("redirect:mypage_addr.do") ;
 	        return mv;
@@ -58,7 +55,7 @@ public class MypageController {
 	@PostMapping("mypage_addr_add_ok.do")
 	public ModelAndView Mypage_Addr_Add_OK(AddrVO avo) {
 		ModelAndView mv = new ModelAndView("redirect:mypage_addr.do");
-		int result = shopservice.getAddrInsert(avo);
+		int result = shopmypageservice.getAddrInsert(avo);
 		if (result > 0) {
 			return mv;
 		} else {
@@ -69,8 +66,7 @@ public class MypageController {
 	@RequestMapping("mypage_addr_edit.do") // 마이페이지 주소록 추가 페이지
 	public ModelAndView Mypage_Addr_Edit(AddrVO avo) {
 		ModelAndView mv = new ModelAndView("mypage/mypage_addr_edit");
-		AddrVO avo1 = shopservice.getAddrDetail(avo);
-		System.out.println("편집avo"+avo);
+		AddrVO avo1 = shopmypageservice.getAddrDetail(avo);
 		if (avo1 != null) {
 			mv.addObject("avo", avo1);
 			return mv;
@@ -81,8 +77,7 @@ public class MypageController {
 	@PostMapping("mypage_addr_edit_ok.do")
 	public ModelAndView Mypage_Addr_Edit_OK(AddrVO avo) {
 		ModelAndView mv = new ModelAndView("");
-			int result = shopservice.getAddrEdit(avo);
-			System.out.println("컨트롤러있니"+avo.getAddr_idx());
+			int result = shopmypageservice.getAddrEdit(avo);
 			if (result > 0) {
 				mv.setViewName("redirect: mypage_addr.do");
 				return mv;
@@ -99,7 +94,7 @@ public class MypageController {
 	    UserVO uvo = (UserVO) session.getAttribute("uvo");
 
 	    if (uvo.getUser_idx() != null) {
-	        List<AddrVO> list = shopservice.getMyAddrList(uvo.getUser_idx());
+	        List<AddrVO> list = shopmypageservice.getMyAddrList(uvo.getUser_idx());
 	        if (list != null) {
 	            mv.addObject("list", list);
 	            return mv;
@@ -120,8 +115,7 @@ public class MypageController {
 			String encodedPassword = passwordEncoder.encode(uvo.getUser_pwd());
 			uvo.setUser_pwd(encodedPassword);
 			uvo.setUser_id(request.getParameter("user_id"));
-			int result = shopservice.reset_pwd(uvo);
-			System.out.println(uvo.getUser_id());
+			int result = shopmypageservice.reset_pwd(uvo);
 			if (result > 0) {
 				ModelAndView mv = new ModelAndView("mypage/mypage_info");
 				return mv;
@@ -152,7 +146,7 @@ public class MypageController {
 
 		String user_id = (String) session.getAttribute("user_id");
 
-		UserVO vo2 = shopservice.firstchk(user_id);
+		UserVO vo2 = shopmypageservice.firstchk(user_id);
 		String dpwd = vo2.getUser_pwd();
 
 		// 암호화 비교
@@ -171,11 +165,9 @@ public class MypageController {
 		ModelAndView mv = new ModelAndView("mypage/mypage_heart");
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
-		System.out.println(uvo.getUser_idx());
-		List<OrderVO> vo_heart = shopservice.getShopHeartList(user_idx);
+		List<OrderVO> vo_heart = shopmypageservice.getShopHeartList(user_idx);
 		    if (vo_heart != null) {
 		         mv.addObject("vo_heart", vo_heart);
-		        System.out.println("관심상품"+vo_heart);
 		        return mv;
 		    }
 		    return new ModelAndView("main/signup_fail");
@@ -185,12 +177,10 @@ public class MypageController {
 	@RequestMapping("heart_cartlist_ok.do")
 	public ModelAndView Heart_CartlistOK(String user_idx, HttpServletRequest request, OrderVO ovo) {
 		ModelAndView mv = new ModelAndView("redirect:cart_list.do");
-//		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
-//		System.out.println(uvo.getUser_idx());
 		
 		ovo.setUser_idx(uvo.getUser_idx());
-		int result = shopservice.getCartListAdd(ovo);
+		int result = shopmypageservice.getCartListAdd(ovo);
 		
 		if (result > 0) {
 			return mv;
@@ -212,9 +202,8 @@ public class MypageController {
 	    uvo.setUser_email(request.getParameter("user_email"));
 	    uvo.setUser_addr(request.getParameter("user_addr"));
 	    
-	    int res = shopservice.Mypage_Info_Change(uvo);
+	    int res = shopmypageservice.Mypage_Info_Change(uvo);
 
-	    System.out.println(res);
 	    if (res > 0) {
 	    	session.setAttribute("uvo", uvo);
 	        mv.setViewName("redirect:mypage_info.do");
@@ -236,10 +225,9 @@ public class MypageController {
 	    ModelAndView mv = new ModelAndView("mypage/mypage_order_after");
 	    HttpSession session = request.getSession();
 	    UserVO uvo = (UserVO) session.getAttribute("uvo");
-	    List<OrderVO> orderList = shopservice.getOrderList2(uvo.getUser_idx());
+	    List<OrderVO> orderList = shopmypageservice.getOrderList2(uvo.getUser_idx());
 	    if (orderList != null) {
 	        mv.addObject("ovo", orderList);
-	        System.out.println(orderList);
 	        return mv;
 	    }
 	    return new ModelAndView("main/signup_fail");
@@ -250,15 +238,14 @@ public class MypageController {
 		ModelAndView mv = new ModelAndView("mypage/mypage_order");
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
-		List<OrderVO> orderList = shopservice.getShopOrderList(uvo.getUser_idx());
+		List<OrderVO> orderList = shopmypageservice.getShopOrderList(uvo.getUser_idx());
 		
 		//구매내역, 구매 시간에 따른 배송 상태 변경
 		
-		int result = shopservice.getDeliveryStatus(orderList);
+		int result = shopmypageservice.getDeliveryStatus(orderList);
 		
 		if(result > 0) {
 			 if (orderList != null) {
-//		    	 mv.addObject("order", user_idx);
 		         mv.addObject("uvo", uvo);
 				 mv.addObject("ovo", orderList);
 				 return mv;
@@ -270,8 +257,7 @@ public class MypageController {
 	@GetMapping("confirm.do") // 마이페이지 주문내역 페이지
 	public ModelAndView Confirm( String order_idx) {
 		ModelAndView mv = new ModelAndView("redirect:mypage_order.do");
-		 int result = shopservice.orderupdate4(order_idx);
-			System.out.println("result: "+result);
+		 int result = shopmypageservice.orderupdate4(order_idx);
 			if (result > 0) {
 				return mv;
 			}

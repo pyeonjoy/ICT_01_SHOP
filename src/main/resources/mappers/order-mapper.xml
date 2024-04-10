@@ -5,6 +5,17 @@
 
 <mapper namespace="order">
 <!-- cart_list -->
+		<select id ="addrlist" parameterType="ovo" resultType="ovo">
+		SELECT a.*
+		,  o.order_idx
+		  from shop_addr a
+		  , shop_order o
+		 where
+		 a.user_idx = o.user_idx 
+		 AND a.user_idx = #{user_idx}
+		 AND o.order_idx = #{order_idx}
+		 		order by a.addr_base desc
+	</select>
 	<select id="cartlist" parameterType="String" resultType="cvo">
  		select * from shop_cartlist 
  		join shop_product on shop_product.product_idx = shop_cartlist.product_idx

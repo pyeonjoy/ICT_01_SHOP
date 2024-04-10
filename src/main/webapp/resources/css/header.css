@@ -1,24 +1,23 @@
 @charset "UTF-8";
+
 @import url("reset.css");
 
-.header a {
-	color: black;
-}
-
-.header a:visited {
-	color: black;
-}
+@import url("button.css");
 
 .header {
 	position: fixed;
 	z-index: 2;
 	width: 100%;
 	height: 70px;
-	background-color: rgba(0,0,0,0);
+	background-color: rgba(255, 255, 255, 0.9);
 }
 
 .header_left {
 	z-index: 10;
+	display: flex;
+	gap: 40px;
+	top: 20px;
+	left: 20px;
 }
 
 .logo {
@@ -29,29 +28,29 @@
 	font-style: normal;
 	/* 로고 위치 */
 	float: left;
-	padding: 20px 0 0 20px;
 }
 
 .menu {
-	/* 메뉴바 위치 */
-	padding: 20px 0 0 20px;
-	float: left;
-	overflow: hidden;
 	/* 폰트스타일 */
 	font-family: "Noto Serif", serif;
 	font-optical-sizing: auto;
 	font-style: normal;
 	font-variation-settings: "wdth" 100;
+	display: flex;
+	align-items: flex-end;
 }
 
-.menu_tilte:hover {
+.menu_title {
+	padding: 20px;
+}
+
+.menu_title:hover {
 	text-decoration: underline black;
 }
 
 .menu>li {
 	font-size: 20px;
-	padding: 20px 0px 20px 40px;
-	float: left;
+	vertical-align: bottom;
 }
 
 .menu>li:hover .submenu {
@@ -66,141 +65,106 @@
 	height: 0; /*ul의 높이를 안보이게 처리*/
 	overflow: hidden;
 	position: absolute;
-	background-color: rgba(0,0,0,0);
-	top: 70px;
+	background-color: rgba(255, 255, 255, 0.9);
+	top: 50px;
 	left: 0px;
+	gap: 20px;
 }
 
 .submenu>li {
 	line-height: 20px;
-	margin: 20px 20px 10px 20px;
+	margin: 20px 20px 10px;
 	border-bottom: 2px solid black;
+}
+
+/* 양쪽 */
+.header_el {
+	position: fixed;
+	display: flex;
 }
 
 /* 오른쪽 */
 .header_right {
+	align-items: flex-end;
 	z-index: 10;
-	padding: 10px;
 	display: flex;
-	top: 0;
-	right: 0;
-	justify-content: center;
-	align-items: center;
+	top: 20px;
+	right: 20px;
 }
 
-/* 텍스트 아이콘은 작아서 크기 조정을 해놨습니다. 이미지로 대체할 땐 지우기*/
-.himage {
-	font-size: 30px;
+.my {
+	padding: 10px 8px 10px 6px;;
 }
 
-.search {
-	margin: 20px 10px;
-	display: inline-block;
-	min-width: 100px;
-	width: 300px;
-	height: 40px;
-	position: relative;
-	border-radius: 5px;
+.cart {
+	padding: 10px 6px 10px 8px;
 }
 
-.search img {
+.my img, .cart img {
 	width: 30px;
-	margin: 4px;
 }
 
-.my img {
-	width: 30px;
-	margin: 20px 10px;
-}
-
-.cart img {
-	width: 30px;
-	margin: 20px 10px;
-}
-
-.search input:focus {
-	outline: none;
-}
-
-.header_el {
-	position: fixed;
-}
-
-.search p {
-	background-color: transparent;
-	font-weight: bold;
-	min-width: 100px;
-	width: 200px;
-	height: 38px;
-	padding:10px;
-	border-style: none;
-	font-size: 18px;
-	width: 310px;
+.welcome {
+	min-width: 200px;
 	text-align: right;
 }
-.header_login_signup{
-	text-decoration: underline black;
-	font-weight: bold;
-	min-width: 100px;
-	padding:25px 60px;
-	border-style: none;
+
+.logout, .welcome {
+	font-weight: 550;
 	font-size: 20px;
-	width: 200px;
+	padding: 20px 10px;
 }
-.header_login_login{
-	text-decoration: underline black;
-	font-weight: bold;
-	min-width: 100px;
-	padding:25px 0px;
-	border-style: none;
+
+.header_signup, .header_login {
+	font-weight: 550;
 	font-size: 20px;
-	width: 200px;
-	text-align: right;
+	padding: 20px;
 }
-/* 검색 박스 사라지게 */
-@media screen and (max-width:1010px) {
-	.himage {
-		width: 40px;
-	}
-	.search {
-		border: none;
-	}
-	.search input {
+
+.header_signup:hover, .header_login:hover, .logout:hover {
+	text-decoration: underline black;
+}
+
+/* 환영합니다 사라짐 */
+@media screen and (max-width:1030px) {
+	.welcome {
 		display: none;
-	}
-	/* 이미지로 변경시 .search img */
-	#serch_icon {
-		position: relative;
-		display: block;
-		float: right;
 	}
 }
 
 /* 메뉴바 내려가게 */
-@media screen and (max-width:745px) {
-	.menu {
-		background-color: rgba(0, 0, 255, 0.0);
-		padding:0;
-		width: 100vh;
-		margin: 10px 0;
+@media screen and (max-width: 830px) {
+	.header {
+		height: 120px;
 	}
-	.menu > li {
-		padding: 20px 20px 10px 20px;
+	
+	.logo {
+		margin: 0px;
+	}
+	.menu {
+		width: ;
+	}
+	.header_left {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 30px;
+	}
+	.menu_title {
+		padding: 20px 40px 20px 0px;
 	}
 	.submenu {
-		background-color: rgba(0, 0, 255, 0.0);
-		top: 120px;
+		background-color: rgba(255, 255, 255, 0.9);
+		top: 100px;
+	}
+	.submenu>li {
+		margin: 20px 20px 10px 0px;
 	}
 }
 
+}
+}
 .header_space {
 	background-color: white;
 	width: 100%;
 	height: 120px;
-}
-
-@media screen and (max-width:745px) {
-	.header_space {
-		height: 170px;
-	}
 }

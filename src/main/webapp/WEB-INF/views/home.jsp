@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Perfume</title>
+<link href="resources/css/home.css" rel="stylesheet" />
 <script type="text/javascript">
     // 쿠키 셋 
     function setCookie( name, value, exDay ) {
@@ -45,55 +46,6 @@
         }
     }
 </script>
-<style type="text/css">
-#video_area1 {
-  padding: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-float: left;
-}
-#background_video {
-    z-index: -1;
-  height: 100vh;
-    width: auto;
-    position: absolute;
-}
-.header_space{
-display: none;
-}
-
-.layer_popup {
-    display: none; 
-    position: fixed;
-    background-color: white;
-    display: inline-block;
-    padding: 20px;
-    width: 400px;
-    height: 500px;
-    z-index: 9999; /* 우선순위(영상보다 앞에하기위해) */
-}
-
-.popup_image {
-    display: block;
-    margin: 0 auto; 
-    max-width: 100%; 
-    max-height: 100%; 
-}
-#check1, #check2, #check3, #check4, #check5 {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-#close1, #close2, #close3, #close4, #close5 {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-}
-
-</style>
 </head>
 <body onload="checkPopup()">
     <!-- 페이지 로드 시 팝업 표시 여부 확인 -->

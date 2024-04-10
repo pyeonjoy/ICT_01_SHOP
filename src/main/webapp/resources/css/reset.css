@@ -64,3 +64,7 @@ p {
 	font-size: 20px;
     margin: 0 auto;
 }
+
+a, a:visited, a:hover {
+	color: black;
+}

@@ -16,7 +16,6 @@
 
 /* 헤더 속성 */
 @import url("header.css");
-
 .header_space {
 	display: none;
 }
@@ -32,7 +31,7 @@
 }
 
 /* 메뉴바 내려가게 */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 830px) {
 	#header .menu, #header .submenu, #header {
 		background-color: rgba(0, 0, 0, 0.0);
 	}

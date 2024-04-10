@@ -23,7 +23,6 @@ public class EmailController {
     @RequestMapping("login_findpwd.do")
     public ModelAndView findPw(UserVO uvo, Model model) throws Exception {
     	int result = emailService.findPwCheck(uvo);
-    	System.out.println(result);
         if (result > 0) {
             return new ModelAndView("login/login_findinfo");
         } else {

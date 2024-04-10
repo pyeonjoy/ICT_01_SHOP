@@ -58,7 +58,7 @@ function not_connect() {
 						<li>Perfume De Body</li> -->
 					</ul></li>
 
-				<li><a class="menu_tilte"">Board</a></li>
+				<li><a href="board_list.do" class="menu_tilte">Board</a></li>
 			</ul>
 		</div>
 

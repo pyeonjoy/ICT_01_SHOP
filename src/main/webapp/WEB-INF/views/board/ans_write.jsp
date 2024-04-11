@@ -4,60 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${path}/resources/css/button.css" rel="stylesheet" />
-<link href="${path}/resources/css/mypage_addr_add.css" rel="stylesheet" />
-<style type="text/css">
-#bbs table {
-	width:800px;
-	margin:0 auto;
-	margin-top:20px;
-/* 	border: 1px solid black;
-	border-collapse: collapse; */
-	font-size: 14px;
-}
-tr {
-	    text-align:center;
-	    padding:4px 10px;
-margin: 10px;
-	}
-	input{
-margin: 10px;
-}
-	input[type="button"]{
-line-height: 20px;
-text-align: center;
-width: 100px;
-padding: 5px;
-}
-	input[type="reset"]{
-padding: 5px;
-line-height: 20px;
-text-align: center;
-width: 100px;
-}
-input {
-  font-size: 15px;
-  color: #222222;
-  width: 300px;
-  border: none;
-  border-bottom: solid #aaaaaa 1px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  position: relative;
-  background: none;
-  z-index: 5;
-}
-
-input::placeholder { color: #aaaaaa; }
-
-th {
-margin: 10px;
-		width:120px;
-	    text-align:center;
-	    padding:4px 10px;
-	}
-</style>
+<title>게시판</title>
+<link href="resources/css/board.css" rel="stylesheet" />
 <script type="text/javascript">
 	function board_ans_write_ok(f) {
 		for (var i = 0; i < f.elements.length; i++) {

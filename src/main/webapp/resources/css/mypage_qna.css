@@ -1,55 +1,76 @@
-@charset "UTF-8";
-.mypage_qna_wrapper table {
+.mypage_faq_div {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.mypage_faq_button {
+	margin-top: 20px;
+}
+
+.mypage_faq_div .mypage_title {
+	width: 188px;
+}
+
+.mypage_faq_check_btn {
+	display: none;
+}
+
+.mypage_faq_check_btn:checked ~ .mypage_faq_detail {
+	display: block;
+	font-weight: bold;
+}
+
+.mypage_faq_detail {
+	display: none;
+	padding: 6px;
+	font-size: 15px;
+}
+
+.mypage_faq_delivery, .mypage_faq_order_pay, .mypage_faq_cancel_change,
+	.mypage_faq_info_benefit {
 	width: 600px;
-	margin: 0 auto 10px;
+	margin: 20px auto;
 }
 
-.mypage_qna_table th, 
-.mypage_qna_table tr, 
-.mypage_qna_table td{
-	border-collapse: collapse; 
-	border-bottom: 1px solid gray;
-	padding: 8px 0px;
-	text-align: center;
+.mypage_faq_delivery {
+	display: block;
 }
 
-.mypage_qna_search {
-	border-style: none;
+.mypage_faq_order_pay {
+	display: none;
 }
 
+.mypage_faq_cancel_change {
+	display: none;
+}
 
-.mypage_qna {
-	width: 100%;
-	margin: 70px 100px 70px;
+.mypage_faq_info_benefit {
+	display: none;
+}
+
+.mypage_faq_all {
+	display: flex;
 	justify-content: center;
 	text-align: center;
-	height: 500px;
-	float: left;
-	line-height: 35px;
+	height: 90vh;
 }
 
-.mypage_qna_container {
-	display: block;
-	width: 630px;
-	margin: 0 350px;
-	margin: 0 auto 10px;
-
-}
-.mypage_qna_submit{
-margin-left: 300px;
+.mypage_faq_all label {
+	line-height: 50px;
+	margin-left: 10px;
 }
 
-.mypage_qna_aside{
-	width: 350px;
-	float: left;
-	margin-top: 0;
+.mypage_faq_div li {
+	font-size: 15px;
 }
-.mypage_qna_stroke {
-background-color: black;
-color: black;
-width: 125px;
-height: 5px;
-font-size: 15px;
-line-height: 35px;
-margin: 0px auto 30px;
+
+.mypage_faq_div p, .mypage_faq_div li {
+	margin-left: 10px;
+	text-align: center;
+}
+
+.mypage_faq_div input[type="button"] {
+	padding: 7px 20px;
+	font-size: 20px;
 }

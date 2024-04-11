@@ -52,6 +52,8 @@
 			<mapping path="/ans_write.do" />
 			<mapping path="/board_delete.do" />
 			<mapping path="/board_update.do" />
+			<mapping path="/addHeart.do" />
+			<mapping path="/product_list_add_cart.do" />
 			<beans:ref bean="log_inter"/>
 		</interceptor>
 	</interceptors>

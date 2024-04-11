@@ -12,8 +12,6 @@ import com.ict.shop.dao.vo.UserVO;
 @Repository
 public class LoginDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(LoginDAO.class);
-
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	

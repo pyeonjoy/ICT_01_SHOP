@@ -46,7 +46,7 @@ public class OrderController {
 	}
 
 	@PostMapping("cartlist_delete.do")
-	public ModelAndView cartlistDelete(HttpServletRequest request) { // �옣諛붽뎄�땲 �궘�젣
+	public ModelAndView cartlistDelete(HttpServletRequest request) { 
 		ModelAndView mv = new ModelAndView("redirect:cart_list.do");
 		String[] cart_check_idx = request.getParameterValues("cart_check_idx");
 
@@ -64,7 +64,7 @@ public class OrderController {
 		return new ModelAndView("login/singup_fail");
 	}
 
-	@PostMapping("cartlist_edit.do") // �닔�웾 蹂�寃�
+	@PostMapping("cartlist_edit.do")
 	public ModelAndView cartlistEdit(CartListVO cvo, @RequestParam("cartlist_idx") String[] cartlist_idx,
 			@RequestParam("cartlist_count") String[] cartlist_count, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -78,7 +78,7 @@ public class OrderController {
 		return new ModelAndView("login/singup_fail");
 	}
 
-	@PostMapping("cartlist_select_pay.do") // �꽑�깮援щℓ�떆
+	@PostMapping("cartlist_select_pay.do")
 	public ModelAndView cartlistSelectPay(@RequestParam("cart_check_idx") String[] cart_check_idx,
 			@RequestParam("check_number") String[] check_number, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
@@ -86,17 +86,14 @@ public class OrderController {
 		HttpSession session = request.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("uvo");
 
-		// �꽑�깮�븳 二쇰Ц�씠 �뾾�쓣 �븣
 		if (cart_check_idx == null) {
 			mv.setViewName("redirect:cart_list.do?cartlist_status=check_none");
 			return mv;
 		}
 
-		// 媛��옣 �겙 �닔 媛��졇�삤湲�
 		List<CartListVO> orderlist = shoporderservice.getCartlistOrderIdx();
 		int maxIdx = 0;
 
-		// order_idx 媛� 以묐났 �븞 �릺寃�
 		for (int i = 0; i < orderlist.size(); i++) {
 			int cIdx = Integer.parseInt(orderlist.get(i).getOrder_idx());
 			if (cIdx > maxIdx) {
@@ -106,29 +103,26 @@ public class OrderController {
 		}
 		maxIdx++;
 		CartListVO cvo = new CartListVO();
-		// 二쇱냼 媛��졇�삤湲�
 		CartListVO cvo2 = shoporderservice.getCartListAddr(uvo.getUser_idx());
 		int result = 0;
 		int result2 = 0;
 
 		for (int j = 0; j < cart_check_idx.length; j++) {
-			// �꽑�깮�븳 �젣�뭹
 			cvo = shoporderservice.getCartlistSelect(cart_check_idx[j]);
 
-			// order_number 怨꾩궛
 			int su = Integer.parseInt(cvo.getCartlist_count());
 			int price = Integer.parseInt(cvo.getCartlist_number());
 			cvo.setOrder_number(String.valueOf(su * price));
 
 			cvo.setAddr_idx(cvo2.getAddr_idx());
-			cvo.setOrder_idx(String.valueOf(maxIdx)); // order_idx 媛숆쾶
+			cvo.setOrder_idx(String.valueOf(maxIdx)); 
 
 			result = shoporderservice.getCartlistPass(cvo);
 
 		}
 		if (result > 0) {
 			for (String k : cart_check_idx) {
-				result2 = shoporderservice.getCartlistDelete(k); // 寃곗젣濡� �꽆�뼱媛� 嫄� �궘�젣
+				result2 = shoporderservice.getCartlistDelete(k);
 			}
 			mv.setViewName("redirect:order_pay.do?order_idx=" + maxIdx);
 			return mv;
@@ -235,7 +229,6 @@ public class OrderController {
 		if (result > 0 && result1 > 0) {
 			return mv;
 		}
-
 		return new ModelAndView("home");
 	}
 

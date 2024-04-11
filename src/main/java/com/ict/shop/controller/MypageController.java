@@ -264,26 +264,6 @@ public class MypageController {
 				return new ModelAndView("main/signup_fail");
 		}
 	
-	@GetMapping("mypage_pwdchk.do") // 1:1 문의 하는 페이지
-	public ModelAndView Mypage_Pwdchk() {
-
-		return new ModelAndView("mypage/mypage_pwdchk");
-	}
-
-	@GetMapping("mypage_qna_update.do") // 1:1 문의 하는 페이지
-	public ModelAndView Mypage_Qna_Update() {
-		return new ModelAndView("mypage/mypage_qna_update");
-	}
-
-	@GetMapping("mypage_qna_write.do") // 1:1 문의 하는 페이지
-	public ModelAndView Mypage_Qna_Write() {
-		return new ModelAndView("mypage/mypage_qna_write");
-	}
-
-	@GetMapping("mypage_qna.do") // 1:1 문의 하는 페이지
-	public ModelAndView Mypage_Qna() {
-		return new ModelAndView("mypage/mypage_qna");
-	}
 
 	@RequestMapping("mypage_stack.do") // 마이페이지 메인페이지
 	public ModelAndView Mypage_Stack() {

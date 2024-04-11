@@ -47,7 +47,7 @@ public class ProductDAO {
     public List<ProductVO> getShopList(ProductVO pvo) {
         return sqlSessionTemplate.selectList("product.getShopList", pvo);
     }
-    // 비누만 보이게
+    // 향수밤만 보이게
     public List<ProductVO> getShopListbalm(ProductVO pvo) {
     	return sqlSessionTemplate.selectList("product.getShopListbalm",pvo);
     }

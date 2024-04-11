@@ -7,11 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>주문 내역</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<c:set var="path" value="${pageContext.request.contextPath}" />
-<link href="${path}/resources/css/button.css" rel="stylesheet" />
-<link href="${path}/resources/css/mypage_order.css" rel="stylesheet" />
+<link href="/resources/css/mypage.css" rel="stylesheet" />
 <script type="text/javascript">
 	function delivery_go() {
 		location.href = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=운송장번호들어갈곳 "
@@ -46,13 +43,15 @@
 	<%@include file="../main/aside_mypage.jsp"%>
 
 	<div class="mypage_order_body">
+		<div class="mypage_title">
+			<h2>주문 내역</h2>
+			<div class="mypage_title_line"></div>
+		</div>
+		
 		<div class="mypage_order_wrap">
-			<h2 class="mypage_title">주문 내역</h2>
-			<div class="login_changepwd_tilte"></div>
-
 			<c:choose>
 				<c:when test="${empty ovo}">
-					<h3>주문내역 없다</h3>
+					<h3>주문 내역이 없습니다.</h3>
 				</c:when>
 				<c:otherwise>
 					<c:forEach var="order" items="${ovo}" varStatus="vs">
@@ -64,7 +63,7 @@
 							</div>
 							<div class="right" style="float: left;">
 								<div class="mypage_order_text">
-									<p class="mypage_order_status" style="float:right; font-weight: ;">
+									<p class="mypage_order_status">
 												<c:if test="${order.order_status eq '1'}">
 												    <p  style="font-weight: bold; font-size:24px;">배송준비중</p>
 												</c:if>
@@ -75,16 +74,13 @@
 												    <p style="font-weight: bold; font-size:24px;">배송완료</p>
 												</c:if> 
 									</p> 
-									<p>
-										${order.order_date} 주문 ${order.order_idx} 
-									</p>
+									<p>${order.order_date}</p>
 									<p>${order.product_name} </p>
 									<p class="mypage_order_text_pay" style="font-size: 24px; font-weight: bold;">
-										<fmt:formatNumber value="${order.product_price}"
-											pattern="#,###" /> 원, ${order.order_count} 개
+										<fmt:formatNumber value="${order.product_price}" pattern="#,###" /> 원, ${order.order_count} 개
 									</p>
-
 								</div>
+								
 								<div>
 									<button class="mypage_order_btn1" onclick="location.href='confirm.do?order_idx=${order.order_idx}'">구매확정</button>
 									<button class="mypage_order_btn1" onclick="delivery_go()">배송조회</button>

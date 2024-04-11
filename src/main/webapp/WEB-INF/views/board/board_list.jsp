@@ -5,82 +5,8 @@
 <html>
 <head>
 <meta charset=UTF-8>
-<title>Insert title here</title>
-<link href="${path}/resources/css/button.css" rel="stylesheet" />
-<link href="${path}/resources/css/mypage_addr_add.css" rel="stylesheet" />
-<style type="text/css">
-#bbs table {
-	width:800px;
-	margin:0 auto;
-	margin-top:20px;
-/* 	border: 1px solid black;
-	border-collapse: collapse; */
-	font-size: 14px;
-}
-
-#bbs table caption {
-	font-size: 20px;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
-
-#bbs table th, #bbs table td {
-	text-align: center;
-	border-bottom: 1px solid black;
-	padding: 10px 10px;
-}
-input{
-margin: 10px;
-}
-
-.no { width: 15% }
-.subject { 	width: 30% }
-.writer {	width: 20% }
-.reg {	width: 20% }
-.hit {	width: 15% }
-.odd {	background: silver }
-
-/* paging */
-table tfoot ol.paging {
-	list-style: none;
-}
-
-table tfoot ol.paging li {
-	float: left;
-	margin-right: 8px;
-}
-
-table tfoot ol.paging li a {
-	display: block;
-	padding: 3px 7px;
-	border: 1px solid #00B3DC;
-	color: #2f313e;
-	font-weight: bold;
-}
-
-table tfoot ol.paging li a:hover {
-	background: #00B3DC;
-	color: white;
-	font-weight: bold;
-}
-
-.disable {
-	padding: 3px 7px;
-	border: 1px solid silver;
-	color: silver;
-}
-
-.now {
-	padding: 3px 7px;
-	border: 1px solid #black;
-	background: black;
-	color: white;
-	font-weight: bold;
-}
-input[type="button"]{
-padding: 5px;
-}
-</style>
+<title>게시판</title>
+<link href="resources/css/board.css" rel="stylesheet" />
 <script type="text/javascript">
 	function board_write() {
 		location.href = "board_write.do";
@@ -90,9 +16,12 @@ padding: 5px;
 <body>
 <%@include file="../main/header.jsp"%>
 	<%@include file="../main/aside_mypage.jsp"%>
-	<div id="bbs" align="center">
+	<div id="bbs" align="center" class="bbs_list">
+		<div class="mypage_title">
+			<h2>게시판</h2>
+			<div class="mypage_title_line"></div>
+		</div>
 		<table summary="게시판 목록">
-			<caption>1:1 문의 게시판</caption>
 			<thead>
 				<tr class="title">
 					<th class="no">번호</th>
@@ -105,22 +34,22 @@ padding: 5px;
 			<tbody>
 				<c:choose>
 					<c:when test="${empty board_list }">
-						<tr><td colspan="5"><h3>게시물이 존재하지 않습니다.</h3></td></tr>
+						<tr><td colspan="5" rowspan="3"><h3>게시물이 존재하지 않습니다.</h3></td></tr>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="k" items="${board_list}" varStatus="vs">
 							<tr>
 							    <td>${paging.totalRecord - ((paging.nowPage-1)*paging.numPerPage + vs.index )}</td>
-							    <td style="text-align: left; ">
-							    <c:forEach begin="1" end="${k.step}">&nbsp;[Re]</c:forEach>
-							    <c:choose>
-							    	<c:when test="${k.active == 1 }">
-							    		<span style="color:lightgray">삭제된 게시물입니다</span>
-							    	</c:when>
-							    	<c:otherwise>
-							    		<a href="board_detail.do?bo_idx=${k.bo_idx}&cPage=${paging.nowPage}">${k.title }</a></td>
-							    	</c:otherwise>
-							    </c:choose>
+							    <td style="text-align: left;">
+								    <c:forEach begin="1" end="${k.step}">&nbsp;[Re]</c:forEach>
+								    <c:choose>
+								    	<c:when test="${k.active == 1 }">
+								    		<span style="color:lightgray">삭제된 게시물입니다</span>
+								    	</c:when>
+								    	<c:otherwise>
+								    		<a href="board_detail.do?bo_idx=${k.bo_idx}&cPage=${paging.nowPage}">${k.title }</a></td>
+								    	</c:otherwise>
+								    </c:choose>
 							    <td>${k.writer }</td>
 							    <td>${k.regdate.substring(0,10)}</td>
 							    <td>${k.hit }</td>
@@ -136,7 +65,7 @@ padding: 5px;
 							<!-- 이전 버튼 -->
 							<c:choose>
 								<c:when test="${paging.beginBlock <= paging.pagePerBlock }">
-									<li class="disable">이전으로</li>
+									<li class="disable">이전</li>
 								</c:when>
 								<c:otherwise>
 									<li><a href="board_list.do?cPage=${paging.beginBlock - paging.pagePerBlock }">이전으로</a></li>
@@ -157,7 +86,7 @@ padding: 5px;
 							<!-- 이후 버튼 -->
 								<c:choose>
 								<c:when test="${paging.endBlock >= paging.totalPage }">
-									<li class="disable">다음으로</li>
+									<li class="disable">다음</li>
 								</c:when>
 								<c:otherwise>
 									<li><a href="board_list.do?cPage=${paging.beginBlock + paging.pagePerBlock }">다음으로</a></li>

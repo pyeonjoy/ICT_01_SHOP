@@ -1,14 +1,15 @@
 @charset "UTF-8";
-.login_changepwd_tilte{
-background-color: black;
-color: black;
-width: 150px;
-height: 5px;
-font-size: 15px;
-line-height: 35px;
-margin: 15px auto 30px;
 
+.login_changepwd_tilte {
+	background-color: black;
+	color: black;
+	width: 150px;
+	height: 5px;
+	font-size: 15px;
+	line-height: 35px;
+	margin: 15px auto 30px;
 }
+
 .login_changepwd_wrapper {
 	text-align: center;
 	margin: 250px auto;
@@ -28,11 +29,49 @@ margin: 15px auto 30px;
 	height: 100px;
 	margin-left: 10px;
 	border-radius: 5%;
-
 }
 
 .login_changepwd_wrapper .info {
 	border: 1px solid black;
 	padding: 10px 10px;
 	background-color: white;
+}
+
+.mypage_changepwd_wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 90vh;
+	/* 위치 조절 */
+	padding-bottom: 100px;
+}
+
+.mypage_tilte {
+	text-align: center;
+	width: 300px;
+}
+
+.mypage_changepwd_wrapper td {
+	padding: 5px;
+}
+
+.mypage_changepwd_check {
+	display: flex;
+	justify-content: center;
+}
+
+.mypage_changepwd_wrapper .button {
+	padding: 5px;
+	width: 370px
+}
+
+.mypage_changepwd_check table {
+	margin: 20px 0px;
+}
+
+.mypage_changepwd_check input {
+	padding: 5px;
+}
+.mypage_changepwd_reset input[type="button"]{
 }

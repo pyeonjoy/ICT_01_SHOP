@@ -1,35 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<c:set var="path" value="${pageContext.request.contextPath}" />
 <meta charset="UTF-8">
 <title>관심상품</title>
-<style type="text/css">
-.mypage_heart_cart img {
-	width: 20px;
-	height: 20px;
-	object-fit: cover;
-	max-width: 100%
-}
-
-.mypage_heart_cart {
-	margin: -10px 0px 0px 10px;
-	float: right;
-}
-</style>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
-<link href="${path}/resources/css/button.css" rel="stylesheet" />
-<link href="${path}/resources/css/mypage_heart.css" rel="stylesheet" />
+<link href="resources/css/mypage.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<c:set var="path" value="${pageContext.request.contextPath}" />
 <script type="text/javascript">
-
 	$(document).ready(function() {
 	        function addToCart(product_idx,product_price) {
 	            $.ajax({
@@ -78,7 +58,6 @@
 		    }
 
 		}); 
-
 </script>
 </head>
 <body>
@@ -89,12 +68,13 @@
 		<%@include file="../main/aside_mypage.jsp"%>
 	</div>
 	<form action="post">
-		<div class="mypage_heart_body">
+		<div class="mypage_heart_body mypage_wrapper_Atype">
+				<div class="mypage_title"><h2>관심상품</h2>
+					<div class="mypage_title_line"></div>
+				</div>
+				
 			<div class="mypage_heart_wrap">
-				<h2 style="text-align: center;">관심상품</h2>
-				<div class="mypage_heart_tilte"></div>
 				<div class="mypage_heart_all">
-
 					<c:choose>
 						<c:when test="${empty vo_heart}">
 							<h3 style="text-align: center;">관심상품이 없습니다.</h3>
@@ -115,8 +95,7 @@
 										<input type="hidden" class="product_price" value="${k.product_price}">
 										</div>
 										<div class="mypage_heart_heart" data-product-idx="${k.product_idx }" data-user-idx="${k.user_idx}" data-heart-idx="${k.heart_idx }">
-											<img class="mypage_heart_img"
-												src="resources/image/heart_02.png" >
+											<img class="mypage_heart_img" src="resources/image/heart_02.png" >
 										</div>
 											<a href="product_detail.do?product_idx=${k.product_idx}" style="font-weight: bold;">${k.product_name}</a>
 										</div>
@@ -130,10 +109,6 @@
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
-
-
-
-
 				</div>
 			</div>
 		</div>

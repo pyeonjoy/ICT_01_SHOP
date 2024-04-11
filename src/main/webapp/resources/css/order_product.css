@@ -292,7 +292,8 @@
 .product_list_table th, .product_list_table tr, .product_list_table td {
 	border-collapse: collapse;
 	text-align: left;
-	padding-bottom: 10px;
+	padding-bottom: 7px;
+	line-height: 10px;
 	
 }
 

@@ -83,10 +83,10 @@ $(document).ready(function() {
 							<img src="${path}/resources/image/heart_01.png" class="product_list_heart_button" id="product_list_heart_button"></th>
 						</tr>
 						<tr>
-							<td colspan="6">${k.product_detail}</td>
+							<td colspan="6" style="font-size: 14px;">${k.product_detail}</td>
 						</tr>
 						<tr>
-							<td colspan="6"><fmt:formatNumber value="${k.product_price}" pattern="#,###원"></fmt:formatNumber></td>
+							<td colspan="6" style="padding-top: 10px"><fmt:formatNumber value="${k.product_price}" pattern="#,###원"></fmt:formatNumber></td>
 						</tr>
 					</tbody>
 				</table>

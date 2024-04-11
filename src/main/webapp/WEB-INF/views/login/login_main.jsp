@@ -17,10 +17,10 @@ $(document).ready(function(){
         let $input = $(this).closest('.login_main_pwdchk').prev('input');
         if ($input.attr('type') === 'password') {
             $input.attr('type', 'text');
-            $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+            $(this).removeClass('fa-eye-slash').addClass('fa-eye');
         } else {
             $input.attr('type', 'password');
-            $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+            $(this).removeClass('fa-eye').addClass('fa-eye-slash');
         }
     });
 });
@@ -57,7 +57,7 @@ $(document).ready(function(){
 					<td>비밀번호</td>
 					<td><input class="inputbox" type="password" name="user_pwd"
 						placeholder="비밀번호를 입력 해 주세요" autocomplete="off"> 
-						<span class="login_main_pwdchk"> <i class="fa fa-eye fa-lg"></i></span>
+						<span class="login_main_pwdchk"> <i class="fa fa-eye-slash fa-lg"></i></span>
 					</td>
 				</tr>
 			</table>

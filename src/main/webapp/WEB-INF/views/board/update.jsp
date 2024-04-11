@@ -5,46 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="${path}/resources/css/button.css" rel="stylesheet" />
-<link href="${path}/resources/css/mypage_addr_add.css" rel="stylesheet" />
-<style type="text/css">
-#bbs table {
-	width:800px;
-	margin:0 auto;
-	margin-top:20px;
-/* 	border: 1px solid black;
-	border-collapse: collapse; */
-	font-size: 14px;
-}
-tr {
-	    text-align:center;
-	    padding:4px 10px;
-	    border-bottom: 1px solid black;
-	}
-	
-th {
-		width:120px;
-	    text-align:center;
-	    padding:14px 20px;
-	}
-input{
-margin: 10px;
-}
-	input[type="button"]{
-line-height: 20px;
-text-align: center;
-width: 100px;
-padding: 5px;
-}
-	input[type="reset"]{
-padding: 5px;
-line-height: 20px;
-text-align: center;
-width: 100px;
-}
-</style>
-
+<title>게시판</title>
+<link href="resources/css/board.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -55,7 +17,6 @@ width: 100px;
 		}
 	});
 </script>
-
 <script type="text/javascript">
 	function board_list(f) {
 		f.action="board_list.do";
@@ -79,55 +40,59 @@ width: 100px;
 <body>
 <%@include file="../main/header.jsp"%>
 	<%@include file="../main/aside_mypage.jsp"%>
-		<div id="bbs" align="center">
-	<form  method="post" enctype="multipart/form-data">
-		<table width="700">
-		<tbody>
-			<tr>
-				<th>제목</th>
-				<td align="left"> <input type="text" name="title" value="${bovo.title }"></td>
-			</tr>
-			<tr>
-				<th>작성자</th>
-				<td align="left"><input type="text" name="writer" value="${bovo.writer }"></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td align="left"><textarea rows="10" cols="60" name="content">${bovo.content}</textarea>
-				</td>
-			</tr>
-			<tr>
-				<th>첨부파일</th>
-				<c:choose>
-					<c:when test="${empty bovo.f_name}">
-						<td><input type="file" name="file"><b>이전파일없음</b></td>
-						 <input type="hidden" name="old_f_name" value="">	
-					</c:when>
-					<c:otherwise>
-					<td><input type="file" name="file"><b>${bovo.f_name}</b></td>
-						 <input type="hidden" name="old_f_name" value="${bovo.f_name}">
-					</c:otherwise>
-				</c:choose>
-			
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td align="left"><input type="password" name="pwd"></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-				<input type="hidden" name="bo_idx" value="${bovo.bo_idx }">
-				<input type="hidden" name="cPage" value="${cPage }">
-				<input type="button" value="목록" onclick="board_list(this.form)" /> 
-				<input type="button" value="수정" onclick="board_update_ok(this.form)" /> 
-				<input type="reset" value="취소" />
-				</td>
-			</tr>
-            </tbody>
-		</table>
-	</form>
+	<div id="bbs" align="center" class="bbs_write">
+		<div>
+			<form method="post" enctype="multipart/form-data">
+				<table>
+				<tbody>
+					<tr>
+						<th>제목</th>
+						<td><input type="text" name="title" value="${bovo.title }" style="font-size: 20px;" placeholder="제목"></td>
+					</tr>
+					<tr class="board_write_content">
+						<th>내용</th>
+						<td><textarea rows="16" cols="70" name="content">${bovo.content}</textarea></td>
+					</tr>
+					<tr>
+						<th>첨부파일</th>
+						<td class="file_space_td">
+							<c:choose>
+								<c:when test="${empty bovo.f_name}">
+									<input class="file_space" type="file" name="file">
+									<span class="file_space"><b>이전파일없음</b></span>
+									<input type="hidden" name="old_f_name" value="">	
+								</c:when>
+								<c:otherwise>
+									<input class="file_space" type="file" name="file">
+									<span class="file_space"><b>${bovo.f_name}</b></span>
+									<input type="hidden" name="old_f_name" value="${bovo.f_name}">
+								</c:otherwise>
+							</c:choose>
+						</td>
+					</tr>
+					<tr>
+						<th>작성자</th>
+						<td><input type="text" name="writer" value="${bovo.writer }" placeholder="작성자"></td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td><input type="password" name="pwd" placeholder="비밀번호"></td>
+					</tr>
+					
+						
+		        </tbody>
+				</table>
+				<div class="board_write_button">
+					<input type="hidden" name="bo_idx" value="${bovo.bo_idx }">
+					<input type="hidden" name="cPage" value="${cPage }">
+					<input type="button" value="목록" onclick="board_list(this.form)" /> 
+					<input type="button" value="수정" onclick="board_update_ok(this.form)" /> 
+					<input type="reset" value="취소" onclick="history.go(-1)" />
+				</div>
+			</form>
+		</div>
 	</div>
-		<footer>
+	<footer>
 		<%@include file="../main/footer.jsp"%>
 	</footer>
 </body>

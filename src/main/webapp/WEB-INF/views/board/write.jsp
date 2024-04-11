@@ -12,12 +12,12 @@
 <%@include file="../main/aside_mypage.jsp"%>
 		<div id="bbs" align="center" class="bbs_write">
 		<div>
-			<form action="board_write_ok.do" method="post" enctype="multipart/form-data" align="center">
+			<form action="board_write_ok.do" method="post" enctype="multipart/form-data">
 				<table>
 				<tbody>
 					<tr>
 						<th>제목</th>
-						<td><input type="text" name="title"  style="font-size: 20px;"></td>
+						<td><input type="text" name="title"  style="font-size: 20px;" placeholder="제목"></td>
 					</tr>
 					<tr class="board_write_content">
 						<th>내용</th>
@@ -28,11 +28,11 @@
 						<td><input type="file" name="file"></td>
 					<tr>
 						<th>작성자</th>
-						<td><input type="text" name="writer"></td>
+						<td><input type="text" name="writer" placeholder="작성자"></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<td><input type="password" name="pwd"></td>
+						<td><input type="password" name="pwd" placeholder="비밀번호"></td>
 					</tr>
 		            </tbody>
 				</table>

@@ -15,7 +15,6 @@ public interface ShopMypageService {
 	List<AddrVO> getMyAddrList(String user_idx);
 
 	int getAddrDelete(String addr_idx);
-	int getAddrDelete1(String addr_idx);
 
 	OrderVO getOrderDetail(String order_idx);
 

@@ -33,9 +33,6 @@
 	<delete id="addrdelete" parameterType="String">
 	    delete from shop_addr where addr_idx = #{addr_idx}
 	</delete>
-	<delete id="addrdelete1" parameterType="String">
-	    delete from shop_addr where addr_idx = #{addr_idx} and addr_base = 1
-	</delete>
 
 
 

@@ -1,0 +1,192 @@
+@charset "UTF-8";
+
+/* board_list ======================================*/
+.bbs_list table {
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+.bbs_list .mypage_title{
+	width: 106px;
+}
+
+.bbs_list table caption {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.bbs_list th, .bbs_list td {
+	text-align: center;
+	border-bottom: 1px solid black;
+	padding: 10px;
+}
+
+.bbs_list td input {
+	margin: 5px;
+}
+
+.no {
+	width: 10%; 
+}
+
+.hit {
+	width: 5%;
+}
+
+.subject {
+	width: 50%
+}
+
+.reg, .writer {
+	width: 18%
+}
+
+.odd {
+	background: silver
+}
+
+/* paging */
+.bbs_list table tfoot ol.paging {
+	list-style: none;
+}
+
+.bbs_list table tfoot ol.paging li {
+	float: left;
+	margin-right: 8px;
+}
+
+.bbs_list table tfoot ol.paging li a {
+	display: block;
+	padding: 3px 7px;
+	border: 1px solid #00B3DC;
+	color: #2f313e;
+	font-weight: bold;
+}
+
+.bbs_list table tfoot ol.paging li a:hover {
+	background: #00B3DC;
+	color: white;
+	font-weight: bold;
+}
+
+.disable {
+	padding: 3px 7px;
+	border: 1px solid silver;
+	color: silver;
+}
+
+.now {
+	padding: 3px 7px;
+	border: 1px solid #black;
+	background: black;
+	color: white;
+	font-weight: bold;
+}
+
+.bbs_list input[type="button"] {
+	padding: 5px;
+	width: 60px;
+}
+/* write======================================*/
+.bbs_write{
+	margin-top: 5vh;
+	display: flex;
+	justify-content: center;
+}
+.bbs_write table {
+	width: 600px;
+	margin: 0 auto;
+	margin-top: 20px;
+	font-size: 14px;
+}
+
+.board_write_content{
+	height: 300px;
+}
+.bbs_write input{
+	position: relative;
+	background: none;
+	border: none;
+}
+
+.bbs_write td {
+	font-size: 15px;
+	color: #222222;
+	width: 513px;
+	border-bottom: solid #aaaaaa 1px;
+	z-index: 5;
+	margin: 15px 0;
+}
+
+.bbs_write input::placeholder {
+	color: #aaaaaa;
+}
+
+.bbs_write td {
+	width: 413px;
+	height: 50px;
+}
+.bbs_write tr {
+	padding: 4px 10px;
+	margin: 10px;
+}
+
+.bbs_write th {
+	text-align: center;
+	width: 67px;
+}
+.bbs_write input[type="button"], .bbs_write input[type="reset"]  {
+	text-align: center;
+	width: 60px;
+	padding: 5px;
+	margin: 10px 0;
+}
+
+.board_write_button {
+	float: right;
+	
+}
+/* detail======================================*/
+
+.board_detail_content {
+	height: 300px;
+	margin: 10px 0;
+}
+
+/* delete======================================*/
+.bbs_delete_wraps {
+	display: flex;
+	justify-content: center;
+}
+
+.bbs_delete_pwd {
+	margin-top: 20vh;
+	width: 249px;
+}
+
+.bbs_delete_pwd input[type="button"], .bbs_delete_pwd input[type="reset"]  {
+	text-align: center;
+	width: 60px;
+	padding: 5px;
+}
+
+.bbs_delete_pwd tr{
+	font-size: 15px;
+	color: #222222;
+	border-bottom: solid #aaaaaa 1px;
+	z-index: 5;
+	position: relative;
+}
+
+.bbs_delete_pwd table input{
+	background: none;
+	border: none;
+	padding: 10px;
+}
+
+.bbs_delete_btn {
+	margin: 20px 0;
+}

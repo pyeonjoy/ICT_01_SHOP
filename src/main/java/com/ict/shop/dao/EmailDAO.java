@@ -22,7 +22,6 @@ public class EmailDAO {
 
 	public int findPw(UserVO uvo) throws Exception {
 		try {
-			System.out.println(uvo.getUser_email()+"DAO이메일");
 			return sqlSessionTemplate.update("email.changepwd",uvo);
 		} catch (Exception e) {
 			System.out.println(e);

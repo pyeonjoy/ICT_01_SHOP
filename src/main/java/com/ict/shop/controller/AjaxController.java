@@ -40,11 +40,6 @@ public class AjaxController {
 	@ResponseBody
 	public String getAjaxHeartRemove(@RequestParam("product_idx") String product_idx, HttpServletRequest request, @RequestParam("user_idx")String user_idx, @RequestParam("heart_idx")String heart_idx) {
 	        int result = shopmypageservice.getRemoveHeart(product_idx, user_idx,heart_idx) ;
-	        HttpSession session = request.getSession();
-	        session.setAttribute("product_idx", product_idx);
-	        session.setAttribute("user_idx", user_idx);
-	        session.setAttribute("heart_idx", heart_idx);
-
 	        return String.valueOf(result);
 	    }
 	

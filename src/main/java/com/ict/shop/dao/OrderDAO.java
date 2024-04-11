@@ -15,8 +15,6 @@ import com.ict.shop.dao.vo.OrderVO;
 @Repository
 public class OrderDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(OrderDAO.class);
-
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
@@ -24,7 +22,7 @@ public class OrderDAO {
 		try {
 			return sqlSessionTemplate.selectList("order.addrlist",ovo);
 		} catch (Exception e) {
-			logger.info("list", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -33,7 +31,7 @@ public class OrderDAO {
 		try {
 			return sqlSessionTemplate.selectList("order.cartlist", user_idx);
 		} catch (Exception e) {
-			logger.info("cartlist", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -42,7 +40,7 @@ public class OrderDAO {
 		try {
 			return sqlSessionTemplate.delete("order.cartlist_delete", cartlist_idx);
 		} catch (Exception e) {
-			logger.info("cartlistdelete", e);
+			System.out.println(e);
 		}
 		return 0;
 	}
@@ -51,7 +49,7 @@ public class OrderDAO {
 		try {
 			return sqlSessionTemplate.update("order.cartlist_edit", cvo);
 		} catch (Exception e) {
-			logger.info("cartlistEdit", e);
+			System.out.println(e);
 		}
 		return 0;
 	}
@@ -60,7 +58,7 @@ public class OrderDAO {
 		try {
 			return sqlSessionTemplate.selectList("order.cartlist_order_list");
 		} catch (Exception e) {
-			logger.info("cartlistOrderIdx", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -69,7 +67,7 @@ public class OrderDAO {
 		try {
 			return sqlSessionTemplate.insert("order.cartlist_pass", cvo);
 		} catch (Exception e) {
-			logger.info("cartlistpass", e);
+			System.out.println(e);
 		}
 		return 0;
 	}
@@ -78,7 +76,7 @@ public class OrderDAO {
 		try {
 			return sqlSessionTemplate.selectOne("order.cartlist_select", cartlist_idx);
 		} catch (Exception e) {
-			logger.info("cartlistOrderIdx", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -87,7 +85,7 @@ public class OrderDAO {
 		try {
 			return sqlSessionTemplate.selectOne("order.cartlist_addr", user_idx);
 		} catch (Exception e) {
-			logger.info("cartlistOrderIdx", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -96,8 +94,6 @@ public class OrderDAO {
 	// order_pay
 	public List<OrderVO> orderaddrproduct(OrderVO ovo) {
 		try {
-//					Map<String, String> map = new HashMap<>();
-//					map.put("user_idx", user_idx);
 			return sqlSessionTemplate.selectList("order.orderaddrproduct", ovo);
 		} catch (Exception e) {
 			System.out.println(e);

@@ -17,8 +17,6 @@ import com.ict.shop.dao.vo.UserVO;
 @Repository
 public class MypageDAO {
 
-	private static final Logger logger = LoggerFactory.getLogger(MypageDAO.class);
-
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
@@ -28,7 +26,7 @@ public class MypageDAO {
 		try {
 			return sqlSessionTemplate.selectList("mypage.myaddrlist", user_idx);
 		} catch (Exception e) {
-			logger.info("list", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -37,16 +35,15 @@ public class MypageDAO {
 		try {
 			return sqlSessionTemplate.insert("mypage.addrinsert", avo);
 		} catch (Exception e) {
-			logger.info("insert", e);
+			System.out.println(e);
 		}
 		return -1;
 	}
 	public AddrVO getAddrDetail(AddrVO avo) {
 		try {
-			System.out.println("dao"+avo.getAddr_addr());
 			return sqlSessionTemplate.selectOne("mypage.addrdetail", avo);
 		} catch (Exception e) {
-			logger.info("update", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -122,7 +119,7 @@ public class MypageDAO {
 	// 주문 내역 리스트
 	public int orderupdate2(String order_idx) {
 		try {
-			return sqlSessionTemplate.delete("mypage.orderupdate2",order_idx);
+			return sqlSessionTemplate.update("mypage.orderupdate2",order_idx);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -130,7 +127,7 @@ public class MypageDAO {
 	}
 	public int orderupdate3(String order_idx) {
 		try {
-			return sqlSessionTemplate.delete("mypage.orderupdate3",order_idx);
+			return sqlSessionTemplate.update("mypage.orderupdate3",order_idx);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -138,7 +135,7 @@ public class MypageDAO {
 	}
 	public int orderupdate4(String order_idx) {
 		try {
-			return sqlSessionTemplate.delete("mypage.orderupdate4",order_idx);
+			return sqlSessionTemplate.update("mypage.orderupdate4",order_idx);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
@@ -167,7 +164,7 @@ public class MypageDAO {
 		try {
 			return sqlSessionTemplate.insert("mypage.changepwd", uvo);
 		} catch (Exception e) {
-			logger.info("insert", e);
+			System.out.println(e);
 		}
 		return -1;
 	}
@@ -183,7 +180,7 @@ public class MypageDAO {
 			map.put("user_idx", user_idx);
 			return sqlSessionTemplate.selectList("mypage.orderlist", map);
 		} catch (Exception e) {
-			logger.info("insert", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -194,7 +191,7 @@ public class MypageDAO {
 			map.put("user_idx", user_idx);
 			return sqlSessionTemplate.selectList("mypage.orderlist2", map);
 		} catch (Exception e) {
-			logger.info("insert", e);
+			System.out.println(e);
 		}
 		return null;
 	}
@@ -211,7 +208,7 @@ public class MypageDAO {
 		try {
 			return sqlSessionTemplate.update("mypage.addredit", avo);
 		} catch (Exception e) {
-			logger.info("insert", e);
+			System.out.println(e);
 		}
 		return -1;
 	}

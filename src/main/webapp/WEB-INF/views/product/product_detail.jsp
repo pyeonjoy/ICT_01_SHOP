@@ -169,6 +169,7 @@ width: 85px;
 
 .product_detail_text {
 	font-size: 16px;
+	
 }
 
 .product_detail_check_btn {
@@ -183,6 +184,7 @@ width: 85px;
 	display: none;
 	padding: 6px;
 	font-size: 15px;
+	    line-height: 22px;
 }
 
 .product_detail_main {

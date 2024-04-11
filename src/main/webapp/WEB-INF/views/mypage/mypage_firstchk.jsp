@@ -19,8 +19,8 @@
 	        $(this).toggleClass('fa-eye-slash fa-eye');
 	    });
 	$(".check_btn").on("keyup",function(key){
-	   	let pwdchk = "${user_pwd}";
-        if (key.keyCode == 13) {
+		   	let pwdchk = "${user_pwd}";
+	        if (key.keyCode == 13) {
         }
     });
 });
@@ -40,7 +40,7 @@
 			        <i class="fa fa-eye-slash fa-lg"></i>
 			    </span>
 				<div class="firstchk_chk">
-					<input type="submit" value="확인"></div>
+					<input class="check_btn" type="submit" value="확인"></div>
 		</div>
 	</form>
 

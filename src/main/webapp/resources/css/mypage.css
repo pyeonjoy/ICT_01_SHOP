@@ -1,0 +1,483 @@
+@charset "UTF-8";
+
+/* common */
+#footer {
+	margin-top: 60vh;
+}
+
+.mypage_title {
+	padding: 20px;
+	text-align: center;
+}
+
+.mypage_title_line {
+	background-color: black;
+	margin-top: 2px;
+	width: 100%;
+	height: 5px;
+}
+
+.mypage_wrapper_Atype {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.margin-top_20 {
+	margin-top: 20vh;
+}
+
+.margin_top_10 {
+	margin-top: 10vh;
+}
+
+.mypage_input input {
+	border: 1px solid black;
+	background-color: white;
+	padding: 10px;
+	font-weight: bold;
+}
+
+/* aside_mypage ======================================= */
+.mypage_menu {
+	display: flex;
+	margin-left: 35px;
+	flex-direction: column;
+	position: absolute;
+	top: 20vh;
+}
+
+.mypage_menu a:hover {
+	font-weight: bold;
+}
+
+.mypage_menu_title {
+	padding: 10px 0px;
+	width: 80px;
+}
+
+.mypage_menu_list li {
+	padding: 12px 0px;
+}
+
+/* addr ======================================= */
+.mypage_addr_body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.mypage_addr_body .mypage_title {
+	width: 158px;
+}
+
+.mypage_addr_wrap {
+	line-height: 35px;
+	width: 500px;
+	padding: 20px;
+}
+
+.mypage_addr_wrap p {
+	font-size: 14px;
+}
+
+.mypage_addr_inner {
+	display: flex;
+	margin: 20px 0 10px;
+}
+
+.mypage_addr_inner_in {
+	flex: 1;
+}
+
+.mypage_addr_inner_in:nth-of-type(1) {
+	text-align: left;
+}
+
+.addr_add_btn {
+	font-size: 20px;
+	color: black;
+	width: 100%;
+	height: 50px;
+}
+
+.mypage_addr_inner_in:nth-of-type(2) {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+}
+
+.addr_box_btn {
+	width: 80px;
+	margin: 2px;
+	height: 30px;
+	border-radius: 5px;
+	line-height: 15px;
+}
+
+/* addr_add ==========================*/
+/* info와 통합 */
+.mypage_addr_add_wrap {
+	align-items: center;
+	justify-content: center;
+	height: 300px;		
+}
+
+.mypage_addr_add_inner {
+	display: flex;
+	justify-content: center;
+	height: 300px;
+}
+
+.mypage_addr_add_label {
+	float: left;
+	margin: 7px 0px  ;
+	padding: 10px 10px;
+}
+
+/* addr_update ======================================= */
+
+/* changepwd ======================================= */
+.mypage_changepwd_wrapper td {
+	padding: 3px 5px;
+	text-align: center;
+}
+
+.mypage_changepwd_check .button {
+	width: 80px;
+	height: 80px;
+}
+
+.mypage_changepwd_check {
+	display: flex;
+	justify-content: center;
+}
+
+.mypage_changepwd_check table {
+	margin: 20px 0px;
+}
+
+/* faq ======================================= */
+.mypage_faq_div {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.mypage_faq_button {
+	margin-top: 20px;
+}
+
+.mypage_faq_div .mypage_title {
+	width: 188px;
+}
+
+.mypage_faq_check_btn {
+	display: none;
+}
+
+.mypage_faq_check_btn:checked ~ .mypage_faq_detail {
+	display: block;
+	font-weight: bold;
+}
+
+.mypage_faq_detail {
+	display: none;
+	padding: 6px;
+	font-size: 15px;
+}
+
+.mypage_faq_delivery, .mypage_faq_order_pay, .mypage_faq_cancel_change,
+	.mypage_faq_info_benefit {
+	width: 600px;
+	margin: 20px auto;
+}
+
+.mypage_faq_delivery {
+	display: block;
+}
+
+.mypage_faq_order_pay {
+	display: none;
+}
+
+.mypage_faq_cancel_change {
+	display: none;
+}
+
+.mypage_faq_info_benefit {
+	display: none;
+}
+
+.mypage_faq_all {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	height: 90vh;
+}
+
+.mypage_faq_all label {
+	line-height: 50px;
+	margin-left: 10px;
+}
+
+.mypage_faq_div li {
+	font-size: 15px;
+}
+
+.mypage_faq_div p, .mypage_faq_div li {
+	margin-left: 10px;
+	text-align: center;
+}
+
+.mypage_faq_div input[type="button"] {
+	padding: 7px 20px;
+	font-size: 20px;
+}
+
+/* firstchk ======================================= */
+.mypage_firstchk_chk input, .check_btn {
+	height: 37px;
+}
+
+.mypage_firstchk_chk {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0 0 50px;
+}
+
+.mypage_pwdchk_icon {
+	position: relative;
+}
+
+.mypage_pwdchk_icon i {
+	position: absolute;
+	top: 10px;
+	right: 8px;
+	color: black;
+	cursor: pointer;
+}
+
+.check_btn {
+	margin-left: 10px;
+	line-height: 18px;
+}
+
+/* heart ======================================= */
+.mypage_heart_wrap {
+	margin: 0px auto;
+	width: 1020px;
+}
+
+.mypage_heart_all {
+	margin: 0 auto;
+}
+
+.mypage_heart_wrap p {
+	line-height: 23px;
+	font-size: 16px;
+}
+
+.mypage_heart_one {
+	float: left;
+	width: 300px;
+	margin: 50px 20px 0px;
+}
+
+.mypage_heart_box, .mypage_heart_box img {
+	width: 300px;
+	height: 300px;
+}
+
+.mypage_heart_box img {
+	object-fit: cover;
+	max-width: 100%;
+	border-radius: 10%;
+}
+
+.mypage_heart_bottom {
+	margin: 10px 0px;
+}
+
+.mypage_heart_bottom_first {
+	margin-bottom: 6px;
+}
+
+.mypage_heart_heart, .mypage_heart_cart {
+	margin: 0px 0px 0px 10px;
+	float: right;
+}
+
+.mypage_heart_heart img, .mypage_heart_cart img {
+	width: 20px;
+	height: 20px;
+	object-fit: cover;
+	max-width: 100%
+}
+
+/* info ======================================= */
+.mypage_info_wrap {
+	line-height: 35px;
+	margin: 0px 20px 0px 0px;
+}
+
+.mypage_info_wrap .mypage_title {
+	width: 136px;
+}
+
+.mypage_info_wrap .mypage_title h2 {
+	height: 31px;
+}
+
+.mypage_info_inner {
+	margin: 20px 60px 0px 0px;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+}
+
+.mypage_info_inner input, .mypage_info_inner p {
+	margin: 10px 3px;
+	height: 30px;
+}
+
+.mypage_info_inner input {
+	width: 250px;	
+	
+}
+.mypage_info_left {
+	display: flex;
+	width: 100px;
+	text-align: right;
+	flex-direction: column;
+}
+
+.mypage_info_left p {
+	font-size: 14px;
+}
+
+.mypage_info_right {
+	width: 300px;
+}
+
+.mypage_info_bottom {
+	margin: 15px 3px;
+	display: flex;
+	flex: 1;
+	gap: 5px;
+}
+
+.mypage_info_btn1 {
+	font-size: 12px;
+	color: black;
+	width: 122px;
+	height: 30px;
+	text-align: center;
+}
+
+.mypage_input input:disabled {
+	cursor: default;
+	background-color: light-dark(rgba(239, 239, 239, 0.3),
+		rgba(59, 59, 59, 0.3));
+	color: light-dark(rgb(84, 84, 84), rgb(170, 170, 170));
+	border-color: rgba(118, 118, 118, 0.3);
+}
+
+/* order,  ======================================*/
+.mypage_order_body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.mypage_order_wrap {
+	line-height: 40px;
+}
+
+.mypage_order_wrap .mypage_title {
+	width: 136px;
+}
+
+.mypage_order_wrap .mypage_title h2 {
+	height: 31px;
+}
+
+.mypage_order {
+	width: 835px;
+	border-bottom: 1px solid gray;
+	display: flex;
+}
+
+.mypage_order .left, .mypage_order .right {
+	margin: 20px;
+}
+
+.mypage_order img {
+	width: 200px;
+	height: 200px;
+	object-fit: cover;
+	max-width: 100%;
+}
+
+.mypage_order_status {
+	float: right;
+	margin: 0px;
+}
+
+.mypage_order_btn1, .mypage_order_cartlist_go {
+	font-size: 12px;
+	color: black;
+	width: 180px;
+	height: 30px;
+	text-align: center;
+}
+
+/*  stack  ======================================*/
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+.mypage_stack_container {
+	width: 100%;
+	justify-content: center;
+	display: flex;
+	align-items: center;
+}
+
+.mypage_stack_main {
+	max-width: 780px;
+	font-style: 24px;
+	border: 1px solid #ccc;
+	width: 60%;
+	height: 140px;
+	display: flex;
+	text-align: center;
+	padding: 20px;
+	margin: 100px;
+	border: 1px solid #ccc;
+}
+
+.profile, .points, .coupons {
+	flex: 1;
+	padding: 20px 10px;
+	font-size: 20px;
+	border-right: 1px solid #ccc;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.profile {
+	justify-content: center;
+}
+
+.points, .coupons {
+	gap: 10px;
+}
+
+.coupons {
+	border-right: none;
+}

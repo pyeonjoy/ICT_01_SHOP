@@ -7,202 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>상세페이지</title>
-<link rel="stylesheet" href="resources/css/button.css">
-<style type="text/css">
-.product_detail_wrap {
-	margin: 0px auto;
-	width: 1000px;
-	line-height: 25px;
-}
-
-.product_detail_body {
-	float: left;
-	margin: 40px auto 70px;
-	width: 100%;
-}
-
-.product_detail_top {
-	text-align: center;
-}
-
-.product_detail_select_wrapper {
-	position: relative;
-	width: 370px;
-	display: flex;
-	margin: 40px 0px 20px 0px;
-	gap: 10px;
-	overflow: hidden;
-}
-
-.product_detail_select_one {
-	flex: 1;
-	width: 85px;
-	white-space: nowrap;
-}
-
-.product_detail_select_img {
-	height: 110px;
-	background-color: gray;
-	position: relative;
-}
-
-.product_detail_select_img img {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.product_detail_select_one p {
-width: 85px;
-	font-size: 11px;
-	padding-top: 5px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.product_detail_image {
-	background-color: gray;
-	width: 500px;
-	height: 600px;
-	float: left;
-	position: relative;
-}
-
-.product_image {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.product_detail_heart {
-	width: 50px;
-	height: 50px;
-	position: absolute;
-	bottom: 10px;
-	right: 10px;
-}
-.product_detail_select_bottom {
-	position: absolute;
-	display: inline-block;
-}
-
-
-.product_detail_text_right {
-	width: 450px;
-	height: 620px;
-	padding: 60px 40px;
-	float: right;
-}
-
-.product_detail_title {
-	width: 200px;
-	display: inline-block;
-	float: left;
-	margin: 0px;
-	float: left;
-}
-
-.product_detail_price {
-	margin: 0px;
-	width: 100px;
-	text-align: right;
-	float: right;
-}
-
-.product_detail_subtitle {
-	margin: 40px 0px 20px;
-	font-size: 18px;
-}
-
-.product_detail_under_wrap1 {
-	margin: 10px 0px 10px 0px;
-	width: 200px;
-	height: 30px;
-	display: flex;
-}
-
-.product_detail_type {
-	margin: 5px 5px;
-}
-
-.product_detail_btn1 {
-	font-size: 10px;
-	margin: 0px 5px;
-	background-color: lightgray;
-	border-radius: 20px;
-	width: 50px;
-	height: 25px;
-	border: none;
-}
-
-.count_bnt {
-	font-size: 20px;
-}
-
-.count_bnt input{
-	width: 50px; 
-	height: 30px;
-	margin-bottom: 15px;
-	text-align: center;
-	font-size: 20px;
-}
-
-.buy_btn_wrap {
-	display: flex;
-	gap: 10px;
-}
-
-.buy_btn {
-	font-size: 16px;
-	text-align: center;
-	width: 80px;
-	height: 40px;
-	margin: 0;
-	flex: 1;
-}
-
-.buy_btn:nth-of-type(1) {
-	margin-right: 10px;
-}
-
-.product_detail_text {
-	font-size: 16px;
-	
-}
-
-.product_detail_check_btn {
-	display: none;
-}
-
-.product_detail_check_btn:checked ~ .product_detail_detail {
-	display: block;
-}
-
-.product_detail_detail {
-	display: none;
-	padding: 6px;
-	font-size: 15px;
-	    line-height: 22px;
-}
-
-.product_detail_main {
-	height: 430px;
-}
-
-.product_detail_description {
-	display: block;
-	width: 1000px;
-	margin: 20px auto 90px;
-}
-
-#footer {
-	position: static;
-	margin-top: 30px;
-	height: 268px;
-}
-</style>
+<link href="resources/css/order_product.css" rel="stylesheet" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -268,7 +73,7 @@ $(document).ready(function() {
 				<hr>
 			</div>
 			<form name="product_detail_form" id="product_detail_form" method="post">
-				<div class="product_detail_image"><b>
+				<div class="product_detail_image">
 					<img class="product_image" alt="상품이미지" src="resources/image/${pvo.product_img}"> 
 					<img class="product_detail_heart" alt="찜" src="resources/image/heart_01.png">
 				</div>
@@ -281,7 +86,7 @@ $(document).ready(function() {
 					</div>
 					<div>
 						<p class="product_detail_subtitle">${pvo.product_detail}</p>
-						<p style="font-size: 14px;">${pvo.product_content}</p>
+						<p class="product_detail_content" style="font-size: 14px;">${pvo.product_content}</p>
 					</div>
 					
 					<c:choose>
@@ -366,7 +171,8 @@ $(document).ready(function() {
 				id="product_detail_check_btn2" type="checkbox">
 			<hr>
 			<label for="product_detail_check_btn2">&#10148; 배송 및 반품</label>
-			<p class="product_detail_detail">배송비는 3,000원입니다</p>
+			
+			<p class="product_detail_detail"><br>배송비는 3,000원입니다</p>
 			<p class="product_detail_detail">주문일로부터 1-2 영업일 이내 출고됩니다.</p>
 			<p class="product_detail_detail">배송은 지역 택배사 사정에 따라 약간의 지연이 생길 수
 				있습니다.</p>

@@ -46,7 +46,7 @@
 			<input type="hidden" name="user_idx" value="${uvo.user_idx }">
 			<input type="hidden" name="cPage" value="${cPage}">
 			<input type="button" value="삭제" onclick="board_delete_ok(this.form)" /> 
-			<input type="reset" value="취소" />
+			<input type="reset" value="취소" onclick="history.go(-1)"/>
 		</div>
 	</form>
 </div>

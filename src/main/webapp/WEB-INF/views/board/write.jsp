@@ -6,6 +6,19 @@
 <meta charset="UTF-8">
 <title>게시판</title>
 <link href="resources/css/board.css" rel="stylesheet" >
+<script type="text/javascript">
+	function board_write_ok(f) {
+		for (var i = 0; i < f.elements.length; i++) {
+			if (f.elements[i].value == "") {
+				if (i == 3) continue;
+				alert("이름을 입력하세요");
+				f.elements[i].focus();
+				return;//수행 중단
+			}
+		}
+		f.submit();
+	}
+</script>
 </head>
 <body>
 <%@include file="../main/header.jsp"%>

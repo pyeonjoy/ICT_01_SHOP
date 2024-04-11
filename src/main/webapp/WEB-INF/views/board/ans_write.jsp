@@ -27,44 +27,44 @@
 <body>
 <%@include file="../main/header.jsp"%>
 	<%@include file="../main/aside_mypage.jsp"%>
-		<div id="bbs" align="center">
-	<form action="board_ans_write_ok.do" method="post" enctype="multipart/form-data">
-		<table width="700">
-		<tbody>
-			<tr>
-				<th>작성자</th>
-				<td align="left"><input type="text" name="writer"></td>
-			</tr>
-			<tr>
-				<th>제목</th>
-				<td align="left"> <input type="text" name="title"></td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td align="left"><textarea rows="10" cols="60" name="content"></textarea>
-				</td>
-			</tr>
-			<tr>
-				<th>첨부파일</th>
-				<td align="left"><input type="file" name="file"></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td align="left"><input type="password" name="pwd"></td>
-			</tr>
-			<tr>
-				<td colspan="2">
+		<div id="bbs" align="center" class="bbs_write">
+		<div>
+			<form action="board_write_ok.do" method="post" enctype="multipart/form-data">
+				<table>
+				<tbody>
+					<tr>
+						<th>제목</th>
+						<td> <input type="text" name="title" style="font-size: 20px;" placeholder="제목"></td>
+					</tr>
+					<tr class="board_write_content">
+						<th>내용</th>
+						<td><textarea rows="16" cols="70" name="content"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<th>첨부파일</th>
+						<td align="left"><input type="file" name="file"></td>
+					</tr>
+					<tr>
+						<th>작성자</th>
+						<td align="left"><input type="text" name="writer"  placeholder="작성자"></td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td align="left"><input type="password" name="pwd" placeholder="비밀번호"></td>
+					</tr>
+            </tbody>
+		</table>
+			 <div class="board_write_button">
 				<input type="hidden" name="cPage" value="${cPage }">
 				<input type="hidden" name="bo_idx" value="${bo_idx }">
 				<input type="hidden" name="user_idx" value="${uvo.user_idx }">
-				<input type="button" value="답글입력" onclick="board_ans_write_ok(this.form)" /> 
 				<input type="button" value="목록" onclick="board_list(this.form)" /> 
+				<input type="button" value="답글" onclick="board_ans_write_ok(this.form)" /> 
 				<input type="reset" value="취소" />
-				</td>
-			</tr>
-            </tbody>
-		</table>
+			</div>
 	</form>
+	</div>
 	</div>
 			<footer>
 		<%@include file="../main/footer.jsp"%>

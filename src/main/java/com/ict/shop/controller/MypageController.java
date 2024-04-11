@@ -1,11 +1,8 @@
 package com.ict.shop.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,22 +36,12 @@ public class MypageController {
 
 //mypage==============================================================================================================================================
 	@PostMapping("mypage_delete.do")
-	public ModelAndView Mypage_Addr_Delete(String addr_idx, HttpServletResponse response) throws IOException {
+	public ModelAndView Mypage_Addr_Delete(String addr_idx) {
 	    ModelAndView mv = new ModelAndView();
 	    int result = shopmypageservice.getAddrDelete(addr_idx);
-	    int result1 = shopmypageservice.getAddrDelete1(addr_idx);
 	    if (result >0) {
 	        mv.setViewName("redirect:mypage_addr.do") ;
 	        return mv;
-	    }
-	    if(result1<0) {
-	    	PrintWriter out = response.getWriter();
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("text/html; charset=utf-8");
-            out.println("<script> alert('기본 배송지는 삭제할 수 없습니다..');");
-            out.println("history.go(-1); </script>");
-            out.close();
-	    	
 	    }
 	    mv.setViewName("error");
 	    return mv;
@@ -154,7 +141,7 @@ public class MypageController {
 	}
 
 	@RequestMapping("mypage_firstchk_ok.do")
-	public ModelAndView Mypage_FirstChkOk(@RequestParam("user_pwd") String user_pwd, HttpServletResponse response) throws IOException {
+	public ModelAndView Mypage_FirstChkOk(@RequestParam("user_pwd") String user_pwd) {
 		ModelAndView mv = new ModelAndView();
 
 		String user_id = (String) session.getAttribute("user_id");
@@ -164,17 +151,13 @@ public class MypageController {
 
 		// 암호화 비교
 		if (passwordEncoder.matches(user_pwd, dpwd)) {
-			return new ModelAndView("mypage/mypage_stack");
+			mv.setViewName("redirect:mypage_stack.do");
+			return mv;
 		} else {
-			PrintWriter out = response.getWriter();
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("text/html; charset=utf-8");
-			out.println("<script> alert('비밀번호가 틀립니다.');");
-			out.println("history.go(-1); </script>");
-			out.close();
-			mv.setViewName("mypage_firstchk.do");
+			mv.setViewName("mypage/mypage_firstchk");
+			mv.addObject("pwdchk", "fail");
+			return mv;
 		}
-		return null;
 	}
 
 	@GetMapping("mypage_heart.do") // 마이페이지 찜상품 페이지

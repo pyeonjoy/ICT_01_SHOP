@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>주소록</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
-<link href="${path}/resources/css/button.css" rel="stylesheet" />
-<link href="${path}/resources/css/mypage_addr.css" rel="stylesheet" />
+<link href="resources/css/mypage.css" rel="stylesheet" />
+<link href="resources/css/order_pay.css" rel="stylesheet" />
  
 <script>
 function addr_addr_ok(f) {
@@ -29,11 +28,11 @@ function addr_addr_ok(f) {
 	<div class="mypage_addr_body">
 		<div class="mypage_tilte">
 			<h2>배송지 목록</h2>
-		<div class="mypage_tilte_stroke"></div>
+				<div class="mypage_tilte_stroke"></div>
 		</div>
 		<div class="mypage_addr_wrap">
 			<c:choose>
-				<c:when test="${empty list }">
+				<c:when test="${empty list}">
 					<h3>원하는 정보가 존재하지 않습니다.</h3>
 				</c:when>
 				<c:otherwise>

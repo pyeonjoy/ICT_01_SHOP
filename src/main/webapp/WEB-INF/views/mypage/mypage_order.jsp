@@ -26,7 +26,7 @@
                 alert("장바구니에 정상적으로 추가되었습니다.");
                 },
                 error: function() {
-                alert("추가불가능~");
+                alert("장바구니 추가에 실패하셨습니다.");
                	 }
             });
         }
@@ -63,7 +63,11 @@
 							</div>
 							<div class="right" style="float: left;">
 								<div class="mypage_order_text">
+<<<<<<< HEAD
 									<p class="mypage_order_status">
+=======
+									<p class="mypage_order_status" style="float:right;">
+>>>>>>> cb7a0f03241067584417935595b655d5497e606b
 												<c:if test="${order.order_status eq '1'}">
 												    <p  style="font-weight: bold; font-size:24px;">배송준비중</p>
 												</c:if>

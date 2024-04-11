@@ -28,6 +28,7 @@
 			<div class="mypage_title"><h2>배송지 목록</h2>
 				<div class="mypage_title_line"></div>
 			</div>
+			
 		<div class=mypage_box>
 			<div class="mypage_addr_wrap">
 				<button class="addr_add_btn" onclick="location.href='mypage_addr_add.do'">배송지추가</button>

@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>주문서</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="resources/css/order_pay.css">
 <link rel="stylesheet" href="resources/css/mypage.css">
 <script type="text/javascript">
@@ -24,6 +23,7 @@
 	<div class="order_pay_wrap">
 		<div class="mypage_title"><h2>결제 확인</h2>
 			<div class="mypage_title_line" ></div></div>
+			
 		<div class="order_pay_container">
 		<div class="order_pay_one order_addr">
 			<h2>배송지</h2>

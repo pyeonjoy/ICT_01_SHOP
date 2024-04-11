@@ -14,43 +14,36 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 	    $('.mypage_firstchk_chk i').on('click', function() {
-	        var input = $(this).closest('.mypage_firstchk_chk').find('.pwd_box');
+	        let input = $(this).closest('.mypage_firstchk_chk').find('.pwd_box');
 	        input.attr('type', input.attr('type') === 'password' ? 'text' : 'password');
 	        $(this).toggleClass('fa-eye-slash fa-eye');
 	    });
-	});
-	
-	$(document).ready(function() {
-		let pwdchk = "${pwdchk}";
-		if (pwdchk == 'fail') {
-			alert("비밀번호가 틀렸습니다.");
-			return;
-		}
-	})
-
-	function mypage_firstchk_ok(f) {
-		f.action = "mypage_firstchk_ok.do";
-		f.submit();
-	}
+	$(".check_btn").on("keyup",function(key){
+	   	let pwdchk = "${user_pwd}";
+        if (key.keyCode == 13) {
+        }
+    });
+});
 </script>
 </head>
 <body>
 	<%@include file="../main/header.jsp"%>
+
 	<div class="mypage_firstchk_wrapper mypage_wrapper_Atype margin-top_20">
 		<div class="mypage_title"><h2>비밀번호 확인</h2>
 		<div class="mypage_title_line" ></div></div>
 		
-		<form method="post">
+		<form method="post" action="mypage_firstchk_ok.do">
 			<div class="mypage_firstchk_chk mypage_input">
 			    <input class="pwd_box" type="password" id="password" name="user_pwd" placeholder="비밀번호를 입력하세요">
 			    <span class="mypage_pwdchk_icon">
 			        <i class="fa fa-eye-slash fa-lg"></i>
 			    </span>
 				<div class="firstchk_chk">
-					<input class="check_btn buttonAtype" type="button" value="확인" onclick="mypage_firstchk_ok(this.form)">
-				</div>
-			</div>
-		</form>
+					<input type="submit" value="확인"></div>
+		</div>
+	</form>
+
 	</div>
 <%@include file="../main/footer.jsp"%>
 </body>

@@ -75,6 +75,10 @@ public class ShopMypageServiceImpl implements ShopMypageService {
 	public int getAddrDelete(String addr_idx) {
 		return mdao.getAddrDelete(addr_idx);
 	}
+	@Override
+	public int getAddrDelete1(String addr_idx) {
+		return mdao.getAddrDelete(addr_idx);
+	}
 
 	@Override
 	public UserVO getMypage_Info(String user_id) {

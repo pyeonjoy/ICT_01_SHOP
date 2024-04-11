@@ -23,6 +23,11 @@ $(document).ready(function(){
             $(this).removeClass('fa-eye').addClass('fa-eye-slash');
         }
     });
+    $(".login_main_button").on("keyup",function(event){
+    	if (event.keyCode == 13) {
+			login_go(this.form);
+		}
+    });
 });
 	function sign_up() {
 		location.href = 'signup.do';
@@ -51,7 +56,7 @@ $(document).ready(function(){
 					<td><input class="inputbox" type="text" id="id" name="user_id"
 						placeholder="아이디를 입력해 주세요" autocomplete="off"></td>
 					<td rowspan="2"><input class="login_main_button" id="login"
-						type="button" value="로그인" onclick="login_go(this.form)"></td>
+						type="submit" value="로그인"></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>

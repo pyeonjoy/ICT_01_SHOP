@@ -29,8 +29,7 @@
 	        	 let product_idx = $(this).siblings(".product_idx").val();
 	             let product_price = $(this).siblings(".product_price").val();
 	            addToCart(product_idx,product_price);
-	        });
-		
+	        });		
 	        $('.mypage_heart_heart').click(function() {
 	      		let heart_idx = $(this).data('heart-idx'); 
 		       	let tag = this;
@@ -47,9 +46,7 @@
 		                alert('에러');
 		            }
 		        });
-
 	    	});
-
 		}); 
 </script>
 </head>

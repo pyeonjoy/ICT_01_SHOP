@@ -13,12 +13,17 @@
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#cart_add").click(function() {
+		let loginchk = "<%=session.getAttribute("loginchk")%>"
 		let product_idx = $("#product_idx").val();
 		let product_count = $("#product_count").val();
 		if(product_count == "") {
 			alert("수량을 입력해주세요");
 			return;
 		}
+		if (loginchk == "" || loginchk == "null") {
+			alert("로그인 후 이용 부탁드립니다.");
+			location.href="login_main.do"
+		}else{
 		$.ajax({
 			url: "detail_cart_add.do",     
 			method: "post",          
@@ -31,12 +36,17 @@ $(document).ready(function() {
 				alert("추가 실패");
 			}
 		});
+		}
 	});
 	
     $(".product_detail_heart").click(function() {
+    	let loginchk = "<%=session.getAttribute("loginchk")%>"
     	let product_idx = $("#product_idx").val();
     	let user_idx = $("#user_idx").val();
-    	
+        if (!loginchk || loginchk === "null") {
+            alert("로그인 후 이용 부탁드립니다.");
+            location.href="login_main.do"
+        }else{
         $.ajax({
             url: "addHeart.do",
             method: "post",
@@ -53,6 +63,7 @@ $(document).ready(function() {
                 alert("서버오류");
             }
         });
+        }
     });
 });
 

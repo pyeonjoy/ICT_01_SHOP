@@ -155,7 +155,7 @@ public class MypageController {
 	}
 
 	@RequestMapping("mypage_firstchk_ok.do")
-	public ModelAndView Mypage_FirstChkOk(@RequestParam("user_pwd") String user_pwd) {
+	public ModelAndView Mypage_FirstChkOk(@RequestParam("user_pwd") String user_pwd, HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
 
 		String user_id = (String) session.getAttribute("user_id");
@@ -165,13 +165,18 @@ public class MypageController {
 
 		// 암호화 비교
 		if (passwordEncoder.matches(user_pwd, dpwd)) {
-			mv.setViewName("redirect:mypage_stack.do");
-			return mv;
+			session.setAttribute("mypage_ok","ok");
+			return new ModelAndView("mypage/mypage_stack");
 		} else {
-			mv.setViewName("mypage/mypage_firstchk");
-			mv.addObject("pwdchk", "fail");
-			return mv;
+			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+			out.println("<script> alert('비밀번호가 틀립니다.');");
+			out.println("history.go(-1); </script>");
+			out.close();
+			mv.setViewName("mypage_firstchk.do");
 		}
+		return null;
 	}
 
 	@GetMapping("mypage_heart.do") // 마이페이지 찜상품 페이지

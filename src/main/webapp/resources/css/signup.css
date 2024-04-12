@@ -1,39 +1,48 @@
 @charset "UTF-8";
-.sign_body {
-    float: left;
-    margin: 0 auto;
-    width: 100%;
-    }
+
 .sign_wrap {
+	margin-top:40px;
 	line-height: 35px;
-	margin: 250px auto;
 	width: 450px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
-    
-.sign_wrap p{
-	font-size: 16px;
-	padding: 3px;
+
+.sign_wrap p {
+	font-size: 14px;
+	height: 40px;
 }
 
 .sign_left {
 	float: left;
-	width: 150px;
 	text-align: right;
-	margin: 0px 20px;
-	display: inline-block;
+	margin: 3px 20px;
+	width: 100px;
 }
 
 .sign_right {
-	display: inline-block;
-	width: 250px;
+	width: 350px;
 }
+
+.sign_top {
+	display: flex;
+	flex-direction: row;
+}
+
+.sign_bottom {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 10px;
+}
+
 
 .sign_info_input {
 	width: 200px;
-    height: 30px;
-    font-size: 10px;
-    padding: 10px;
-    margin: 3px;
+	height: 30px;
+	padding: 5px;
+	margin: 5px;
 }
 
 .sign_addr_input {
@@ -52,6 +61,7 @@
 	line-height: 20px;
 	padding: 0px;
 }
+
 .sign_gender {
 	width: 97px;
 	height: 24px;
@@ -60,44 +70,26 @@
 	margin-bottom: 20px;
 }
 
-.sign_bottom {
-margin: 0px auto;
-text-align: center;
-display: inline-block;
-width: 520px;
-}
-
 .sign_btn1 {
-	font-size: 10px;
 	color: black;
-	width: 250px;
+	width: 200px;
 	height: 40px;
 	text-align: center;
 	line-height: 15px;
 	margin: 20px;
 	padding: 0px;
-	
 }
 
 .sign_wrap h2 {
 	text-align: center;
 }
-.sign_header{
-float:left;
+
+.sign_info_body {
+	float: left;
+	margin: 0 auto;
+	width: 80%;
 }
-.sign_aside_mypage{
-float:left;
-margin-top: 100px;
-}
-.sign_info_body{
-float:left;
-margin: 0 auto;
-width: 80%;
-}
-.signup_check{
+
+.signup_check {
 	padding: 5px;
-}
-.sign_footer{
-width: 100%;
-display: inline-block;
 }

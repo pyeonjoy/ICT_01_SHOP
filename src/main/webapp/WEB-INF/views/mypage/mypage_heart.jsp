@@ -32,27 +32,23 @@
 	        });
 		
 	        $('.mypage_heart_heart').click(function() {
-	      	let heart_idx = $(this).data('heart-idx'); 
-	        	
-	            removeHeart(heart_idx);
-
-	    	});
-
-	        function removeHeart(heart_idx) {
+	      		let heart_idx = $(this).data('heart-idx'); 
+		       	let tag = this;
 		        $.ajax({
 		            url: "removeHeart.do",
 		            type: "POST",
 		            data: {heart_idx: heart_idx },
 		            dataType: "text" ,
 		            success: function(data) {
-	            		alert('관심상품에서 해제되었습니다.'); 
-		                document.location.reload(true); 
+		           		alert('관심상품에서 해제되었습니다.'); 
+		                $(tag).parent().parent().parent().remove();
 		            },
 		            error: function() {
 		                alert('에러');
 		            }
 		        });
-		    }
+
+	    	});
 
 		}); 
 </script>

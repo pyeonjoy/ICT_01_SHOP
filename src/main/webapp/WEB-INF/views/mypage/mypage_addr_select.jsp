@@ -14,6 +14,24 @@ function addr_addr_ok(f) {
 	alert("선택 되었습니다.");
 	f.submit();
 }
+
+function removeDuplicateAddresses() {
+    let seenAddresses = {};
+    let addresses = document.querySelectorAll('.mypage_addr_inner');
+
+    addresses.forEach(function(address) {
+        let addressText = address.querySelector('p:nth-of-type(3)').textContent.trim();
+        if (seenAddresses[addressText]) {
+            address.remove();
+        } else {
+            seenAddresses[addressText] = true;
+        }
+    });
+}
+
+window.onload = function() {
+    removeDuplicateAddresses();
+};
 </script>
 
 </head>
@@ -24,43 +42,40 @@ function addr_addr_ok(f) {
 	<div class="mypage_addr_aside_mypage">
 		<%@include file="../main/aside_mypage.jsp"%>
 	</div>
-		<div class="mypage_addr_body">
-			<div class="mypage_title"><h2>배송지 선택</h2>
-				<div class="mypage_title_line" ></div></div>
-				
+	<div class="mypage_addr_body">
+		<div class="mypage_title">
+			<h2>배송지 선택</h2>
+			<div class="mypage_title_line"></div>
+		</div>
 		<div class="mypage_box">
 			<div class="mypage_addr_wrap">
 				<c:choose>
-				<c:when test="${empty list}">
-					<h3>원하는 정보가 존재하지 않습니다.</h3>
-				</c:when>
-				<c:otherwise>
-					<c:forEach var="k" items="${list}">
+					<c:when test="${empty list}">
+						<h3>원하는 정보가 존재하지 않습니다.</h3>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="k" items="${list}" varStatus="status">
 							<form method="post" action="order_pay.do">
-							<c:if test="${status.index == 0}">
-							<div class="mypage_addr_inner">
-							    <input type="hidden" name="addr_idx" value="${k.addr_idx}">
-							    <input type="hidden" name="order_idx" value="${k.order_idx}">
-							    <input type="hidden" name="addr_phone" value="${k.addr_phone}">
-							    <input type="hidden" name="addr_name" value="${k.addr_name}">
-							    <input type="hidden" name="addr_addr" value="${k.addr_addr}">
-							    
-							    <div class="mypage_addr_inner_in">
-								    <p>${k.addr_name}</p>
-								    <p>${k.addr_phone}</p>
-								    <p>${k.addr_addr}</p>
-							    </div>
-							    <div class="mypage_addr_inner_in">
-							    	<button class="addr_box_btn"  value="배송지 선택하기"  onclick="addr_addr_ok(this.form)">선택</button>
-							    </div>
-							</div>
-					    	<hr>
-					    	</c:if>
+								<div class="mypage_addr_inner" style="border-bottom: 1px solid black;">
+									<input type="hidden" name="addr_idx" value="${k.addr_idx}">
+									<input type="hidden" name="order_idx" value="${k.order_idx}">
+									<input type="hidden" name="addr_phone" value="${k.addr_phone}">
+									<input type="hidden" name="addr_name" value="${k.addr_name}">
+									<input type="hidden" name="addr_addr" value="${k.addr_addr}">
+									<div class="mypage_addr_inner_in">
+										<p>${k.addr_name}</p>
+										<p>${k.addr_phone}</p>
+										<p>${k.addr_addr}</p>
+									</div>
+									<div class="mypage_addr_inner_in">
+										<button class="addr_box_btn" value="배송지 선택하기" onclick="addr_addr_ok(this.form)">선택</button>
+									</div>
+								</div>
 							</form>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-		</div>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</div>
 		</div>
 	</div>
 	<%@include file="../main/footer.jsp"%>

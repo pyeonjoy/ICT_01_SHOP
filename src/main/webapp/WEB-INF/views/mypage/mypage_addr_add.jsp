@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link href="resources/css/mypage.css" rel="stylesheet" />
 <meta charset="UTF-8">
-<title>주소록 수정</title>
+<title>주소록 추가</title>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#mypage_addr_go").click(function() {

@@ -31,9 +31,9 @@
 			<mapping path="/board_list.do" />
 			<mapping path="/cart_list.do" />
 			<mapping path="/order_success.do" />
-			<mapping path="/mypage_addr_add.do" />
+		<!-- 	<mapping path="/mypage_addr_add.do" /> -->
 			<mapping path="/mypage_changepwd.do" />
-			<mapping path="/mypage_addr.do" />
+		<!-- 	<mapping path="/mypage_addr.do" /> -->
 			<mapping path="/mypage_faq.do" />
 			<mapping path="/mypage_firstchk.do" />
 			<mapping path="/mypage_heart.do" />

@@ -65,9 +65,9 @@ $(document).ready(function() {
 			                <input class="mypage_addr_add_info" type="text" placeholder="주소를 입력해주세요" id="addr_addr" name="addr_addr" value="${avo.addr_addr}" autocomplete="off"/>
 			                <div class="mypage_info_bottom">
 			                	<button class="mypage_info_btn1" id="addr_edit">수정 완료</button>
-			                    <button class="mypage_info_btn1"onclick="history.go(-1)">취소</button>
 				        	</div>
 				        </form>
+			                    <button class="mypage_info_btn11" onclick="location.href='mypage_addr.do'">취소</button>
 				    </div>
 				</div>
 			</c:otherwise>

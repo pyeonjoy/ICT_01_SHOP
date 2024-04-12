@@ -92,10 +92,11 @@ public class MypageController {
 	    // 세션에서 사용자 ID 가져오기
 	    HttpSession session = request.getSession();
 	    UserVO uvo = (UserVO) session.getAttribute("uvo");
-
+	    
 	    if (uvo.getUser_idx() != null) {
 	        List<AddrVO> list = shopmypageservice.getMyAddrList(uvo.getUser_idx());
 	        if (list != null) {
+	        	System.out.println("컨트롤러1"+list);
 	            mv.addObject("list", list);
 	            return mv;
 	        }
@@ -103,6 +104,7 @@ public class MypageController {
 
 	    return new ModelAndView("mypage/error");
 	}
+
 
 	@RequestMapping("mypage_changepwd.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
 	public ModelAndView Mypage_Changepwd() {

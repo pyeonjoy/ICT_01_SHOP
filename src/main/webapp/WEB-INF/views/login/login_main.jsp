@@ -16,11 +16,16 @@ $(document).ready(function(){
         let $input = $(this).closest('.login_main_pwdchk').prev('input');
         if ($input.attr('type') === 'password') {
             $input.attr('type', 'text');
-            $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+            $(this).removeClass('fa-eye-slash').addClass('fa-eye');
         } else {
             $input.attr('type', 'password');
-            $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+            $(this).removeClass('fa-eye').addClass('fa-eye-slash');
         }
+    });
+    $(".login_main_button").on("keyup",function(event){
+    	if (event.keyCode == 13) {
+			login_go(this.form);
+		}
     });
 });
 	function sign_up() {
@@ -49,14 +54,13 @@ $(document).ready(function(){
 					<td><input class="inputbox" type="text" id="id" name="user_id"
 						placeholder="아이디를 입력해 주세요" autocomplete="off"></td>
 					<td rowspan="2"><input class="login_main_button" id="login"
-						type="button" value="로그인" onclick="login_go(this.form)"></td>
+						type="submit" value="로그인"></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
 					<td><input class="inputbox" type="password" name="user_pwd"
-						placeholder="비밀번호를 입력해 주세요" autocomplete="off"> 
-						<span class="login_main_pwdchk"> <i class="fa fa-eye fa-lg"></i></span>
-					</td>
+						placeholder="비밀번호를 입력 해 주세요" autocomplete="off"> 
+						<span class="login_main_pwdchk"> <i class="fa fa-eye-slash fa-lg"></i></span>
 				</tr>
 			</table>
 			<hr>

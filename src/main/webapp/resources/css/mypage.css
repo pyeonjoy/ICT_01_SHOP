@@ -103,6 +103,13 @@
 	height: 50px;
 }
 
+button.mypage_info_btn11 {
+    position: absolute;
+    top: 39.7%;
+    left: 50.5%;
+    width: 122px;
+    height: 30px;
+}
 .mypage_addr_inner_in:nth-of-type(2) {
 	display: flex;
 	flex-direction: column;

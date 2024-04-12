@@ -69,7 +69,7 @@ function showInfoBenefit(){
 					<input class="mypage_faq_check_btn" id="mypage_faq_check_btn3" type="checkbox">
 					<hr>
 					<label for="mypage_faq_check_btn3">배송지를 변경할 수 있나요?</label>
-					<p class="mypage_faq_detail">[마이페이지>1:1 문의하기]로 문의 주시면 배송지 수정이 가능합니다.
+					<p class="mypage_faq_detail">[마이페이지>1:1 문의게시판]로 문의 주시면 배송지 수정이 가능합니다.
 					<br>단, '준비' 단계 이후부터는 송장 발부 및 패킹시작된 이후인지라 수정이 불가합니다. </p>
 				</div>
 				<div>
@@ -121,7 +121,7 @@ function showInfoBenefit(){
 					<input class="mypage_faq_check_btn" id="mypage_faq_check_btn9" type="checkbox">
 					<hr>
 					<label for="mypage_faq_check_btn9">제품 하자로 인한 교환은 어떻게 진행되나요?</label>
-					<p class="mypage_faq_detail"> [마이페이지>1:1 문의하기]에서 문의글 작성해주시면, 
+					<p class="mypage_faq_detail"> [마이페이지>1:1 문의게시판]에서 문의글 작성해주시면, 
 					주문번호와 구매 시 기재하신 연락처 확인 후 교환 접수가 진행됩니다.<br>
 					 접수 이후, 기존 수령하신 상품에 대한 회수가 진행되며 
 					 하자 제품 증상 및 제품 회수 확인 후, 새 상품으로 교환 진행됩니다.</p>
@@ -177,7 +177,7 @@ function showInfoBenefit(){
 					<input class="mypage_faq_check_btn" id="mypage_faq_check_btn15" type="checkbox">
 					<hr>
 					<label for="mypage_faq_check_btn15">회원가입 축하 적립금이 발금되지 않았어요.</label>
-					<p class="mypage_faq_detail">[마이페이지>1:1 문의하기]에서 문의글 작성 해주시면,
+					<p class="mypage_faq_detail">[마이페이지>1:1 문의게시판]에서 문의글 작성 해주시면,
 					 확인 및 발급 처리 도와드리겠습니다.</p>
 				</div>
 			</div>	

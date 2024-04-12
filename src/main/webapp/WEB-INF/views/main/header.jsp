@@ -63,7 +63,7 @@
 						<li>Perfume De Body</li> 
 					</ul>--%>
 				</li>
-				<li><a href="board_list.do" class="menu_title">Board</a></li>
+				<li><a class="menu_title" onclick="not_connect()">Candle</a></li>
 
 			</ul>
 		</div>

@@ -1,8 +1,11 @@
 package com.ict.shop.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,10 +95,11 @@ public class MypageController {
 	    // 세션에서 사용자 ID 가져오기
 	    HttpSession session = request.getSession();
 	    UserVO uvo = (UserVO) session.getAttribute("uvo");
-
+	    
 	    if (uvo.getUser_idx() != null) {
 	        List<AddrVO> list = shopmypageservice.getMyAddrList(uvo.getUser_idx());
 	        if (list != null) {
+	        	System.out.println("컨트롤러1"+list);
 	            mv.addObject("list", list);
 	            return mv;
 	        }
@@ -103,6 +107,7 @@ public class MypageController {
 
 	    return new ModelAndView("mypage/error");
 	}
+
 
 	@RequestMapping("mypage_changepwd.do") // 마이페이지 회원정보 내 비밀번호변경 페이지
 	public ModelAndView Mypage_Changepwd() {
@@ -141,7 +146,7 @@ public class MypageController {
 	}
 
 	@RequestMapping("mypage_firstchk_ok.do")
-	public ModelAndView Mypage_FirstChkOk(@RequestParam("user_pwd") String user_pwd) {
+	public ModelAndView Mypage_FirstChkOk(@RequestParam("user_pwd") String user_pwd, HttpServletResponse response) throws IOException {
 		ModelAndView mv = new ModelAndView();
 
 		String user_id = (String) session.getAttribute("user_id");
@@ -151,13 +156,17 @@ public class MypageController {
 
 		// 암호화 비교
 		if (passwordEncoder.matches(user_pwd, dpwd)) {
-			mv.setViewName("redirect:mypage_stack.do");
-			return mv;
+			return new ModelAndView("mypage/mypage_stack");
 		} else {
-			mv.setViewName("mypage/mypage_firstchk");
-			mv.addObject("pwdchk", "fail");
-			return mv;
+			PrintWriter out = response.getWriter();
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+			out.println("<script> alert('비밀번호가 틀립니다.');");
+			out.println("history.go(-1); </script>");
+			out.close();
+			mv.setViewName("mypage_firstchk.do");
 		}
+		return null;
 	}
 
 	@GetMapping("mypage_heart.do") // 마이페이지 찜상품 페이지

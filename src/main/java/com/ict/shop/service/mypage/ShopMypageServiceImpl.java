@@ -116,8 +116,8 @@ public class ShopMypageServiceImpl implements ShopMypageService {
 	}
 
 	@Override
-	public int getRemoveHeart(String product_idx, String user_idx, String heart_idx) {
-		return mdao.getRemoveHeart(product_idx, user_idx, heart_idx);
+	public int getRemoveHeart(String heart_idx) {
+		return mdao.getRemoveHeart(heart_idx);
 	}
 
 	@Override

@@ -47,10 +47,8 @@
 			<hr>
 			<c:choose>
 				<c:when test="${not empty vo}">
-					<c:forEach var="v" items="${vo}" begin="1" end="2">
-						<p>${v.user_name}</p>
-						<p>${v.user_phone}</p>
-					</c:forEach>
+						<p>${uvo.user_name}</p>
+						<p>${uvo.user_phone}</p>
 				</c:when>
 			</c:choose>
 		</div>

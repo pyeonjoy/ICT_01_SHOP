@@ -23,7 +23,7 @@
 				<li><a href="mypage_heart.do?user_idx=${uvo.user_idx}">관심 상품</a></li>
 
 				<li><a href="mypage_faq.do">자주 묻는 질문</a></li>
-				<li><a href="board_list.do?user_idx=${uvo.user_idx }">게시판</a></li>
+				<li><a href="board_list.do?user_idx=${uvo.user_idx }">1:1 문의게시판</a></li>
 			</ul>
 		</div>
 	</div>

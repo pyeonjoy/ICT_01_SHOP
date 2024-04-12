@@ -38,8 +38,8 @@ public class AjaxController {
 
 	@RequestMapping(value = "removeHeart.do", produces = "text/plain; charset=utf-8")
 	@ResponseBody
-	public String getAjaxHeartRemove(@RequestParam("product_idx") String product_idx, HttpServletRequest request, @RequestParam("user_idx")String user_idx, @RequestParam("heart_idx")String heart_idx) {
-	        int result = shopmypageservice.getRemoveHeart(product_idx, user_idx,heart_idx) ;
+	public String getAjaxHeartRemove(@RequestParam("heart_idx")String heart_idx) {
+	        int result = shopmypageservice.getRemoveHeart(heart_idx) ;
 	        return String.valueOf(result);
 	    }
 	

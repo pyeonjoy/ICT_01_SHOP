@@ -18,7 +18,7 @@
 	<%@include file="../main/aside_mypage.jsp"%>
 	<div id="bbs" align="center" class="bbs_list">
 		<div class="mypage_title">
-			<h2>게시판</h2>
+			<h2>1:1 문의게시판</h2>
 			<div class="mypage_title_line"></div>
 		</div>
 		<table summary="게시판 목록">

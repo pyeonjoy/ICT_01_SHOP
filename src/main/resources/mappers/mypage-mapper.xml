@@ -66,7 +66,7 @@
 		set user_pwd = #{user_pwd}
 		where user_id = #{user_id}
 	</update>
-	<delete id="MypageRemoveHeart" parameterType="Map">
+	<delete id="MypageRemoveHeart" parameterType="String">
 	delete from shop_heart where heart_idx=#{heart_idx}
 	</delete>
 	

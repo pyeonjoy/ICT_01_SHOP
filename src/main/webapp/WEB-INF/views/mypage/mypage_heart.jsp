@@ -31,25 +31,22 @@
 	            addToCart(product_idx,product_price);
 	        });
 		
-			$('.mypage_heart_heart').click(function() {
-		        	let $heart = $(this);
-		        	let product_idx = $heart.data('product-idx');
-		        	let user_idx = $heart.data('user-idx');
-		        	let heart_idx = $heart.data('heart-idx');
-		        	
-		            alert('관심상품에서 해제되었습니다.'); 
-		            removeHeart(product_idx, user_idx, heart_idx);
+	        $('.mypage_heart_heart').click(function() {
+	      	let heart_idx = $(this).data('heart-idx'); 
+	        	
+	            removeHeart(heart_idx);
 
-		    });
+	    	});
 
-		    function removeHeart(heart_idx) {
+	        function removeHeart(heart_idx) {
 		        $.ajax({
 		            url: "removeHeart.do",
 		            type: "POST",
-		            data: {heart_idx: heart_idx},
+		            data: {heart_idx: heart_idx },
 		            dataType: "text" ,
 		            success: function(data) {
-		                document.location.reload(true);
+	            		alert('관심상품에서 해제되었습니다.'); 
+		                document.location.reload(true); 
 		            },
 		            error: function() {
 		                alert('에러');
@@ -94,8 +91,8 @@
 										<input type="hidden" class="product_idx" value="${k.product_idx}">
 										<input type="hidden" class="product_price" value="${k.product_price}">
 										</div>
-										<div class="mypage_heart_heart" data-product-idx="${k.product_idx }" data-user-idx="${k.user_idx}" data-heart-idx="${k.heart_idx }">
-											<img class="mypage_heart_img" src="resources/image/heart_02.png" >
+										<div class="mypage_heart_heart" data-heart-idx="${k.heart_idx }">
+											<img class="mypage_heart_img" src="resources/image/heart_02.png">
 										</div>
 											<a href="product_detail.do?product_idx=${k.product_idx}" style="font-weight: bold;">${k.product_name}</a>
 										</div>

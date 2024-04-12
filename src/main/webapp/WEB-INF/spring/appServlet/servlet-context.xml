@@ -31,9 +31,7 @@
 			<mapping path="/board_list.do" />
 			<mapping path="/cart_list.do" />
 			<mapping path="/order_success.do" />
-			<mapping path="/mypage_addr_add.do" />
 			<mapping path="/mypage_changepwd.do" />
-			<mapping path="/mypage_addr.do" />
 			<mapping path="/mypage_faq.do" />
 			<mapping path="/mypage_firstchk.do" />
 			<mapping path="/mypage_heart.do" />
@@ -54,6 +52,7 @@
 			<mapping path="/board_update.do" />
 			<mapping path="/addHeart.do" />
 			<mapping path="/product_list_add_cart.do" />
+			<mapping path="/product_detail_pay.do" />
 			<beans:ref bean="log_inter"/>
 		</interceptor>
 	</interceptors>

@@ -33,6 +33,12 @@ $(document).ready(function() {
 		alert("추가 되었습니다.");
 	}
 </script>
+<script>
+ function addr_addr(f) {
+		f.action = "mypage_addr.do";
+		f.submit();
+	}
+</script>
 </head>
 <body>
 	<%@include file="../main/header.jsp"%>
@@ -58,9 +64,9 @@ $(document).ready(function() {
 	                <input class="mypage_addr_add_info" type="text" placeholder="주소를 입력해주세요" id="addr_addr"name="addr_addr" autocomplete="off"/>
 	                <div class="mypage_info_bottom">
 	                	<button class="mypage_info_btn1" id="mypage_addr_go">추가 완료</button>
-	                    <button class="mypage_info_btn1"onclick="history.go(-1)">취소</button>
-	                </div>
+ 	                </div>
 		    	</form>
+	            <button type="button" class="mypage_info_btn11" onclick="location.href='mypage_addr.do'">취소</button>
 			</div>
 		</div>
 	</div>

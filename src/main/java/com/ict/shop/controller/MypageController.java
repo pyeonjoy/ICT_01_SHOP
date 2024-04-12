@@ -1,8 +1,11 @@
 package com.ict.shop.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +39,21 @@ public class MypageController {
 
 //mypage==============================================================================================================================================
 	@PostMapping("mypage_delete.do")
-	public ModelAndView Mypage_Addr_Delete(String addr_idx) {
+	public ModelAndView Mypage_Addr_Delete(String addr_idx, HttpServletResponse response) throws IOException {
 	    ModelAndView mv = new ModelAndView();
 	    int result = shopmypageservice.getAddrDelete(addr_idx);
 	    if (result >0) {
 	        mv.setViewName("redirect:mypage_addr.do") ;
 	        return mv;
+	    }
+	    if(result<0) {
+	    	PrintWriter out = response.getWriter();
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html; charset=utf-8");
+            out.println("<script> alert('기본 배송지는 삭제할 수 없습니다..');");
+            out.println("history.go(-1); </script>");
+            out.close();
+
 	    }
 	    mv.setViewName("error");
 	    return mv;

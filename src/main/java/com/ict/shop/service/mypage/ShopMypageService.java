@@ -42,7 +42,7 @@ public interface ShopMypageService {
 
 	int Mypage_Info_Change(UserVO uvo);
 
-	int getRemoveHeart(String product_idx, String user_idx, String heart_idx);
+	int getRemoveHeart(String heart_idx);
 
 	int getAddHeart(String product_idx, String user_idx);
 

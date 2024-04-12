@@ -42,11 +42,11 @@
 
 		    });
 
-		    function removeHeart(product_idx, user_idx, heart_idx) {
+		    function removeHeart(heart_idx) {
 		        $.ajax({
 		            url: "removeHeart.do",
 		            type: "POST",
-		            data: { product_idx: product_idx, user_idx: user_idx, heart_idx: heart_idx },
+		            data: {heart_idx: heart_idx},
 		            dataType: "text" ,
 		            success: function(data) {
 		                document.location.reload(true);

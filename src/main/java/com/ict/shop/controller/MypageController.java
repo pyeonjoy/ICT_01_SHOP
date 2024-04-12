@@ -39,12 +39,21 @@ public class MypageController {
 
 //mypage==============================================================================================================================================
 	@PostMapping("mypage_delete.do")
-	public ModelAndView Mypage_Addr_Delete(String addr_idx) {
+	public ModelAndView Mypage_Addr_Delete(String addr_idx, HttpServletResponse response) throws IOException {
 	    ModelAndView mv = new ModelAndView();
 	    int result = shopmypageservice.getAddrDelete(addr_idx);
 	    if (result >0) {
 	        mv.setViewName("redirect:mypage_addr.do") ;
 	        return mv;
+	    }
+	    if(result<0) {
+	    	PrintWriter out = response.getWriter();
+            response.setCharacterEncoding("UTF-8");
+            response.setContentType("text/html; charset=utf-8");
+            out.println("<script> alert('기본 배송지는 삭제할 수 없습니다..');");
+            out.println("history.go(-1); </script>");
+            out.close();
+
 	    }
 	    mv.setViewName("error");
 	    return mv;
@@ -156,6 +165,7 @@ public class MypageController {
 
 		// 암호화 비교
 		if (passwordEncoder.matches(user_pwd, dpwd)) {
+			session.setAttribute("mypage_ok","ok");
 			return new ModelAndView("mypage/mypage_stack");
 		} else {
 			PrintWriter out = response.getWriter();

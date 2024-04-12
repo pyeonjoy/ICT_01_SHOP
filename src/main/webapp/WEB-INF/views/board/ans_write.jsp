@@ -10,7 +10,7 @@
 	function board_ans_write_ok(f) {
 		for (var i = 0; i < f.elements.length; i++) {
 			if (f.elements[i].value == "") {
-				if (i == 3) continue;
+				if (i == 2) continue;
 				alert(f.elements[i].name + "를 입력하세요");
 				f.elements[i].focus();
 				return;//수행 중단
@@ -29,7 +29,7 @@
 	<%@include file="../main/aside_mypage.jsp"%>
 		<div id="bbs" align="center" class="bbs_write">
 		<div>
-			<form action="board_write_ok.do" method="post" enctype="multipart/form-data">
+			<form action=board_ans_write_ok.do method="post" enctype="multipart/form-data">
 				<table>
 				<tbody>
 					<tr>

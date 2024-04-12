@@ -14,6 +14,7 @@
 	href="https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap"
 	rel="stylesheet">
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <link href="${path}/resources/css/header.css" rel="stylesheet" />
@@ -28,7 +29,13 @@
 	}
 	
 	function mypage_firstchk() {
-		location.href = "mypage_firstchk.do";
+		let mypage_ok = "<%=session.getAttribute("mypage_ok")%>"
+		if (mypage_ok == "" || mypage_ok == "null") {
+			location.href = "mypage_firstchk.do";
+		}
+		if(mypage_ok == "ok"){
+			location.href="mypage_stack.do"
+		}
 	}
 	function not_connect() {
 		alert("준비중입니다.");
@@ -50,18 +57,8 @@
 					</ul>
 				</li>
 				<li><a class="menu_title" onclick="not_connect()">HAND</a>
-					<%-- <ul class="submenu">
-						<li>Hand Cream</li>
-						<li>Soap</li>
-						<li>Hand sanitizer</li>
-					</ul> --%>
 				</li>
 				<li><a class="menu_title" onclick="not_connect()">LIP</a>
-					<%--<ul class="submenu">
-						 <li>BODY</li>
-						<li>Shower Re body</li>
-						<li>Perfume De Body</li> 
-					</ul>--%>
 				</li>
 				<li><a class="menu_title" onclick="not_connect()">Candle</a></li>
 

@@ -10,8 +10,8 @@
 	function board_write_ok(f) {
 		for (var i = 0; i < f.elements.length; i++) {
 			if (f.elements[i].value == "") {
-				if (i == 3) continue;
-				alert("이름을 입력하세요");
+				if (i == 2) continue;
+				alert("빈칸을입력해주세요");
 				f.elements[i].focus();
 				return;//수행 중단
 			}
@@ -41,7 +41,7 @@
 						<td><input type="file" name="file"></td>
 					<tr>
 						<th>작성자</th>
-						<td><input type="text" name="writer" placeholder="작성자"></td>
+						<td><input type="text" name="writer" placeholder="작성자" value="${uvo.user_name }" readonly ></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>

@@ -156,6 +156,7 @@ public class MypageController {
 
 		// 암호화 비교
 		if (passwordEncoder.matches(user_pwd, dpwd)) {
+			session.setAttribute("mypage_ok","ok");
 			return new ModelAndView("mypage/mypage_stack");
 		} else {
 			PrintWriter out = response.getWriter();

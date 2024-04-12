@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <title>주소록 수정</title>
 <script type="text/javascript">
-/*
+
 $(document).ready(function() {
 	$("#mypage_addr_go").click(function() {
 		let name = $("#addr_name").val();
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	function addr_addr_ok(f) {
 		f.action = "mypage_addr_add_ok.do";
 		alert("추가 되었습니다.");
-	}*/
+	}
 </script>
 <script>
  /*	function addr_addr(f) {

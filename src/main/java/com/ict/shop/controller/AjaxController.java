@@ -48,7 +48,7 @@ public class AjaxController {
 	public String getAjaxHeartAdd(@RequestParam("product_idx") String product_idx,
 								  HttpServletRequest request,
 								  @RequestParam("user_idx")String user_idx){
-	    HeartVO hvo = shopproductservice.getHeartChk(product_idx,user_idx);
+		HeartVO hvo = shopproductservice.getHeartChk(product_idx,user_idx);
 	    if (hvo == null) {
 	        int result = shopmypageservice.getAddHeart(product_idx, user_idx) ;
 	        return String.valueOf(result);           

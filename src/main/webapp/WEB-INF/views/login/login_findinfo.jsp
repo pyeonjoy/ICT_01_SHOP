@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
 <title>회원정보 찾기</title>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <link href="${path}/resources/css/login_findinfo.css" rel="stylesheet"/>
-<link href="${path}/resources/css/button.css" rel="stylesheet"/>
+<link href="resources/css/mypage.css" rel="stylesheet" />
 <script type="text/javascript">
 	function find_id(f) {
 		f.action="find_id.do";
@@ -22,10 +22,11 @@
 </head>
 <body>
 <%@include file="../main/header.jsp"%>
-<div class="login_findinfo_wrapper">
-	<div><h2>회원정보찾기</h2></div>
-	<div class="login_findinfo__tilte" ></div>
-
+<div class="login_findinfo_wrapper mypage_wrapper_Atype margin_top_10">
+	<div class="mypage_tilte"  style="width: 148px;"><h2>회원 정보 찾기</h2>
+		<div class="mypage_title_line"></div>
+	</div>
+	<div class="login_findinfo_container">
 	<form method="post" name="findid">
 		<h4>아이디 찾기</h4>
 		<table>
@@ -58,6 +59,7 @@
 			</tr>
 		</table>
 	</form>
+	</div>
 </div>
 <%@include file="../main/footer.jsp"%>
 </body>

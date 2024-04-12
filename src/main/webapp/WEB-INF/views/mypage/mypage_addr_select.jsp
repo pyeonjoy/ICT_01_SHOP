@@ -37,6 +37,7 @@ function addr_addr_ok(f) {
 				<c:otherwise>
 					<c:forEach var="k" items="${list}">
 							<form method="post" action="order_pay.do">
+							<c:if test="${status.index == 0}">
 							<div class="mypage_addr_inner">
 							    <input type="hidden" name="addr_idx" value="${k.addr_idx}">
 							    <input type="hidden" name="order_idx" value="${k.order_idx}">
@@ -54,6 +55,7 @@ function addr_addr_ok(f) {
 							    </div>
 							</div>
 					    	<hr>
+					    	</c:if>
 							</form>
 					</c:forEach>
 				</c:otherwise>

@@ -24,7 +24,7 @@
 	<div class="aside">
 		<%@include file="../main/aside_mypage.jsp"%>
 	</div>
-	<div class="mypage_addr_body">
+	<div class="mypage_addr_body margin-top_20">
 			<div class="mypage_title"><h2>배송지 목록</h2>
 				<div class="mypage_title_line"></div>
 			</div>

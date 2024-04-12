@@ -129,7 +129,7 @@ public class OrderController {
 		}
 
 		mv.setViewName("redirect:cart_list.do?cartlist_status=error");
-		return null;
+		return mv;
 	}
 
 	@RequestMapping("order_pay.do")

@@ -7,9 +7,8 @@
 <title>로그인</title>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<c:set var="path" value="${pageContext.request.contextPath}" />
-<link href="${path}/resources/css/login_main.css" rel="stylesheet" />
-<link href="${path}/resources/css/button.css" rel="stylesheet" />
+<link href="resources/css/login_main.css" rel="stylesheet" />
+<link href="resources/css/mypage.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <script type="text/javascript">
 $(document).ready(function(){
@@ -42,14 +41,13 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<form method="post" action="login_ok.do">
 		<%@include file="../main/header.jsp"%>
-		<div class="login_main_wrapper">
-			<div class="mypage_tilte">
-				<h2>로그인</h2>
+		<div class="login_main_wrapper mypage_wrapper_Atype margin-top_20">
+			<div class="mypage_tilte"><h2>로그인</h2>
+				<div class="mypage_title_line"></div>
 			</div>
-			<div class="login_main_tilte"></div>
 
+			<form method="post" action="login_ok.do">
 			<table class="wrap_table_login">
 				<tr>
 					<td>아이디</td>
@@ -63,7 +61,6 @@ $(document).ready(function(){
 					<td><input class="inputbox" type="password" name="user_pwd"
 						placeholder="비밀번호를 입력 해 주세요" autocomplete="off"> 
 						<span class="login_main_pwdchk"> <i class="fa fa-eye-slash fa-lg"></i></span>
-					</td>
 				</tr>
 			</table>
 			<hr>
@@ -78,8 +75,8 @@ $(document).ready(function(){
 					<td class="acc_button"><input class="button_under"
 						type="button" value="회원가입" onclick="sign_up(this.form)"></td>
 			</table>
+			</form>
 		</div>
-	</form>
 	<footer><%@include file="../main/footer.jsp"%></footer>
 </body>
 </html>

@@ -30,7 +30,7 @@
 
 			<div class="points">
 				<p><b>포인트</b></p>
-				<p><fmt:formatNumber value="${user_point}" pattern="#,###" /></p>
+				<p><fmt:formatNumber value="${point}" pattern="#,###" /></p>
 			</div>
 			<div class="coupons">
 				<p><b>진행 중인 이벤트</b></p>

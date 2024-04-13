@@ -33,4 +33,6 @@ public interface ShopOrderService {
 
 	int getOrderSuccess(String order_idx);
 
+	int getOrderMinusPoint(int order_total, String string);
+
 }

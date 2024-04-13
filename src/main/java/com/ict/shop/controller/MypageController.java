@@ -166,7 +166,7 @@ public class MypageController {
 		// 암호화 비교
 		if (passwordEncoder.matches(user_pwd, dpwd)) {
 			session.setAttribute("mypage_ok","ok");
-			return new ModelAndView("mypage/mypage_stack");
+			return new ModelAndView("redirect:mypage_stack.do");
 		} else {
 			PrintWriter out = response.getWriter();
 			response.setCharacterEncoding("UTF-8");
@@ -285,7 +285,14 @@ public class MypageController {
 	
 
 	@RequestMapping("mypage_stack.do") // 마이페이지 메인페이지
-	public ModelAndView Mypage_Stack() {
-		return new ModelAndView("mypage/mypage_stack");
+	public ModelAndView Mypage_Stack(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("mypage/mypage_stack");
+		 HttpSession session = request.getSession();
+		 UserVO uvo = (UserVO) session.getAttribute("uvo");
+		
+		
+		UserVO uvo2 = shopmypageservice.getMypage_Info(uvo.getUser_id());
+		mv.addObject("point", uvo2.getUser_point());
+		return mv;
 	}
 }

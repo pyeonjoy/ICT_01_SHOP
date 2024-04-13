@@ -67,7 +67,7 @@
 	<div class="order_success_wrapper">
 		<h2>${user_name}님,주문이 완료되었습니다.</h2>
 		<img src="resources/image/success.png" alt="주문완료" />
-		<h4>주문번호 : ${order_num}</h4>
+		<%--	<h4>주문번호 : ${order_num}</h4> --%>
 		<%--	오늘날짜+시간분초+order_idx --%>
 		<br>
 		<h4>주문정보</h4>

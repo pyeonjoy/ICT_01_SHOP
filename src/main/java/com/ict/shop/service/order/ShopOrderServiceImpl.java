@@ -79,6 +79,11 @@ public class ShopOrderServiceImpl implements ShopOrderService {
 	public int getOrderSuccess(String order_idx) {
 		return odao.getOrderSuccess(order_idx);
 	}
+	
+	@Override
+	public int getOrderMinusPoint(int order_total, String user_idx) {
+		return odao.getOrderMinusPoint(order_total, user_idx);
+	}
 
 	@Override
 	public List<OrderVO> getOrderSuccessPage(String order_idx) {

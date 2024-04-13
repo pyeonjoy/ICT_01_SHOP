@@ -1,6 +1,8 @@
 package com.ict.shop.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -148,6 +150,18 @@ public class OrderDAO {
 			System.out.println(e);
 		}
 		return null;
+	}
+
+	public int getOrderMinusPoint(int order_total, String user_idx) {
+		try {
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("order_total", String.valueOf(order_total));
+			map.put("user_idx", user_idx);
+			return sqlSessionTemplate.update("order.minus_point", map);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return 0;
 	}
 
 

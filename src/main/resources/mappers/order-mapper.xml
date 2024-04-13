@@ -93,6 +93,14 @@
 		where o.order_idx=#{order_idx}
 	</select>
 	
+	<update id="minus_point" parameterType="Map">
+		update 
+		 	shop_user
+		set 
+			user_point = user_point - #{order_total}
+		where 
+		    user_idx = #{user_idx}
+	</update>
 	
 	
 	

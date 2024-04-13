@@ -79,7 +79,6 @@
 				<td colspan="2" class="order_sucess_left">
 				<c:forEach items="${order}" var="k">
 					${k.product_name} * ${k.order_count}<br>
-					<c:set var="orderTotal" value="${orderTotal = orderTotal + k.order_number}" />
 				</c:forEach></td>
 			</tr>
 			<tr>
@@ -101,7 +100,7 @@
 				<td class="order_sucess_right">결제 금액</td>
 				<td></td>
 				<td colspan="2" class="order_sucess_left">
-					<fmt:formatNumber value="${orderTotal + 3000}" pattern="#,##0" />원
+					<fmt:formatNumber value="${order_total}" pattern="#,##0" />원
 				</td>
 			</tr>
 		</table>

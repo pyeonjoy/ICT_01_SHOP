@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,7 +47,7 @@ public class OrderController {
 	}
 
 	@PostMapping("cartlist_delete.do")
-	public ModelAndView cartlistDelete(HttpServletRequest request) { 
+	public ModelAndView cartlistDelete(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("redirect:cart_list.do");
 		String[] cart_check_idx = request.getParameterValues("cart_check_idx");
 
@@ -115,7 +116,7 @@ public class OrderController {
 			cvo.setOrder_number(String.valueOf(su * price));
 
 			cvo.setAddr_idx(cvo2.getAddr_idx());
-			cvo.setOrder_idx(String.valueOf(maxIdx)); 
+			cvo.setOrder_idx(String.valueOf(maxIdx));
 
 			result = shoporderservice.getCartlistPass(cvo);
 
@@ -213,22 +214,41 @@ public class OrderController {
 	@RequestMapping("order_success.do")
 	public ModelAndView orderSuccess(String order_idx, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("product/order_success");
+		int delivery = 3000;
+
+		HttpSession session = request.getSession();
+		UserVO uvo = (UserVO) session.getAttribute("uvo");
 
 		List<OrderVO> order = shoporderservice.getOrderSuccessPage(order_idx);
+
 		if (order != null) {
+			int order_total = 0;
+			int order_number = 0;
+			int order_count = 0;
+			for (int i = 0; i < order.size(); i++) {
+				order_number = Integer.parseInt(order.get(i).getOrder_number());
+				order_count = Integer.parseInt(order.get(i).getOrder_count());
+
+				order_total += order_number * order_count;
+			}
+			order_total += delivery;
+
 			String order_num = order.get(0).getOrder_date().replaceAll("[-: ]", "") + order_idx;
-			mv.addObject("order_num", order_num);
 			mv.addObject("order_addr", order.get(0).getAddr_addr());
+			mv.addObject("order_num", order_num);
+			mv.addObject("order_total", order_total);
 			mv.addObject("order_phone", order.get(0).getAddr_phone());
 			mv.addObject("order", order);
+
+			int result = shoporderservice.getOrderSuccess(order_idx);
+			int result1 = shoporderservice.orderupdate1(order_idx);
+			int result2 = shoporderservice.getOrderMinusPoint(order_total, uvo.getUser_idx());
+
+			if (result2 > 0 && result > 0 && result1 > 0) {
+				return mv;
+			}
 		}
 
-		int result = shoporderservice.getOrderSuccess(order_idx);
-		int result1 = shoporderservice.orderupdate1(order_idx);
-
-		if (result > 0 && result1 > 0) {
-			return mv;
-		}
 		return new ModelAndView("home");
 	}
 

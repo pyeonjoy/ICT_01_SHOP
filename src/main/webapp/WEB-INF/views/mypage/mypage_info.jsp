@@ -16,7 +16,7 @@
 		        let email = $("#user_email").val();
 		        let addr = $("#user_addr").val();
 		        let email_pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-		        let phone_pattern = /^\d{3}-\d{3,4}-\d{4}$/;
+				let phone_pattern = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[0-9]{3,4}[0-9]{4}$/;
 
 		        if (phone === "" || email === "" || addr === "") {
 		            alert("입력칸을 모두 채워주세요.");

@@ -17,6 +17,7 @@
 	function find_pwd(f) {
 		f.action="login_findpwd.do";
 		f.submit();
+		alert("이메일로 전송 된 비밀번호를 확인 해 주세요.");
 	}
 </script>
 </head>

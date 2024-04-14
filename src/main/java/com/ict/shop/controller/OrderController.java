@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -224,12 +223,12 @@ public class OrderController {
 		if (order != null) {
 			int order_total = 0;
 			int order_number = 0;
-			int order_count = 0;
+			//int order_count = 0;
 			for (int i = 0; i < order.size(); i++) {
 				order_number = Integer.parseInt(order.get(i).getOrder_number());
-				order_count = Integer.parseInt(order.get(i).getOrder_count());
+				//order_count = Integer.parseInt(order.get(i).getOrder_count());
 
-				order_total += order_number * order_count;
+				order_total += order_number;
 			}
 			order_total += delivery;
 

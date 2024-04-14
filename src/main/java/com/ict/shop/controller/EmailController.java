@@ -1,10 +1,11 @@
 package com.ict.shop.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +22,7 @@ public class EmailController {
 	private JavaMailSender mailSender;
 
     @RequestMapping("login_findpwd.do")
-    public ModelAndView findPw(UserVO uvo, Model model) throws Exception {
+    public ModelAndView findPw(UserVO uvo,HttpServletResponse response) throws Exception {
     	int result = emailService.findPwCheck(uvo);
         if (result > 0) {
             return new ModelAndView("login/login_findinfo");
@@ -40,7 +41,7 @@ public class EmailController {
     	                "<a href='http://localhost:8090/shop/login_main.do'>로그인 페이지</a>");
     	        sendMail.setFrom("joj506091@gmail.com", "Perfume");
     	        sendMail.setTo(uvo.getUser_email());
-    	        sendMail.send();
+    	        sendMail.send();        
             return new ModelAndView("login/login_main");
         }
     }

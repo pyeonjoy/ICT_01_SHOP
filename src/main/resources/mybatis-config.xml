@@ -17,6 +17,7 @@
 		<typeAlias type="com.ict.shop.dao.vo.CartListVO" alias="cvo"/>
 		<typeAlias type="com.ict.shop.dao.vo.OrderVO" alias="ovo"/>
 		<typeAlias type="com.ict.shop.dao.vo.BoardVO" alias="bovo"/>
+		<typeAlias type="com.ict.shop.dao.vo.ReviewVO" alias="rvo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/login-mapper.xml" />
@@ -25,5 +26,6 @@
 		<mapper resource="mappers/order-mapper.xml" />
 		<mapper resource="mappers/board-mapper.xml" />
 		<mapper resource="mappers/email-mapper.xml" />
+		<mapper resource="mappers/review-mapper.xml" />
 	</mappers>
 </configuration>

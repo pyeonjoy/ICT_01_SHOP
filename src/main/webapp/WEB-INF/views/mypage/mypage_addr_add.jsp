@@ -9,6 +9,10 @@
 <meta charset="UTF-8">
 <title>주소록 추가</title>
 <script type="text/javascript">
+<<<<<<< HEAD
+
+=======
+>>>>>>> 811f42f45da4e14b89df389a2b7ad7d4f79a38af
 $(document).ready(function() {
 	$("#mypage_addr_go").click(function() {
 		let name = $("#addr_name").val();
